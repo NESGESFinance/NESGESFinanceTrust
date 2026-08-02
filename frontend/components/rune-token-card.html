@@ -1,0 +1,21 @@
+<!--
+  Fragmento reutilizable: tarjeta de token Rune (Utility Token).
+  Los marcadores {{...}} se sustituyen en tiempo de ejecución por el cliente.
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026.
+-->
+<article class="rune-card" data-rune-id="{{rune_id}}">
+  <div class="cabecera">
+    <span class="simbolo">{{symbol}}</span>
+    <h3>{{spaced_name}}</h3>
+  </div>
+  <div class="cuerpo">
+    <div class="metricas">
+      <span>ID</span><span>{{rune_id}}</span>
+      <span>Suministro</span><span>{{supply}}</span>
+      <span>Divisibilidad</span><span>{{divisibility}}</span>
+      <span>Titulares</span><span>{{holders}}</span>
+      <span>Bloque de génesis</span><span>{{genesis_block}}</span>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--
+  Dashboard 2 — Tokenización de Activos del Mundo Real (RWA).
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokenización RWA — NESGESFinanceTrust</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+  <nav class="nav-principal">
+    <a class="marca" href="index.html"><img src="assets/img/nesgesfinance-logo.svg" alt="NESGESFinance"></a>
+    <ul class="nav-enlaces">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="dashboard1.html">Mempool en Vivo</a></li>
+      <li><a href="explorer.html">Explorador</a></li>
+      <li><a href="dashboard2.html">Tokenización RWA</a></li>
+      <li><a href="rwa-marketplace.html">Marketplace</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="panel-cabecera">
+      <h1>Tokenización de Activos del Mundo Real</h1>
+      <p class="subtitulo">
+        Registra un activo físico o financiero como Security Token sobre Bitcoin.
+        Cada activo se vincula a un Ordinal (titularidad legal) y opcionalmente a
+        un Rune (fraccionamiento y liquidez).
+      </p>
+    </div>
+
+    <form class="form-rwa" id="form-rwa" autocomplete="off">
+      <div class="grid grid-2">
+        <div>
+          <label for="type">Categoría del activo *</label>
+          <select id="type" name="type" required>
+            <option value="INMUEBLE">Inmueble</option>
+            <option value="VEHICULO">Vehículo</option>
+            <option value="ARTE">Arte y coleccionables</option>
+            <option value="COMMODITIES">Commodities</option>
+            <option value="DEUDA">Instrumento de deuda</option>
+            <option value="EQUITY">Participación (equity)</option>
+          </select>
+        </div>
+        <div>
+          <label for="backing">Respaldo (clasificación MiCA) *</label>
+          <select id="backing" name="backing" required>
+            <option value="security">Security (Ordinal / RWA)</option>
+            <option value="fiat">Fiat (EMT)</option>
+            <option value="basket">Cesta de activos (ART)</option>
+            <option value="utility">Utility Token</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="name">Nombre del activo *</label>
+      <input type="text" id="name" name="name" placeholder="Ej.: Apartamento Torre Central 12B" required>
+
+      <label for="description">Descripción</label>
+      <textarea id="description" name="description" rows="3"
+        placeholder="Descripción detallada del activo, características y condición."></textarea>
+
+      <div class="grid grid-2">
+        <div>
+          <label for="valuationUSD">Valor de tasación (USD) *</label>
+          <input type="number" id="valuationUSD" name="valuationUSD" min="0" step="0.01"
+            placeholder="150000.00" required>
+        </div>
+        <div>
+          <label for="owner">Titular (dirección Bitcoin / Taproot) *</label>
+          <input type="text" id="owner" name="owner" placeholder="bc1p..." required>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div>
+          <label for="inscriptionId">ID de inscripción (Ordinal) *</label>
+          <input type="text" id="inscriptionId" name="inscriptionId"
+            placeholder="&lt;txid&gt;i0" required>
+        </div>
+        <div>
+          <label for="runeId">Rune vinculado (opcional)</label>
+          <input type="text" id="runeId" name="runeId" placeholder="840000:1">
+        </div>
+      </div>
+
+      <h3>Metadatos y cumplimiento</h3>
+      <div class="grid grid-2">
+        <div>
+          <label for="physicalLocation">Ubicación física / jurisdicción</label>
+          <input type="text" id="physicalLocation" name="physicalLocation"
+            placeholder="Bogotá, Colombia">
+        </div>
+        <div>
+          <label for="appraisalValue">Valor de la última tasación (USD)</label>
+          <input type="number" id="appraisalValue" name="appraisalValue" min="0" step="0.01"
+            placeholder="150000.00">
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div>
+          <label for="ownerKyc">Estado KYC del titular</label>
+          <select id="ownerKyc" name="ownerKyc">
+            <option value="NO_INICIADO">No iniciado</option>
+            <option value="PENDIENTE">Pendiente</option>
+            <option value="VERIFICADO">Verificado</option>
+            <option value="RECHAZADO">Rechazado</option>
+          </select>
+        </div>
+        <div>
+          <label for="jurisdictionRisk">Riesgo de jurisdicción (AML)</label>
+          <select id="jurisdictionRisk" name="jurisdictionRisk">
+            <option value="BAJO">Bajo</option>
+            <option value="MEDIO">Medio</option>
+            <option value="ALTO">Alto</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="certifications">Certificaciones (separadas por comas)</label>
+      <input type="text" id="certifications" name="certifications"
+        placeholder="Escritura pública No. 1234, Certificado de tradición y libertad">
+
+      <button type="submit" class="boton boton-primario">Registrar y tokenizar activo</button>
+    </form>
+
+    <div class="resultado" id="resultado" hidden></div>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Envío del formulario de tokenización RWA hacia POST /api/rwa/assets.
+    (function () {
+      const form = document.getElementById('form-rwa');
+      const salida = document.getElementById('resultado');
+
+      function mostrar(clase, html) {
+        salida.hidden = false;
+        salida.className = 'resultado ' + clase;
+        salida.innerHTML = html;
+        salida.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      form.addEventListener('submit', async (evento) => {
+        evento.preventDefault();
+        const d = new FormData(form);
+
+        // Construcción del cuerpo esperado por la API (RegisterAssetParams).
+        const cuerpo = {
+          type: d.get('type'),
+          name: d.get('name'),
+          description: d.get('description') || '',
+          valuationUSD: Number(d.get('valuationUSD')),
+          owner: d.get('owner'),
+          inscriptionId: d.get('inscriptionId'),
+          runeId: d.get('runeId') ? d.get('runeId') : null,
+          backing: d.get('backing'),
+          ownerKyc: d.get('ownerKyc'),
+          jurisdictionRisk: d.get('jurisdictionRisk'),
+          metadata: {
+            legalDocuments: [],
+            physicalLocation: d.get('physicalLocation') || '',
+            appraisalDate: new Date().toISOString(),
+            appraisalValue: Number(d.get('appraisalValue') || d.get('valuationUSD') || 0),
+            certifications: (d.get('certifications') || '')
+              .split(',')
+              .map((s) => s.trim())
+              .filter(Boolean),
+          },
+        };
+
+        mostrar('', 'Registrando activo y ejecutando validaciones de cumplimiento...');
+
+        const res = await api.post('/rwa/assets', cuerpo);
+        const data = res.data || {};
+
+        if (res.ok && data.asset) {
+          const activo = data.asset;
+          mostrar('ok',
+            '<h4>✔ Activo tokenizado correctamente</h4>' +
+            '<p><strong>ID:</strong> ' + (activo.id || '—') + '</p>' +
+            '<p><strong>Nombre:</strong> ' + (activo.name || cuerpo.name) + '</p>' +
+            '<p><strong>Valoración:</strong> ' + fmt.usd(cuerpo.valuationUSD) + '</p>' +
+            '<p><strong>Estado:</strong> ' + (activo.status || 'PENDIENTE') + '</p>');
+          form.reset();
+        } else {
+          let detalle = data.error || ('HTTP ' + res.status);
+          const v = data.validation;
+          if (v && Array.isArray(v.errors) && v.errors.length) {
+            detalle += '<ul>' +
+              v.errors.map((x) => '<li>' + x + '</li>').join('') +
+              '</ul>';
+          }
+          mostrar('err', '<h4>✘ No se pudo registrar el activo</h4><p>' + detalle + '</p>');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!--
+  Fragmento reutilizable: tarjeta de bloque.
+  Los marcadores {{...}} se sustituyen en tiempo de ejecución por el cliente.
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026.
+-->
+<div class="bloque tarjeta" data-height="{{height}}">
+  <div class="cabecera">#{{height}}</div>
+  <div class="cuerpo">
+    <p><strong>Hash:</strong> {{hash}}</p>
+    <p><strong>Transacciones:</strong> {{tx_count}}</p>
+    <p><strong>Tamaño:</strong> {{size}}</p>
+    <p><strong>Comisiones:</strong> {{total_fees}} sat</p>
+    <p><strong>Fecha:</strong> {{timestamp}}</p>
+  </div>
+</div>

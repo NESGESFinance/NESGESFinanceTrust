@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+  Marketplace — Activos del Mundo Real tokenizados.
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace RWA — NESGESFinanceTrust</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+  <nav class="nav-principal">
+    <a class="marca" href="index.html"><img src="assets/img/nesgesfinance-logo.svg" alt="NESGESFinance"></a>
+    <ul class="nav-enlaces">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="dashboard1.html">Mempool en Vivo</a></li>
+      <li><a href="explorer.html">Explorador</a></li>
+      <li><a href="dashboard2.html">Tokenización RWA</a></li>
+      <li><a href="rwa-marketplace.html">Marketplace</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="panel-cabecera">
+      <h1>Marketplace de Activos Tokenizados</h1>
+      <p class="subtitulo">
+        Explora los Activos del Mundo Real (RWA) registrados en la plataforma,
+        respaldados por Ordinals sobre Bitcoin.
+      </p>
+    </div>
+
+    <div class="filtros">
+      <label for="f-tipo">Categoría</label>
+      <select id="f-tipo">
+        <option value="">Todas</option>
+        <option value="INMUEBLE">Inmueble</option>
+        <option value="VEHICULO">Vehículo</option>
+        <option value="ARTE">Arte y coleccionables</option>
+        <option value="COMMODITIES">Commodities</option>
+        <option value="DEUDA">Deuda</option>
+        <option value="EQUITY">Equity</option>
+      </select>
+
+      <label for="f-estado">Estado</label>
+      <select id="f-estado">
+        <option value="">Todos</option>
+        <option value="PENDIENTE">Pendiente</option>
+        <option value="ACTIVO">Activo</option>
+        <option value="TRANSFERIDO">Transferido</option>
+        <option value="CANCELADO">Cancelado</option>
+      </select>
+
+      <button class="boton boton-primario" id="btn-filtrar">Aplicar filtros</button>
+    </div>
+
+    <div class="grid grid-3" id="rwa-grid">
+      <div class="cargando">Cargando activos...</div>
+    </div>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Marketplace: listado filtrable de activos RWA desde GET /api/rwa/assets.
+    (function () {
+      const grid = document.getElementById('rwa-grid');
+
+      const ETIQUETAS_TIPO = {
+        INMUEBLE: 'Inmueble',
+        VEHICULO: 'Vehículo',
+        ARTE: 'Arte',
+        COMMODITIES: 'Commodities',
+        DEUDA: 'Deuda',
+        EQUITY: 'Equity',
+      };
+
+      /** Renderiza una tarjeta de activo RWA. */
+      function tarjeta(a) {
+        const tipo = ETIQUETAS_TIPO[a.type] || a.type || '—';
+        return (
+          '<article class="rwa-card">' +
+          '<div class="cabecera">' +
+          '<span class="etiqueta">' + tipo + '</span>' +
+          '<h3>' + (a.name || 'Activo sin nombre') + '</h3>' +
+          '</div>' +
+          '<div class="cuerpo">' +
+          '<div class="valoracion">' + fmt.usd(a.valuationUSD ?? a.valuation_usd ?? 0) + '</div>' +
+          '<p>' + (a.description || 'Sin descripción.') + '</p>' +
+          '<p class="meta"><strong>Estado:</strong> ' + (a.status || '—') + '</p>' +
+          '<p class="meta"><strong>Ordinal:</strong> ' + fmt.hash(a.inscriptionId || a.inscription_id || '') + '</p>' +
+          '<p class="meta"><strong>Titular:</strong> ' + fmt.hash(a.owner || '') + '</p>' +
+          '</div></article>'
+        );
+      }
+
+      /** Carga los activos aplicando los filtros seleccionados. */
+      async function cargar() {
+        grid.innerHTML = '<div class="cargando">Cargando activos...</div>';
+        const tipo = document.getElementById('f-tipo').value;
+        const estado = document.getElementById('f-estado').value;
+        const params = new URLSearchParams();
+        if (tipo) params.set('type', tipo);
+        if (estado) params.set('status', estado);
+        const qs = params.toString() ? '?' + params.toString() : '';
+
+        try {
+          const activos = await api.get('/rwa/assets' + qs);
+          if (!Array.isArray(activos) || !activos.length) {
+            grid.innerHTML = '<div class="vacio">No hay activos registrados que coincidan con los filtros.</div>';
+            return;
+          }
+          grid.innerHTML = activos.map(tarjeta).join('');
+        } catch (e) {
+          grid.innerHTML = '<div class="vacio">No se pudo cargar el marketplace (' + e.message + ').</div>';
+        }
+      }
+
+      document.getElementById('btn-filtrar').addEventListener('click', cargar);
+      cargar();
+    })();
+  </script>
+</body>
+</html>

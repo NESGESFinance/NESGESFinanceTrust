@@ -1,0 +1,19 @@
+<!--
+  Fragmento reutilizable: tarjeta de activo RWA (Security Token).
+  Los marcadores {{...}} se sustituyen en tiempo de ejecución por el cliente.
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026.
+-->
+<article class="rwa-card" data-asset-id="{{id}}">
+  <div class="cabecera">
+    <span class="etiqueta">{{type}}</span>
+    <h3>{{name}}</h3>
+  </div>
+  <div class="cuerpo">
+    <div class="valoracion">{{valuationUSD}}</div>
+    <p>{{description}}</p>
+    <p class="meta"><strong>Estado:</strong> {{status}}</p>
+    <p class="meta"><strong>Ordinal:</strong> {{inscriptionId}}</p>
+    <p class="meta"><strong>Titular:</strong> {{owner}}</p>
+  </div>
+</article>

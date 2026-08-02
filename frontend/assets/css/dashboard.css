@@ -1,0 +1,163 @@
+/*
+ * Estilos específicos de los paneles (dashboards) y del explorador.
+ *
+ * Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+ * TODOS LOS DERECHOS RESERVADOS 2025-2026.
+ */
+
+.panel-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.panel-cabecera h1 {
+  color: var(--color-dorado);
+  font-size: 1.8rem;
+}
+
+/* Métricas superiores ------------------------------------------------------ */
+.metricas-fila {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Visualización del mempool (barras de fee) -------------------------------- */
+.mempool-viz {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.25rem;
+}
+
+.fee-barras {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 220px;
+  padding-top: 1rem;
+  border-bottom: 2px solid var(--color-borde);
+  overflow: hidden;
+}
+
+.fee-barra {
+  flex: 1;
+  min-width: 6px;
+  background: linear-gradient(180deg, var(--color-dorado), var(--color-naranja));
+  border-radius: 3px 3px 0 0;
+  transition: height 0.4s ease;
+  position: relative;
+}
+
+.fee-barra:hover::after {
+  content: attr(data-info);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: var(--color-verde);
+  font-family: var(--fuente-datos);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-naranja);
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.fee-leyenda {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--fuente-datos);
+  font-size: 0.75rem;
+  color: var(--color-texto-tenue);
+  margin-top: 0.5rem;
+}
+
+/* Cadena de bloques (explorador) ------------------------------------------- */
+.cadena-bloques {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.cadena-bloques .conector {
+  align-self: center;
+  color: var(--color-borde);
+  font-size: 1.5rem;
+}
+
+/* Formulario de tokenización RWA ------------------------------------------- */
+.form-rwa {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+  display: grid;
+  gap: 1rem;
+  max-width: 640px;
+}
+
+.form-rwa label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-texto-tenue);
+}
+
+.form-rwa input,
+.form-rwa select,
+.form-rwa textarea {
+  background: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  padding: 0.6rem;
+  color: var(--color-texto);
+  font-family: var(--fuente-datos);
+}
+
+.form-rwa input:focus,
+.form-rwa select:focus,
+.form-rwa textarea:focus {
+  outline: none;
+  border-color: var(--color-naranja);
+}
+
+.resultado {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: var(--fuente-datos);
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.resultado.ok { border: 1px solid var(--color-verde); color: var(--color-verde); }
+.resultado.err { border: 1px solid var(--color-error); color: var(--color-error); }
+
+/* Filtros ------------------------------------------------------------------ */
+.filtros {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.filtros select,
+.filtros input {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  color: var(--color-texto);
+  font-family: var(--fuente-datos);
+}

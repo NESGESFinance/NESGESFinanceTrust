@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+  Dashboard 1 — Mempool en tiempo real.
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mempool en Vivo — NESGESFinanceTrust</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+  <nav class="nav-principal">
+    <a class="marca" href="index.html"><img src="assets/img/nesgesfinance-logo.svg" alt="NESGESFinance"></a>
+    <ul class="nav-enlaces">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="dashboard1.html">Mempool en Vivo</a></li>
+      <li><a href="explorer.html">Explorador</a></li>
+      <li><a href="dashboard2.html">Tokenización RWA</a></li>
+      <li><a href="rwa-marketplace.html">Marketplace</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="panel-cabecera">
+      <h1>Mempool en Tiempo Real</h1>
+      <div class="estado-conexion desconectado" id="estado-conexion">
+        <span class="punto"></span><span class="texto">Conectando…</span>
+      </div>
+    </div>
+
+    <div class="metricas-fila">
+      <div class="tarjeta"><h4>Transacciones</h4><div class="valor" id="mp-count">—</div><div class="descripcion">en el mempool</div></div>
+      <div class="tarjeta"><h4>Tamaño</h4><div class="valor" id="mp-vsize">—</div><div class="descripcion">peso virtual</div></div>
+      <div class="tarjeta"><h4>Comisiones</h4><div class="valor" id="mp-fees">—</div><div class="descripcion">total pendiente</div></div>
+      <div class="tarjeta"><h4>Prioridad alta</h4><div class="valor" id="fee-fastest">—</div><div class="descripcion">~10 min</div></div>
+    </div>
+
+    <h2>Distribución de comisiones (sat/vB)</h2>
+    <div class="mempool-viz" id="mempool-viz">
+      <div class="cargando">Cargando histograma…</div>
+    </div>
+
+    <h2>Estimación de comisiones</h2>
+    <div class="grid grid-3">
+      <div class="tarjeta"><h4>Rápida (~10 min)</h4><div class="valor" id="fee-fastest-2">—</div></div>
+      <div class="tarjeta"><h4>Media (~30 min)</h4><div class="valor" id="fee-halfhour">—</div></div>
+      <div class="tarjeta"><h4>Económica (~1 h)</h4><div class="valor" id="fee-hour">—</div></div>
+    </div>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/websocket-client.js"></script>
+  <script src="assets/js/mempool-viz.js"></script>
+  <script>
+    // Inicialización del dashboard de mempool.
+    (function () {
+      const viz = document.getElementById('mempool-viz');
+
+      async function refrescar() {
+        await MempoolViz.cargar(viz);
+        // Duplica la métrica de comisión rápida en la sección inferior.
+        const rapida = document.getElementById('fee-fastest');
+        const rapida2 = document.getElementById('fee-fastest-2');
+        if (rapida && rapida2) {
+          rapida2.textContent = rapida.textContent;
+        }
+      }
+
+      refrescar();
+      setInterval(refrescar, 30000);
+
+      // Conexión WebSocket para actualizaciones instantáneas del mempool.
+      const ws = new NesgesWebSocket(NESGES.WS_URL, ['mempool', 'blocks']);
+      ws.onEstado(actualizarIndicadorEstado);
+      ws.on('mempool', (payload) => {
+        if (payload && payload.feeHistogram) {
+          MempoolViz.renderMetricas(payload);
+          MempoolViz.renderHistograma(viz, payload.feeHistogram);
+        }
+      });
+      ws.conectar();
+    })();
+  </script>
+</body>
+</html>

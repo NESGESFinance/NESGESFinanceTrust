@@ -1,0 +1,187 @@
+/*
+ * Estilos de componentes reutilizables (tarjetas, tablas, badges).
+ *
+ * Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+ * TODOS LOS DERECHOS RESERVADOS 2025-2026.
+ */
+
+.tarjeta {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.25rem;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.tarjeta:hover {
+  border-color: var(--color-naranja);
+  transform: translateY(-3px);
+}
+
+.tarjeta h3,
+.tarjeta h4 {
+  color: var(--color-dorado);
+  margin-bottom: 0.5rem;
+}
+
+.tarjeta .valor {
+  font-family: var(--fuente-datos);
+  font-size: 1.8rem;
+  color: var(--color-verde);
+  font-weight: 700;
+}
+
+.tarjeta .descripcion {
+  color: var(--color-texto-tenue);
+  font-size: 0.9rem;
+}
+
+/* Tarjeta de bloque -------------------------------------------------------- */
+.block-card {
+  background: linear-gradient(160deg, #171717, #0f0f0f);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1rem;
+  min-width: 150px;
+}
+
+.block-card .altura {
+  color: var(--color-naranja);
+  font-weight: 700;
+  font-family: var(--fuente-datos);
+}
+
+.block-card .dato {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--color-texto-tenue);
+  border-top: 1px dashed var(--color-borde);
+  padding-top: 0.3rem;
+  margin-top: 0.3rem;
+}
+
+.block-card .dato span:last-child {
+  color: var(--color-verde);
+  font-family: var(--fuente-datos);
+}
+
+/* Tabla de transacciones --------------------------------------------------- */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--fuente-datos);
+  font-size: 0.85rem;
+}
+
+.tabla th,
+.tabla td {
+  text-align: left;
+  padding: 0.55rem 0.6rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla th {
+  color: var(--color-dorado);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+}
+
+.tabla td .hash {
+  color: var(--color-naranja);
+}
+
+.tabla tbody tr:hover,
+.tabla tr:hover {
+  background: rgba(247, 147, 26, 0.06);
+}
+
+/* Badges ------------------------------------------------------------------- */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--fuente-datos);
+}
+
+.badge-runes { background: rgba(247, 147, 26, 0.15); color: var(--color-naranja); border: 1px solid var(--color-naranja); }
+.badge-ordinals { background: rgba(255, 215, 0, 0.12); color: var(--color-dorado); border: 1px solid var(--color-dorado); }
+.badge-rwa { background: rgba(0, 255, 65, 0.1); color: var(--color-verde); border: 1px solid var(--color-verde); }
+
+.badge-activo { background: rgba(0, 255, 65, 0.15); color: var(--color-verde); }
+.badge-pendiente { background: rgba(255, 215, 0, 0.15); color: var(--color-dorado); }
+.badge-transferido { background: rgba(247, 147, 26, 0.15); color: var(--color-naranja); }
+.badge-cancelado { background: rgba(255, 77, 77, 0.15); color: var(--color-error); }
+
+/* Tarjeta de token Rune ---------------------------------------------------- */
+.rune-card {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.1rem;
+}
+
+.rune-card .simbolo {
+  font-size: 2rem;
+  color: var(--color-naranja);
+}
+
+.rune-card .nombre {
+  color: var(--color-dorado);
+  font-weight: 700;
+  font-family: var(--fuente-datos);
+  letter-spacing: 1px;
+}
+
+.rune-card .metricas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.rune-card .metricas span:nth-child(odd) { color: var(--color-texto-tenue); }
+.rune-card .metricas span:nth-child(even) { color: var(--color-verde); font-family: var(--fuente-datos); text-align: right; }
+
+/* Tarjeta de activo RWA ---------------------------------------------------- */
+.rwa-card {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.rwa-card .cabecera {
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(247,147,26,0.15), transparent);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.rwa-card .cuerpo { padding: 1rem; flex: 1; }
+
+.rwa-card .valoracion {
+  font-family: var(--fuente-datos);
+  color: var(--color-verde);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.rwa-card .meta {
+  font-size: 0.8rem;
+  color: var(--color-texto-tenue);
+  margin-top: 0.3rem;
+}
+
+/* Cargando / vacío --------------------------------------------------------- */
+.cargando, .vacio {
+  text-align: center;
+  color: var(--color-texto-tenue);
+  padding: 2rem;
+  font-family: var(--fuente-datos);
+}

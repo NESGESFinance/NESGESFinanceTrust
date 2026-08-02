@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+.next/
+coverage/
+.env
+.env.*
+*.pem
+*.key
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.abacus.donotdelete
+docs/*_preview/

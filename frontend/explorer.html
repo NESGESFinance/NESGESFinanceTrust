@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+  Explorador — Bloques, Runes y Ordinals.
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorador — NESGESFinanceTrust</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+  <nav class="nav-principal">
+    <a class="marca" href="index.html"><img src="assets/img/nesgesfinance-logo.svg" alt="NESGESFinance"></a>
+    <ul class="nav-enlaces">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="dashboard1.html">Mempool en Vivo</a></li>
+      <li><a href="explorer.html">Explorador</a></li>
+      <li><a href="dashboard2.html">Tokenización RWA</a></li>
+      <li><a href="rwa-marketplace.html">Marketplace</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="panel-cabecera">
+      <h1>Explorador de la Cadena</h1>
+      <p class="subtitulo">
+        Consulta bloques indexados y los activos digitales (Runes y Ordinals)
+        anclados a la cadena de Bitcoin.
+      </p>
+    </div>
+
+    <section>
+      <h2>Bloques</h2>
+      <div class="filtros">
+        <label for="altura">Altura del bloque</label>
+        <input type="number" id="altura" min="0" step="1" placeholder="840000">
+        <button class="boton boton-primario" id="btn-buscar">Buscar</button>
+        <span class="descripcion" id="rango-info"></span>
+      </div>
+      <div class="cadena-bloques" id="cadena-bloques">
+        <div class="cargando">Introduce una altura para explorar los bloques...</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Runes (Utility Tokens)</h2>
+      <div class="grid grid-3" id="lista-runes">
+        <div class="cargando">Cargando Runes...</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Ordinals (Security Tokens / RWA)</h2>
+      <div class="grid grid-3" id="lista-ordinals">
+        <div class="cargando">Cargando Ordinals...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/runes-ui.js"></script>
+  <script src="assets/js/ordinals-ui.js"></script>
+  <script>
+    // Lógica del explorador: bloques por altura + listados de Runes/Ordinals.
+    (function () {
+      const cadena = document.getElementById('cadena-bloques');
+      const entrada = document.getElementById('altura');
+      const info = document.getElementById('rango-info');
+
+      /** Renderiza una tarjeta de bloque. */
+      function tarjetaBloque(b) {
+        return (
+          '<div class="bloque tarjeta">' +
+          '<div class="cabecera">#' + fmt.numero(b.height) + '</div>' +
+          '<div class="cuerpo">' +
+          '<p><strong>Hash:</strong> ' + fmt.hash(b.id || b.hash || '') + '</p>' +
+          '<p><strong>Transacciones:</strong> ' + fmt.numero(b.tx_count ?? b.txCount ?? 0) + '</p>' +
+          '<p><strong>Tamaño:</strong> ' + fmt.bytes(b.size ?? 0) + '</p>' +
+          '<p><strong>Fecha:</strong> ' + fmt.fecha(b.timestamp ?? 0) + '</p>' +
+          '</div></div>'
+        );
+      }
+
+      /** Carga un rango de bloques descendente a partir de una altura. */
+      async function cargarBloques(alturaTope) {
+        cadena.innerHTML = '<div class="cargando">Cargando bloques...</div>';
+        const objetivos = [];
+        for (let h = alturaTope; h > alturaTope - 5 && h >= 0; h--) {
+          objetivos.push(h);
+        }
+        const resultados = await Promise.all(
+          objetivos.map((h) => api.get('/blocks/' + h).catch(() => null))
+        );
+        const bloques = resultados.filter(Boolean);
+        if (!bloques.length) {
+          cadena.innerHTML = '<div class="vacio">No se encontraron bloques indexados para ese rango.</div>';
+          info.textContent = '';
+          return;
+        }
+        cadena.innerHTML = bloques
+          .map((b) => tarjetaBloque(b))
+          .join('<span class="conector">←</span>');
+        info.textContent = 'Mostrando ' + bloques.length + ' bloque(s).';
+      }
+
+      document.getElementById('btn-buscar').addEventListener('click', () => {
+        const valor = Number(entrada.value);
+        if (Number.isFinite(valor) && valor >= 0) {
+          cargarBloques(valor);
+        }
+      });
+      entrada.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          document.getElementById('btn-buscar').click();
+        }
+      });
+
+      // Listados de activos digitales.
+      RunesUI.cargar(document.getElementById('lista-runes'));
+      OrdinalsUI.cargar(document.getElementById('lista-ordinals'));
+    })();
+  </script>
+</body>
+</html>
