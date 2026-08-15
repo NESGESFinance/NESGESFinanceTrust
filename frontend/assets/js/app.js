@@ -107,4 +107,11 @@ function marcarNavActivo() {
 document.addEventListener('DOMContentLoaded', () => {
   inyectarPie();
   marcarNavActivo();
+  
+  // Initialize Vercel Speed Insights
+  if (window.NESGES && typeof window.NESGES.injectSpeedInsights === 'function') {
+    window.NESGES.injectSpeedInsights({
+      debug: false, // Set to true for debugging in development
+    });
+  }
 });
