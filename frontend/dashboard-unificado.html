@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<!--
+  Dashboard Unificado — NESGESFinanceTrust
+  Archivo autocontenido: HTML5 + CSS3 + JavaScript vainilla incrustados.
+  Combina: Inicio · Mempool en Vivo · Explorador de Bloques/Runes/Ordinals ·
+           Tokenización RWA · Marketplace · Conexión WebSocket en tiempo real.
+
+  Hipervínculos locales:   index.html · dashboard1.html · explorer.html ·
+                           dashboard2.html · rwa-marketplace.html
+  Hipervínculos externos:  nesgesfinancetrust.com · GitHub · Docs API ·
+                           Docs Arquitectura · Docs Compliance · Esplora ·
+                           MiCA EUR · mempool.space
+
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard Unificado NESGESFinanceTrust — Mempool, Bloques, Runes, Ordinals, Tokenización RWA y Marketplace en un solo archivo interactivo.">
+  <title>Dashboard Unificado — NESGESFinanceTrust</title>
+
+  <!-- ════════════════════════════════════════════════════════════════════════
+       ESTILOS INCRUSTADOS  (main.css + components.css + dashboard.css)
+       ════════════════════════════════════════════════════════════════════════ -->
+  <style>
+    /* ── Variables corporativas ─────────────────────────────────────────── */
+    :root {
+      --c-fondo:       #0a0a0a;
+      --c-sup:         #141414;
+      --c-sup-alt:     #1c1c1c;
+      --c-borde:       #2a2a2a;
+      --c-naranja:     #F7931A;
+      --c-dorado:      #FFD700;
+      --c-verde:       #00FF41;
+      --c-texto:       #e8e8e8;
+      --c-tenue:       #9a9a9a;
+      --c-error:       #ff4d4d;
+      --f-datos:       'Courier New', 'SFMono-Regular', Consolas, monospace;
+      --f-ui:          'Segoe UI', Roboto, Arial, sans-serif;
+      --radio:         10px;
+      --sombra:        0 4px 20px rgba(0,0,0,.55);
+    }
+
+    /* ── Reset ──────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--c-fondo);
+      color: var(--c-texto);
+      font-family: var(--f-ui);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--c-naranja); text-decoration: none; transition: color .15s; }
+    a:hover { color: var(--c-dorado); }
+    code, .mono { font-family: var(--f-datos); color: var(--c-verde); }
+
+    /* ── Barra de navegación ────────────────────────────────────────────── */
+    .nav-principal {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+      padding: .6rem 1.25rem;
+      background: linear-gradient(180deg,#101010,#0a0a0a);
+      border-bottom: 1px solid var(--c-borde);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+
+    .marca { display: flex; align-items: center; gap: .5rem; }
+    .marca svg { height: 40px; }
+
+    .nav-enlaces {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-enlaces a {
+      color: var(--c-texto);
+      font-weight: 600;
+      font-size: .9rem;
+      padding: .3rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .nav-enlaces a:hover,
+    .nav-enlaces a.activo { color: var(--c-dorado); border-bottom-color: var(--c-naranja); }
+
+    /* ── Indicador de conexión WS ───────────────────────────────────────── */
+    .ws-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .75rem;
+      font-family: var(--f-datos);
+      padding: .25rem .65rem;
+      border-radius: 999px;
+      border: 1px solid var(--c-borde);
+      background: var(--c-sup);
+      white-space: nowrap;
+    }
+    .ws-badge .punto {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--c-tenue);
+    }
+    .ws-badge.conectado .punto  { background: var(--c-verde); animation: pulso 1.5s infinite; }
+    .ws-badge.desconectado .punto { background: var(--c-error); }
+
+    @keyframes pulso {
+      0%,100% { box-shadow: 0 0 0 0 rgba(0,255,65,.6); }
+      50%      { box-shadow: 0 0 0 5px rgba(0,255,65,0); }
+    }
+
+    /* ── Pestañas ───────────────────────────────────────────────────────── */
+    .tabs-barra {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      padding: .75rem 1.25rem;
+      background: var(--c-sup);
+      border-bottom: 1px solid var(--c-borde);
+    }
+
+    .tab-btn {
+      padding: .4rem .9rem;
+      border-radius: var(--radio);
+      border: 1px solid var(--c-borde);
+      background: transparent;
+      color: var(--c-tenue);
+      font-family: var(--f-ui);
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .tab-btn:hover { border-color: var(--c-naranja); color: var(--c-naranja); }
+    .tab-btn.activo {
+      background: linear-gradient(135deg,var(--c-dorado),var(--c-naranja));
+      color: #0a0a0a;
+      border-color: transparent;
+    }
+
+    /* ── Contenido de pestaña ───────────────────────────────────────────── */
+    .tab-panel { display: none; }
+    .tab-panel.activo { display: block; }
+
+    /* ── Layout principal ───────────────────────────────────────────────── */
+    .contenido-principal {
+      flex: 1;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem;
+    }
+
+    /* ── Títulos ────────────────────────────────────────────────────────── */
+    h1 { color: var(--c-dorado); font-size: clamp(1.5rem,3.5vw,2.5rem); margin-bottom: .5rem; }
+    h2 {
+      color: var(--c-dorado);
+      font-size: 1.4rem;
+      margin: 1.75rem 0 .85rem;
+      border-left: 4px solid var(--c-naranja);
+      padding-left: .65rem;
+    }
+    h3 { color: var(--c-naranja); margin: 1rem 0 .5rem; }
+
+    .subtitulo { color: var(--c-tenue); font-size: .95rem; margin-bottom: 1.25rem; }
+
+    /* ── Grilla ─────────────────────────────────────────────────────────── */
+    .grid { display: grid; gap: 1.1rem; }
+    .g3 { grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+    .g2 { grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); }
+    .g4 { grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); }
+
+    /* ── Tarjeta genérica ───────────────────────────────────────────────── */
+    .tarjeta {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: var(--radio);
+      padding: 1.1rem;
+      transition: border-color .15s, transform .15s;
+    }
+    .tarjeta:hover { border-color: var(--c-naranja); transform: translateY(-2px); }
+    .tarjeta h3, .tarjeta h4 { color: var(--c-dorado); margin-bottom: .4rem; }
+    .tarjeta .valor {
+      font-family: var(--f-datos);
+      font-size: 1.7rem;
+      color: var(--c-verde);
+      font-weight: 700;
+    }
+    .tarjeta .descripcion { color: var(--c-tenue); font-size: .85rem; }
+
+    /* ── Métricas ───────────────────────────────────────────────────────── */
+    .metricas-fila { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: .85rem; margin-bottom: 1.5rem; }
+
+    /* ── Histograma mempool ─────────────────────────────────────────────── */
+    .mempool-viz {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: var(--radio);
+      padding: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+    .fee-barras {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 200px;
+      padding-top: .75rem;
+      border-bottom: 2px solid var(--c-borde);
+      overflow: hidden;
+    }
+    .fee-barra {
+      flex: 1;
+      min-width: 5px;
+      background: linear-gradient(180deg,var(--c-dorado),var(--c-naranja));
+      border-radius: 3px 3px 0 0;
+      transition: height .4s ease;
+      position: relative;
+    }
+    .fee-barra:hover::after {
+      content: attr(data-info);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: var(--c-verde);
+      font-family: var(--f-datos);
+      font-size: .68rem;
+      padding: .2rem .45rem;
+      border: 1px solid var(--c-naranja);
+      border-radius: 4px;
+      white-space: nowrap;
+      z-index: 10;
+    }
+    .fee-leyenda {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--f-datos);
+      font-size: .72rem;
+      color: var(--c-tenue);
+      margin-top: .4rem;
+    }
+
+    /* ── Cadena de bloques ──────────────────────────────────────────────── */
+    .cadena-bloques {
+      display: flex;
+      gap: .6rem;
+      overflow-x: auto;
+      padding: .75rem 0;
+    }
+    .cadena-bloques .conector { align-self: center; color: var(--c-borde); font-size: 1.4rem; }
+    .bloque.tarjeta { min-width: 160px; }
+    .bloque .cabecera { color: var(--c-naranja); font-family: var(--f-datos); font-weight: 700; margin-bottom: .5rem; }
+    .bloque .cuerpo p { font-size: .8rem; color: var(--c-tenue); margin-bottom: .2rem; }
+    .bloque .cuerpo p strong { color: var(--c-texto); }
+
+    /* ── Filtros ────────────────────────────────────────────────────────── */
+    .filtros {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      margin-bottom: 1.25rem;
+    }
+    .filtros label { font-size: .8rem; color: var(--c-tenue); display: flex; flex-direction: column; gap: .25rem; }
+    .filtros input,
+    .filtros select {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 6px;
+      padding: .45rem .7rem;
+      color: var(--c-texto);
+      font-family: var(--f-datos);
+    }
+    .filtros input:focus, .filtros select:focus { outline: none; border-color: var(--c-naranja); }
+
+    /* ── Botones ────────────────────────────────────────────────────────── */
+    .boton {
+      display: inline-block;
+      padding: .5rem 1.1rem;
+      border-radius: var(--radio);
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      font-family: var(--f-ui);
+      font-size: .88rem;
+      transition: transform .12s, box-shadow .12s;
+    }
+    .boton-primario {
+      background: linear-gradient(135deg,var(--c-dorado),var(--c-naranja));
+      color: #0a0a0a;
+    }
+    .boton-secundario {
+      background: transparent;
+      color: var(--c-naranja);
+      border: 1px solid var(--c-naranja);
+    }
+    .boton:hover { transform: translateY(-2px); box-shadow: var(--sombra); }
+
+    /* ── Badges ─────────────────────────────────────────────────────────── */
+    .badge {
+      display: inline-block;
+      padding: .12rem .55rem;
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 700;
+      font-family: var(--f-datos);
+    }
+    .badge-runes    { background:rgba(247,147,26,.15);  color:var(--c-naranja); border:1px solid var(--c-naranja); }
+    .badge-ordinals { background:rgba(255,215,0,.12);   color:var(--c-dorado);  border:1px solid var(--c-dorado); }
+    .badge-rwa      { background:rgba(0,255,65,.10);    color:var(--c-verde);   border:1px solid var(--c-verde); }
+    .badge-activo      { background:rgba(0,255,65,.15);    color:var(--c-verde); }
+    .badge-pendiente   { background:rgba(255,215,0,.15);   color:var(--c-dorado); }
+    .badge-transferido { background:rgba(247,147,26,.15);  color:var(--c-naranja); }
+    .badge-cancelado   { background:rgba(255,77,77,.15);   color:var(--c-error); }
+
+    /* ── Tarjeta Rune ───────────────────────────────────────────────────── */
+    .rune-card {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: var(--radio);
+      padding: 1rem;
+      transition: border-color .15s;
+    }
+    .rune-card:hover { border-color: var(--c-naranja); }
+    .rune-card .simbolo { font-size: 1.8rem; color: var(--c-naranja); }
+    .rune-card .nombre { color: var(--c-dorado); font-weight: 700; font-family: var(--f-datos); letter-spacing: 1px; }
+    .rune-card .metricas { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-top: .65rem; font-size: .78rem; }
+    .rune-card .metricas span:nth-child(odd)  { color: var(--c-tenue); }
+    .rune-card .metricas span:nth-child(even) { color: var(--c-verde); font-family: var(--f-datos); text-align: right; }
+
+    /* ── Tarjeta RWA ────────────────────────────────────────────────────── */
+    .rwa-card {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: var(--radio);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color .15s;
+    }
+    .rwa-card:hover { border-color: var(--c-verde); }
+    .rwa-card .cabecera { padding: .9rem 1rem; background: linear-gradient(135deg,rgba(247,147,26,.15),transparent); border-bottom: 1px solid var(--c-borde); }
+    .rwa-card .cuerpo   { padding: .9rem 1rem; flex: 1; }
+    .rwa-card .valoracion { font-family: var(--f-datos); color: var(--c-verde); font-size: 1.3rem; font-weight: 700; }
+    .rwa-card .meta { font-size: .78rem; color: var(--c-tenue); margin-top: .25rem; }
+
+    /* ── Formulario RWA ─────────────────────────────────────────────────── */
+    .form-rwa {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: var(--radio);
+      padding: 1.4rem;
+      display: grid;
+      gap: .9rem;
+      max-width: 680px;
+    }
+    .form-rwa label { display: flex; flex-direction: column; gap: .3rem; font-size: .82rem; color: var(--c-tenue); }
+    .form-rwa input,
+    .form-rwa select,
+    .form-rwa textarea {
+      background: var(--c-fondo);
+      border: 1px solid var(--c-borde);
+      border-radius: 6px;
+      padding: .55rem .7rem;
+      color: var(--c-texto);
+      font-family: var(--f-datos);
+    }
+    .form-rwa input:focus, .form-rwa select:focus, .form-rwa textarea:focus {
+      outline: none;
+      border-color: var(--c-naranja);
+    }
+
+    /* ── Resultado operación ────────────────────────────────────────────── */
+    .resultado {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: var(--f-datos);
+      font-size: .82rem;
+      word-break: break-word;
+    }
+    .resultado.ok  { border: 1px solid var(--c-verde); color: var(--c-verde); }
+    .resultado.err { border: 1px solid var(--c-error); color: var(--c-error); }
+
+    /* ── Log en vivo ────────────────────────────────────────────────────── */
+    .log-vivo {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: var(--radio);
+      padding: .85rem 1rem;
+      max-height: 260px;
+      overflow-y: auto;
+      font-family: var(--f-datos);
+      font-size: .78rem;
+    }
+    .log-vivo .linea { padding: .2rem 0; border-bottom: 1px dashed var(--c-borde); color: var(--c-verde); }
+    .log-vivo .linea .ts  { color: var(--c-tenue); margin-right: .5rem; }
+    .log-vivo .linea .canal { color: var(--c-naranja); font-weight: 700; margin-right: .4rem; }
+
+    /* ── Hero inicial ───────────────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 3.5rem 1rem 2.5rem;
+      background: radial-gradient(circle at 50% 0%,rgba(247,147,26,.12),transparent 60%);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 { font-size: clamp(1.8rem,4.5vw,3rem); color: var(--c-dorado); margin-bottom: .5rem; }
+    .hero .lema { font-style: italic; color: var(--c-verde); font-size: 1.05rem; margin-bottom: 1.25rem; }
+    .hero .desc { max-width: 720px; margin: 0 auto 1.25rem; color: var(--c-tenue); }
+    .hero-btns { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+
+    /* ── Capacidades (inicio) ───────────────────────────────────────────── */
+    .cap-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1rem; }
+
+    /* ── Diagrama arquitectura ──────────────────────────────────────────── */
+    .arq-pre {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: var(--radio);
+      padding: 1.1rem;
+      overflow-x: auto;
+      color: var(--c-verde);
+      font-size: .78rem;
+      font-family: var(--f-datos);
+      line-height: 1.7;
+    }
+
+    /* ── Links externos rápidos ─────────────────────────────────────────── */
+    .links-externos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin: .75rem 0 1.5rem;
+    }
+    .link-ext {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .35rem .8rem;
+      border-radius: 999px;
+      border: 1px solid var(--c-borde);
+      background: var(--c-sup);
+      color: var(--c-tenue);
+      font-size: .78rem;
+      font-family: var(--f-datos);
+      transition: border-color .15s, color .15s;
+    }
+    .link-ext:hover { border-color: var(--c-naranja); color: var(--c-naranja); }
+    .link-ext svg { width: 13px; height: 13px; fill: currentColor; }
+
+    /* ── Tabla tx recientes ─────────────────────────────────────────────── */
+    .tabla { width: 100%; border-collapse: collapse; font-family: var(--f-datos); font-size: .82rem; }
+    .tabla th, .tabla td { text-align: left; padding: .45rem .55rem; border-bottom: 1px solid var(--c-borde); }
+    .tabla th { color: var(--c-dorado); text-transform: uppercase; font-size: .7rem; letter-spacing: 1px; }
+    .tabla td .hash { color: var(--c-naranja); }
+    .tabla tbody tr:hover { background: rgba(247,147,26,.06); }
+
+    /* ── Estado general ─────────────────────────────────────────────────── */
+    .cargando, .vacio { text-align: center; color: var(--c-tenue); padding: 1.75rem; font-family: var(--f-datos); }
+
+    /* ── Pie de página ──────────────────────────────────────────────────── */
+    .pie {
+      border-top: 1px solid var(--c-borde);
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      color: var(--c-tenue);
+      font-size: .8rem;
+      background: #0c0c0c;
+    }
+    .pie strong { color: var(--c-dorado); }
+    .pie .copyright { margin-top: .35rem; font-family: var(--f-datos); font-size: .72rem; }
+
+    /* ── Responsive ─────────────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .nav-principal { flex-direction: column; align-items: flex-start; }
+      .tabs-barra { gap: .25rem; }
+      .tab-btn { font-size: .78rem; padding: .35rem .65rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       BARRA DE NAVEGACIÓN GLOBAL
+       ══════════════════════════════════════════════════════════════════════ -->
+  <nav class="nav-principal" aria-label="Navegación principal">
+    <!-- Logo inline (SVG) + hipervínculo al index -->
+    <a class="marca" href="index.html" title="Volver al inicio">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" role="img" aria-label="NESGESFinance">
+        <defs>
+          <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#FFD700"/>
+            <stop offset="1" stop-color="#F7931A"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(4,4)">
+          <polygon points="28,0 52,14 52,42 28,56 4,42 4,14"
+                   fill="#0a0a0a" stroke="url(#gGold)" stroke-width="2.5"/>
+          <text x="28" y="38" text-anchor="middle" font-family="'Courier New',monospace"
+                font-size="30" font-weight="700" fill="url(#gGold)">₿</text>
+        </g>
+        <g font-family="'Segoe UI',Arial,sans-serif">
+          <text x="70" y="30" font-size="22" font-weight="700" fill="#FFD700">NESGES<tspan fill="#F7931A">Finance</tspan></text>
+          <text x="70" y="48" font-size="10" letter-spacing="2" fill="#00FF41">ECOSYSTEM · TRUST</text>
+        </g>
+      </svg>
+    </a>
+
+    <!-- Hipervínculos locales a las páginas individuales -->
+    <ul class="nav-enlaces" id="nav-enlaces">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="dashboard1.html">Mempool</a></li>
+      <li><a href="explorer.html">Explorador</a></li>
+      <li><a href="dashboard2.html">RWA</a></li>
+      <li><a href="rwa-marketplace.html">Marketplace</a></li>
+    </ul>
+
+    <!-- Indicador WebSocket -->
+    <div class="ws-badge desconectado" id="ws-badge" title="Estado WebSocket en tiempo real">
+      <span class="punto"></span>
+      <span id="ws-texto">WS: Conectando…</span>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       BARRA DE PESTAÑAS DEL DASHBOARD UNIFICADO
+       ══════════════════════════════════════════════════════════════════════ -->
+  <div class="tabs-barra" role="tablist" aria-label="Secciones del dashboard">
+    <button class="tab-btn activo" role="tab" aria-selected="true"  data-tab="inicio"    >🏠 Inicio</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="mempool"   >⚡ Mempool en Vivo</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="explorador">🔍 Explorador</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="runes"     >🪙 Runes</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="ordinals"  >🔐 Ordinals</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="rwa"       >🏢 Tokenizar RWA</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="marketplace">🛒 Marketplace</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="live"      >📡 Feed en Vivo</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       CONTENIDO PRINCIPAL
+       ══════════════════════════════════════════════════════════════════════ -->
+  <div class="contenido-principal">
+
+    <!-- ────────────────────────────────────────────────────────────────────
+         PESTAÑA 1 · INICIO
+         ──────────────────────────────────────────────────────────────────── -->
+    <section id="tab-inicio" class="tab-panel activo" role="tabpanel">
+
+      <div class="hero">
+        <h1>El Ecosistema Financiero sobre Bitcoin</h1>
+        <p class="lema">«Y a tu prójimo como a tí mismo»</p>
+        <p class="desc">
+          <strong>NESGESFinanceTrust</strong> es la capa de exploración, indexación y tokenización de la red
+          Bitcoin del ecosistema NESGESFinance: mempool en tiempo real, protocolo
+          <strong>Runes</strong> (Utility Tokens), <strong>Ordinals</strong> (Security Tokens) y registro de
+          <strong>Activos del Mundo Real</strong> (RWA) con cumplimiento MiCA/KYC/AML.
+        </p>
+        <div class="hero-btns">
+          <button class="boton boton-primario" onclick="activarTab('mempool')">⚡ Ver Mempool en Vivo</button>
+          <button class="boton boton-secundario" onclick="activarTab('rwa')">🏢 Tokenizar un Activo</button>
+          <button class="boton boton-secundario" onclick="activarTab('marketplace')">🛒 Marketplace RWA</button>
+        </div>
+      </div>
+
+      <!-- Links rápidos externos -->
+      <div class="links-externos" aria-label="Recursos externos">
+        <a class="link-ext" href="https://nesgesfinancetrust.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 20 20"><path d="M10 0a10 10 0 100 20A10 10 0 0010 0zm6.5 6h-2.8a15.6 15.6 0 00-1.4-3.5A8.3 8.3 0 0116.5 6zm-6.5-4c.7 0 1.8 1.4 2.5 4H7.5C8.2 3.4 9.3 2 10 2zM2.1 12a8.1 8.1 0 010-4h3.2A17 17 0 005 10a17 17 0 00.3 2H2.1zm.4 2h2.8c.3 1.3.8 2.5 1.4 3.5A8.3 8.3 0 012.5 14zm2.8-8H2.5A8.3 8.3 0 015.7 2.5C5.1 3.5 4.6 4.7 4.3 6zM10 18c-.7 0-1.8-1.4-2.5-4h5C11.8 16.6 10.7 18 10 18zm3-6H7a14.8 14.8 0 01-.3-2c0-.7.1-1.4.3-2h6c.2.6.3 1.3.3 2s-.1 1.4-.3 2zm.3 6c.6-1 1.1-2.2 1.4-3.5h2.8A8.3 8.3 0 0113.3 18zm1.7-6a17 17 0 00.3-2 17 17 0 00-.3-2h3.2a8.1 8.1 0 010 4h-3.2z"/></svg>
+          nesgesfinancetrust.com
+        </a>
+        <a class="link-ext" href="https://github.com/NESGESFinance/NESGESFinanceTrust" target="_blank" rel="noopener">
+          <svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.742 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </a>
+        <a class="link-ext" href="https://mempool.space" target="_blank" rel="noopener">⛓ mempool.space</a>
+        <a class="link-ext" href="https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX%3A32023R1114" target="_blank" rel="noopener">📜 Reglamento MiCA</a>
+        <a class="link-ext" href="https://ordinals.com" target="_blank" rel="noopener">🔐 ordinals.com</a>
+      </div>
+
+      <!-- Capacidades -->
+      <h2>Capacidades de la plataforma</h2>
+      <div class="cap-grid">
+        <div class="tarjeta" onclick="activarTab('mempool')" style="cursor:pointer;" title="Ir a Mempool">
+          <h3>⚡ Exploración en Tiempo Real</h3>
+          <p class="descripcion">Indexación de bloques desde Bitcoin Core / Esplora, seguimiento del mempool y difusión por WebSocket con latencia mínima.</p>
+        </div>
+        <div class="tarjeta" onclick="activarTab('runes')" style="cursor:pointer;" title="Ir a Runes">
+          <h3>🪙 Runes · Utility Tokens</h3>
+          <p class="descripcion">Decodificación de RuneStones (OP_RETURN + LEB128) del protocolo de Casey Rodarmor, activo desde el bloque 840 000.</p>
+        </div>
+        <div class="tarjeta" onclick="activarTab('ordinals')" style="cursor:pointer;" title="Ir a Ordinals">
+          <h3>🔐 Ordinals · Security Tokens</h3>
+          <p class="descripcion">Parser de inscripciones incrustadas en el testigo Taproot, utilizadas como contenedor de metadatos legales de los RWA.</p>
+        </div>
+        <div class="tarjeta" onclick="activarTab('rwa')" style="cursor:pointer;" title="Ir a RWA">
+          <h3>🏢 Registro RWA</h3>
+          <p class="descripcion">Tokenización de inmuebles, vehículos, arte y deuda, vinculando cada activo físico a un Ordinal y, opcionalmente, a un Rune.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>🛡 Cumplimiento (KYC/AML/MiCA)</h3>
+          <p class="descripcion">Motor de evaluación de riesgo y clasificación de cripto-activos conforme al reglamento europeo MiCA.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>⚡ Capa 2 · Lightning + Taproot Assets</h3>
+          <p class="descripcion">Arquitectura preparada para liquidez y transferencia de activos tokenizados en la segunda capa de Bitcoin.</p>
+        </div>
+      </div>
+
+      <!-- Arquitectura -->
+      <h2>Arquitectura del sistema</h2>
+      <pre class="arq-pre">
+Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/MariaDB + Redis
+                                     │
+                                     ├─► Runes / Ordinals / RWA
+                                     │
+                                     └─► WebSocket ──► Frontend (HTML5 + CSS3 + JS)
+      </pre>
+
+      <!-- Links a docs locales -->
+      <h2>Documentación técnica</h2>
+      <div class="links-externos">
+        <a class="link-ext" href="../docs/API.md"             target="_blank">📄 API.md</a>
+        <a class="link-ext" href="../docs/ARQUITECTURA.md"    target="_blank">🏗 ARQUITECTURA.md</a>
+        <a class="link-ext" href="../docs/COMPLIANCE.md"      target="_blank">🛡 COMPLIANCE.md</a>
+        <a class="link-ext" href="../docs/RUNES_PROTOCOL.md"  target="_blank">🪙 RUNES_PROTOCOL.md</a>
+        <a class="link-ext" href="../docs/ORDINALS_PROTOCOL.md" target="_blank">🔐 ORDINALS_PROTOCOL.md</a>
+        <a class="link-ext" href="../docs/API.pdf"            target="_blank">📑 API.pdf</a>
+        <a class="link-ext" href="../docs/ARQUITECTURA.pdf"   target="_blank">📑 ARQUITECTURA.pdf</a>
+        <a class="link-ext" href="../docs/COMPLIANCE.pdf"     target="_blank">📑 COMPLIANCE.pdf</a>
+      </div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────────────────────
+         PESTAÑA 2 · MEMPOOL EN VIVO
+         ──────────────────────────────────────────────────────────────────── -->
+    <section id="tab-mempool" class="tab-panel" role="tabpanel">
+      <h1>⚡ Mempool en Tiempo Real</h1>
+      <p class="subtitulo">Actualización automática cada 30 s + WebSocket instantáneo.</p>
+
+      <div class="metricas-fila">
+        <div class="tarjeta"><h4>Transacciones</h4><div class="valor" id="mp-count">—</div><div class="descripcion">en el mempool</div></div>
+        <div class="tarjeta"><h4>Peso virtual</h4><div class="valor" id="mp-vsize">—</div><div class="descripcion">total pending</div></div>
+        <div class="tarjeta"><h4>Comisiones</h4><div class="valor" id="mp-fees">—</div><div class="descripcion">total (BTC)</div></div>
+        <div class="tarjeta"><h4>Prioridad alta</h4><div class="valor" id="fee-fastest">—</div><div class="descripcion">sat/vB (~10 min)</div></div>
+      </div>
+
+      <h2>Distribución de comisiones (sat/vB)</h2>
+      <div class="mempool-viz" id="mempool-viz"><div class="cargando">Cargando histograma…</div></div>
+
+      <h2>Estimaciones por objetivo de confirmación</h2>
+      <div class="grid g3" style="margin-bottom:1.5rem;">
+        <div class="tarjeta"><h4>🚀 Rápida (~10 min)</h4><div class="valor" id="fee-fastest-2">—</div></div>
+        <div class="tarjeta"><h4>⏱ Media (~30 min)</h4><div class="valor" id="fee-halfhour">—</div></div>
+        <div class="tarjeta"><h4>💰 Económica (~1 h)</h4><div class="valor" id="fee-hour">—</div></div>
+      </div>
+
+      <h2>Transacciones recientes del mempool</h2>
+      <div id="tabla-mempool-recent"><div class="cargando">Cargando…</div></div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────────────────────
+         PESTAÑA 3 · EXPLORADOR DE BLOQUES
+         ──────────────────────────────────────────────────────────────────── -->
+    <section id="tab-explorador" class="tab-panel" role="tabpanel">
+      <h1>🔍 Explorador de la Cadena</h1>
+      <p class="subtitulo">Consulta bloques indexados por altura y navega la cadena de Bitcoin.</p>
+
+      <div class="filtros">
+        <label>
+          Altura del bloque
+          <input type="number" id="altura-input" min="0" step="1" placeholder="840000" style="width:140px;">
+        </label>
+        <button class="boton boton-primario" id="btn-buscar-bloque">Buscar</button>
+        <span id="rango-info" style="font-size:.8rem;color:var(--c-tenue);align-self:center;"></span>
+      </div>
+      <div class="cadena-bloques" id="cadena-bloques"><div class="cargando">Introduce una altura para explorar los bloques...</div></div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────────────────────
+         PESTAÑA 4 · RUNES
+         ──────────────────────────────────────────────────────────────────── -->
+    <section id="tab-runes" class="tab-panel" role="tabpanel">
+      <h1>🪙 Runes · Utility Tokens</h1>
+      <p class="subtitulo">
+        Protocolo Runes de Casey Rodarmor — fungibles nativos de Bitcoin activos desde el bloque 840 000.
+        <a class="link-ext" href="../docs/RUNES_PROTOCOL.md" target="_blank" style="margin-left:.5rem;">📄 Protocolo Runes</a>
+      </p>
+
+      <div class="filtros">
+        <label>
+          Buscar por nombre
+          <input type="text" id="rune-buscar" placeholder="UNCOMMON•GOODS" style="width:200px;">
+        </label>
+        <button class="boton boton-primario" id="btn-rune-buscar">Buscar</button>
+        <button class="boton boton-secundario" id="btn-runes-listar">Listar todos</button>
+      </div>
+
+      <div class="grid g3" id="lista-runes"><div class="cargando">Cargando Runes…</div></div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────────────────────
+         PESTAÑA 5 · ORDINALS
+         ──────────────────────────────────────────────────────────────────── -->
+    <section id="tab-ordinals" class="tab-panel" role="tabpanel">
+      <h1>🔐 Ordinals · Security Tokens</h1>
+      <p class="subtitulo">
+        Inscripciones sobre satoshis individuales via Taproot Witness — contenedor de metadatos legales RWA.
+        <a class="link-ext" href="../docs/ORDINALS_PROTOCOL.md" target="_blank" style="margin-left:.5rem;">📄 Protocolo Ordinals</a>
+      </p>
+      <div class="grid g3" id="lista-ordinals"><div class="cargando">Cargando Ordinals…</div></div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────────────────────
+         PESTAÑA 6 · TOKENIZACIÓN RWA
+         ──────────────────────────────────────────────────────────────────── -->
+    <section id="tab-rwa" class="tab-panel" role="tabpanel">
+      <h1>🏢 Tokenización de Activos del Mundo Real</h1>
+      <p class="subtitulo">
+        Registra un activo físico o financiero como Security Token sobre Bitcoin.
+        Cada activo se vincula a un Ordinal (titularidad legal) y opcionalmente a un Rune (fraccionamiento).
+        <a class="link-ext" href="../docs/COMPLIANCE.md" target="_blank" style="margin-left:.5rem;">🛡 Compliance MiCA/KYC/AML</a>
+      </p>
+
+      <form class="form-rwa" id="form-rwa" autocomplete="off">
+        <div class="grid g2">
+          <label>
+            Categoría del activo *
+            <select id="rwa-type" name="type" required>
+              <option value="INMUEBLE">Inmueble</option>
+              <option value="VEHICULO">Vehículo</option>
+              <option value="ARTE">Arte y coleccionables</option>
+              <option value="COMMODITIES">Commodities</option>
+              <option value="DEUDA">Instrumento de deuda</option>
+              <option value="EQUITY">Participación (equity)</option>
+            </select>
+          </label>
+          <label>
+            Respaldo — clasificación MiCA *
+            <select id="rwa-backing" name="backing" required>
+              <option value="security">Security (Ordinal / RWA)</option>
+              <option value="fiat">Fiat (EMT)</option>
+              <option value="basket">Cesta de activos (ART)</option>
+              <option value="utility">Utility Token</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Nombre del activo *
+          <input type="text" id="rwa-name" name="name" placeholder="Ej.: Apartamento Torre Central 12B" required>
+        </label>
+
+        <label>
+          Descripción
+          <textarea id="rwa-description" name="description" rows="2"
+            placeholder="Descripción detallada del activo, características y condición."></textarea>
+        </label>
+
+        <div class="grid g2">
+          <label>
+            Valor de tasación (USD) *
+            <input type="number" id="rwa-valuation" name="valuationUSD" min="0" step="0.01" placeholder="150000.00" required>
+          </label>
+          <label>
+            Titular (dirección Bitcoin / Taproot) *
+            <input type="text" id="rwa-owner" name="owner" placeholder="bc1p..." required>
+          </label>
+        </div>
+
+        <div class="grid g2">
+          <label>
+            ID de inscripción (Ordinal) *
+            <input type="text" id="rwa-inscription" name="inscriptionId" placeholder="&lt;txid&gt;i0" required>
+          </label>
+          <label>
+            Rune vinculado (opcional)
+            <input type="text" id="rwa-rune" name="runeId" placeholder="840000:1">
+          </label>
+        </div>
+
+        <h3>Metadatos y cumplimiento</h3>
+        <div class="grid g2">
+          <label>
+            Ubicación física / jurisdicción
+            <input type="text" id="rwa-location" name="physicalLocation" placeholder="Bogotá, Colombia">
+          </label>
+          <label>
+            Valor de la última tasación (USD)
+            <input type="number" id="rwa-appraisal" name="appraisalValue" min="0" step="0.01" placeholder="150000.00">
+          </label>
+        </div>
+
+        <div class="grid g2">
+          <label>
+            Estado KYC del titular
+            <select id="rwa-kyc" name="ownerKyc">
+              <option value="NO_INICIADO">No iniciado</option>
+              <option value="PENDIENTE">Pendiente</option>
+              <option value="VERIFICADO">Verificado</option>
+              <option value="RECHAZADO">Rechazado</option>
+            </select>
+          </label>
+          <label>
+            Riesgo de jurisdicción (AML)
+            <select id="rwa-riesgo" name="jurisdictionRisk">
+              <option value="BAJO">Bajo</option>
+              <option value="MEDIO">Medio</option>
+              <option value="ALTO">Alto</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Certificaciones (separadas por comas)
+          <input type="text" id="rwa-certs" name="certifications"
+            placeholder="Escritura pública No. 1234, Certificado de tradición y libertad">
+        </label>
+
+        <button type="submit" class="boton boton-primario">🏢 Registrar y tokenizar activo</button>
+      </form>
+
+      <div class="resultado" id="rwa-resultado" hidden></div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────────────────────
+         PESTAÑA 7 · MARKETPLACE RWA
+         ──────────────────────────────────────────────────────────────────── -->
+    <section id="tab-marketplace" class="tab-panel" role="tabpanel">
+      <h1>🛒 Marketplace de Activos Tokenizados</h1>
+      <p class="subtitulo">Explora los RWA registrados en la plataforma, respaldados por Ordinals sobre Bitcoin.</p>
+
+      <div class="filtros">
+        <label>
+          Categoría
+          <select id="mkt-tipo">
+            <option value="">Todas</option>
+            <option value="INMUEBLE">Inmueble</option>
+            <option value="VEHICULO">Vehículo</option>
+            <option value="ARTE">Arte y coleccionables</option>
+            <option value="COMMODITIES">Commodities</option>
+            <option value="DEUDA">Deuda</option>
+            <option value="EQUITY">Equity</option>
+          </select>
+        </label>
+        <label>
+          Estado
+          <select id="mkt-estado">
+            <option value="">Todos</option>
+            <option value="PENDIENTE">Pendiente</option>
+            <option value="ACTIVO">Activo</option>
+            <option value="TRANSFERIDO">Transferido</option>
+            <option value="CANCELADO">Cancelado</option>
+          </select>
+        </label>
+        <button class="boton boton-primario" id="btn-mkt-filtrar">Aplicar filtros</button>
+      </div>
+
+      <div class="grid g3" id="mkt-grid"><div class="cargando">Cargando activos…</div></div>
+    </section>
+
+    <!-- ────────────────────────────────────────────────────────────────────
+         PESTAÑA 8 · FEED EN VIVO (WebSocket)
+         ──────────────────────────────────────────────────────────────────── -->
+    <section id="tab-live" class="tab-panel" role="tabpanel">
+      <h1>📡 Feed en Tiempo Real — WebSocket</h1>
+      <p class="subtitulo">Eventos en vivo de los canales: <code>blocks</code> · <code>mempool</code> · <code>runes</code> · <code>ordinals</code> · <code>rwa</code></p>
+
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+        <div class="ws-badge desconectado" id="ws-badge-live">
+          <span class="punto"></span>
+          <span id="ws-texto-live">Conectando…</span>
+        </div>
+        <button class="boton boton-secundario" id="btn-ws-reconectar">↺ Reconectar</button>
+        <button class="boton boton-secundario" id="btn-log-limpiar">🗑 Limpiar log</button>
+      </div>
+
+      <div class="log-vivo" id="ws-log" aria-live="polite" aria-atomic="false">
+        <div class="linea"><span class="ts">--:--:--</span><span class="canal">SISTEMA</span>Esperando conexión WebSocket…</div>
+      </div>
+    </section>
+
+  </div><!-- /.contenido-principal -->
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       PIE DE PÁGINA
+       ══════════════════════════════════════════════════════════════════════ -->
+  <footer class="pie">
+    <div>
+      <strong>NESGESFinance Ecosystem S.A.S. BIC. & LLC.</strong> ·
+      <a href="https://nesgesfinancetrust.com" target="_blank" rel="noopener">nesgesfinancetrust.com</a> ·
+      v3.4-dev
+    </div>
+    <div style="color:var(--c-verde);font-style:italic;margin:.3rem 0;">«Y a tu prójimo como a tí mismo»</div>
+    <div class="copyright">®NESGESFinance Ecosystem S.A.S. BIC. &amp; LLC. EIN: 0008086872 — TODOS LOS DERECHOS RESERVADOS 2025-2026</div>
+    <!-- Hipervínculos de documentación en el pie -->
+    <div style="margin-top:.6rem;display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;">
+      <a href="index.html">Inicio</a>
+      <a href="dashboard1.html">Mempool</a>
+      <a href="explorer.html">Explorador</a>
+      <a href="dashboard2.html">RWA</a>
+      <a href="rwa-marketplace.html">Marketplace</a>
+      <a href="../docs/API.md" target="_blank">API Docs</a>
+      <a href="https://github.com/NESGESFinance/NESGESFinanceTrust" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       JAVASCRIPT INCRUSTADO
+       Incluye: configuración, API REST, WebSocket, formateadores,
+                lógica de pestañas, mempool, bloques, Runes, Ordinals, RWA,
+                Marketplace y feed en vivo.
+       ══════════════════════════════════════════════════════════════════════ -->
+  <script>
+  'use strict';
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     CONFIGURACIÓN GLOBAL
+     ═══════════════════════════════════════════════════════════════════════════ */
+  const NESGES = {
+    API_BASE : (window.NESGES_API_BASE || '/api'),
+    WS_URL   : (window.NESGES_WS_URL  || `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws`),
+    VERSION  : 'v3.4-dev',
+    EMPRESA  : 'NESGESFinance Ecosystem S.A.S. BIC. & LLC.',
+  };
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     CLIENTE REST
+     ═══════════════════════════════════════════════════════════════════════════ */
+  const api = {
+    async get(path) {
+      const res = await fetch(`${NESGES.API_BASE}${path}`);
+      if (!res.ok) throw new Error(`GET ${path} → HTTP ${res.status}`);
+      return res.json();
+    },
+    async post(path, body) {
+      const res = await fetch(`${NESGES.API_BASE}${path}`, {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify(body),
+      });
+      const data = await res.json().catch(() => ({}));
+      return { ok: res.ok, status: res.status, data };
+    },
+  };
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     FORMATEADORES
+     ═══════════════════════════════════════════════════════════════════════════ */
+  const fmt = {
+    hash(v, h=8, t=6) {
+      if (!v || v.length <= h+t) return v || '';
+      return `${v.slice(0,h)}…${v.slice(-t)}`;
+    },
+    numero(n) { return Number(n).toLocaleString('es-ES'); },
+    usd(n)    { return Number(n).toLocaleString('es-ES', { style:'currency', currency:'USD', maximumFractionDigits:0 }); },
+    bytes(n)  {
+      const u = ['B','KB','MB','GB']; let i=0, v=Number(n);
+      while (v>=1024 && i<u.length-1) { v/=1024; i++; }
+      return `${v.toFixed(i===0?0:1)} ${u[i]}`;
+    },
+    fecha(ts) { if (!ts) return '—'; return new Date(ts*1000).toLocaleString('es-ES'); },
+    hora(d)   { return d.toTimeString().slice(0,8); },
+  };
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     NAVEGACIÓN POR PESTAÑAS
+     ═══════════════════════════════════════════════════════════════════════════ */
+  const panelInicializado = {};
+
+  function activarTab(id) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      const activo = b.dataset.tab === id;
+      b.classList.toggle('activo', activo);
+      b.setAttribute('aria-selected', activo);
+    });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('activo'));
+    const panel = document.getElementById(`tab-${id}`);
+    if (panel) panel.classList.add('activo');
+
+    if (!panelInicializado[id]) {
+      panelInicializado[id] = true;
+      if (id === 'mempool')     iniciarMempool();
+      if (id === 'explorador')  { /* solo bajo demanda */ }
+      if (id === 'runes')       cargarRunes();
+      if (id === 'ordinals')    cargarOrdinals();
+      if (id === 'marketplace') cargarMarketplace();
+    }
+  }
+
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.addEventListener('click', () => activarTab(b.dataset.tab));
+  });
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     CLIENTE WEBSOCKET CON RECONEXIÓN EXPONENCIAL
+     ═══════════════════════════════════════════════════════════════════════════ */
+  class NesgesWS {
+    constructor(url, canales=[]) {
+      this.url = url;
+      this.canales = canales;
+      this.socket = null;
+      this.handlers = new Map();
+      this.reintentos = 0;
+      this.maxDelay = 15000;
+      this.cerrado = false;
+    }
+    on(canal, cb)   { this.handlers.set(canal, cb); return this; }
+    onEstado(cb)    { this._estadoCb = cb; return this; }
+    conectar() {
+      this.cerrado = false;
+      this.socket  = new WebSocket(this.url);
+      this.socket.addEventListener('open', () => {
+        this.reintentos = 0;
+        this._estado('conectado');
+        if (this.canales.length)
+          this.socket.send(JSON.stringify({ action:'subscribe', channels:this.canales }));
+      });
+      this.socket.addEventListener('message', e => {
+        let m; try { m = JSON.parse(e.data); } catch { return; }
+        const cb = this.handlers.get(m.channel);
+        if (cb) cb(m.payload ?? m.data, m);
+      });
+      this.socket.addEventListener('close', () => {
+        this._estado('desconectado');
+        if (!this.cerrado) setTimeout(() => this.conectar(), Math.min(1000*2**this.reintentos++, this.maxDelay));
+      });
+      this.socket.addEventListener('error', () => this._estado('desconectado'));
+    }
+    cerrar() { this.cerrado = true; if (this.socket) this.socket.close(); }
+    _estado(s) {
+      if (this._estadoCb) this._estadoCb(s);
+      // Actualizar ambas badges
+      ['ws-badge','ws-badge-live'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.toggle('conectado', s==='conectado');
+        el.classList.toggle('desconectado', s!=='conectado');
+      });
+      const t1 = document.getElementById('ws-texto');
+      const t2 = document.getElementById('ws-texto-live');
+      const txt = s==='conectado' ? '🟢 En vivo' : '🔴 Reconectando…';
+      if (t1) t1.textContent = txt;
+      if (t2) t2.textContent = s==='conectado' ? 'Conectado — En vivo' : 'Reconectando…';
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     LOG EN VIVO
+     ═══════════════════════════════════════════════════════════════════════════ */
+  function logLinea(canal, mensaje) {
+    const log = document.getElementById('ws-log');
+    if (!log) return;
+    const div = document.createElement('div');
+    div.className = 'linea';
+    div.innerHTML = `<span class="ts">${fmt.hora(new Date())}</span><span class="canal">${canal.toUpperCase()}</span>${mensaje}`;
+    log.prepend(div);
+    // Limitar a 120 entradas
+    while (log.children.length > 120) log.removeChild(log.lastChild);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     INSTANCIA GLOBAL WEBSOCKET
+     ═══════════════════════════════════════════════════════════════════════════ */
+  const ws = new NesgesWS(NESGES.WS_URL, ['blocks','mempool','runes','ordinals','rwa']);
+
+  ws.on('blocks', (payload) => {
+    const h = payload && (payload.height ?? payload.block?.height) ? `#${fmt.numero(payload.height || payload.block?.height)}` : 'nuevo';
+    logLinea('blocks', `Bloque minado: ${h}`);
+  });
+
+  ws.on('mempool', (payload) => {
+    if (payload) {
+      actualizarMetricasMempool(payload);
+      logLinea('mempool', `Tx: ${fmt.numero(payload.count)} · Fees: ~${payload.feeHistogram?.[0]?.[0] ?? '?'} sat/vB`);
+    }
+  });
+
+  ws.on('runes', (payload) => {
+    const op = payload && payload.operation ? payload.operation : 'evento';
+    logLinea('runes', `${op} — ${payload?.name || payload?.runeId || ''}`);
+  });
+
+  ws.on('ordinals', (payload) => {
+    logLinea('ordinals', `Inscripción #${payload?.number ?? '?'} — ${payload?.contentType ?? ''}`);
+  });
+
+  ws.on('rwa', (payload) => {
+    const op = payload && payload.event ? payload.event : 'evento';
+    logLinea('rwa', `${op} — ${payload?.name || payload?.id || ''}`);
+  });
+
+  ws.conectar();
+
+  document.getElementById('btn-ws-reconectar').addEventListener('click', () => {
+    ws.cerrar();
+    setTimeout(() => ws.conectar(), 300);
+  });
+
+  document.getElementById('btn-log-limpiar').addEventListener('click', () => {
+    document.getElementById('ws-log').innerHTML = '';
+  });
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     MEMPOOL
+     ═══════════════════════════════════════════════════════════════════════════ */
+  let mempoolTimer = null;
+
+  function set(id, val) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+
+  function actualizarMetricasMempool(stats) {
+    if (stats.count !== undefined) set('mp-count', fmt.numero(stats.count));
+    if (stats.vsize !== undefined) set('mp-vsize', fmt.bytes(stats.vsize));
+    if (stats.totalFee !== undefined) set('mp-fees', `${(stats.totalFee / 1e8).toFixed(4)} BTC`);
+    if (stats.feeHistogram) renderHistograma(document.getElementById('mempool-viz'), stats.feeHistogram);
+  }
+
+  function renderHistograma(cont, feeHistogram) {
+    if (!cont || !feeHistogram || !feeHistogram.length) return;
+    const maxV = Math.max(...feeHistogram.map(h => h[1]));
+    const barras = feeHistogram.slice(0, 60).map(h => {
+      const [fr, vs] = h;
+      const alt = maxV > 0 ? Math.max(4, vs/maxV*100) : 4;
+      return `<div class="fee-barra" style="height:${alt}%" data-info="${fr.toFixed(1)} sat/vB · ${fmt.bytes(vs)}"></div>`;
+    }).join('');
+    cont.innerHTML = `<div class="fee-barras">${barras}</div>
+      <div class="fee-leyenda"><span>← menor comisión</span><span>mayor comisión →</span></div>`;
+  }
+
+  async function cargarMempool() {
+    try {
+      const [stats, fees] = await Promise.all([api.get('/mempool'), api.get('/mempool/fees')]);
+      actualizarMetricasMempool(stats);
+      set('fee-fastest',  `${Math.ceil(fees.fastestFee  ?? fees.fastest  ?? 0)} sat/vB`);
+      set('fee-fastest-2',`${Math.ceil(fees.fastestFee  ?? fees.fastest  ?? 0)} sat/vB`);
+      set('fee-halfhour', `${Math.ceil(fees.halfHourFee ?? fees.halfHour ?? 0)} sat/vB`);
+      set('fee-hour',     `${Math.ceil(fees.hourFee     ?? fees.hour     ?? 0)} sat/vB`);
+    } catch (e) {
+      const cont = document.getElementById('mempool-viz');
+      if (cont) cont.innerHTML = `<div class="vacio">No se pudo conectar con el backend (${e.message}).</div>`;
+    }
+
+    // Transacciones recientes
+    try {
+      const recientes = await api.get('/mempool/recent');
+      const cont = document.getElementById('tabla-mempool-recent');
+      if (!cont) return;
+      if (!Array.isArray(recientes) || !recientes.length) {
+        cont.innerHTML = '<div class="vacio">Sin transacciones recientes.</div>'; return;
+      }
+      cont.innerHTML = `<table class="tabla">
+        <thead><tr><th>TXID</th><th>Fee (sat)</th><th>vSize</th><th>Valor (sat)</th></tr></thead>
+        <tbody>${recientes.slice(0,20).map(tx =>
+          `<tr>
+            <td class="hash"><span class="mono">${fmt.hash(tx.txid,10,6)}</span></td>
+            <td>${fmt.numero(tx.fee)}</td>
+            <td>${fmt.bytes(tx.vsize)}</td>
+            <td>${fmt.numero(tx.value)}</td>
+          </tr>`
+        ).join('')}</tbody>
+      </table>`;
+    } catch { /* silencioso */ }
+  }
+
+  function iniciarMempool() {
+    cargarMempool();
+    if (!mempoolTimer) mempoolTimer = setInterval(cargarMempool, 30000);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     EXPLORADOR DE BLOQUES
+     ═══════════════════════════════════════════════════════════════════════════ */
+  function tarjetaBloque(b) {
+    return `<div class="bloque tarjeta">
+      <div class="cabecera">#${fmt.numero(b.height)}</div>
+      <div class="cuerpo">
+        <p><strong>Hash:</strong> <span class="mono" style="font-size:.72rem;">${fmt.hash(b.id||b.hash||'',10,6)}</span></p>
+        <p><strong>Txs:</strong> ${fmt.numero(b.tx_count ?? b.txCount ?? 0)}</p>
+        <p><strong>Tamaño:</strong> ${fmt.bytes(b.size ?? 0)}</p>
+        <p><strong>Fecha:</strong> ${fmt.fecha(b.timestamp ?? 0)}</p>
+      </div>
+    </div>`;
+  }
+
+  async function cargarBloques(alturaTope) {
+    const cont = document.getElementById('cadena-bloques');
+    const info = document.getElementById('rango-info');
+    cont.innerHTML = '<div class="cargando">Cargando bloques…</div>';
+    const alturas = [];
+    for (let h = alturaTope; h > alturaTope-5 && h>=0; h--) alturas.push(h);
+    const resultados = await Promise.allSettled(alturas.map(h => api.get(`/blocks/${h}`)));
+    const bloques = resultados.filter(r => r.status==='fulfilled').map(r => r.value);
+    if (!bloques.length) {
+      cont.innerHTML = '<div class="vacio">No se encontraron bloques indexados para ese rango.</div>';
+      if (info) info.textContent = '';
+      return;
+    }
+    cont.innerHTML = bloques.map(b => tarjetaBloque(b)).join('<span class="conector">←</span>');
+    if (info) info.textContent = `Mostrando ${bloques.length} bloque(s).`;
+  }
+
+  document.getElementById('btn-buscar-bloque').addEventListener('click', () => {
+    const v = Number(document.getElementById('altura-input').value);
+    if (Number.isFinite(v) && v >= 0) cargarBloques(v);
+  });
+  document.getElementById('altura-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('btn-buscar-bloque').click();
+  });
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     RUNES UI
+     ═══════════════════════════════════════════════════════════════════════════ */
+  function tarjetaRune(rune) {
+    const id = `${rune.runeId?.block ?? '?'}:${rune.runeId?.tx ?? '?'}`;
+    return `<div class="rune-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span class="nombre">${rune.name}</span>
+        <span class="simbolo">${rune.symbol || '¤'}</span>
+      </div>
+      <span class="badge badge-runes">RUNE · ${id}</span>
+      <div class="metricas">
+        <span>Suministro</span><span>${fmt.numero(rune.circulatingSupply)}</span>
+        <span>Divisibilidad</span><span>${rune.divisibility}</span>
+        <span>Acuñaciones</span><span>${fmt.numero(rune.mints)}</span>
+        <span>Tenedores</span><span>${fmt.numero(rune.holders)}</span>
+        <span>Grabado</span><span>#${fmt.numero(rune.etchedAtHeight)}</span>
+      </div>
+    </div>`;
+  }
+
+  async function cargarRunes(nombre) {
+    const cont = document.getElementById('lista-runes');
+    if (!cont) return;
+    cont.innerHTML = '<div class="cargando">Cargando Runes…</div>';
+    try {
+      let runes;
+      if (nombre) {
+        const r = await api.get(`/runes/${encodeURIComponent(nombre)}`);
+        runes = r ? [r] : [];
+      } else {
+        runes = await api.get('/runes?limit=24');
+      }
+      if (!runes.length) { cont.innerHTML = '<div class="vacio">Sin resultados.</div>'; return; }
+      cont.innerHTML = runes.map(tarjetaRune).join('');
+    } catch (e) {
+      cont.innerHTML = `<div class="vacio">No se pudo cargar Runes (${e.message}).</div>`;
+    }
+  }
+
+  document.getElementById('btn-rune-buscar').addEventListener('click', () => {
+    const v = document.getElementById('rune-buscar').value.trim();
+    if (v) cargarRunes(v); else cargarRunes();
+  });
+  document.getElementById('btn-runes-listar').addEventListener('click', () => cargarRunes());
+  document.getElementById('rune-buscar').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('btn-rune-buscar').click();
+  });
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     ORDINALS UI
+     ═══════════════════════════════════════════════════════════════════════════ */
+  function prevOrdinales(ins) {
+    const url = `${NESGES.API_BASE}/ordinals/content/${ins.id}`;
+    if (ins.contentType?.startsWith('image/'))
+      return `<img src="${url}" alt="Inscripción ${ins.number}" style="max-width:100%;border-radius:6px;" loading="lazy">`;
+    if (ins.contentType?.startsWith('text/') || ins.contentType?.includes('json'))
+      return `<div class="mono" style="font-size:.75rem;">${ins.contentType}</div>`;
+    return `<div class="mono" style="color:var(--c-tenue);">${ins.contentType || '—'}</div>`;
+  }
+
+  function tarjetaOrdinal(ins) {
+    return `<div class="tarjeta">
+      <span class="badge badge-ordinals">ORDINAL #${fmt.numero(ins.number)}</span>
+      <div style="margin:.5rem 0;">${prevOrdinales(ins)}</div>
+      <div class="descripcion">
+        <div>ID: <span class="mono">${fmt.hash(ins.id,10,4)}</span></div>
+        <div>Bloque génesis: <span class="mono">#${fmt.numero(ins.genesisHeight)}</span></div>
+        <div>Tamaño: <span class="mono">${fmt.bytes(ins.contentLength)}</span></div>
+      </div>
+    </div>`;
+  }
+
+  async function cargarOrdinals() {
+    const cont = document.getElementById('lista-ordinals');
+    if (!cont) return;
+    cont.innerHTML = '<div class="cargando">Cargando inscripciones…</div>';
+    try {
+      const ins = await api.get('/ordinals/inscriptions?limit=24');
+      if (!ins.length) { cont.innerHTML = '<div class="vacio">Aún no se han indexado inscripciones.</div>'; return; }
+      cont.innerHTML = ins.map(tarjetaOrdinal).join('');
+    } catch (e) {
+      cont.innerHTML = `<div class="vacio">No se pudo cargar Ordinals (${e.message}).</div>`;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     FORMULARIO RWA
+     ═══════════════════════════════════════════════════════════════════════════ */
+  function mostrarResultado(clase, html) {
+    const el = document.getElementById('rwa-resultado');
+    if (!el) return;
+    el.hidden = false;
+    el.className = `resultado ${clase}`;
+    el.innerHTML = html;
+    el.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+
+  document.getElementById('form-rwa').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const d = new FormData(e.target);
+    const cuerpo = {
+      type           : d.get('type'),
+      name           : d.get('name'),
+      description    : d.get('description') || '',
+      valuationUSD   : Number(d.get('valuationUSD')),
+      owner          : d.get('owner'),
+      inscriptionId  : d.get('inscriptionId'),
+      runeId         : d.get('runeId') || null,
+      backing        : d.get('backing'),
+      ownerKyc       : d.get('ownerKyc'),
+      jurisdictionRisk: d.get('jurisdictionRisk'),
+      metadata: {
+        legalDocuments   : [],
+        physicalLocation : d.get('physicalLocation') || '',
+        appraisalDate    : new Date().toISOString(),
+        appraisalValue   : Number(d.get('appraisalValue') || d.get('valuationUSD') || 0),
+        certifications   : (d.get('certifications') || '').split(',').map(s=>s.trim()).filter(Boolean),
+      },
+    };
+    mostrarResultado('', 'Registrando activo y ejecutando validaciones de cumplimiento…');
+    const res  = await api.post('/rwa/assets', cuerpo);
+    const data = res.data || {};
+    if (res.ok && data.asset) {
+      const a = data.asset;
+      mostrarResultado('ok',
+        `<h4>✔ Activo tokenizado correctamente</h4>
+         <p><strong>ID:</strong> ${a.id || '—'}</p>
+         <p><strong>Nombre:</strong> ${a.name || cuerpo.name}</p>
+         <p><strong>Valoración:</strong> ${fmt.usd(cuerpo.valuationUSD)}</p>
+         <p><strong>Estado:</strong> ${a.status || 'PENDIENTE'}</p>`);
+      e.target.reset();
+      logLinea('rwa', `Alta: ${a.name || cuerpo.name} — ${fmt.usd(cuerpo.valuationUSD)}`);
+    } else {
+      let det = data.error || `HTTP ${res.status}`;
+      const v = data.validation;
+      if (v && Array.isArray(v.errors) && v.errors.length)
+        det += '<ul>' + v.errors.map(x=>`<li>${x}</li>`).join('') + '</ul>';
+      mostrarResultado('err', `<h4>✘ No se pudo registrar el activo</h4><p>${det}</p>`);
+    }
+  });
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     MARKETPLACE
+     ═══════════════════════════════════════════════════════════════════════════ */
+  const ETIQUETAS_TIPO = { INMUEBLE:'Inmueble', VEHICULO:'Vehículo', ARTE:'Arte', COMMODITIES:'Commodities', DEUDA:'Deuda', EQUITY:'Equity' };
+
+  function tarjetaRwa(a) {
+    const tipo = ETIQUETAS_TIPO[a.type] || a.type || '—';
+    const badgeCls = `badge-${(a.status||'pendiente').toLowerCase()}`;
+    return `<article class="rwa-card">
+      <div class="cabecera">
+        <span class="badge badge-rwa">${tipo}</span>
+        <h3>${a.name || 'Activo sin nombre'}</h3>
+      </div>
+      <div class="cuerpo">
+        <div class="valoracion">${fmt.usd(a.valuationUSD ?? a.valuation_usd ?? 0)}</div>
+        <p style="font-size:.82rem;color:var(--c-tenue);margin:.4rem 0;">${a.description || 'Sin descripción.'}</p>
+        <p class="meta"><strong>Estado:</strong> <span class="badge ${badgeCls}">${a.status || '—'}</span></p>
+        <p class="meta"><strong>Ordinal:</strong> <span class="mono">${fmt.hash(a.inscriptionId||a.inscription_id||'')}</span></p>
+        <p class="meta"><strong>Titular:</strong> <span class="mono">${fmt.hash(a.owner||'')}</span></p>
+      </div>
+    </article>`;
+  }
+
+  async function cargarMarketplace() {
+    const grid = document.getElementById('mkt-grid');
+    if (!grid) return;
+    grid.innerHTML = '<div class="cargando">Cargando activos…</div>';
+    const tipo   = document.getElementById('mkt-tipo').value;
+    const estado = document.getElementById('mkt-estado').value;
+    const qs     = new URLSearchParams();
+    if (tipo)   qs.set('type',   tipo);
+    if (estado) qs.set('status', estado);
+    try {
+      const activos = await api.get('/rwa/assets' + (qs.toString() ? '?'+qs.toString() : ''));
+      if (!Array.isArray(activos) || !activos.length) {
+        grid.innerHTML = '<div class="vacio">No hay activos registrados que coincidan con los filtros.</div>';
+        return;
+      }
+      grid.innerHTML = activos.map(tarjetaRwa).join('');
+    } catch (e) {
+      grid.innerHTML = `<div class="vacio">No se pudo cargar el marketplace (${e.message}).</div>`;
+    }
+  }
+
+  document.getElementById('btn-mkt-filtrar').addEventListener('click', cargarMarketplace);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     INICIALIZACIÓN (pestaña de inicio ya visible)
+     ═══════════════════════════════════════════════════════════════════════════ */
+  document.addEventListener('DOMContentLoaded', () => {
+    panelInicializado['inicio'] = true;
+    // Pre-carga silenciosa del mempool en segundo plano
+    cargarMempool().catch(() => {});
+  });
+  </script>
+
+</body>
+</html>
