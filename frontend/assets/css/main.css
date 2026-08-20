@@ -277,3 +277,17 @@ h3 {
   .panel-cabecera-ilustrada h1, .panel-cabecera-ilustrada .subtitulo, .ilustracion-seccion { grid-column: 1; grid-row: auto; }
   .hero-contenido .hero-acciones { justify-content: center; }
 }
+
+/* Documento maestro institucional */
+.institucional-hero { padding-bottom: 2rem; }
+.marca-institucional { background: #050505; object-fit: contain; padding: 2rem; }
+.tabla-contenedor { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--color-borde); border-radius: var(--radio); }
+table { border-collapse: collapse; width: 100%; min-width: 680px; background: var(--color-superficie); }
+th, td { padding: .8rem 1rem; border-bottom: 1px solid var(--color-borde); text-align: left; vertical-align: top; }
+th { color: #0a0a0a; background: linear-gradient(135deg, var(--color-dorado), var(--color-naranja)); }
+.proceso { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; margin: 1rem 0; }
+.proceso article { padding: 1rem; background: var(--color-superficie); border: 1px solid var(--color-borde); border-radius: var(--radio); }
+.proceso strong { display: block; color: var(--color-dorado); margin-bottom: .35rem; }
+.proceso span { color: var(--color-texto-tenue); font-size: .92rem; }
+.formula { color: var(--color-verde); font: 700 1.25rem var(--fuente-datos); }
+.proyectos-grid .tarjeta { min-height: 150px; }
