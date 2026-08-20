@@ -1,10 +1,10 @@
 # API REST y WebSocket — NESGESFinanceTrust
 
-> Plataforma: **nesgesfinancetrust.com** · Versión **v3.4-dev** (Agosto 2026)
+> Plataforma: **nesgesfinancetrust.com** · Versión **3.4.0-dev** (Agosto 2026)
 > Empresa: **NESGESFinance Ecosystem S.A.S. BIC. & LLC.** · EIN: 0008086872
-> Lema: *"Y a tu prójimo como a tí mismo"*
+> Lema: *"Y a tu prójimo como a ti mismo"*
 
-Todos los endpoints REST se sirven bajo el prefijo configurable `API_PREFIX`
+Este documento describe la implementación actual del repositorio. Todos los endpoints REST se sirven bajo el prefijo configurable `API_PREFIX`
 (por defecto `/api`). Las respuestas son JSON codificado en UTF-8. Los importes
 en satoshis y los suministros de tokens se transmiten como cadenas para
 preservar la precisión de enteros grandes (`bigint`).
@@ -17,7 +17,7 @@ preservar la precisión de enteros grandes (`bigint`).
 2. [Bloques](#bloques)
 3. [Mempool](#mempool)
 4. [Runes (Utility Tokens)](#runes-utility-tokens)
-5. [Ordinals (Security Tokens / RWA)](#ordinals-security-tokens--rwa)
+5. [Ordinals e inscripciones](#ordinals-e-inscripciones)
 6. [RWA — Activos del Mundo Real](#rwa--activos-del-mundo-real)
 7. [WebSocket en tiempo real](#websocket-en-tiempo-real)
 8. [Códigos de estado y errores](#códigos-de-estado-y-errores)
@@ -35,8 +35,8 @@ Comprueba que el backend está operativo y devuelve la identidad de la plataform
 {
   "status": "ok",
   "plataforma": "nesgesfinancetrust.com",
-  "version": "v3.4-dev",
-  "lema": "Y a tu prójimo como a tí mismo",
+  "version": "3.4.0-dev",
+  "lema": "Y a tu prójimo como a ti mismo",
   "empresa": "NESGESFinance Ecosystem S.A.S. BIC. & LLC.",
   "ein": "0008086872"
 }
@@ -113,7 +113,7 @@ Lista de titulares de un Rune con su saldo (ordenado descendente).
 
 ---
 
-## Ordinals (Security Tokens / RWA)
+## Ordinals e inscripciones
 
 Teoría ordinal y protocolo de inscripciones (ver
 [`ORDINALS_PROTOCOL.md`](./ORDINALS_PROTOCOL.md)).
@@ -213,15 +213,15 @@ El cliente se suscribe a canales mediante un mensaje JSON:
 
 | Canal      | Evento emitido                                          |
 |------------|---------------------------------------------------------|
-| `blocks`   | Nuevo bloque minado e indexado.                         |
-| `mempool`  | Actualización de estadísticas y comisiones del mempool. |
-| `runes`    | Nuevo evento Rune (etch / mint / transfer).             |
-| `ordinals` | Nueva inscripción indexada.                             |
-| `rwa`      | Alta o transferencia de un activo del mundo real.       |
+| `blocks`   | Nuevo bloque indexado cuando el indexador emite el evento. |
+| `mempool`  | Reservado para actualizaciones de mempool.                |
+| `runes`    | Reservado para eventos de Runes.                          |
+| `ordinals` | Reservado para eventos de Ordinals.                       |
+| `rwa`      | Reservado para eventos del registro RWA.                  |
 
 Cada mensaje del servidor tiene la forma:
 ```json
-{ "channel": "blocks", "data": { ... } }
+{ "channel": "blocks", "payload": { ... }, "timestamp": 0 }
 ```
 
 ---

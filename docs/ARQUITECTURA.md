@@ -1,13 +1,12 @@
 # Arquitectura del sistema — NESGESFinanceTrust
 
-> Plataforma: **nesgesfinancetrust.com** · Versión **v3.4-dev** (Agosto 2026)
+> Plataforma: **nesgesfinancetrust.com** · Versión **3.4.0-dev** (Agosto 2026)
 > Empresa: **NESGESFinance Ecosystem S.A.S. BIC. & LLC.** · EIN: 0008086872
 > CEO-Fundador: Cbr. Joan Santiago Ramírez Almeida
-> Lema: *"Y a tu prójimo como a tí mismo"*
+> Lema: *"Y a tu prójimo como a ti mismo"*
 
 Este documento describe la arquitectura de la plataforma de indexación y
-tokenización de la NESGESFinance Ecosystem, construida sobre Bitcoin y sus
-protocolos de capa 1 y capa 2.
+tokenización de la NESGESFinance Ecosystem, construida sobre Bitcoin y sus protocolos de capa 1.
 
 ---
 
@@ -17,8 +16,8 @@ NESGESFinanceTrust indexa la cadena de Bitcoin y expone una capa de servicios
 para tres clases de activos digitales:
 
 - **Runes** → *Utility Tokens* (fungibles, protocolo de Casey Rodarmor).
-- **Ordinals** → *Security Tokens* y contenedores de metadatos de RWA.
-- **Taproot Assets + Lightning** → liquidez y liquidación en capa 2 (L2).
+- **Ordinals** → inscripciones y contenedores de metadatos asociados a RWA.
+- **Registro RWA** → activos, historial y validaciones configurables.
 
 ---
 
@@ -78,8 +77,7 @@ para tres clases de activos digitales:
 4. **Tokenización RWA.** `rwa-registry` vincula un Ordinal (titularidad legal)
    y, opcionalmente, un Rune (fraccionamiento) a un activo del mundo real, tras
    pasar `rwa-validator` (KYC/AML/MiCA).
-5. **Persistencia.** Los repositorios escriben en MySQL/MariaDB; Redis cachea
-   consultas calientes y sirve de cola para el difusor WebSocket.
+5. **Persistencia.** Los repositorios escriben en MySQL/MariaDB; Redis queda disponible como dependencia de caché para la plataforma.
 6. **Difusión.** `websocket-handler` publica los eventos por canal
    (`blocks`, `mempool`, `runes`, `ordinals`, `rwa`) a los clientes suscritos.
 7. **Presentación.** El frontend consume REST para carga inicial y WebSocket
@@ -115,7 +113,7 @@ para tres clases de activos digitales:
 - **Cumplimiento normativo** (KYC/AML/MiCA) obligatorio antes de tokenizar RWA.
 - **Integridad documental** mediante hash SHA-256 de cada documento legal.
 - **Separación de secretos** vía variables de entorno (`.env`, nunca en el repo).
-- **Cabeceras CORS** controladas y límites de tamaño de cuerpo (`2mb`).
+- **Límite de tamaño de cuerpo** de `2mb`. La política CORS actual permite cualquier origen y debe restringirse antes de un despliegue público.
 
 ---
 

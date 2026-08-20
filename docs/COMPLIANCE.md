@@ -1,11 +1,10 @@
 # Cumplimiento normativo (KYC / AML / MiCA) — NESGESFinanceTrust
 
-> Plataforma: **nesgesfinancetrust.com** · Versión **v3.4-dev** (Agosto 2026)
+> Plataforma: **nesgesfinancetrust.com** · Versión **3.4.0-dev** (Agosto 2026)
 > Empresa: **NESGESFinance Ecosystem S.A.S. BIC. & LLC.** · EIN: 0008086872
-> Lema: *"Y a tu prójimo como a tí mismo"*
+> Lema: *"Y a tu prójimo como a ti mismo"*
 
-La tokenización de RWA en NESGESFinance exige controles de cumplimiento antes
-de registrar o transferir cualquier activo. La lógica reside en
+El registro RWA incorpora validaciones técnicas de cumplimiento antes de registrar o transferir un activo. Estas validaciones no sustituyen una evaluación legal, regulatoria o de un proveedor KYC/AML. La lógica reside en
 `utils/compliance.ts` y `api/rwa/rwa-validator.ts`.
 
 ## 1. Clasificación MiCA
@@ -17,7 +16,7 @@ Según el reglamento europeo **MiCA**, los tokens se clasifican en:
 | **EMT**      | `fiat`     | *E-Money Token* referenciado a una única moneda fiat.          |
 | **ART**      | `basket`   | *Asset-Referenced Token* respaldado por una cesta de activos.  |
 | **UTILITY**  | `utility`  | Token de utilidad (acceso a un bien/servicio) — Runes.         |
-| **SECURITY** | `security` | Valor negociable tokenizado (RWA anclado a Ordinal).           |
+| **FUERA_DE_AMBITO** | `security` | La implementación clasifica este valor como fuera del ámbito MiCA; puede requerir análisis bajo otros marcos regulatorios. |
 
 ## 2. KYC (Know Your Customer)
 
@@ -37,7 +36,7 @@ Nivel de riesgo de jurisdicción (`RiskLevel`): `BAJO`, `MEDIO`, `ALTO`.
 **Umbrales aplicados por el validador:**
 
 - Un activo con `backing = security` **requiere** KYC `VERIFICADO` del titular.
-- Jurisdicción de riesgo `ALTO` bloquea el registro salvo KYC `VERIFICADO`.
+- Jurisdicción de riesgo `ALTO` incrementa la evaluación de riesgo; el resultado depende de las reglas implementadas y del estado KYC.
 - Valoraciones elevadas activan revisión reforzada (*Enhanced Due Diligence*).
 - Todo documento legal debe aportar su **hash SHA-256** para garantizar
   integridad e inalterabilidad.

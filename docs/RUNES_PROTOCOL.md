@@ -1,10 +1,9 @@
 # Protocolo Runes — NESGESFinanceTrust
 
-> Plataforma: **nesgesfinancetrust.com** · Versión **v3.4-dev** (Agosto 2026)
+> Plataforma: **nesgesfinancetrust.com** · Versión **3.4.0-dev** (Agosto 2026)
 > Empresa: **NESGESFinance Ecosystem S.A.S. BIC. & LLC.** · EIN: 0008086872
 
-En NESGESFinance, los **Runes** son **Utility Tokens** fungibles nativos de
-Bitcoin. Implementan el protocolo Runes de **Casey Rodarmor**, activado en el
+En NESGESFinance, los **Runes** son unidades fungibles del protocolo Runes sobre Bitcoin. La clasificación regulatoria depende del caso de uso y de la jurisdicción. Implementan el protocolo Runes de **Casey Rodarmor**, activado en el
 bloque **840000** (halving de 2024).
 
 ## 1. Fundamentos
