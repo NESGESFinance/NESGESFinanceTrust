@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /** Traducciones de la interfaz pública. El idioma elegido se conserva entre páginas. */
 const I18N = {
   es: {
-    navHome: 'Inicio', navEcosystem: 'Ecosistema', navDashboard: 'Dashboard',
+    navHome: 'Inicio', navProjects: 'Proyectos', navEcosystem: 'Ecosistema', navDashboard: 'Dashboard',
     navMempool: 'Mempool en Vivo', navExplorer: 'Explorador', navRwa: 'Tokenización RWA',
     navMarketplace: 'Marketplace', language: 'Idioma', switchLanguage: 'Cambiar idioma a inglés',
     footerPlatform: 'Plataforma nesgesfinancetrust.com',
@@ -122,7 +122,7 @@ const I18N = {
     metaDescription: 'NESGESFinance Ecosystem — plataforma de exploración Bitcoin, tokenización de activos del mundo real (RWA), Runes y Ordinals.',
     heroTagline: 'Tokenización con Propósito · Bitcoin L1/L2 · RWA e impacto',
     heroDescription: 'Arquitectura institucional y tecnológica para conectar activos reales, trazabilidad y utilidad productiva sobre Bitcoin. El acceso, los derechos y la documentación se estructuran por cada proyecto y su serie.',
-    learnEcosystem: 'Conocer el ecosistema', openDashboard: 'Abrir dashboard', exploreData: 'Explorar datos',
+    learnEcosystem: 'Conocer el ecosistema', viewProjects: 'Ver proyectos', openDashboard: 'Abrir dashboard', exploreData: 'Explorar datos',
     disclaimer: 'NESGESFinanceTrust es una capa institucional/patrimonial propuesta y en proceso de formalización. La información es técnica e institucional; no constituye una oferta de inversión ni asesoramiento.',
     heroImageAlt: 'Ilustración de infraestructura Bitcoin, datos y registros',
     platformCapabilities: 'Capacidades de la plataforma', realTimeExploration: 'Exploración en Tiempo Real',
@@ -135,7 +135,7 @@ const I18N = {
     architecture: 'Arquitectura',
   },
   en: {
-    navHome: 'Home', navEcosystem: 'Ecosystem', navDashboard: 'Dashboard',
+    navHome: 'Home', navProjects: 'Projects', navEcosystem: 'Ecosystem', navDashboard: 'Dashboard',
     navMempool: 'Live Mempool', navExplorer: 'Explorer', navRwa: 'RWA Tokenization',
     navMarketplace: 'Marketplace', language: 'Language', switchLanguage: 'Switch language to Spanish',
     footerPlatform: 'nesgesfinancetrust.com platform',
@@ -143,7 +143,7 @@ const I18N = {
     metaDescription: 'NESGESFinance Ecosystem — a platform for Bitcoin exploration, real-world asset (RWA) tokenization, Runes and Ordinals.',
     heroTagline: 'Purpose-Driven Tokenization · Bitcoin L1/L2 · RWA and impact',
     heroDescription: 'Institutional and technological architecture connecting real-world assets, traceability and productive utility on Bitcoin. Access, rights and documentation are structured for each project and its series.',
-    learnEcosystem: 'Discover the ecosystem', openDashboard: 'Open dashboard', exploreData: 'Explore data',
+    learnEcosystem: 'Discover the ecosystem', viewProjects: 'View projects', openDashboard: 'Open dashboard', exploreData: 'Explore data',
     disclaimer: 'NESGESFinanceTrust is a proposed institutional/asset layer undergoing formalization. This technical and institutional information is not an investment offer or advice.',
     heroImageAlt: 'Illustration of Bitcoin infrastructure, data and records',
     platformCapabilities: 'Platform capabilities', realTimeExploration: 'Real-Time Exploration',
@@ -159,6 +159,7 @@ const I18N = {
 
 const NAVIGATION_TRANSLATIONS = {
   'index.html': 'navHome',
+  'proyectos.html': 'navProjects',
   'institucional.html': 'navEcosystem',
   'dashboard-unificado.html': 'navDashboard',
   'dashboard1.html': 'navMempool',
