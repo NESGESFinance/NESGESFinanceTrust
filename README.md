@@ -11,13 +11,37 @@ cumplimiento normativo, exponiendo una API REST/WebSocket y un panel web.
 
 > **Plataforma:** nesgesfinancetrust.com · **Versión:** v3.4-dev (Agosto 2026)
 > **Lema:** *"Y a tu prójimo como a tí mismo"*
+> **Web:** [https://nesgesfinance.org](https://nesgesfinance.org)
+> **Whitepaper:** [`NESGESFinance Ecosystem — Documento Maestro Institucional, Tecnológico y de Proyectos 2026`](./NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
+
+---
+
+## Identidad y doctrina
+
+**NESGES** — Núcleo Estratégico y de Gestión para la Comunidad y Ecosistemas
+Sostenibles, Financieros, Tecnológicos y Tokenizados.
+
+**Doctrina:** *"Tokenización con Propósito"* — la representación digital debe
+estar subordinada al activo real, al expediente jurídico, a la trazabilidad y
+a la utilidad productiva.
+
+**Estructura corporativa dual:**
+
+| Entidad | Jurisdicción | Identificador | Función |
+|---|---|---|---|
+| NESGESFinance Ecosystem S.A.S. BIC | Ecuador (Ibarra) | RUC 1091799299001 | Coordinación tecnológica e impacto BIC local |
+| NESGESFinance Ecosystem S.A.S. LLC | Nuevo México, EE.UU. | File #3168825 · EIN 0008086872 | Propiedad intelectual, infraestructura y expansión internacional |
+| NESGESFinanceTrust | En proceso de formalización | — | Capa patrimonial/fiduciaria, cumplimiento normativo y primer SPV piloto |
 
 ---
 
 ## Ecosistema de activos
 
+- **NGF·BTC·AM** → Rune de utilidad #208,645 (ID `923867:120`), supply fijo de
+  5.930.000.000 NGF, sin derechos económicos directos sobre proyectos.
 - **Runes** → *Utility Tokens* fungibles (protocolo de Casey Rodarmor, bloque 840000).
-- **Ordinals** → *Security Tokens* y contenedores de metadatos de RWA.
+- **Ordinals** → *Security Tokens* y contenedores de metadatos de RWA; cada
+  proyecto emite una serie independiente con Reglamento de Emisión y SPV propio.
 - **Taproot Assets + Lightning** → liquidez y liquidación en capa 2 (L2).
 
 ## Arquitectura (resumen)
@@ -121,15 +145,18 @@ nesgesfinancetrust/
 
 - [`docs/API.md`](./docs/API.md) — Referencia de la API.
 - [`docs/ARQUITECTURA.md`](./docs/ARQUITECTURA.md) — Arquitectura del sistema.
-- [`docs/RUNES_PROTOCOL.md`](./docs/RUNES_PROTOCOL.md) — Protocolo Runes.
-- [`docs/ORDINALS_PROTOCOL.md`](./docs/ORDINALS_PROTOCOL.md) — Protocolo Ordinals.
-- [`docs/COMPLIANCE.md`](./docs/COMPLIANCE.md) — Cumplimiento KYC/AML/MiCA.
+- [`docs/RUNES_PROTOCOL.md`](./docs/RUNES_PROTOCOL.md) — Protocolo Runes y NGF·BTC·AM.
+- [`docs/ORDINALS_PROTOCOL.md`](./docs/ORDINALS_PROTOCOL.md) — Protocolo Ordinals y tokens de proyecto.
+- [`docs/COMPLIANCE.md`](./docs/COMPLIANCE.md) — Cumplimiento KYC/AML/MiCA y proceso F0–F6.
+- [`docs/TOKENOMICA.md`](./docs/TOKENOMICA.md) — Tokenómica oficial v5.0.
+- [`docs/PROYECTOS.md`](./docs/PROYECTOS.md) — Portafolio de proyectos y proceso de postulación.
+- [`docs/WHITEPAPER.md`](./docs/WHITEPAPER.md) — Documento Maestro Institucional 2026 (resumen y referencias).
 
 ## Créditos
 
 - **Empresa:** NESGESFinance Ecosystem S.A.S. BIC. & LLC. — EIN: 0008086872
 - **CEO-Fundador:** Cbr. Joan Santiago Ramírez Almeida
-- **Plataforma:** nesgesfinancetrust.com
+- **Plataforma:** nesgesfinancetrust.com · [https://nesgesfinance.org](https://nesgesfinance.org)
 
 ## Licencia
 
