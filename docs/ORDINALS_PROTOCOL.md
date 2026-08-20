@@ -1,9 +1,9 @@
 # Protocolo Ordinals — NESGESFinanceTrust
 
-> Plataforma: **nesgesfinancetrust.com** · Versión **v3.4-dev** (Agosto 2026)
+> Plataforma: **nesgesfinancetrust.com** · Versión **3.4.0-dev** (Agosto 2026)
 > Empresa: **NESGESFinance Ecosystem S.A.S. BIC. & LLC.** · EIN: 0008086872
 
-En NESGESFinance, los **Ordinals** actúan como **Security Tokens** y como
+En NESGESFinance, los **Ordinals** se utilizan como inscripciones y como
 contenedores de metadatos de los **RWA** (activos del mundo real). Se basan en
 la **teoría ordinal** y en el protocolo de inscripciones sobre Bitcoin.
 
@@ -29,7 +29,7 @@ la **teoría ordinal** y en el protocolo de inscripciones sobre Bitcoin.
 
 El indexador determina a qué satoshi queda anclada cada inscripción y sigue su
 recorrido en transferencias posteriores, de modo que la titularidad del Ordinal
-representa la titularidad del activo tokenizado.
+puede utilizarse como referencia técnica dentro del registro; no acredita por sí sola titularidad legal del activo.
 
 ## 4. Implementación en la plataforma
 

@@ -17,10 +17,10 @@ const NESGES = {
   API_BASE: (window.NESGES_API_BASE || '/api'),
   /** URL del WebSocket en tiempo real. */
   WS_URL: (window.NESGES_WS_URL || `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws`),
-  VERSION: 'v3.4-dev',
+  VERSION: '3.4.0-dev',
   EMPRESA: 'NESGESFinance Ecosystem S.A.S. BIC. & LLC.',
   EIN: '0008086872',
-  LEMA: 'Y a tu prójimo como a tí mismo',
+  LEMA: 'Y a tu prójimo como a ti mismo',
   COPYRIGHT: '®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872 — TODOS LOS DERECHOS RESERVADOS 2025-2026',
 };
 

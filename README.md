@@ -1,136 +1,82 @@
-<!--
-  README principal — NESGESFinanceTrust
-  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
--->
 # NESGESFinanceTrust
 
-Plataforma de **indexación de Bitcoin y tokenización de Activos del Mundo Real
-(RWA)** de la **NESGESFinance Ecosystem**. Indexa bloques, mempool, **Runes**
-(Utility Tokens), **Ordinals** (Security Tokens) y registra RWA con
-cumplimiento normativo, exponiendo una API REST/WebSocket y un panel web.
+Infraestructura técnica para consultar datos de Bitcoin, indexar Runes y Ordinals, y registrar activos del mundo real (RWA) en el ecosistema NESGESFinance.
 
-> **Plataforma:** nesgesfinancetrust.com · **Versión:** v3.4-dev (Agosto 2026)
-> **Lema:** *"Y a tu prójimo como a tí mismo"*
+> Versión de desarrollo: `3.4.0-dev` · Plataforma: `nesgesfinancetrust.com`
 
----
+## Alcance
 
-## Ecosistema de activos
+- Consultas de bloques indexados y datos de mempool.
+- API REST y WebSocket para actualizaciones de la plataforma.
+- Indexación de Runes e inscripciones Ordinals.
+- Registro RWA con historial de eventos y validaciones configurables de KYC/AML.
 
-- **Runes** → *Utility Tokens* fungibles (protocolo de Casey Rodarmor, bloque 840000).
-- **Ordinals** → *Security Tokens* y contenedores de metadatos de RWA.
-- **Taproot Assets + Lightning** → liquidez y liquidación en capa 2 (L2).
+La plataforma no sustituye la debida diligencia, el asesoramiento financiero ni la revisión legal. La existencia de un registro técnico no acredita por sí sola propiedad, valor, transferibilidad ni cumplimiento normativo de un activo.
 
-## Arquitectura (resumen)
+## Arquitectura
 
-```
-Bitcoin Core RPC / Esplora  →  blocks.ts / indexadores  →  MySQL/MariaDB + Redis
-                                          │
-                                          ▼
-                              API REST (/api) + WebSocket (/ws)
-                                          │
-                                          ▼
-                     Frontend HTML5 + CSS3 + JavaScript vainilla
+```text
+Bitcoin Core RPC o Esplora → indexadores TypeScript → MariaDB + Redis
+                                              ├── API REST (/api)
+                                              └── WebSocket (/ws)
+Frontend estático HTML/CSS/JavaScript ←─────────────────────────────┘
 ```
 
-Detalle completo en [`docs/ARQUITECTURA.md`](./docs/ARQUITECTURA.md).
+Consulta el diseño en [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) y los contratos en [docs/API.md](docs/API.md).
 
 ## Requisitos
 
-- **Node.js** ≥ 18
-- **MariaDB** 10.11 (o MySQL 8)
-- **Redis** 7
-- **Bitcoin Core** (JSON-RPC) o un backend **Esplora**
+- Node.js 20 o superior y npm 10 o superior.
+- MariaDB 10.11 o MySQL 8.
+- Redis 7.
+- Bitcoin Core mediante JSON-RPC o un servicio Esplora compatible.
 
-## Instalación
+## Desarrollo local
 
 ```bash
-# 1. Instalar dependencias del backend
-npm install
-
-# 2. Configurar variables de entorno
-cp .env.example .env      # editar credenciales de BD, Redis y Bitcoin
-
-# 3. Ejecutar migraciones de base de datos
-npm run migrate
-
-# 4. Compilar y arrancar
-npm run build && npm start
-#   o, en desarrollo con recarga:
-npm run dev
+npm ci
+cp .env.example .env
+# Completa las credenciales y el backend de Bitcoin en .env
+npm run build
+npm start
 ```
 
-El frontend estático se sirve desde `frontend/` (por Nginx o cualquier
-servidor de estáticos). El backend escucha en el puerto `3000` por defecto.
+Para desarrollo: `npm run dev`. El backend escucha en `http://localhost:3000` y publica la API bajo `/api` por defecto. El frontend estático está en `frontend/`; configúralo con el mismo origen que el backend o define `window.NESGES_API_BASE` y `window.NESGES_WS_URL` antes de cargar `assets/js/app.js`.
 
-## Scripts npm
+## Contenedores
 
-| Script            | Acción                                        |
-|-------------------|-----------------------------------------------|
-| `npm run build`   | Compila TypeScript a `dist/`.                 |
-| `npm start`       | Arranca el servidor compilado.                |
-| `npm run dev`     | Desarrollo con `ts-node-dev` (recarga).       |
-| `npm run typecheck` | Verificación de tipos (`tsc --noEmit`).     |
-| `npm run lint`    | Análisis estático con ESLint.                 |
-| `npm run migrate` | Aplica las migraciones SQL.                   |
-| `npm test`        | Pruebas con Jest.                             |
+El repositorio incluye `backend/Dockerfile`, archivos Nginx y `docker-compose.yml` para ejecutar el conjunto localmente:
 
-## Variables de entorno principales
-
-Ver [`.env.example`](./.env.example). Incluyen: `APP_PORT`, `API_PREFIX`,
-`DB_HOST`/`DB_USER`/`DB_PASSWORD`/`DB_NAME`, `REDIS_HOST`/`REDIS_PORT`,
-`BITCOIN_RPC_URL`/`BITCOIN_RPC_USER`/`BITCOIN_RPC_PASSWORD`, `ESPLORA_URL`.
-
-## API
-
-Endpoints REST y canales WebSocket documentados en [`docs/API.md`](./docs/API.md).
-Resumen:
-
-- `GET /api/health`
-- `GET /api/blocks/:height`
-- `GET /api/mempool` · `/fees` · `/recent`
-- `GET /api/runes` · `/id/:block/:tx` · `/:name` · `/:name/holders`
-- `GET /api/ordinals/inscriptions` · `/inscription/:id` · `/content/:id`
-- `GET /api/rwa/assets` · `/:id` · `/:id/history` · `POST /assets` · `POST /assets/:id/transfer`
-- WebSocket `/ws` (canales: `blocks`, `mempool`, `runes`, `ordinals`, `rwa`)
-
-## Estructura del proyecto
-
+```bash
+cp .env.example .env
+# Cambia DATABASE_PASSWORD, credenciales y valores de producción.
+docker compose up --build
 ```
-nesgesfinancetrust/
-├── backend/
-│   ├── src/
-│   │   ├── index.ts, config.ts, logger.ts, database.ts
-│   │   ├── api/            # blocks, mempool, runes, ordinals, rwa, websocket
-│   │   ├── bitcoin/        # clientes RPC/Esplora + crypto
-│   │   ├── repositories/   # acceso a datos por dominio
-│   │   ├── interfaces/     # contratos de tipos
-│   │   └── utils/          # bitcoin-script, varint, compliance
-│   └── migrations/         # 001..004 (SQL)
-├── frontend/
-│   ├── index.html, dashboard1.html, explorer.html, dashboard2.html, rwa-marketplace.html
-│   ├── assets/ (css, js, img)
-│   └── components/         # fragmentos HTML reutilizables
-├── docs/                   # API, ARQUITECTURA, RUNES, ORDINALS, COMPLIANCE
-├── nginx/                  # configuración de servidor
-├── docker-compose.yml
-├── package.json, tsconfig.json, .env.example
-└── README.md
-```
+
+No expongas MariaDB ni Redis a redes públicas en producción. Ajusta también `nginx/proxy.conf` para TLS y el nombre de host que corresponda a tu entorno.
+
+## Scripts
+
+| Comando | Descripción |
+| --- | --- |
+| `npm run build` | Compila TypeScript en `dist/`. |
+| `npm start` | Inicia el backend compilado. |
+| `npm run dev` | Inicia el backend con recarga. |
+| `npm run typecheck` | Comprueba tipos sin emitir archivos. |
+| `npm run lint` | Ejecuta ESLint sobre el backend. |
+| `npm test` | Ejecuta las pruebas Jest. |
+| `npm run migrate` | Ejecuta el script de migración compilado. |
 
 ## Documentación
 
-- [`docs/API.md`](./docs/API.md) — Referencia de la API.
-- [`docs/ARQUITECTURA.md`](./docs/ARQUITECTURA.md) — Arquitectura del sistema.
-- [`docs/RUNES_PROTOCOL.md`](./docs/RUNES_PROTOCOL.md) — Protocolo Runes.
-- [`docs/ORDINALS_PROTOCOL.md`](./docs/ORDINALS_PROTOCOL.md) — Protocolo Ordinals.
-- [`docs/COMPLIANCE.md`](./docs/COMPLIANCE.md) — Cumplimiento KYC/AML/MiCA.
+- [API REST y WebSocket](docs/API.md)
+- [Arquitectura](docs/ARQUITECTURA.md)
+- [Controles de cumplimiento](docs/COMPLIANCE.md)
+- [Protocolo Runes](docs/RUNES_PROTOCOL.md)
+- [Protocolo Ordinals](docs/ORDINALS_PROTOCOL.md)
 
-## Créditos
+Los PDF y DOCX existentes son exportaciones históricas. Los archivos Markdown son la fuente editable vigente; regenera los documentos distribuidos desde ellos antes de publicar una versión formal.
 
-- **Empresa:** NESGESFinance Ecosystem S.A.S. BIC. & LLC. — EIN: 0008086872
-- **CEO-Fundador:** Cbr. Joan Santiago Ramírez Almeida
-- **Plataforma:** nesgesfinancetrust.com
+## Licencia y contacto
 
-## Licencia
-
-®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872 — TODOS LOS DERECHOS RESERVADOS 2025-2026
+Copyright ® NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872. Todos los derechos reservados, 2025–2026.

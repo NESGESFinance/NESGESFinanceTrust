@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">Infraestructura NESGESFinanceTrust sobre Bitcoin</title>
+  <desc id="desc">Ilustración abstracta de bloques de Bitcoin conectados a registros de activos y datos en tiempo real.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#111827"/><stop offset="1" stop-color="#09090b"/></linearGradient>
+    <linearGradient id="coin" x1="0" x2="1"><stop stop-color="#ffd700"/><stop offset="1" stop-color="#f7931a"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="960" height="560" rx="28" fill="url(#bg)"/>
+  <g fill="none" stroke="#f7931a" stroke-opacity=".5" stroke-width="3"><path d="M188 280H386M574 280H772"/><path d="M480 166V105M480 394v61"/></g>
+  <g filter="url(#glow)"><circle cx="480" cy="280" r="112" fill="#151515" stroke="url(#coin)" stroke-width="7"/><text x="480" y="316" text-anchor="middle" fill="#ffd700" font-family="Arial,sans-serif" font-size="100" font-weight="700">₿</text></g>
+  <g font-family="Arial,sans-serif"><g transform="translate(52 204)"><rect width="136" height="152" rx="18" fill="#171717" stroke="#2f2f2f"/><rect x="24" y="26" width="88" height="14" rx="7" fill="#00ff41"/><rect x="24" y="58" width="70" height="10" rx="5" fill="#555"/><rect x="24" y="82" width="82" height="10" rx="5" fill="#555"/><text x="68" y="125" text-anchor="middle" fill="#e8e8e8" font-size="15">Mempool</text></g><g transform="translate(772 204)"><rect width="136" height="152" rx="18" fill="#171717" stroke="#2f2f2f"/><path d="M32 43h72v55H32z" fill="#f7931a" opacity=".85"/><path d="M44 57h48M44 75h38" stroke="#151515" stroke-width="7"/><text x="68" y="125" text-anchor="middle" fill="#e8e8e8" font-size="15">Registros</text></g><g transform="translate(414 38)"><rect width="132" height="66" rx="14" fill="#171717" stroke="#2f2f2f"/><text x="66" y="42" text-anchor="middle" fill="#00ff41" font-size="15">RUNES · ORDINALS</text></g><g transform="translate(414 456)"><rect width="132" height="66" rx="14" fill="#171717" stroke="#2f2f2f"/><text x="66" y="42" text-anchor="middle" fill="#00ff41" font-size="15">API · WEBSOCKET</text></g></g>
+</svg>

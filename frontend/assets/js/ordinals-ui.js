@@ -1,5 +1,5 @@
 /*
- * Interfaz de usuario del explorador de Ordinals (Security Tokens).
+ * Interfaz de usuario del explorador de Ordinals e inscripciones.
  *
  * Consume `/api/ordinals/inscriptions` y renderiza las inscripciones, mostrando
  * una previsualización del contenido cuando el tipo MIME lo permite.

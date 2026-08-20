@@ -8,6 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
   <meta name="description" content="NESGESFinance Ecosystem — plataforma de exploración Bitcoin, tokenización de activos del mundo real (RWA), Runes y Ordinals.">
   <title>NESGESFinanceTrust — Ecosistema Financiero sobre Bitcoin</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
@@ -30,17 +31,19 @@
   </nav>
 
   <header class="hero">
-    <h1>El Ecosistema Financiero sobre Bitcoin</h1>
-    <p class="lema">«Y a tu prójimo como a tí mismo»</p>
-    <p>
-      NESGESFinanceTrust es la capa de exploración, indexación y tokenización de la red Bitcoin del
-      ecosistema NESGESFinance: mempool en tiempo real, protocolo <strong>Runes</strong> (Utility Tokens),
-      <strong>Ordinals</strong> (Security Tokens) y registro de <strong>Activos del Mundo Real</strong> (RWA).
-    </p>
-    <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a class="btn btn-primario" href="dashboard-unificado.html">Abrir Dashboard Unificado</a>
-      <a class="btn btn-secundario" href="dashboard1.html">Mempool en Vivo</a>
-      <a class="btn btn-secundario" href="dashboard2.html">Tokenizar un Activo</a>
+    <div class="hero-contenido">
+      <div>
+        <p class="lema">Infraestructura Bitcoin · Datos verificables · Registro RWA</p>
+        <h1>Explora Bitcoin y administra registros tokenizados</h1>
+        <p>NESGESFinanceTrust reúne datos de bloques y mempool con consultas de Runes, Ordinals y activos del mundo real registrados por la plataforma.</p>
+        <div class="hero-acciones">
+          <a class="btn btn-primario" href="dashboard-unificado.html">Abrir dashboard</a>
+          <a class="btn btn-secundario" href="explorer.html">Explorar datos</a>
+          <a class="btn btn-secundario" href="dashboard2.html">Registrar un activo</a>
+        </div>
+        <p class="nota-disclaimer">La información mostrada es técnica e informativa; no constituye asesoramiento financiero, legal ni una oferta de inversión.</p>
+      </div>
+      <img class="hero-ilustracion" src="assets/img/bitcoin-ledger.svg" alt="Ilustración de infraestructura Bitcoin, datos y registros" width="960" height="560">
     </div>
   </header>
 
@@ -56,20 +59,20 @@
         <p class="descripcion">Decodificación de RuneStones (OP_RETURN + LEB128) del protocolo de Casey Rodarmor, activo desde el bloque 840 000.</p>
       </div>
       <div class="tarjeta">
-        <h3>Ordinals · Security Tokens</h3>
-        <p class="descripcion">Parser de inscripciones incrustadas en el testigo Taproot, utilizadas como contenedor de metadatos legales de los RWA.</p>
+        <h3>Ordinals e inscripciones</h3>
+        <p class="descripcion">Consulta de inscripciones ancladas en Bitcoin y de sus metadatos asociados dentro del registro técnico de la plataforma.</p>
       </div>
       <div class="tarjeta">
         <h3>Registro RWA</h3>
-        <p class="descripcion">Tokenización de inmuebles, vehículos, arte y deuda, vinculando cada activo físico a un Ordinal y, opcionalmente, a un Rune.</p>
+        <p class="descripcion">Flujo de registro para inmuebles, vehículos, arte, deuda y participaciones, con identificadores de inscripción y trazabilidad de eventos.</p>
       </div>
       <div class="tarjeta">
-        <h3>Cumplimiento (KYC/AML/MiCA)</h3>
-        <p class="descripcion">Motor de evaluación de riesgo y clasificación de cripto-activos conforme al reglamento europeo MiCA.</p>
+        <h3>Controles de cumplimiento</h3>
+        <p class="descripcion">Validaciones configurables de KYC, riesgo AML y clasificación de activos que requieren revisión jurídica y operativa independiente.</p>
       </div>
       <div class="tarjeta">
-        <h3>Capa 2 · Lightning + Taproot Assets</h3>
-        <p class="descripcion">Arquitectura preparada para liquidez y transferencia de activos tokenizados en la segunda capa de Bitcoin.</p>
+        <h3>API y tiempo real</h3>
+        <p class="descripcion">API REST y WebSocket para integrar consultas de red, activos indexados y eventos de la plataforma.</p>
       </div>
     </div>
 
