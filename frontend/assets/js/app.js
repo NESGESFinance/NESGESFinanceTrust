@@ -82,13 +82,14 @@ const fmt = {
 };
 
 /** Inyecta el pie de página corporativo en el elemento con id `pie`. */
-function inyectarPie() {
+function inyectarPie(idioma = getIdioma()) {
   const pie = document.getElementById('pie');
   if (!pie) {
     return;
   }
+  const plataforma = I18N[idioma]?.footerPlatform || I18N.es.footerPlatform;
   pie.innerHTML = `
-    <div><strong>${NESGES.EMPRESA}</strong> · Plataforma nesgesfinancetrust.com · ${NESGES.VERSION}</div>
+    <div><strong>${NESGES.EMPRESA}</strong> · ${plataforma} · ${NESGES.VERSION}</div>
     <div class="lema" style="color:var(--color-verde);font-style:italic;">«${NESGES.LEMA}»</div>
     <div class="copyright">${NESGES.COPYRIGHT}</div>
   `;
@@ -105,6 +106,113 @@ function marcarNavActivo() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  inyectarPie();
+  crearSelectorIdioma();
+  traducirInterfaz(getIdioma());
   marcarNavActivo();
 });
+
+/** Traducciones de la interfaz pública. El idioma elegido se conserva entre páginas. */
+const I18N = {
+  es: {
+    navHome: 'Inicio', navEcosystem: 'Ecosistema', navDashboard: 'Dashboard',
+    navMempool: 'Mempool en Vivo', navExplorer: 'Explorador', navRwa: 'Tokenización RWA',
+    navMarketplace: 'Marketplace', language: 'Idioma', switchLanguage: 'Cambiar idioma a inglés',
+    footerPlatform: 'Plataforma nesgesfinancetrust.com',
+    pageTitle: 'NESGESFinanceTrust — Ecosistema Financiero sobre Bitcoin',
+    metaDescription: 'NESGESFinance Ecosystem — plataforma de exploración Bitcoin, tokenización de activos del mundo real (RWA), Runes y Ordinals.',
+    heroTagline: 'Tokenización con Propósito · Bitcoin L1/L2 · RWA e impacto',
+    heroDescription: 'Arquitectura institucional y tecnológica para conectar activos reales, trazabilidad y utilidad productiva sobre Bitcoin. El acceso, los derechos y la documentación se estructuran por cada proyecto y su serie.',
+    learnEcosystem: 'Conocer el ecosistema', openDashboard: 'Abrir dashboard', exploreData: 'Explorar datos',
+    disclaimer: 'NESGESFinanceTrust es una capa institucional/patrimonial propuesta y en proceso de formalización. La información es técnica e institucional; no constituye una oferta de inversión ni asesoramiento.',
+    heroImageAlt: 'Ilustración de infraestructura Bitcoin, datos y registros',
+    platformCapabilities: 'Capacidades de la plataforma', realTimeExploration: 'Exploración en Tiempo Real',
+    realTimeExplorationDescription: 'Indexación de bloques desde Bitcoin Core / Esplora, seguimiento del mempool y difusión por WebSocket con latencia mínima.',
+    runes: 'Runes · Utility Tokens', runesDescription: 'Decodificación de RuneStones (OP_RETURN + LEB128) del protocolo de Casey Rodarmor, activo desde el bloque 840 000.',
+    ordinals: 'Ordinals e inscripciones', ordinalsDescription: 'Consulta de inscripciones ancladas en Bitcoin y de sus metadatos asociados dentro del registro técnico de la plataforma.',
+    rwaRegistry: 'Registro RWA', rwaRegistryDescription: 'Flujo de registro para inmuebles, vehículos, arte, deuda y participaciones, con identificadores de inscripción y trazabilidad de eventos.',
+    complianceControls: 'Controles de cumplimiento', complianceControlsDescription: 'Validaciones configurables de KYC, riesgo AML y clasificación de activos que requieren revisión jurídica y operativa independiente.',
+    apiRealtime: 'API y tiempo real', apiRealtimeDescription: 'API REST y WebSocket para integrar consultas de red, activos indexados y eventos de la plataforma.',
+    architecture: 'Arquitectura',
+  },
+  en: {
+    navHome: 'Home', navEcosystem: 'Ecosystem', navDashboard: 'Dashboard',
+    navMempool: 'Live Mempool', navExplorer: 'Explorer', navRwa: 'RWA Tokenization',
+    navMarketplace: 'Marketplace', language: 'Language', switchLanguage: 'Switch language to Spanish',
+    footerPlatform: 'nesgesfinancetrust.com platform',
+    pageTitle: 'NESGESFinanceTrust — Financial Ecosystem on Bitcoin',
+    metaDescription: 'NESGESFinance Ecosystem — a platform for Bitcoin exploration, real-world asset (RWA) tokenization, Runes and Ordinals.',
+    heroTagline: 'Purpose-Driven Tokenization · Bitcoin L1/L2 · RWA and impact',
+    heroDescription: 'Institutional and technological architecture connecting real-world assets, traceability and productive utility on Bitcoin. Access, rights and documentation are structured for each project and its series.',
+    learnEcosystem: 'Discover the ecosystem', openDashboard: 'Open dashboard', exploreData: 'Explore data',
+    disclaimer: 'NESGESFinanceTrust is a proposed institutional/asset layer undergoing formalization. This technical and institutional information is not an investment offer or advice.',
+    heroImageAlt: 'Illustration of Bitcoin infrastructure, data and records',
+    platformCapabilities: 'Platform capabilities', realTimeExploration: 'Real-Time Exploration',
+    realTimeExplorationDescription: 'Block indexing through Bitcoin Core / Esplora, mempool monitoring and WebSocket broadcasts with minimal latency.',
+    runes: 'Runes · Utility Tokens', runesDescription: 'RuneStone decoding (OP_RETURN + LEB128) for Casey Rodarmor\'s protocol, active since block 840,000.',
+    ordinals: 'Ordinals and inscriptions', ordinalsDescription: 'Look up Bitcoin-anchored inscriptions and their related metadata in the platform\'s technical registry.',
+    rwaRegistry: 'RWA Registry', rwaRegistryDescription: 'Registration workflow for real estate, vehicles, art, debt and equity, with inscription identifiers and event traceability.',
+    complianceControls: 'Compliance controls', complianceControlsDescription: 'Configurable KYC validations, AML risk checks and asset classification that require independent legal and operational review.',
+    apiRealtime: 'API and real time', apiRealtimeDescription: 'REST API and WebSocket for integrating network queries, indexed assets and platform events.',
+    architecture: 'Architecture',
+  },
+};
+
+const NAVIGATION_TRANSLATIONS = {
+  'index.html': 'navHome',
+  'institucional.html': 'navEcosystem',
+  'dashboard-unificado.html': 'navDashboard',
+  'dashboard1.html': 'navMempool',
+  'explorer.html': 'navExplorer',
+  'dashboard2.html': 'navRwa',
+  'rwa-marketplace.html': 'navMarketplace',
+};
+
+function getIdioma() {
+  try {
+    return localStorage.getItem('nesges-language') === 'en' ? 'en' : 'es';
+  } catch (_) {
+    return 'es';
+  }
+}
+
+function traducirInterfaz(idioma) {
+  const mensajes = I18N[idioma];
+  document.documentElement.lang = idioma;
+  document.querySelectorAll('[data-i18n]').forEach((elemento) => {
+    const texto = mensajes[elemento.dataset.i18n];
+    if (texto) elemento.textContent = texto;
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach((elemento) => {
+    const texto = mensajes[elemento.dataset.i18nAlt];
+    if (texto) elemento.alt = texto;
+  });
+  document.querySelectorAll('[data-i18n-content]').forEach((elemento) => {
+    const texto = mensajes[elemento.dataset.i18nContent];
+    if (texto) elemento.content = texto;
+  });
+  document.querySelectorAll('.nav-enlaces a').forEach((enlace) => {
+    const clave = NAVIGATION_TRANSLATIONS[enlace.getAttribute('href')];
+    if (clave && mensajes[clave]) enlace.textContent = mensajes[clave];
+  });
+  const selector = document.querySelector('.selector-idioma');
+  if (selector) {
+    selector.setAttribute('aria-label', mensajes.language);
+    selector.setAttribute('title', mensajes.switchLanguage);
+    selector.textContent = idioma === 'es' ? 'EN' : 'ES';
+  }
+  inyectarPie(idioma);
+}
+
+function crearSelectorIdioma() {
+  const nav = document.querySelector('.nav-principal');
+  if (!nav || nav.querySelector('.selector-idioma')) return;
+  const selector = document.createElement('button');
+  selector.type = 'button';
+  selector.className = 'selector-idioma';
+  selector.addEventListener('click', () => {
+    const idioma = getIdioma() === 'es' ? 'en' : 'es';
+    try { localStorage.setItem('nesges-language', idioma); } catch (_) { /* Storage unavailable. */ }
+    traducirInterfaz(idioma);
+  });
+  nav.appendChild(selector);
+}

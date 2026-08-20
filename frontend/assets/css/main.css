@@ -291,3 +291,26 @@ th { color: #0a0a0a; background: linear-gradient(135deg, var(--color-dorado), va
 .proceso span { color: var(--color-texto-tenue); font-size: .92rem; }
 .formula { color: var(--color-verde); font: 700 1.25rem var(--fuente-datos); }
 .proyectos-grid .tarjeta { min-height: 150px; }
+
+.selector-idioma {
+  margin-left: 1rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--color-naranja);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-dorado);
+  font: 700 0.78rem var(--fuente-ui);
+  cursor: pointer;
+}
+
+.selector-idioma:hover,
+.selector-idioma:focus-visible {
+  background: var(--color-naranja);
+  color: #0a0a0a;
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  .nav-principal { gap: 0.75rem; align-items: flex-start; }
+  .selector-idioma { margin-left: auto; flex: 0 0 auto; }
+}
