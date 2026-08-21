@@ -1,5 +1,12 @@
 # NESGESFinanceTrust
 
+<p align="center">
+  <img src="assets/logos/NESGESFinance_Logo.jpg" alt="Logo oficial de NESGESFinance" width="220" />
+  <img src="assets/logos/NGF-BTC-AM.jpg" alt="Logo oficial de NGF-BTC-AM" width="220" />
+</p>
+
+<p align="center"><strong>Infraestructura Bitcoin L1, Runes, Ordinals y tokenización RWA del ecosistema NESGESFinance.</strong></p>
+
 Infraestructura técnica para consultar datos de Bitcoin, indexar Runes y Ordinals, y registrar activos del mundo real (RWA) en el ecosistema NESGESFinance.
 
 > Versión de desarrollo: `3.4.0-dev` · Plataforma: `nesgesfinancetrust.com`
@@ -72,8 +79,21 @@ No expongas MariaDB ni Redis a redes públicas en producción. Ajusta también `
 - [API REST y WebSocket](docs/API.md)
 - [Arquitectura](docs/ARQUITECTURA.md)
 - [Controles de cumplimiento](docs/COMPLIANCE.md)
+- [Guía de branding](docs/BRANDING.md)
 - [Protocolo Runes](docs/RUNES_PROTOCOL.md)
 - [Protocolo Ordinals](docs/ORDINALS_PROTOCOL.md)
+
+## 🎨 Branding y Logotipos
+
+| Asset | Ruta | Uso principal |
+| --- | --- | --- |
+| NESGESFinance Ecosystem | `assets/logos/NESGESFinance_Logo.jpg` | Encabezados institucionales, documentos corporativos y piezas del ecosistema. |
+| NGF-BTC-AM | `assets/logos/NGF-BTC-AM.jpg` | Activos vinculados a Bitcoin, Runes, fichas visuales y comunicaciones específicas del producto. |
+
+Referencias relacionadas:
+
+- [Guía completa de branding](docs/BRANDING.md)
+- [Manifest de assets](assets/manifest.json)
 
 Los PDF y DOCX existentes son exportaciones históricas. Los archivos Markdown son la fuente editable vigente; regenera los documentos distribuidos desde ellos antes de publicar una versión formal.
 
