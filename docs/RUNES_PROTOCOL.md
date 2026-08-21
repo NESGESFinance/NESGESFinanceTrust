@@ -51,4 +51,31 @@ canónico y su versión con espaciadores.
 
 ---
 
+## 6. NGF·BTC·AM — Rune de utilidad del ecosistema
+
+El token nativo de NESGESFinance Ecosystem es el Rune **NGF·BTC·AM**, emitido
+sobre Bitcoin L1:
+
+| Campo | Valor |
+|---|---|
+| **Número de Rune** | #208,645 |
+| **RuneId** | `923867:120` |
+| **Bloque de etching** | 923.867 |
+| **Fecha de etching** | 16 de noviembre de 2025 · 10:24:23 UTC |
+| **TXID de etching** | `4c0b2416f3dd122025f89a62d7ff265fcee8d00e0fabd874669617cf85437c82` |
+| **Supply** | 5.930.000.000 NGF (fijo · no minteable · no quemable) |
+| **Divisibilidad** | 0 |
+| **Naturaleza** | Utility token; sin derechos económicos sobre proyectos |
+
+**Funciones declaradas:** identidad digital, acceso técnico al ecosistema,
+participación funcional, gobernanza consultiva y unidad de cuenta.
+
+La verificación pública del Rune puede consultarse en:
+[UniScan](https://uniscan.xyz), [Mempool.space](https://mempool.space) y
+[Ord.io](https://ord.io).
+
+> Ver distribución detallada del supply en [`docs/TOKENOMICA.md`](./TOKENOMICA.md).
+
+---
+
 Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872 — TODOS LOS DERECHOS RESERVADOS 2025-2026
