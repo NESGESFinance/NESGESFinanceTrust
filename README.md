@@ -1,37 +1,44 @@
 # NESGESFinanceTrust
 
+<div align="center">
+  <img src="assets/logos/NESGESFinance_Logo.jpg" alt="NESGESFinance Logo" width="180" />
+  <img src="assets/logos/NGF-BTC-AM.jpg" alt="NGF-BTC-AM Rune Logo" width="180" />
+</div>
+
+<h2 align="center">Infraestructura Blockchain para Bitcoin, Runes y Activos Reales</h2>
+
 Infraestructura técnica para consultar datos de Bitcoin, indexar Runes y Ordinals, y registrar activos del mundo real (RWA) en el ecosistema NESGESFinance.
 
 > Versión de desarrollo: `3.4.0-dev` · Plataforma: `nesgesfinancetrust.com`
 
-## Alcance
+## 📋 Alcance
 
 - Consultas de bloques indexados y datos de mempool.
 - API REST y WebSocket para actualizaciones de la plataforma.
 - Indexación de Runes e inscripciones Ordinals.
 - Registro RWA con historial de eventos y validaciones configurables de KYC/AML.
 
-La plataforma no sustituye la debida diligencia, el asesoramiento financiero ni la revisión legal. La existencia de un registro técnico no acredita por sí sola propiedad, valor, transferibilidad ni cumplimiento normativo de un activo.
+La plataforma no sustituye la debida diligencia, el asesoramiento financiero ni la revisión legal. La existencia de un registro técnico no acredita por sí sola propiedad, valor, transferibilidad ni estatus legal de ningún activo.
 
-## Arquitectura
+## 🏗️ Arquitectura
 
 ```text
 Bitcoin Core RPC o Esplora → indexadores TypeScript → MariaDB + Redis
-                                              ├── API REST (/api)
-                                              └── WebSocket (/ws)
+                                               ├── API REST (/api)
+                                               └── WebSocket (/ws)
 Frontend estático HTML/CSS/JavaScript ←─────────────────────────────┘
 ```
 
 Consulta el diseño en [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) y los contratos en [docs/API.md](docs/API.md).
 
-## Requisitos
+## 🔧 Requisitos
 
 - Node.js 20 o superior y npm 10 o superior.
 - MariaDB 10.11 o MySQL 8.
 - Redis 7.
 - Bitcoin Core mediante JSON-RPC o un servicio Esplora compatible.
 
-## Desarrollo local
+## 🚀 Desarrollo local
 
 ```bash
 npm ci
@@ -41,9 +48,9 @@ npm run build
 npm start
 ```
 
-Para desarrollo: `npm run dev`. El backend escucha en `http://localhost:3000` y publica la API bajo `/api` por defecto. El frontend estático está en `frontend/`; configúralo con el mismo origen que el backend o define `window.NESGES_API_BASE` y `window.NESGES_WS_URL` antes de cargar `assets/js/app.js`.
+Para desarrollo: `npm run dev`. El backend escucha en `http://localhost:3000` y publica la API bajo `/api` por defecto. El frontend estático está en `frontend/`; configúralo con el mismo origen.
 
-## Contenedores
+## 🐳 Contenedores
 
 El repositorio incluye `backend/Dockerfile`, archivos Nginx y `docker-compose.yml` para ejecutar el conjunto localmente:
 
@@ -55,7 +62,7 @@ docker compose up --build
 
 No expongas MariaDB ni Redis a redes públicas en producción. Ajusta también `nginx/proxy.conf` para TLS y el nombre de host que corresponda a tu entorno.
 
-## Scripts
+## 📦 Scripts
 
 | Comando | Descripción |
 | --- | --- |
@@ -67,7 +74,7 @@ No expongas MariaDB ni Redis a redes públicas en producción. Ajusta también `
 | `npm test` | Ejecuta las pruebas Jest. |
 | `npm run migrate` | Ejecuta el script de migración compilado. |
 
-## Documentación
+## 📚 Documentación
 
 - [API REST y WebSocket](docs/API.md)
 - [Arquitectura](docs/ARQUITECTURA.md)
@@ -77,6 +84,21 @@ No expongas MariaDB ni Redis a redes públicas en producción. Ajusta también `
 
 Los PDF y DOCX existentes son exportaciones históricas. Los archivos Markdown son la fuente editable vigente; regenera los documentos distribuidos desde ellos antes de publicar una versión formal.
 
-## Licencia y contacto
+## 🎨 Branding y Logotipos
+
+### Logotipos Oficiales
+
+| Logo | Descripción | Ubicación |
+| --- | --- | --- |
+| **NESGESFinance Logo** | Logo oficial del Ecosistema NESGESFinance | `/assets/logos/NESGESFinance_Logo.jpg` |
+| **NGF-BTC-AM Logo** | Logo oficial de la Rune NGF-BTC-AM | `/assets/logos/NGF-BTC-AM.jpg` |
+
+Estos logotipos representan la identidad oficial de:
+- **NESGESFinance Ecosystem**: Plataforma integral de infraestructura blockchain
+- **NGF-BTC-AM**: Rune oficial para activos vinculados a Bitcoin en el ecosistema
+
+Para más información sobre el uso de estos activos, consulta [docs/BRANDING.md](docs/BRANDING.md).
+
+## 📄 Licencia y contacto
 
 Copyright ® NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872. Todos los derechos reservados, 2025–2026.
