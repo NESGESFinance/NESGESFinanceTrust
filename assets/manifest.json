@@ -1,0 +1,109 @@
+{
+  "ecosystem": {
+    "name": "NESGESFinance Ecosystem",
+    "logo": {
+      "path": "assets/logos/NESGESFinance_Logo.jpg",
+      "alt_text": "NESGESFinance Official Ecosystem Logo",
+      "format": "JPG",
+      "recommended_sizes": {
+        "web_header": "120px",
+        "web_footer": "80px",
+        "social_media": "1200x1200px",
+        "print": "300dpi"
+      },
+      "usage_contexts": [
+        "Header and navigation",
+        "Footer and branding",
+        "Official documentation",
+        "Marketing materials",
+        "Social media profiles",
+        "Platform identification"
+      ],
+      "copyright": "© NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872"
+    }
+  },
+  "runes": {
+    "name": "NGF-BTC-AM",
+    "description": "Official Rune for Bitcoin-backed assets in the NESGESFinance ecosystem",
+    "logo": {
+      "path": "assets/logos/NGF-BTC-AM.jpg",
+      "alt_text": "NGF-BTC-AM Rune Official Logo",
+      "format": "JPG",
+      "recommended_sizes": {
+        "ui_button": "32px",
+        "ui_icon": "24px",
+        "ui_large": "64px",
+        "web_display": "256px-512px",
+        "print": "300dpi"
+      },
+      "usage_contexts": [
+        "User interface buttons",
+        "Asset representation",
+        "Transaction indicators",
+        "Educational materials",
+        "Protocol documentation",
+        "Rune identification"
+      ],
+      "blockchain_info": {
+        "type": "Rune",
+        "protocol": "Bitcoin Runes",
+        "backing": "Bitcoin-linked assets",
+        "ecosystem": "NESGESFinance"
+      },
+      "copyright": "© NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872"
+    }
+  },
+  "branding_guidelines": {
+    "version": "1.0",
+    "last_updated": "2026-08-21",
+    "primary_colors": {
+      "nesges_blue": "#1E40AF",
+      "bitcoin_orange": "#F59E0B",
+      "accent_green": "#10B981"
+    },
+    "secondary_colors": {
+      "dark_background": "#0F172A",
+      "light_text": "#F8FAFC",
+      "border_gray": "#475569"
+    },
+    "typography": {
+      "sans_serif": ["Inter", "Segoe UI"],
+      "monospace": ["Courier New", "monospace"]
+    },
+    "documentation": "See docs/BRANDING.md for detailed branding guidelines"
+  },
+  "assets_structure": {
+    "directory": "assets/logos/",
+    "files": [
+      {
+        "name": "NESGESFinance_Logo.jpg",
+        "type": "Ecosystem Logo",
+        "size": "1495 bytes",
+        "added_date": "2026-08-21"
+      },
+      {
+        "name": "NGF-BTC-AM.jpg",
+        "type": "Rune Logo",
+        "size": "1431 bytes",
+        "added_date": "2026-08-21"
+      }
+    ]
+  },
+  "integration_checklist": {
+    "readme": true,
+    "documentation": true,
+    "branding_guide": true,
+    "assets_manifest": true,
+    "web_display": "Logos displayed in README with proper sizing and alignment",
+    "github_pages": "Ready for GitHub Pages deployment"
+  },
+  "contact_and_licensing": {
+    "organization": "NESGESFinance Ecosystem S.A.S. BIC. & LLC.",
+    "ein": "0008086872",
+    "copyright": "2025–2026",
+    "all_rights_reserved": true,
+    "usage_restrictions": "For authorized use only. Modify logos only with explicit permission.",
+    "inquiry_email": "info.nesgesfinance@gmail.com",
+    "official_website": "https://nesges-finance-trust.vercel.app"
+  }
+}
