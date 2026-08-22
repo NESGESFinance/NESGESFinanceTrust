@@ -57,4 +57,36 @@ auditoría completa del ciclo de vida del activo (quién, cuándo, qué txid).
 
 ---
 
+## 6. Proceso oficial de postulación — F0 a F6
+
+Los proyectos que solicitan tokenización en NESGESFinance atraviesan seis fases
+formales antes de cualquier emisión:
+
+| Fase | Nombre | Descripción resumida |
+|---|---|---|
+| **F0** | Solicitud | Título de propiedad, avalúo independiente, estados financieros, permisos/licencias y memoria técnica. |
+| **F1** | Due diligence | Verificación legal, financiera y técnica; cruce por pares y registro de evidencia. |
+| **F2** | SPV y Reglamento | Constitución del SPV y definición de suministro, distribución, calendario y gobernanza. |
+| **F3** | Oferta bajo cumplimiento | Estructuración como *security*; Reg D 506(c) y/o Reg S según el caso; restricciones de whitelist. |
+| **F4** | Emisión técnica L1 | Inscripción de Ordinals, anclaje SHA-256/OP_RETURN, multisig 3/5 y oráculo de datos. |
+| **F5** | Aprobación | Revisión y firma multifirma; publicación en Launchpad. |
+| **F6** | Operación continua | Snapshots trimestrales, distribuciones BTC, reportes periódicos y gobernanza del Reglamento. |
+
+Ningún proyecto se publica antes de completar las fases F0–F5 con documentación
+de emisión íntegra.
+
+> Ver el portafolio de proyectos activos en [`docs/PROYECTOS.md`](./PROYECTOS.md).
+
+---
+
+## 7. Marco regulatorio aplicable
+
+- **MiCA** (UE) — clasificación de tokens (EMT, ART, UTILITY, SECURITY).
+- **Reg D 506(c)** (EE.UU.) — colocación privada con verificación de inversores
+  acreditados.
+- **Reg S** (EE.UU.) — oferta fuera de territorio estadounidense.
+- **KYC/AML** local según jurisdicción del proyecto.
+
+---
+
 Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872 — TODOS LOS DERECHOS RESERVADOS 2025-2026
