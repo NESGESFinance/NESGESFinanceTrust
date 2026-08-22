@@ -18,7 +18,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#0F172A">
   <meta name="description" content="Dashboard Unificado NESGESFinanceTrust — Mempool, Bloques, Runes, Ordinals, Tokenización RWA y Marketplace en un solo archivo interactivo.">
   <title>Dashboard Unificado — NESGESFinanceTrust</title>
 
@@ -28,15 +28,15 @@
   <style>
     /* ── Variables corporativas ─────────────────────────────────────────── */
     :root {
-      --c-fondo:       #0a0a0a;
-      --c-sup:         #141414;
-      --c-sup-alt:     #1c1c1c;
-      --c-borde:       #2a2a2a;
+      --c-fondo:       #0F172A;
+      --c-sup:         #1A2D4D;
+      --c-sup-alt:     #223A62;
+      --c-borde:       rgba(123, 164, 255, .24);
       --c-naranja:     #F7931A;
-      --c-dorado:      #FFD700;
-      --c-verde:       #00FF41;
-      --c-texto:       #e8e8e8;
-      --c-tenue:       #9a9a9a;
+      --c-dorado:      #A9C6FF;
+      --c-verde:       #2EAF6D;
+      --c-texto:       #F6F8FC;
+      --c-tenue:       #C0CBE0;
       --c-error:       #ff4d4d;
       --f-datos:       'Courier New', 'SFMono-Regular', Consolas, monospace;
       --f-ui:          'Segoe UI', Roboto, Arial, sans-serif;
@@ -49,7 +49,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--c-fondo);
+      background: radial-gradient(circle at top left, rgba(15, 90, 150, .18), transparent 32%), radial-gradient(circle at top right, rgba(247, 147, 26, .12), transparent 28%), linear-gradient(180deg, #13203A 0%, var(--c-fondo) 30%, #0B1325 100%);
       color: var(--c-texto);
       font-family: var(--f-ui);
       line-height: 1.6;
@@ -70,15 +70,15 @@
       flex-wrap: wrap;
       gap: .5rem;
       padding: .6rem 1.25rem;
-      background: linear-gradient(180deg,#101010,#0a0a0a);
+      background: linear-gradient(180deg, rgba(15, 23, 42, .94), rgba(13, 31, 58, .98));
       border-bottom: 1px solid var(--c-borde);
       position: sticky;
       top: 0;
       z-index: 200;
     }
 
-    .marca { display: flex; align-items: center; gap: .5rem; }
-    .marca svg { height: 40px; }
+    .marca { display: flex; align-items: center; gap: .75rem; }
+    .marca img { display: block; object-fit: contain; }
 
     .nav-enlaces {
       display: flex;
@@ -148,8 +148,8 @@
     }
     .tab-btn:hover { border-color: var(--c-naranja); color: var(--c-naranja); }
     .tab-btn.activo {
-      background: linear-gradient(135deg,var(--c-dorado),var(--c-naranja));
-      color: #0a0a0a;
+      background: linear-gradient(135deg,#0B3C8A,#F7931A);
+      color: #0F172A;
       border-color: transparent;
     }
 
@@ -226,7 +226,7 @@
     .fee-barra {
       flex: 1;
       min-width: 5px;
-      background: linear-gradient(180deg,var(--c-dorado),var(--c-naranja));
+      background: linear-gradient(180deg,#0F5A96,#F7931A);
       border-radius: 3px 3px 0 0;
       transition: height .4s ease;
       position: relative;
@@ -302,8 +302,8 @@
       transition: transform .12s, box-shadow .12s;
     }
     .boton-primario {
-      background: linear-gradient(135deg,var(--c-dorado),var(--c-naranja));
-      color: #0a0a0a;
+      background: linear-gradient(135deg,#0B3C8A,#F7931A);
+      color: #0F172A;
     }
     .boton-secundario {
       background: transparent;
@@ -374,7 +374,7 @@
     .form-rwa input,
     .form-rwa select,
     .form-rwa textarea {
-      background: var(--c-fondo);
+      background: radial-gradient(circle at top left, rgba(15, 90, 150, .18), transparent 32%), radial-gradient(circle at top right, rgba(247, 147, 26, .12), transparent 28%), linear-gradient(180deg, #13203A 0%, var(--c-fondo) 30%, #0B1325 100%);
       border: 1px solid var(--c-borde);
       border-radius: 6px;
       padding: .55rem .7rem;
@@ -417,7 +417,7 @@
     .hero {
       text-align: center;
       padding: 3.5rem 1rem 2.5rem;
-      background: radial-gradient(circle at 50% 0%,rgba(247,147,26,.12),transparent 60%);
+      background: linear-gradient(135deg, rgba(11, 60, 138, .92), rgba(15, 90, 150, .84) 52%, rgba(247, 147, 26, .2) 100%);
       margin-bottom: 1.5rem;
     }
     .hero h1 { font-size: clamp(1.8rem,4.5vw,3rem); color: var(--c-dorado); margin-bottom: .5rem; }
@@ -481,7 +481,7 @@
       text-align: center;
       color: var(--c-tenue);
       font-size: .8rem;
-      background: #0c0c0c;
+      background: linear-gradient(180deg, rgba(12, 21, 40, .96), rgba(7, 14, 28, .98));
     }
     .pie strong { color: var(--c-dorado); }
     .pie .copyright { margin-top: .35rem; font-family: var(--f-datos); font-size: .72rem; }
@@ -505,24 +505,8 @@
   <nav class="nav-principal" aria-label="Navegación principal">
     <!-- Logo inline (SVG) + hipervínculo al index -->
     <a class="marca" href="index.html" title="Volver al inicio">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" role="img" aria-label="NESGESFinance">
-        <defs>
-          <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#FFD700"/>
-            <stop offset="1" stop-color="#F7931A"/>
-          </linearGradient>
-        </defs>
-        <g transform="translate(4,4)">
-          <polygon points="28,0 52,14 52,42 28,56 4,42 4,14"
-                   fill="#0a0a0a" stroke="url(#gGold)" stroke-width="2.5"/>
-          <text x="28" y="38" text-anchor="middle" font-family="'Courier New',monospace"
-                font-size="30" font-weight="700" fill="url(#gGold)">₿</text>
-        </g>
-        <g font-family="'Segoe UI',Arial,sans-serif">
-          <text x="70" y="30" font-size="22" font-weight="700" fill="#FFD700">NESGES<tspan fill="#F7931A">Finance</tspan></text>
-          <text x="70" y="48" font-size="10" letter-spacing="2" fill="#00FF41">ECOSYSTEM · TRUST</text>
-        </g>
-      </svg>
+      <img src="assets/img/NESGESFinance_Logo.jpg" alt="Logotipo oficial NESGESFinance Ecosystem" style="height:52px;width:auto;display:block;object-fit:contain;border-radius:10px;box-shadow:0 10px 16px rgba(5,17,38,.45);">
+      <img class="marca-logo-secundaria" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM" style="height:40px;width:auto;padding:.2rem;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(247,147,26,.18);box-shadow:0 14px 30px rgba(11,60,138,.24);">
     </a>
 
     <!-- Hipervínculos locales a las páginas individuales -->
@@ -541,7 +525,7 @@
       <span id="ws-texto">WS: Conectando…</span>
     </div>
   </nav>
-  <img class="ilustracion-seccion" style="display:block;max-width:1120px;width:calc(100% - 3rem);margin:1.5rem auto 0" src="assets/img/bitcoin-ledger.svg" alt="Infraestructura Bitcoin, registros y datos en tiempo real" loading="lazy">
+  <img class="ilustracion-seccion" style="display:block;max-width:1120px;width:calc(100% - 3rem);margin:1.5rem auto 0" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM para activos y operaciones Bitcoin" loading="lazy">
 
   <!-- ══════════════════════════════════════════════════════════════════════
        BARRA DE PESTAÑAS DEL DASHBOARD UNIFICADO
