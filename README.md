@@ -4,6 +4,13 @@
 -->
 # NESGESFinanceTrust
 
+<p align="center">
+  <img src="assets/logos/NESGESFinance_Logo.jpg" alt="Logo oficial de NESGESFinance" width="220" />
+  <img src="assets/logos/NGF-BTC-AM.jpg" alt="Logo oficial de NGF-BTC-AM" width="220" />
+</p>
+
+<p align="center"><strong>Infraestructura Bitcoin L1, Runes, Ordinals y tokenización RWA del ecosistema NESGESFinance.</strong></p>
+
 Plataforma de **indexación de Bitcoin y tokenización de Activos del Mundo Real
 (RWA)** de la **NESGESFinance Ecosystem**. Indexa bloques, mempool, **Runes**
 (Utility Tokens), **Ordinals** (Security Tokens) y registra RWA con
@@ -151,6 +158,19 @@ nesgesfinancetrust/
 - [`docs/TOKENOMICA.md`](./docs/TOKENOMICA.md) — Tokenómica oficial v5.0.
 - [`docs/PROYECTOS.md`](./docs/PROYECTOS.md) — Portafolio de proyectos y proceso de postulación.
 - [`docs/WHITEPAPER.md`](./docs/WHITEPAPER.md) — Documento Maestro Institucional 2026 (resumen y referencias).
+- [`docs/BRANDING.md`](./docs/BRANDING.md) — Guía de branding y uso de logotipos oficiales.
+
+## 🎨 Branding y Logotipos
+
+| Asset | Ruta | Uso principal |
+| --- | --- | --- |
+| NESGESFinance Ecosystem | `assets/logos/NESGESFinance_Logo.jpg` | Encabezados institucionales, documentos corporativos y piezas del ecosistema. |
+| NGF-BTC-AM | `assets/logos/NGF-BTC-AM.jpg` | Activos vinculados a Bitcoin, Runes, fichas visuales y comunicaciones específicas del producto. |
+
+Referencias relacionadas:
+
+- [Guía completa de branding](docs/BRANDING.md)
+- [Manifest de assets](assets/manifest.json)
 
 ## Créditos
 

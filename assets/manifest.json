@@ -1,0 +1,65 @@
+{
+  "brand": "NESGESFinanceTrust",
+  "version": 1,
+  "logos": [
+    {
+      "id": "nesgesfinance-ecosystem",
+      "name": "NESGESFinance Ecosystem",
+      "path": "assets/logos/NESGESFinance_Logo.jpg",
+      "format": "jpg",
+      "dimensions": {
+        "width": 740,
+        "height": 740
+      },
+      "recommendedSizes": {
+        "documentationWidthPx": 180,
+        "presentationWidthPx": 220,
+        "compactWidthPx": 96
+      },
+      "usageContexts": [
+        "institutional-header",
+        "ecosystem-documentation",
+        "corporate-branding"
+      ],
+      "copyright": "Copyright ® NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872. Todos los derechos reservados, 2025–2026.",
+      "license": "Uso oficial interno y de marca según lineamientos corporativos."
+    },
+    {
+      "id": "ngf-btc-am",
+      "name": "NGF-BTC-AM",
+      "path": "assets/logos/NGF-BTC-AM.jpg",
+      "format": "jpg",
+      "dimensions": {
+        "width": 1023,
+        "height": 1024
+      },
+      "recommendedSizes": {
+        "documentationWidthPx": 180,
+        "presentationWidthPx": 220,
+        "compactWidthPx": 96
+      },
+      "usageContexts": [
+        "bitcoin-linked-assets",
+        "runes-branding",
+        "product-specific-communications"
+      ],
+      "copyright": "Copyright ® NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872. Todos los derechos reservados, 2025–2026.",
+      "license": "Uso oficial interno y de marca según lineamientos corporativos."
+    }
+  ],
+  "palette": {
+    "NESGESFinance Blue": "#0B3C8A",
+    "Bitcoin Orange": "#F7931A",
+    "Accent Green": "#2EAF6D"
+  },
+  "documentation": {
+    "brandingGuide": "docs/BRANDING.md",
+    "readme": "README.md"
+  },
+  "integrationChecklist": [
+    "Usar el archivo del logo correspondiente al contexto funcional o institucional.",
+    "Mantener la relación de aspecto original y tamaños mínimos sugeridos.",
+    "Conservar contraste adecuado con el fondo y evitar alteraciones cromáticas no autorizadas.",
+    "Referenciar este manifest en inventarios automatizados de assets."
+  ]
+}
