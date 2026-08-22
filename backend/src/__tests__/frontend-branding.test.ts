@@ -17,8 +17,13 @@ function readFrontendFile(...segments: string[]): string {
 
 describe('frontend branding refresh', () => {
   it('expone los logotipos oficiales dentro de los assets del frontend', () => {
-    expect(fs.existsSync(path.join(frontendDir, 'assets/img/NESGESFinance_Logo.jpg'))).toBe(true);
-    expect(fs.existsSync(path.join(frontendDir, 'assets/img/NGF-BTC-AM.png'))).toBe(true);
+    const brandLogoPath = path.join(frontendDir, 'assets/img/NESGESFinance_Logo.jpg');
+    const bitcoinAssetPath = path.join(frontendDir, 'assets/img/NGF-BTC-AM.png');
+
+    expect(fs.existsSync(brandLogoPath)).toBe(true);
+    expect(fs.existsSync(bitcoinAssetPath)).toBe(true);
+    expect(fs.statSync(brandLogoPath).size).toBeLessThanOrEqual(100 * 1024);
+    expect(fs.statSync(bitcoinAssetPath).size).toBeLessThanOrEqual(300 * 1024);
   });
 
   it('define la paleta corporativa oficial en el tema global', () => {
