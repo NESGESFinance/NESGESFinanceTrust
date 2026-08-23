@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /** Traducciones de la interfaz pública. El idioma elegido se conserva entre páginas. */
 const I18N = {
   es: {
-    navHome: 'Inicio', navProjects: 'Proyectos', navEcosystem: 'Ecosistema', navDashboard: 'Dashboard',
+    navHome: 'Inicio', navProjects: 'Explorar marco de evaluación de activos', navEcosystem: 'Ecosistema', navDashboard: 'Dashboard',
     navMempool: 'Mempool en Vivo', navExplorer: 'Explorador', navRwa: 'Tokenización RWA',
     navMarketplace: 'Marketplace', language: 'Idioma', switchLanguage: 'Cambiar idioma a inglés',
     footerPlatform: 'Plataforma nesgesfinancetrust.com',
@@ -127,7 +127,7 @@ const I18N = {
     heroImageAlt: 'Ilustración de infraestructura Bitcoin, datos y registros',
     platformCapabilities: 'Capacidades de la plataforma', realTimeExploration: 'Exploración en Tiempo Real',
     realTimeExplorationDescription: 'Indexación de bloques desde Bitcoin Core / Esplora, seguimiento del mempool y difusión por WebSocket con latencia mínima.',
-    runes: 'Runes · Utility Tokens', runesDescription: 'Decodificación de RuneStones (OP_RETURN + LEB128) del protocolo de Casey Rodarmor, activo desde el bloque 840 000.',
+    runes: 'Runes · Utility Token', runesDescription: 'Decodificación de RuneStones (OP_RETURN + LEB128) del protocolo de Casey Rodarmor, activo desde el bloque 840 000.',
     ordinals: 'Ordinals e inscripciones', ordinalsDescription: 'Consulta de inscripciones ancladas en Bitcoin y de sus metadatos asociados dentro del registro técnico de la plataforma.',
     rwaRegistry: 'Registro RWA', rwaRegistryDescription: 'Flujo de registro para inmuebles, vehículos, arte, deuda y participaciones, con identificadores de inscripción y trazabilidad de eventos.',
     complianceControls: 'Controles de cumplimiento', complianceControlsDescription: 'Validaciones configurables de KYC, riesgo AML y clasificación de activos que requieren revisión jurídica y operativa independiente.',
@@ -135,7 +135,7 @@ const I18N = {
     architecture: 'Arquitectura',
   },
   en: {
-    navHome: 'Home', navProjects: 'Projects', navEcosystem: 'Ecosystem', navDashboard: 'Dashboard',
+    navHome: 'Home', navProjects: 'Asset evaluation framework', navEcosystem: 'Ecosystem', navDashboard: 'Dashboard',
     navMempool: 'Live Mempool', navExplorer: 'Explorer', navRwa: 'RWA Tokenization',
     navMarketplace: 'Marketplace', language: 'Language', switchLanguage: 'Switch language to Spanish',
     footerPlatform: 'nesgesfinancetrust.com platform',
@@ -148,7 +148,7 @@ const I18N = {
     heroImageAlt: 'Illustration of Bitcoin infrastructure, data and records',
     platformCapabilities: 'Platform capabilities', realTimeExploration: 'Real-Time Exploration',
     realTimeExplorationDescription: 'Block indexing through Bitcoin Core / Esplora, mempool monitoring and WebSocket broadcasts with minimal latency.',
-    runes: 'Runes · Utility Tokens', runesDescription: 'RuneStone decoding (OP_RETURN + LEB128) for Casey Rodarmor\'s protocol, active since block 840,000.',
+    runes: 'Runes · Utility Token', runesDescription: 'RuneStone decoding (OP_RETURN + LEB128) for Casey Rodarmor\'s protocol, active since block 840,000.',
     ordinals: 'Ordinals and inscriptions', ordinalsDescription: 'Look up Bitcoin-anchored inscriptions and their related metadata in the platform\'s technical registry.',
     rwaRegistry: 'RWA Registry', rwaRegistryDescription: 'Registration workflow for real estate, vehicles, art, debt and equity, with inscription identifiers and event traceability.',
     complianceControls: 'Compliance controls', complianceControlsDescription: 'Configurable KYC validations, AML risk checks and asset classification that require independent legal and operational review.',
@@ -160,6 +160,7 @@ const I18N = {
 const NAVIGATION_TRANSLATIONS = {
   'index.html': 'navHome',
   'proyectos.html': 'navProjects',
+  'verify.html': 'navProjects',
   'institucional.html': 'navEcosystem',
   'dashboard-unificado.html': 'navDashboard',
   'dashboard1.html': 'navMempool',

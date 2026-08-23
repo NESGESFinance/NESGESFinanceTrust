@@ -16,7 +16,7 @@ preservar la precisión de enteros grandes (`bigint`).
 1. [Salud del servicio](#salud-del-servicio)
 2. [Bloques](#bloques)
 3. [Mempool](#mempool)
-4. [Runes (Utility Tokens)](#runes-utility-tokens)
+4. [Runes (Utility Token)](#runes-utility-tokens)
 5. [Ordinals e inscripciones](#ordinals-e-inscripciones)
 6. [RWA — Activos del Mundo Real](#rwa--activos-del-mundo-real)
 7. [WebSocket en tiempo real](#websocket-en-tiempo-real)
@@ -86,7 +86,7 @@ Estimaciones de comisión por objetivo de confirmación (sat/vB).
 
 ---
 
-## Runes (Utility Tokens)
+## Runes (Utility Token)
 
 Protocolo Runes de Casey Rodarmor (ver [`RUNES_PROTOCOL.md`](./RUNES_PROTOCOL.md)).
 

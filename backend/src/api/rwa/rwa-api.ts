@@ -20,6 +20,7 @@ import { AssetStatus, AssetType } from '../../interfaces/rwa.interfaces';
 
 export class RWAAPI {
   public readonly router: Router;
+  private readonly auditMode = true;
 
   constructor(private readonly registry: RWARegistry = rwaRegistry) {
     this.router = Router();
@@ -76,6 +77,14 @@ export class RWAAPI {
   /** POST /api/rwa/assets — registro de un nuevo activo. */
   private async registerAsset(req: Request, res: Response): Promise<void> {
     try {
+      if (this.auditMode) {
+        res.status(503).json({
+          error: 'Registro de activos deshabilitado en etapa de auditoría.',
+          status: 'en_auditoria',
+          detail: 'No se aceptan envíos reales de documentación o datos personales durante el testeo de conectores.'
+        });
+        return;
+      }
       const body = req.body as Partial<RegisterAssetParams>;
       if (!body.type || !body.name || body.valuationUSD === undefined || !body.owner || !body.inscriptionId || !body.metadata) {
         res.status(400).json({ error: 'Faltan campos obligatorios (type, name, valuationUSD, owner, inscriptionId, metadata).' });
@@ -108,6 +117,14 @@ export class RWAAPI {
   /** POST /api/rwa/assets/:id/transfer — transferencia de titularidad. */
   private async transferAsset(req: Request, res: Response): Promise<void> {
     try {
+      if (this.auditMode) {
+        res.status(503).json({
+          error: 'Transferencias deshabilitadas en etapa de auditoría.',
+          status: 'en_auditoria',
+          detail: 'Las operaciones transaccionales permanecerán bloqueadas hasta habilitación formal.'
+        });
+        return;
+      }
       const { newOwner, txid } = req.body as { newOwner?: string; txid?: string };
       if (!newOwner || !txid) {
         res.status(400).json({ error: 'Se requieren los campos newOwner y txid.' });

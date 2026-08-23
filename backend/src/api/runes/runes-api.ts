@@ -1,7 +1,7 @@
 /**
  * API REST del protocolo Runes.
  *
- * Expone los endpoints de consulta de tokens fungibles (Utility Tokens) de la
+ * Expone los endpoints de consulta de tokens fungibles (Utility Token) de la
  * plataforma NESGESFinance:
  *   GET  /api/runes                  → listado paginado de Runes
  *   GET  /api/runes/:name            → detalle de un Rune por nombre

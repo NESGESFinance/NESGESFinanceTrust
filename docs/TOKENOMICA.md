@@ -5,7 +5,7 @@
 > Lema: *"Y a tu prójimo como a tí mismo"*
 
 Este documento describe la distribución oficial del Rune de utilidad
-**NGF·BTC·AM** (Rune #208,645, ID `923867:120`) conforme al Documento Maestro
+**NGF•BTC•AM** (Rune #208,645, ID `923867:120`) conforme al Documento Maestro
 Institucional 2026.
 
 ---
@@ -14,7 +14,7 @@ Institucional 2026.
 
 | Campo | Valor |
 |---|---|
-| **Rune** | NGF·BTC·AM |
+| **Rune** | NGF•BTC•AM |
 | **Número** | #208,645 |
 | **RuneId** | `923867:120` |
 | **Supply total** | 5.930.000.000 NGF (fijo · no minteable · no quemable) |
@@ -65,7 +65,7 @@ Institucional 2026.
 
 ## 5. Funciones del token
 
-El NGF·BTC·AM **no otorga derechos económicos** sobre los proyectos del
+El NGF•BTC•AM **no otorga derechos económicos** sobre los proyectos del
 portafolio. Sus funciones declaradas son:
 
 1. **Identidad digital** — acreditar pertenencia al ecosistema.

@@ -493,11 +493,34 @@
       .tab-btn { font-size: .78rem; padding: .35rem .65rem; }
     }
   </style>
+  
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 
 <body>
+  <div class="audit-banner" role="alert" aria-live="assertive">
+    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong>
+    Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
+  </div>
+
+
 
   <!-- ══════════════════════════════════════════════════════════════════════
        BARRA DE NAVEGACIÓN GLOBAL
@@ -506,17 +529,17 @@
     <!-- Logo inline (SVG) + hipervínculo al index -->
     <a class="marca" href="index.html" title="Volver al inicio">
       <img src="assets/img/NESGESFinance_Logo.jpg" alt="Logotipo oficial NESGESFinance Ecosystem" style="height:52px;width:auto;display:block;object-fit:contain;border-radius:10px;box-shadow:0 10px 16px rgba(5,17,38,.45);">
-      <img class="marca-logo-secundaria" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM" style="height:40px;width:auto;padding:.2rem;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(247,147,26,.18);box-shadow:0 14px 30px rgba(11,60,138,.24);">
+      <img class="marca-logo-secundaria" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM" style="height:40px;width:auto;padding:.2rem;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(247,147,26,.18);box-shadow:0 14px 30px rgba(11,60,138,.24);">
     </a>
 
     <!-- Hipervínculos locales a las páginas individuales -->
     <ul class="nav-enlaces" id="nav-enlaces">
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="institucional.html">Ecosistema</a></li><li><a href="verify.html">Explorar marco de evaluación de activos</a></li>
       <li><a href="dashboard1.html">Mempool</a></li>
       <li><a href="explorer.html">Explorador</a></li>
       <li><a href="dashboard2.html">RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
+      
     </ul>
 
     <!-- Indicador WebSocket -->
@@ -525,7 +548,7 @@
       <span id="ws-texto">WS: Conectando…</span>
     </div>
   </nav>
-  <img class="ilustracion-seccion" style="display:block;max-width:1120px;width:calc(100% - 3rem);margin:1.5rem auto 0" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM para activos y operaciones Bitcoin" loading="lazy">
+  <img class="ilustracion-seccion" style="display:block;max-width:1120px;width:calc(100% - 3rem);margin:1.5rem auto 0" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" loading="lazy">
 
   <!-- ══════════════════════════════════════════════════════════════════════
        BARRA DE PESTAÑAS DEL DASHBOARD UNIFICADO
@@ -590,7 +613,7 @@
           <p class="descripcion">Indexación de bloques desde Bitcoin Core / Esplora, seguimiento del mempool y difusión por WebSocket con latencia mínima.</p>
         </div>
         <div class="tarjeta" onclick="activarTab('runes')" style="cursor:pointer;" title="Ir a Runes">
-          <h3>🪙 Runes · Utility Tokens</h3>
+          <h3>🪙 Runes · Utility Token</h3>
           <p class="descripcion">Decodificación de RuneStones (OP_RETURN + LEB128) del protocolo de Casey Rodarmor, activo desde el bloque 840 000.</p>
         </div>
         <div class="tarjeta" onclick="activarTab('ordinals')" style="cursor:pointer;" title="Ir a Ordinals">
@@ -685,7 +708,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
          PESTAÑA 4 · RUNES
          ──────────────────────────────────────────────────────────────────── -->
     <section id="tab-runes" class="tab-panel" role="tabpanel">
-      <h1>🪙 Runes · Utility Tokens</h1>
+      <h1>🪙 Runes · Utility Token</h1>
       <p class="subtitulo">
         Protocolo Runes de Casey Rodarmor — fungibles nativos de Bitcoin activos desde el bloque 840 000.
         <a class="link-ext" href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/docs/RUNES_PROTOCOL.md" target="_blank" style="margin-left:.5rem;">📄 Protocolo Runes</a>

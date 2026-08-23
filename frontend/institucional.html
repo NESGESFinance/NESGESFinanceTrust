@@ -9,14 +9,37 @@
   <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <div class="audit-banner" role="alert" aria-live="assertive">
+    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong>
+    Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
+  </div>
+
+
   <nav class="nav-principal">
     <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
     <ul class="nav-enlaces">
-      <li><a href="index.html">Inicio</a></li><li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li><li><a href="dashboard-unificado.html">Dashboard</a></li><li><a href="explorer.html">Explorador</a></li><li><a href="dashboard2.html">Tokenización RWA</a></li><li><a href="rwa-marketplace.html">Marketplace</a></li>
+      <li><a href="index.html">Inicio</a></li><li><a href="institucional.html">Ecosistema</a></li><li><a href="verify.html">Explorar marco de evaluación de activos</a></li><li><a href="dashboard-unificado.html">Dashboard</a></li><li><a href="explorer.html">Explorador</a></li><li><a href="dashboard2.html">Tokenización RWA</a></li>
     </ul>
   </nav>
 
@@ -30,7 +53,7 @@
       </div>
       <div class="hero-logo-stack marca-institucional" aria-label="Logotipos oficiales del ecosistema">
         <div class="hero-logo-card"><img src="assets/img/NESGESFinance_Logo.jpg" alt="Logotipo oficial NESGESFinance Ecosystem" width="740" height="740"></div>
-        <div class="hero-logo-card hero-logo-accent"><img src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM" width="1023" height="1024"></div>
+        <div class="hero-logo-card hero-logo-accent"><img src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM" width="1023" height="1024"></div>
       </div>
     </div>
   </header>
@@ -60,7 +83,7 @@
     </section>
 
     <section id="activos"><h2>Arquitectura de activos digitales</h2>
-      <div class="grid grid-3"><article class="tarjeta"><h3>NGF·BTC·AM</h3><p>Rune de utilidad sobre Bitcoin L1: #208,645 · ID 923867:120. Supply fijo de 5.930.000.000, divisibilidad 0, no minteable ni quemable.</p><p class="descripcion">Identidad digital, acceso técnico, participación funcional, gobernanza consultiva y unidad de cuenta; no otorga derechos económicos sobre proyectos.</p></article><article class="tarjeta"><h3>Ordinals de proyecto</h3><p>Series independientes por proyecto, con hashes de contratos, validaciones KYC/AML y Reglamento de Emisión. Whitelist obligatoria y marco jurídico específico por serie.</p></article><article class="tarjeta"><h3>Stable Sats</h3><p>Capa complementaria propuesta para representaciones vinculadas a fiduciarias o commodities; requiere documentación y reservas verificables.</p></article></div>
+      <div class="grid grid-3"><article class="tarjeta"><h3>NGF•BTC•AM</h3><p>Rune de utilidad sobre Bitcoin L1: #208,645 · ID 923867:120. Supply fijo de 5.930.000.000, divisibilidad 0, no minteable ni quemable.</p><p class="descripcion">Identidad digital, acceso técnico, participación funcional, gobernanza consultiva y unidad de cuenta; no otorga derechos económicos sobre proyectos.</p></article><article class="tarjeta"><h3>Ordinals de proyecto</h3><p>Series independientes por proyecto, con hashes de contratos, validaciones KYC/AML y Reglamento de Emisión. Whitelist obligatoria y marco jurídico específico por serie.</p></article><article class="tarjeta"><h3>Stable Sats</h3><p>Capa complementaria propuesta para representaciones vinculadas a fiduciarias o commodities; requiere documentación y reservas verificables.</p></article></div>
       <div class="tarjeta datos-tecnicos"><h3>Referencia on-chain declarada</h3><p>Etching: bloque 923.867 · 16-nov-2025 10:24:23 UTC. TXID: <code>4c0b2416f3dd122025f89a62d7ff265fcee8d00e0fabd874669617cf85437c82</code>. La verificación se indica mediante UniSat, Mempool.space y Ord.io.</p></div>
     </section>
 
@@ -79,7 +102,7 @@
 
     <section id="tecnologia"><h2>Stack, seguridad y trazabilidad</h2><div class="grid grid-3"><article class="tarjeta"><h3>Stack</h3><p>Bitcoin L1, Runes, Ordinals, Lightning Network prevista, Taproot Assets, multifirma y hardware wallets.</p></article><article class="tarjeta"><h3>Software</h3><p>Monorepo Rust/axum, PSBT, Prisma, Next.js/TypeScript, oráculo Python y automatización CI/CD.</p></article><article class="tarjeta"><h3>Seguridad</h3><p>Separación de consenso, indexadores y L2; mínimo privilegio, OIDC, SAST/SCA, SBOM, CSP, validación y protección anti-SSRF/DoS.</p></article></div><div class="tarjeta"><h3>Transparencia</h3><p>Hashes SHA-256 anclados en Bitcoin, bitácora de custodia, TXID de distribuciones, scripts auditables, metadata pública y evidencia reproducible. PII, KYC/AML y reglas jurisdiccionales se mantienen separados del explorador público.</p></div></section>
 
-    <section id="roadmap"><h2>Roadmap y comunicación responsable</h2><div class="grid grid-2"><article class="tarjeta"><h3>2025–2026 · Fundacional</h3><p>Constitución dual, emisión NGF·BTC·AM, whitepapers y base jurídica.</p><h3>2026 · Primer proyecto</h3><p>Proyecto tokenizado, LLC, integración Lightning y KYC/AML operativo.</p></article><article class="tarjeta"><h3>2027–2028 · Consolidación</h3><p>Proyectos agrícolas, sociales y energéticos; expansión de gobernanza.</p><h3>2029–2030 · Escala global</h3><p>Internacionalización, alianzas y evolución hacia gobernanza descentralizada.</p></article></div><p class="nota-disclaimer"><strong>Aviso legal:</strong> este sitio es institucional, técnico e informativo; no constituye oferta pública de valores, asesoría financiera, jurídica o fiscal, ni certificación independiente. Cualquier oferta se realiza exclusivamente mediante los documentos de emisión de la serie y bajo el marco aplicable. Las afirmaciones deben contrastarse con evidencia primaria vigente.</p></section>
+    <section id="roadmap"><h2>Roadmap y comunicación responsable</h2><div class="grid grid-2"><article class="tarjeta"><h3>2025–2026 · Fundacional</h3><p>Constitución dual, emisión NGF•BTC•AM, whitepapers y base jurídica.</p><h3>2026 · Primer proyecto</h3><p>Proyecto tokenizado, LLC, integración Lightning y KYC/AML operativo.</p></article><article class="tarjeta"><h3>2027–2028 · Consolidación</h3><p>Proyectos agrícolas, sociales y energéticos; expansión de gobernanza.</p><h3>2029–2030 · Escala global</h3><p>Internacionalización, alianzas y evolución hacia gobernanza descentralizada.</p></article></div><p class="nota-disclaimer"><strong>Aviso legal:</strong> este sitio es institucional, técnico e informativo; no constituye oferta pública de valores, asesoría financiera, jurídica o fiscal, ni certificación independiente. Cualquier oferta se realiza exclusivamente mediante los documentos de emisión de la serie y bajo el marco aplicable. Las afirmaciones deben contrastarse con evidencia primaria vigente.</p></section>
   </main>
   <footer class="pie" id="pie"></footer>
   <script src="assets/js/app.js"></script>

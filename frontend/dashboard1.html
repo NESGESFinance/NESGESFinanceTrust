@@ -15,25 +15,48 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/dashboard.css">
+  
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <div class="audit-banner" role="alert" aria-live="assertive">
+    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong>
+    Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
+  </div>
+
+
   <nav class="nav-principal">
     <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
     <ul class="nav-enlaces">
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="institucional.html">Ecosistema</a></li><li><a href="verify.html">Explorar marco de evaluación de activos</a></li>
       <li><a href="dashboard-unificado.html">Dashboard</a></li>
       <li><a href="dashboard1.html">Mempool en Vivo</a></li>
       <li><a href="explorer.html">Explorador</a></li>
       <li><a href="dashboard2.html">Tokenización RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
+      
     </ul>
   </nav>
 
   <main>
-    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM para activos y operaciones Bitcoin" loading="lazy">
+    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" loading="lazy">
       <h1>Mempool en Tiempo Real</h1>
       <div class="estado-conexion desconectado" id="estado-conexion">
         <span class="punto"></span><span class="texto">Conectando…</span>

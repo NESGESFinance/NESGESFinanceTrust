@@ -15,30 +15,52 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/dashboard.css">
+  
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <div class="audit-banner" role="alert" aria-live="assertive">
+    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong>
+    Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
+  </div>
+
+
   <nav class="nav-principal">
     <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
     <ul class="nav-enlaces">
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="institucional.html">Ecosistema</a></li><li><a href="verify.html">Explorar marco de evaluación de activos</a></li>
       <li><a href="dashboard-unificado.html">Dashboard</a></li>
       <li><a href="dashboard1.html">Mempool en Vivo</a></li>
       <li><a href="explorer.html">Explorador</a></li>
       <li><a href="dashboard2.html">Tokenización RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
+      
     </ul>
   </nav>
 
   <main>
-    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM para activos y operaciones Bitcoin" loading="lazy">
-      <h1>Tokenización de Activos del Mundo Real</h1>
+    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" loading="lazy">
+      <h1>Solicitud de evaluación de activo</h1>
       <p class="subtitulo">
-        Registra un activo físico o financiero como Security Token sobre Bitcoin.
-        Cada activo se vincula a un Ordinal (titularidad legal) y opcionalmente a
-        un Rune (fraccionamiento y liquidez).
+        Formulario de pre-evaluación en etapa de auditoría.
+        No procesa altas productivas, emisiones ni captura operativa de datos personales reales durante esta fase.
       </p>
     </div>
 
@@ -135,7 +157,7 @@
       <input type="text" id="certifications" name="certifications"
         placeholder="Escritura pública No. 1234, Certificado de tradición y libertad">
 
-      <button type="submit" class="boton boton-primario">Registrar y tokenizar activo</button>
+      <button type="submit" class="boton boton-primario">Solicitud en auditoría (envío deshabilitado)</button>
     </form>
 
     <div class="resultado" id="resultado" hidden></div>
@@ -157,58 +179,13 @@
         salida.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
 
-      form.addEventListener('submit', async (evento) => {
+      form.querySelectorAll('input, select, textarea').forEach((el) => {
+        el.setAttribute('data-audit', 'true');
+      });
+
+      form.addEventListener('submit', (evento) => {
         evento.preventDefault();
-        const d = new FormData(form);
-
-        // Construcción del cuerpo esperado por la API (RegisterAssetParams).
-        const cuerpo = {
-          type: d.get('type'),
-          name: d.get('name'),
-          description: d.get('description') || '',
-          valuationUSD: Number(d.get('valuationUSD')),
-          owner: d.get('owner'),
-          inscriptionId: d.get('inscriptionId'),
-          runeId: d.get('runeId') ? d.get('runeId') : null,
-          backing: d.get('backing'),
-          ownerKyc: d.get('ownerKyc'),
-          jurisdictionRisk: d.get('jurisdictionRisk'),
-          metadata: {
-            legalDocuments: [],
-            physicalLocation: d.get('physicalLocation') || '',
-            appraisalDate: new Date().toISOString(),
-            appraisalValue: Number(d.get('appraisalValue') || d.get('valuationUSD') || 0),
-            certifications: (d.get('certifications') || '')
-              .split(',')
-              .map((s) => s.trim())
-              .filter(Boolean),
-          },
-        };
-
-        mostrar('', 'Registrando activo y ejecutando validaciones de cumplimiento...');
-
-        const res = await api.post('/rwa/assets', cuerpo);
-        const data = res.data || {};
-
-        if (res.ok && data.asset) {
-          const activo = data.asset;
-          mostrar('ok',
-            '<h4>✔ Activo tokenizado correctamente</h4>' +
-            '<p><strong>ID:</strong> ' + (activo.id || '—') + '</p>' +
-            '<p><strong>Nombre:</strong> ' + (activo.name || cuerpo.name) + '</p>' +
-            '<p><strong>Valoración:</strong> ' + fmt.usd(cuerpo.valuationUSD) + '</p>' +
-            '<p><strong>Estado:</strong> ' + (activo.status || 'PENDIENTE') + '</p>');
-          form.reset();
-        } else {
-          let detalle = data.error || ('HTTP ' + res.status);
-          const v = data.validation;
-          if (v && Array.isArray(v.errors) && v.errors.length) {
-            detalle += '<ul>' +
-              v.errors.map((x) => '<li>' + x + '</li>').join('') +
-              '</ul>';
-          }
-          mostrar('err', '<h4>✘ No se pudo registrar el activo</h4><p>' + detalle + '</p>');
-        }
+        mostrar('err', '<h4>⚠️ Módulo en auditoría</h4><p>Este formulario es solo referencial. El envío está deshabilitado hasta completar la validación técnica, jurídica y de seguridad.</p>');
       });
     })();
   </script>

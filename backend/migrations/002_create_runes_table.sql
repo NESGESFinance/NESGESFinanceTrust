@@ -1,5 +1,5 @@
 -- ===========================================================================
---  Migración 002 — Tablas del protocolo Runes (Utility Tokens)
+--  Migración 002 — Tablas del protocolo Runes (Utility Token)
 --
 --  Plataforma : nesgesfinancetrust.com (v3.4-dev)
 --  Motor      : MariaDB 10.11+ / MySQL 8+
