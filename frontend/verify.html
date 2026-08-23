@@ -4,17 +4,15 @@
   Herramienta para verificar hashes, TXID, inscripciones y activos
   Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
   TODOS LOS DERECHOS RESERVADOS 2025-2026
--->
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0F172A">
-  <meta name="description" content="Centro de Verificación — NESGESFinanceTrust. Verifica hashes, TXID, inscripciones y activos digitales.">
+--><html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="#0F172A" name="theme-color"/>
+  <meta content="Centro de Verificación — NESGESFinanceTrust. Verifica hashes, TXID, inscripciones y activos digitales." data-i18n-content="verifyMetaDesc" name="description"/>
   <title>Centro de Verificación — NESGESFinanceTrust</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
   <style>
     .audit-banner {
       background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
@@ -235,146 +233,111 @@
       100% { transform: rotate(360deg); }
     }
   </style>
-  <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
-  <div class="audit-banner" role="alert" aria-live="assertive">
-    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> 
-    Resultados de verificación pueden ser aproximados durante esta fase.
-  </div>
+  <div aria-live="assertive" class="audit-banner" role="alert"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
 
   <nav class="nav-principal">
-    <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
-    <ul class="nav-enlaces">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li>
-      <li><a href="status.html">Estado del Sistema</a></li>
-      <li><a href="verify.html">Verificar</a></li>
-    </ul>
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="index.html">Inicio</a></li><li><a href="institucional.html">Ecosistema</a></li><li><a href="verify.html">Explorar activos</a></li><li><a href="dashboard-unificado.html">Dashboard</a></li><li><a href="explorer.html">Explorador</a></li><li><a href="dashboard2.html">Tokenización RWA</a></li><li><a href="rwa-marketplace.html">Marketplace</a></li></ul>
   </nav>
 
   <main style="max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem;">
     <div class="panel-cabecera">
-      <h1>🔍 Centro de Verificación</h1>
-      <p class="subtitulo">
-        Verifica la autenticidad e integridad de datos on-chain, hashes documentales, 
-        inscripciones y activos registrados en NESGESFinanceTrust.
-      </p>
+      <h1 data-i18n="verifyH1">🔍 Centro de Verificación</h1>
+      <p class="subtitulo" data-i18n="verifySubtitle">Verifica la autenticidad e integridad de datos on-chain, hashes documentales, inscripciones y activos registrados en NESGESFinanceTrust.</p>
     </div>
 
-    <div class="verify-info">
-      <strong>⚡ Herramientas de verificación:</strong><br>
-      Estas herramientas permiten validar datos criptográficos contra la cadena de bloques Bitcoin. 
-      Todos los resultados son <strong>públicamente verificables</strong> y no constituyen certificación legal ni auditoría.
-    </div>
+    <div class="verify-info"><strong data-i18n="verifyToolsLabel">⚡ Herramientas de verificación:</strong><span data-i18n="verifyToolsText">Estas herramientas permiten validar datos criptográficos contra la cadena de bloques Bitcoin. Todos los resultados son públicamente verificables y no constituyen certificación legal ni auditoría.</span></div>
 
     <!-- TABS -->
     <div class="verify-tabs">
-      <button class="verify-tab active" onclick="switchTab('hash', event)">
-        📝 Hash SHA-256
-      </button>
-      <button class="verify-tab" onclick="switchTab('txid', event)">
-        💸 TXID / Transacción
-      </button>
-      <button class="verify-tab" onclick="switchTab('inscription', event)">
-        🖼️ Inscripción Ordinal
-      </button>
-      <button class="verify-tab" onclick="switchTab('rune', event)">
-        🪙 Rune
-      </button>
-      <button class="verify-tab" onclick="switchTab('address', event)">
-        🔑 Dirección Bitcoin
-      </button>
+      <button class="verify-tab active" data-i18n="verifyTabHash" onclick="switchTab('hash', event)">📝 Hash SHA-256</button>
+      <button class="verify-tab" data-i18n="verifyTabTxid" onclick="switchTab('txid', event)">💸 TXID / Transacción</button>
+      <button class="verify-tab" data-i18n="verifyTabInscription" onclick="switchTab('inscription', event)">🖼️ Inscripción Ordinal</button>
+      <button class="verify-tab" data-i18n="verifyTabRune" onclick="switchTab('rune', event)">🪙 Rune</button>
+      <button class="verify-tab" data-i18n="verifyTabAddress" onclick="switchTab('address', event)">🔑 Dirección Bitcoin</button>
     </div>
 
     <!-- HASH VERIFICATION -->
-    <div id="hash" class="verify-panel active">
+    <div class="verify-panel active" id="hash">
       <div class="verify-form">
-        <h2 style="margin-top: 0;">Verificar Hash SHA-256</h2>
-        <p style="color: var(--c-tenue); margin-bottom: 1.5rem;">
-          Introduce un hash SHA-256 (64 caracteres hexadecimales) para verificar su presencia en Bitcoin o en nuestro registro de evidencias.
-        </p>
+        <h2 data-i18n="verifyHashTitle" style="margin-top: 0;">Verificar Hash SHA-256</h2>
+        <p data-i18n="verifyHashText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce un hash SHA-256 (64 caracteres hexadecimales) para verificar su presencia en Bitcoin o en nuestro registro de evidencias.</p>
         
         <div class="verify-input-group">
-          <label class="verify-label">Hash SHA-256</label>
-          <input type="text" id="hashInput" class="verify-input" placeholder="a1b2c3d4e5f6...">
-          <small style="color: var(--c-tenue);">Ej: 3ba3a8e6e1f1d3c5a7b9d1e3f5a7c9e1b3d5f7a9b1c3d5e7f9a1b3c5d7e9f</small>
+          <label class="verify-label" data-i18n="verifyHashLabel">Hash SHA-256</label>
+          <input class="verify-input" id="hashInput" placeholder="a1b2c3d4e5f6..." type="text"/>
+          <small data-i18n="verifyHashExample" style="color: var(--c-tenue);">Ej: 3ba3a8e6e1f1d3c5a7b9d1e3f5a7c9e1b3d5f7a9b1c3d5e7f9a1b3c5d7e9f</small>
         </div>
 
-        <button class="verify-button" onclick="verifyHash()">Verificar Hash</button>
+        <button class="verify-button" data-i18n="verifyHashBtn" onclick="verifyHash()">Verificar Hash</button>
       </div>
       <div id="hashResult"></div>
     </div>
 
     <!-- TXID VERIFICATION -->
-    <div id="txid" class="verify-panel">
+    <div class="verify-panel" id="txid">
       <div class="verify-form">
-        <h2 style="margin-top: 0;">Verificar Transacción Bitcoin</h2>
-        <p style="color: var(--c-tenue); margin-bottom: 1.5rem;">
-          Introduce un TXID (ID de transacción) para obtener detalles de la transacción en la red Bitcoin.
-        </p>
+        <h2 data-i18n="verifyTxTitle" style="margin-top: 0;">Verificar Transacción Bitcoin</h2>
+        <p data-i18n="verifyTxText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce un TXID (ID de transacción) para obtener detalles de la transacción en la red Bitcoin.</p>
         
         <div class="verify-input-group">
-          <label class="verify-label">TXID (64 caracteres hex)</label>
-          <input type="text" id="txidInput" class="verify-input" placeholder="f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0">
+          <label class="verify-label" data-i18n="verifyTxLabel">TXID (64 caracteres hex)</label>
+          <input class="verify-input" id="txidInput" placeholder="f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0" type="text"/>
         </div>
 
-        <button class="verify-button" onclick="verifyTXID()">Verificar Transacción</button>
+        <button class="verify-button" data-i18n="verifyTxBtn" onclick="verifyTXID()">Verificar Transacción</button>
       </div>
       <div id="txidResult"></div>
     </div>
 
     <!-- INSCRIPTION VERIFICATION -->
-    <div id="inscription" class="verify-panel">
+    <div class="verify-panel" id="inscription">
       <div class="verify-form">
-        <h2 style="margin-top: 0;">Verificar Inscripción Ordinal</h2>
-        <p style="color: var(--c-tenue); margin-bottom: 1.5rem;">
-          Introduce un ID de inscripción para obtener metadatos de Ordinal registrados en la plataforma.
-        </p>
+        <h2 data-i18n="verifyInsTitle" style="margin-top: 0;">Verificar Inscripción Ordinal</h2>
+        <p data-i18n="verifyInsText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce un ID de inscripción para obtener metadatos de Ordinal registrados en la plataforma.</p>
         
         <div class="verify-input-group">
-          <label class="verify-label">Inscription ID</label>
-          <input type="text" id="inscriptionInput" class="verify-input" placeholder="a1b2c3d4e5f6...i0">
+          <label class="verify-label" data-i18n="verifyInsLabel">Inscription ID</label>
+          <input class="verify-input" id="inscriptionInput" placeholder="a1b2c3d4e5f6...i0" type="text"/>
         </div>
 
-        <button class="verify-button" onclick="verifyInscription()">Verificar Inscripción</button>
+        <button class="verify-button" data-i18n="verifyInsBtn" onclick="verifyInscription()">Verificar Inscripción</button>
       </div>
       <div id="inscriptionResult"></div>
     </div>
 
     <!-- RUNE VERIFICATION -->
-    <div id="rune" class="verify-panel">
+    <div class="verify-panel" id="rune">
       <div class="verify-form">
-        <h2 style="margin-top: 0;">Verificar Rune (Utility Token)</h2>
-        <p style="color: var(--c-tenue); margin-bottom: 1.5rem;">
-          Introduce el nombre o ID de una Rune para obtener información de supply, holders y estado.
-        </p>
+        <h2 data-i18n="verifyRuneTitle" style="margin-top: 0;">Verificar Rune (Utility Token)</h2>
+        <p data-i18n="verifyRuneText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce el nombre o ID de una Rune para obtener información de supply, holders y estado.</p>
         
         <div class="verify-input-group">
-          <label class="verify-label">Nombre o ID de Rune</label>
-          <input type="text" id="runeInput" class="verify-input" placeholder="NGF•BTC•AM o 923867:120">
+          <label class="verify-label" data-i18n="verifyRuneLabel">Nombre o ID de Rune</label>
+          <input class="verify-input" id="runeInput" placeholder="NGF•BTC•AM o 923867:120" type="text"/>
         </div>
 
-        <button class="verify-button" onclick="verifyRune()">Verificar Rune</button>
+        <button class="verify-button" data-i18n="verifyRuneBtn" onclick="verifyRune()">Verificar Rune</button>
       </div>
       <div id="runeResult"></div>
     </div>
 
     <!-- ADDRESS VERIFICATION -->
-    <div id="address" class="verify-panel">
+    <div class="verify-panel" id="address">
       <div class="verify-form">
-        <h2 style="margin-top: 0;">Verificar Dirección Bitcoin</h2>
-        <p style="color: var(--c-tenue); margin-bottom: 1.5rem;">
-          Introduce una dirección Bitcoin para obtener saldo, transacciones y actividad reciente.
-        </p>
+        <h2 data-i18n="verifyAddrTitle" style="margin-top: 0;">Verificar Dirección Bitcoin</h2>
+        <p data-i18n="verifyAddrText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce una dirección Bitcoin para obtener saldo, transacciones y actividad reciente.</p>
         
         <div class="verify-input-group">
-          <label class="verify-label">Dirección Bitcoin (P2PKH, P2SH, Bech32)</label>
-          <input type="text" id="addressInput" class="verify-input" placeholder="1A1z7agoat2BYLRMN2xQYN5zNYHUqqvSuh">
+          <label class="verify-label" data-i18n="verifyAddrLabel">Dirección Bitcoin (P2PKH, P2SH, Bech32)</label>
+          <input class="verify-input" id="addressInput" placeholder="1A1z7agoat2BYLRMN2xQYN5zNYHUqqvSuh" type="text"/>
         </div>
 
-        <button class="verify-button" onclick="verifyAddress()">Verificar Dirección</button>
+        <button class="verify-button" data-i18n="verifyAddrBtn" onclick="verifyAddress()">Verificar Dirección</button>
       </div>
       <div id="addressResult"></div>
     </div>
@@ -554,5 +517,5 @@
       ]);
     }
   </script>
-</body>
-</html>
+
+</body></html>

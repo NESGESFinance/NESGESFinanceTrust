@@ -4,17 +4,15 @@
   Documentación de API, ejemplos y recursos técnicos
   Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
   TODOS LOS DERECHOS RESERVADOS 2025-2026
--->
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0F172A">
-  <meta name="description" content="Portal Desarrolladores — NESGESFinanceTrust. Documentación API REST, WebSocket y recursos técnicos.">
+--><html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="#0F172A" name="theme-color"/>
+  <meta content="Portal Desarrolladores — NESGESFinanceTrust. Documentación API REST, WebSocket y recursos técnicos." data-i18n-content="developersMetaDesc" name="description"/>
   <title>Portal Desarrolladores — NESGESFinanceTrust</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
   <style>
     .audit-banner {
       background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
@@ -123,50 +121,37 @@
 
     .quickstart { background: linear-gradient(135deg, rgba(11, 60, 138, 0.1), rgba(15, 90, 150, 0.1)); border: 1px solid var(--c-borde); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
   </style>
-  <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
-  <div class="audit-banner">
-    <strong>⚠️ API en etapa de auditoría técnica.</strong> 
-    Endpoints pueden cambiar, endpoints nuevos pueden ser descontinuados sin aviso durante esta fase.
-  </div>
+  <div class="audit-banner"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
 
   <nav class="nav-principal">
-    <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
-    <ul class="nav-enlaces">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="status.html">Estado</a></li>
-      <li><a href="developers.html">Desarrolladores</a></li>
-      <li><a href="verify.html">Verificar</a></li>
-    </ul>
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="index.html">Inicio</a></li><li><a href="institucional.html">Ecosistema</a></li><li><a href="verify.html">Explorar activos</a></li><li><a href="dashboard-unificado.html">Dashboard</a></li><li><a href="explorer.html">Explorador</a></li><li><a href="dashboard2.html">Tokenización RWA</a></li><li><a href="rwa-marketplace.html">Marketplace</a></li></ul>
   </nav>
 
   <main style="max-width: 1000px; margin: 0 auto; padding: 2rem 1.25rem;">
     <div class="panel-cabecera">
-      <h1>👨‍💻 Portal Desarrolladores</h1>
-      <p class="subtitulo">
-        Documentación de API, ejemplos de código y recursos técnicos para integrar NESGESFinanceTrust en tus aplicaciones.
-      </p>
+      <h1 data-i18n="developersH1">👨‍💻 Portal Desarrolladores</h1>
+      <p class="subtitulo" data-i18n="developersSubtitle">Documentación de API, ejemplos de código y recursos técnicos para integrar NESGESFinanceTrust en tus aplicaciones.</p>
     </div>
 
     <div class="quickstart">
-      <h3 style="margin-top: 0; color: #A9C6FF;">🚀 Inicio Rápido</h3>
-      <p>
-        La API de NESGESFinanceTrust expone datos de Bitcoin, Runes, Ordinals y activos RWA mediante 
-        <strong>REST API</strong> y <strong>WebSocket</strong> en tiempo real.
-      </p>
+      <h3 data-i18n="developersQuickstartTitle" style="margin-top: 0; color: #A9C6FF;">🚀 Inicio Rápido</h3>
+      <p data-i18n="developersQuickstartP1">La API de NESGESFinanceTrust expone datos de Bitcoin, Runes, Ordinals y activos RWA mediante REST API y WebSocket en tiempo real.</p>
       <p style="color: var(--c-tenue); font-size: 0.9rem;">
-        <strong>Base URL:</strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">https://api.nesgesfinancetrust.com</code><br>
-        <strong>WebSocket:</strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">wss://ws.nesgesfinancetrust.com</code><br>
-        <strong>Versión API:</strong> v1 (beta)
+<strong><strong data-i18n="developersBaseUrl">Base URL:</strong></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">https://api.nesgesfinancetrust.com</code><br/>
+<strong><strong data-i18n="developersWebSocket">WebSocket:</strong></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">wss://ws.nesgesfinancetrust.com</code><br/>
+<strong><strong data-i18n="developersApiVersion">Versión API:</strong></strong> v1 (beta)
       </p>
     </div>
 
     <!-- AUTHENTICATION -->
     <section>
-      <h2>🔐 Autenticación</h2>
-      <p>Algunos endpoints requieren autenticación mediante token Bearer o API Key.</p>
+      <h2 data-i18n="developersAuthTitle">🔐 Autenticación</h2>
+      <p data-i18n="developersAuthP">Algunos endpoints requieren autenticación mediante token API Key.</p>
       
       <div class="endpoint">
         <span class="endpoint-method endpoint-post">POST</span>
@@ -201,7 +186,7 @@ curl -X POST https://api.nesgesfinancetrust.com/auth/token \
 
     <!-- BLOCKS -->
     <section>
-      <h2>⛓️ Bloques</h2>
+      <h2 data-i18n="developersBlocksTitle">⛓️ Bloques</h2>
       
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
@@ -240,7 +225,7 @@ curl -X POST https://api.nesgesfinancetrust.com/auth/token \
 
     <!-- MEMPOOL -->
     <section>
-      <h2>⚡ Mempool</h2>
+      <h2 data-i18n="developersMempoolTitle">⚡ Mempool</h2>
       
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
@@ -273,13 +258,13 @@ curl -X POST https://api.nesgesfinancetrust.com/auth/token \
 
     <!-- RUNES -->
     <section>
-      <h2>🪙 Runes (Utility Token)</h2>
+      <h2 data-i18n="developersRunesTitle">🪙 Runes (Utility Token)</h2>
       
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
         <div class="endpoint-path">/runes</div>
         <div class="endpoint-desc">Listar todas las Runes indexadas</div>
-        <div class="code-block">GET /runes?limit=50&offset=0</div>
+        <div class="code-block">GET /runes?limit=50&amp;offset=0</div>
       </div>
 
       <div class="endpoint">
@@ -299,7 +284,7 @@ curl -X POST https://api.nesgesfinancetrust.com/auth/token \
 
     <!-- ORDINALS -->
     <section>
-      <h2>🖼️ Ordinals e Inscripciones</h2>
+      <h2 data-i18n="developersOrdinalsTitle">🖼️ Ordinals e Inscripciones</h2>
       
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
@@ -325,13 +310,13 @@ curl -X POST https://api.nesgesfinancetrust.com/auth/token \
 
     <!-- RWA -->
     <section>
-      <h2>🏢 Activos Reales (RWA)</h2>
+      <h2 data-i18n="developersRwaTitle">🏢 Activos Reales (RWA)</h2>
       
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
         <div class="endpoint-path">/rwa/assets</div>
         <div class="endpoint-desc">Listar activos registrados con filtros opcionales</div>
-        <div class="code-block">GET /rwa/assets?type=INMUEBLE&status=ACTIVO</div>
+        <div class="code-block">GET /rwa/assets?type=INMUEBLE&amp;status=ACTIVO</div>
         
         <div class="endpoint-params">
           <strong>Query Params (opcionales):</strong>
@@ -385,7 +370,7 @@ Content-Type: application/json
 
     <!-- WEBSOCKET -->
     <section>
-      <h2>📡 WebSocket (Tiempo Real)</h2>
+      <h2 data-i18n="developersWsTitle">📡 WebSocket (Tiempo Real)</h2>
       <p>Conecta a canales en vivo para recibir eventos en tiempo real.</p>
 
       <div class="endpoint">
@@ -397,14 +382,14 @@ Content-Type: application/json
 // JavaScript
 const ws = new WebSocket('wss://ws.nesgesfinancetrust.com');
 
-ws.onopen = () => {
+ws.onopen = () =&gt; {
   ws.send(JSON.stringify({
     action: 'subscribe',
     channel: 'blocks'
   }));
 };
 
-ws.onmessage = (event) => {
+ws.onmessage = (event) =&gt; {
   const data = JSON.parse(event.data);
   console.log('Nuevo bloque:', data);
 };
@@ -425,36 +410,36 @@ ws.onmessage = (event) => {
 
     <!-- SDKs -->
     <section>
-      <h2>📦 SDKs Oficiales</h2>
+      <h2 data-i18n="developersSdksTitle">📦 SDKs Oficiales</h2>
       <p>Bibliotecas en lenguajes populares para facilitar integración.</p>
 
       <div class="sdk-grid">
         <div class="sdk-item">
           <div class="sdk-lang">🔵 JavaScript/TypeScript</div>
           <p style="color: var(--c-tenue); font-size: 0.85rem;">npm install nesgesfinancetrust</p>
-          <a href="https://github.com/NESGESFinance/sdk-js" class="sdk-link">Repositorio →</a>
+          <a class="sdk-link" href="https://github.com/NESGESFinance/sdk-js">Repositorio →</a>
         </div>
         <div class="sdk-item">
           <div class="sdk-lang">🐍 Python</div>
           <p style="color: var(--c-tenue); font-size: 0.85rem;">pip install nesgesfinancetrust</p>
-          <a href="https://github.com/NESGESFinance/sdk-python" class="sdk-link">Repositorio →</a>
+          <a class="sdk-link" href="https://github.com/NESGESFinance/sdk-python">Repositorio →</a>
         </div>
         <div class="sdk-item">
           <div class="sdk-lang">🦀 Rust</div>
           <p style="color: var(--c-tenue); font-size: 0.85rem;">cargo add nesgesfinancetrust</p>
-          <a href="https://github.com/NESGESFinance/sdk-rust" class="sdk-link">Repositorio →</a>
+          <a class="sdk-link" href="https://github.com/NESGESFinance/sdk-rust">Repositorio →</a>
         </div>
         <div class="sdk-item">
           <div class="sdk-lang">☕ Java</div>
           <p style="color: var(--c-tenue); font-size: 0.85rem;">Maven/Gradle disponible</p>
-          <a href="https://github.com/NESGESFinance/sdk-java" class="sdk-link">Repositorio →</a>
+          <a class="sdk-link" href="https://github.com/NESGESFinance/sdk-java">Repositorio →</a>
         </div>
       </div>
     </section>
 
     <!-- RATE LIMITING -->
     <section>
-      <h2>⏱️ Rate Limiting</h2>
+      <h2 data-i18n="developersRateTitle">⏱️ Rate Limiting</h2>
       <p>Para asegurar estabilidad, la API implementa límites de uso:</p>
       
       <div class="dev-grid">
@@ -483,8 +468,8 @@ ws.onmessage = (event) => {
 
     <!-- SUPPORT -->
     <section style="margin-top: 3rem; padding: 1.5rem; background: var(--c-sup); border-radius: 10px; border: 1px solid var(--c-borde);">
-      <h2 style="margin-top: 0;">📞 Soporte Técnico</h2>
-      <p>¿Preguntas o problemas con la API?</p>
+      <h2 data-i18n="developersSupportTitle" style="margin-top: 0;">📞 Soporte Técnico</h2>
+      <p data-i18n="developersSupportP">¿Preguntas o problemas con la API?</p>
       <ul style="list-style: none; padding: 0; margin: 1rem 0;">
         <li>📧 <strong>support@nesgesfinance.org</strong> — Soporte general</li>
         <li>🐛 <strong>security@nesgesfinance.org</strong> — Reportar vulnerabilidades</li>
@@ -499,5 +484,5 @@ ws.onmessage = (event) => {
   <footer class="pie" id="pie"></footer>
 
   <script src="assets/js/app.js"></script>
-</body>
-</html>
+
+</body></html>

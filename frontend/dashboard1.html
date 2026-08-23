@@ -3,18 +3,16 @@
   Dashboard 1 — Mempool en tiempo real.
   Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
   TODOS LOS DERECHOS RESERVADOS 2025-2026.
--->
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0F172A">
-  <meta name="description" content="Mempool en Vivo — NESGESFinanceTrust. Plataforma de exploración Bitcoin, datos de red y registro RWA de NESGESFinanceTrust.">
+--><html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="#0F172A" name="theme-color"/>
+  <meta content="Mempool en Vivo — NESGESFinanceTrust. Plataforma de exploración Bitcoin, datos de red y registro RWA de NESGESFinanceTrust." data-i18n-content="dashboard1MetaDesc" name="description"/>
   <title>Mempool en Vivo — NESGESFinanceTrust</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
+  <link href="assets/css/dashboard.css" rel="stylesheet"/>
   
   <style>
     .audit-banner {
@@ -32,54 +30,42 @@
     }
     .audit-banner strong { color: #ff9999; }
   </style>
-  <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
-  <div class="audit-banner" role="alert" aria-live="assertive">
-    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong>
-    Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
-  </div>
-
+  <div aria-live="assertive" class="audit-banner" role="alert"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
 
   <nav class="nav-principal">
-    <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
-    <ul class="nav-enlaces">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li><li><a href="verify.html">Explorar marco de evaluación de activos</a></li>
-      <li><a href="dashboard-unificado.html">Dashboard</a></li>
-      <li><a href="dashboard1.html">Mempool en Vivo</a></li>
-      <li><a href="explorer.html">Explorador</a></li>
-      <li><a href="dashboard2.html">Tokenización RWA</a></li>
-      
-    </ul>
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="index.html">Inicio</a></li><li><a href="institucional.html">Ecosistema</a></li><li><a href="verify.html">Explorar activos</a></li><li><a href="dashboard-unificado.html">Dashboard</a></li><li><a href="explorer.html">Explorador</a></li><li><a href="dashboard2.html">Tokenización RWA</a></li><li><a href="rwa-marketplace.html">Marketplace</a></li></ul>
   </nav>
 
   <main>
-    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" loading="lazy">
-      <h1>Mempool en Tiempo Real</h1>
+    <div class="panel-cabecera panel-cabecera-ilustrada"><img alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" class="ilustracion-seccion" data-i18n-alt="ngfAssetAlt" loading="lazy" src="assets/img/NGF-BTC-AM.png"/>
+      <h1 data-i18n="dashboard1H1">Mempool en Tiempo Real</h1>
       <div class="estado-conexion desconectado" id="estado-conexion">
-        <span class="punto"></span><span class="texto">Conectando…</span>
+        <span class="punto"></span><span class="texto" data-i18n="dashboard1Connecting">Conectando…</span>
       </div>
     </div>
 
     <div class="metricas-fila">
-      <div class="tarjeta"><h4>Transacciones</h4><div class="valor" id="mp-count">—</div><div class="descripcion">en el mempool</div></div>
-      <div class="tarjeta"><h4>Tamaño</h4><div class="valor" id="mp-vsize">—</div><div class="descripcion">peso virtual</div></div>
-      <div class="tarjeta"><h4>Comisiones</h4><div class="valor" id="mp-fees">—</div><div class="descripcion">total pendiente</div></div>
-      <div class="tarjeta"><h4>Prioridad alta</h4><div class="valor" id="fee-fastest">—</div><div class="descripcion">~10 min</div></div>
+      <div class="tarjeta"><h4 data-i18n="dashboard1Tx">Transacciones</h4><div class="valor" id="mp-count">—</div><div class="descripcion" data-i18n="dashboard1InMempool">en el mempool</div></div>
+      <div class="tarjeta"><h4 data-i18n="dashboard1Size">Tamaño</h4><div class="valor" id="mp-vsize">—</div><div class="descripcion" data-i18n="dashboard1Weight">peso virtual</div></div>
+      <div class="tarjeta"><h4 data-i18n="dashboard1Fees">Comisiones</h4><div class="valor" id="mp-fees">—</div><div class="descripcion" data-i18n="dashboard1Pending">total pendiente</div></div>
+      <div class="tarjeta"><h4 data-i18n="dashboard1HighPriority">Prioridad alta</h4><div class="valor" id="fee-fastest">—</div><div class="descripcion">~10 min</div></div>
     </div>
 
-    <h2>Distribución de comisiones (sat/vB)</h2>
+    <h2 data-i18n="dashboard1FeeDist">Distribución de comisiones (sat/vB)</h2>
     <div class="mempool-viz" id="mempool-viz">
-      <div class="cargando">Cargando histograma…</div>
+      <div class="cargando" data-i18n="dashboard1LoadingHistogram">Cargando histograma…</div>
     </div>
 
-    <h2>Estimación de comisiones</h2>
+    <h2 data-i18n="dashboard1FeeEstimate">Estimación de comisiones</h2>
     <div class="grid grid-3">
-      <div class="tarjeta"><h4>Rápida (~10 min)</h4><div class="valor" id="fee-fastest-2">—</div></div>
-      <div class="tarjeta"><h4>Media (~30 min)</h4><div class="valor" id="fee-halfhour">—</div></div>
-      <div class="tarjeta"><h4>Económica (~1 h)</h4><div class="valor" id="fee-hour">—</div></div>
+      <div class="tarjeta"><h4 data-i18n="dashboard1Fast">Rápida (~10 min)</h4><div class="valor" id="fee-fastest-2">—</div></div>
+      <div class="tarjeta"><h4 data-i18n="dashboard1Medium">Media (~30 min)</h4><div class="valor" id="fee-halfhour">—</div></div>
+      <div class="tarjeta"><h4 data-i18n="dashboard1Economy">Económica (~1 h)</h4><div class="valor" id="fee-hour">—</div></div>
     </div>
   </main>
 
@@ -118,5 +104,5 @@
       ws.conectar();
     })();
   </script>
-</body>
-</html>
+
+</body></html>
