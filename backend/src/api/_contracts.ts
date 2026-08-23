@@ -221,6 +221,7 @@ export interface IRbfCache {
 export interface IBlocksRepository {
   $saveBlockInDatabase(block: BlockExtended): Promise<void>;
   $getBlockByHeight(height: number): Promise<BlockExtended | null>;
+  $getRecentBlocks(limit: number): Promise<BlockExtended[]>;
   $getFeePercentilesByBlockId(id: string): Promise<number[] | null>;
   $blockCountBetweenHeight(from: number, to: number): Promise<number>;
   $getMissingBlocksBetweenHeights(from: number, to: number): Promise<number[]>;

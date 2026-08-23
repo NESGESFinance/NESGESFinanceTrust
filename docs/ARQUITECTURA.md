@@ -15,7 +15,7 @@ tokenización de la NESGESFinance Ecosystem, construida sobre Bitcoin y sus prot
 NESGESFinanceTrust indexa la cadena de Bitcoin y expone una capa de servicios
 para tres clases de activos digitales:
 
-- **Runes** → *Utility Tokens* (fungibles, protocolo de Casey Rodarmor).
+- **Runes** → *Utility Token* (fungibles, protocolo de Casey Rodarmor).
 - **Ordinals** → inscripciones y contenedores de metadatos asociados a RWA.
 - **Registro RWA** → activos, historial y validaciones configurables.
 
@@ -132,7 +132,7 @@ para tres clases de activos digitales:
 | Componente | Aplicación |
 |---|---|
 | **Bitcoin L1** | Capa base: registro, inmutabilidad, descentralización, neutralidad y seguridad. |
-| **Runes + Ordinals** | Activos fungibles (NGF·BTC·AM) y no fungibles (tokens de proyecto) con metadata. |
+| **Runes + Ordinals** | Activos fungibles (NGF•BTC•AM) y no fungibles (tokens de proyecto) con metadata. |
 | **Lightning Network** | Pagos rápidos y de bajo costo; integración prevista/en desarrollo. |
 | **Taproot Assets** | Capa complementaria para operaciones cotidianas y activos sobre Bitcoin. |
 | **Custodia** | Wallets multifirma 3/5 P2SH con hardware wallets industriales; rotación semestral de firmantes. |
@@ -197,7 +197,7 @@ reducción de exposición de claves y una estrategia de migración documentada.
 
 | Período | Hito |
 |---|---|
-| **2025–2026 · Fundacional** | Constitución dual, emisión NGF·BTC·AM #208,645, whitepapers y estructura legal base. |
+| **2025–2026 · Fundacional** | Constitución dual, emisión NGF•BTC•AM #208,645, whitepapers y estructura legal base. |
 | **2026 · Primer proyecto** | Primer proyecto tokenizado, consolidación LLC, integración Lightning y KYC/AML operativo. |
 | **2027–2028 · Consolidación** | Nuevos proyectos agrícolas, sociales y energéticos; expansión de gobernanza. |
 | **2029–2030 · Escala global** | Internacionalización, alianzas estratégicas y evolución hacia gobernanza descentralizada/DAO. |

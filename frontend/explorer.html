@@ -3,69 +3,101 @@
   Explorador — Bloques, Runes y Ordinals.
   Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
   TODOS LOS DERECHOS RESERVADOS 2025-2026.
--->
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0F172A">
-  <meta name="description" content="Explorador — NESGESFinanceTrust. Plataforma de exploración Bitcoin, datos de red y registro RWA de NESGESFinanceTrust.">
+--><html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="theme-color" content="#0F172A"/>
+  <meta content="Explorador — NESGESFinanceTrust. Plataforma de exploración Bitcoin, datos de red y registro RWA de NESGESFinanceTrust." data-i18n-content="explorerMetaDesc" name="description"/>
   <title>Explorador — NESGESFinanceTrust</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/dashboard.css">
-  <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
+  <link href="assets/css/dashboard.css" rel="stylesheet"/>
+  <style>
+    /* Audit banner styles */
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong {
+      color: #ff9999;
+    }
+    /* Data metadata styles */
+    .data-metadata {
+      font-size: 0.75rem;
+      color: #C0CBE0;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(123, 164, 255, .12);
+      font-family: 'Courier New', monospace;
+    }
+    .audit-label {
+      display: inline-block;
+      background: rgba(255, 77, 77, 0.15);
+      color: #ff9999;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-left: 0.5rem;
+      border: 1px solid rgba(255, 77, 77, 0.3);
+    }
+  </style>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <!-- AUDIT STATUS BANNER -->
+  <div aria-live="assertive" class="audit-banner" role="alert"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
+
   <nav class="nav-principal">
-    <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
-    <ul class="nav-enlaces">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li>
-      <li><a href="dashboard-unificado.html">Dashboard</a></li>
-      <li><a href="dashboard1.html">Mempool en Vivo</a></li>
-      <li><a href="explorer.html">Explorador</a></li>
-      <li><a href="dashboard2.html">Tokenización RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
-    </ul>
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="index.html" data-i18n="navHome">Inicio</a></li><li><a href="institucional.html" data-i18n="navEcosystem">Ecosistema</a></li><li><a href="verify.html" data-i18n="navProjects">Explorar activos</a></li><li><a href="dashboard-unificado.html" data-i18n="navDashboard">Dashboard</a></li><li><a href="explorer.html" data-i18n="navExplorer">Explorador</a></li><li><a href="dashboard2.html" data-i18n="navRwa">Tokenización RWA</a></li><li><a href="rwa-marketplace.html" data-i18n="navMarketplace">Marketplace</a></li><li><a href="status.html" data-i18n="navStatus">Estado</a></li><li><a href="developers.html" data-i18n="navDevelopers">Developers</a></li></ul>
   </nav>
 
   <main>
-    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM para activos y operaciones Bitcoin" loading="lazy">
-      <h1>Explorador de la Cadena</h1>
-      <p class="subtitulo">
-        Consulta bloques indexados y los activos digitales (Runes y Ordinals)
-        anclados a la cadena de Bitcoin.
-      </p>
+    <div class="panel-cabecera panel-cabecera-ilustrada"><img alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" class="ilustracion-seccion" data-i18n-alt="ngfAssetAlt" height="240" loading="lazy" src="assets/img/NGF-BTC-AM.png" width="240"/>
+      <h1 data-i18n="explorerH1">Explorador de la Cadena</h1>
+      <p class="subtitulo" data-i18n="explorerSubtitle">Consulta bloques indexados y los activos digitales (Runes y Ordinals) anclados a la cadena de Bitcoin. Todos los datos están sujetos a verificación de fuente y estado de sincronización.</p>
     </div>
 
     <section>
-      <h2>Bloques</h2>
+      <h2 data-i18n-prefix="explorerBlocksTitle">Bloques <span class="audit-label" data-i18n="explorerAudit">En auditoría</span></h2>
       <div class="filtros">
-        <label for="altura">Altura del bloque</label>
-        <input type="number" id="altura" min="0" step="1" placeholder="840000">
-        <button class="boton boton-primario" id="btn-buscar">Buscar</button>
+        <label data-i18n="explorerBlockHeightLabel" for="altura">Altura del bloque</label>
+        <input id="altura" min="0" placeholder="840000" step="1" type="number"/>
+        <button class="boton boton-primario" data-i18n="explorerSearch" id="btn-buscar">Buscar</button>
         <span class="descripcion" id="rango-info"></span>
       </div>
       <div class="cadena-bloques" id="cadena-bloques">
-        <div class="cargando">Introduce una altura para explorar los bloques...</div>
+        <div class="cargando" data-i18n="explorerEnterHeight">Introduce una altura para explorar los bloques...</div>
       </div>
+      <div class="data-metadata"><strong data-i18n="explorerSource">Fuente:</strong><strong data-i18n="explorerLastUpdate">Última actualización:</strong><span id="meta-blocks-timestamp">--:--:--</span></div>
     </section>
 
     <section>
-      <h2>Runes (Utility Tokens)</h2>
+      <h2 data-i18n-prefix="explorerRunesTitle">Runes · Utility Token <span class="audit-label" data-i18n="explorerAudit">En auditoría</span></h2>
       <div class="grid grid-3" id="lista-runes">
-        <div class="cargando">Cargando Runes...</div>
+        <div class="cargando" data-i18n="explorerLoadingRunes">Cargando Runes...</div>
       </div>
+      <div class="data-metadata"><strong data-i18n="explorerProtocol">Protocolo:</strong><strong data-i18n="explorerActiveSince">Activo desde:</strong><strong data-i18n="explorerLastSync">Última sincronización:</strong><span id="meta-runes-timestamp">--:--:--</span></div>
     </section>
 
     <section>
-      <h2>Ordinals e inscripciones</h2>
+      <h2 data-i18n-prefix="explorerOrdinalsTitle">Ordinals e inscripciones <span class="audit-label" data-i18n="explorerAudit">En auditoría</span></h2>
       <div class="grid grid-3" id="lista-ordinals">
-        <div class="cargando">Cargando Ordinals...</div>
+        <div class="cargando" data-i18n="explorerLoadingOrdinals">Cargando Ordinals...</div>
       </div>
+      <div class="data-metadata"><strong data-i18n="explorerProtocol">Protocolo:</strong><strong data-i18n="explorerContainer">Contenedor:</strong><strong data-i18n="explorerLastUpdate">Última actualización:</strong><span id="meta-ordinals-timestamp">--:--:--</span></div>
     </section>
   </main>
 
@@ -75,6 +107,16 @@
   <script src="assets/js/runes-ui.js"></script>
   <script src="assets/js/ordinals-ui.js"></script>
   <script>
+    // Update metadata timestamps on page load
+    function updateTimestamps() {
+      const now = new Date().toLocaleTimeString('es-ES', { hour12: false });
+      document.getElementById('meta-blocks-timestamp').textContent = now;
+      document.getElementById('meta-runes-timestamp').textContent = now;
+      document.getElementById('meta-ordinals-timestamp').textContent = now;
+    }
+    updateTimestamps();
+    setInterval(updateTimestamps, 60000); // Update every minute
+
     // Lógica del explorador: bloques por altura + listados de Runes/Ordinals.
     (function () {
       const cadena = document.getElementById('cadena-bloques');
@@ -90,7 +132,7 @@
           '<p><strong>Hash:</strong> ' + fmt.hash(b.id || b.hash || '') + '</p>' +
           '<p><strong>Transacciones:</strong> ' + fmt.numero(b.tx_count ?? b.txCount ?? 0) + '</p>' +
           '<p><strong>Tamaño:</strong> ' + fmt.bytes(b.size ?? 0) + '</p>' +
-          '<p><strong>Fecha:</strong> ' + fmt.fecha(b.timestamp ?? 0) + '</p>' +
+          '<p><strong>Fecha (UTC):</strong> ' + fmt.fecha(b.timestamp ?? 0) + '</p>' +
           '</div></div>'
         );
       }
@@ -134,5 +176,5 @@
       OrdinalsUI.cargar(document.getElementById('lista-ordinals'));
     })();
   </script>
-</body>
-</html>
+
+</body></html>

@@ -1,87 +1,103 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0F172A">
-  <meta name="description" content="Documento maestro institucional, tecnológico y de proyectos 2026 de NESGESFinance Ecosystem.">
+<html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="theme-color" content="#0F172A"/>
+  <meta content="Documento maestro institucional, tecnológico y de proyectos 2026 de NESGESFinance Ecosystem." data-i18n-content="instMetaDesc" name="description"/>
   <title>Documento Maestro 2026 — NESGESFinance Ecosystem</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
+  
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+  </style>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <div aria-live="assertive" class="audit-banner" role="alert"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
+
   <nav class="nav-principal">
-    <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
-    <ul class="nav-enlaces">
-      <li><a href="index.html">Inicio</a></li><li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li><li><a href="dashboard-unificado.html">Dashboard</a></li><li><a href="explorer.html">Explorador</a></li><li><a href="dashboard2.html">Tokenización RWA</a></li><li><a href="rwa-marketplace.html">Marketplace</a></li>
-    </ul>
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="index.html" data-i18n="navHome">Inicio</a></li><li><a href="institucional.html" data-i18n="navEcosystem">Ecosistema</a></li><li><a href="verify.html" data-i18n="navProjects">Explorar activos</a></li><li><a href="dashboard-unificado.html" data-i18n="navDashboard">Dashboard</a></li><li><a href="explorer.html" data-i18n="navExplorer">Explorador</a></li><li><a href="dashboard2.html" data-i18n="navRwa">Tokenización RWA</a></li><li><a href="rwa-marketplace.html" data-i18n="navMarketplace">Marketplace</a></li><li><a href="status.html" data-i18n="navStatus">Estado</a></li><li><a href="developers.html" data-i18n="navDevelopers">Developers</a></li></ul>
   </nav>
 
   <header class="hero institucional-hero">
     <div class="hero-contenido">
       <div>
-        <p class="lema">Documento maestro institucional, tecnológico y de proyectos · 2026</p>
-        <h1>Tokenización con Propósito</h1>
-        <p>Arquitectura empresarial y tecnológica que conecta activos reales con Bitcoin L1/L2, con trazabilidad, cumplimiento y utilidad productiva como principios operativos.</p>
-        <p class="nota-disclaimer">Contenido institucional e informativo. NESGESFinanceTrust figura como capa propuesta, en proceso de formalización; no se afirma su constitución jurídica.</p>
+        <p class="lema" data-i18n="instHeroTagline">Documento maestro institucional, tecnológico y de proyectos · 2026</p>
+        <h1 data-i18n="instHeroH1">Tokenización con Propósito</h1>
+        <p data-i18n="instHeroP">Arquitectura empresarial y tecnológica que conecta activos reales con Bitcoin L1/L2, con trazabilidad, cumplimiento y utilidad productiva como principios operativos.</p>
+        <p class="nota-disclaimer" data-i18n="instDisclaimer">Contenido institucional e informativo. NESGESFinanceTrust figura como capa propuesta, en proceso de formalización; no se afirma su constitución jurídica.</p>
       </div>
-      <div class="hero-logo-stack marca-institucional" aria-label="Logotipos oficiales del ecosistema">
-        <div class="hero-logo-card"><img src="assets/img/NESGESFinance_Logo.jpg" alt="Logotipo oficial NESGESFinance Ecosystem" width="740" height="740"></div>
-        <div class="hero-logo-card hero-logo-accent"><img src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM" width="1023" height="1024"></div>
+      <div aria-label="Logotipos oficiales del ecosistema" class="hero-logo-stack marca-institucional">
+        <div class="hero-logo-card"><img alt="Logotipo oficial NESGESFinance Ecosystem" data-i18n-alt="brandOfficialAlt" height="740" src="assets/img/NESGESFinance_Logo.jpg" width="740"/></div>
+        <div class="hero-logo-card hero-logo-accent"><img alt="Logotipo oficial NGF•BTC•AM" data-i18n-alt="heroLogoAlt2" height="1024" src="assets/img/NGF-BTC-AM.png" width="1023"/></div>
       </div>
     </div>
   </header>
 
   <main>
     <section id="identidad">
-      <h2>Identidad, doctrina y propósito</h2>
+      <h2 data-i18n="instIdentityH2">Identidad, doctrina y propósito</h2>
       <div class="grid grid-3">
-        <article class="tarjeta"><h3>Identidad</h3><p><strong>NESGES:</strong> Núcleo Estratégico y de Gestión para la Comunidad y Ecosistemas Sostenibles, Financieros, Tecnológicos y Tokenizados.</p></article>
-        <article class="tarjeta"><h3>Misión</h3><p>Democratizar el acceso a inversiones en activos de alto valor y proyectos productivos mediante fraccionamiento inteligente, buscando impacto socioambiental tangible.</p></article>
-        <article class="tarjeta"><h3>Doctrina</h3><p>La representación digital se subordina al activo real, expediente jurídico, trazabilidad y utilidad productiva.</p></article>
+        <article class="tarjeta"><h3 data-i18n="instIdentityTitle">Identidad</h3><p data-i18n="instIdentityP">NESGES: Núcleo Estratégico y de Gestión para la Comunidad y Ecosistemas Sostenibles, Financieros, Tecnológicos y Tokenizados.</p></article>
+        <article class="tarjeta"><h3 data-i18n="instMissionTitle">Misión</h3><p data-i18n="instMissionP">Democratizar el acceso a inversiones en activos de alto valor y proyectos productivos mediante fraccionamiento inteligente, buscando impacto socioambiental tangible.</p></article>
+        <article class="tarjeta"><h3 data-i18n="instDoctrineTitle">Doctrina</h3><p data-i18n="instDoctrineP">La representación digital se subordina al activo real, expediente jurídico, trazabilidad y utilidad productiva.</p></article>
       </div>
       <div class="grid grid-3">
-        <article class="tarjeta"><h3>Pilar físico-productivo</h3><p>Activos inmobiliarios, energéticos, ambientales, sociales y productivos.</p></article>
-        <article class="tarjeta"><h3>Pilar digital</h3><p>Bitcoin con Runes de utilidad y Ordinals de proyecto para representación específica.</p></article>
-        <article class="tarjeta"><h3>Pilar de impacto</h3><p>Canalización estructural de recursos a iniciativas sociales y ambientales, coherente con la naturaleza BIC.</p></article>
+        <article class="tarjeta"><h3 data-i18n="instPhysicalTitle">Pilar físico-productivo</h3><p data-i18n="instPhysicalP">Activos inmobiliarios, energéticos, ambientales, sociales y productivos.</p></article>
+        <article class="tarjeta"><h3 data-i18n="instDigitalTitle">Pilar digital</h3><p data-i18n="instDigitalP">Bitcoin con Runes de utilidad y Ordinals de proyecto para representación específica.</p></article>
+        <article class="tarjeta"><h3 data-i18n="instImpactTitle">Pilar de impacto</h3><p data-i18n="instImpactP">Canalización estructural de recursos a iniciativas sociales y ambientales, coherente con la naturaleza BIC.</p></article>
       </div>
     </section>
 
-    <section id="estructura"><h2>Estructura corporativa y aislamiento</h2>
-      <div class="tabla-contenedor"><table><thead><tr><th>Entidad</th><th>Jurisdicción / identificador declarado</th><th>Función documentada</th></tr></thead><tbody>
-        <tr><td>NESGESFinance Ecosystem S.A.S. BIC</td><td>Ecuador, Ibarra (Imbabura) · RUC 1091799299001</td><td>Coordinación tecnológica y operaciones locales de impacto; la fuente indica que no es propietaria de activos tokenizados.</td></tr>
-        <tr><td>NESGESFinance Ecosystem S.A.S. LLC</td><td>Nuevo México, EE. UU. · File #3168825 · EIN 0008086872</td><td>Propiedad intelectual, infraestructura tecnológica, cumplimiento, expansión internacional y SPV piloto declarado.</td></tr>
-        <tr><td>NESGESFinanceTrust</td><td>Pendiente de formalización / jurisdicción por definir</td><td>Capa patrimonial o fiduciaria propuesta para continuidad, reservas y administración separada.</td></tr>
+    <section id="estructura"><h2 data-i18n="instStructureH2">Estructura corporativa y aislamiento</h2>
+      <div class="tabla-contenedor"><table><thead><tr><th data-i18n="instTableEntity">Entidad</th><th data-i18n="instTableJurisdiction">Jurisdicción / identificador declarado</th><th data-i18n="instTableFunction">Función documentada</th></tr></thead><tbody>
+        <tr><td>NESGESFinance Ecosystem S.A.S. BIC</td><td>Ecuador, Ibarra (Imbabura) · RUC 1091799299001</td><td data-i18n="instEntity1Function">Coordinación tecnológica y operaciones locales de impacto; la fuente indica que no es propietaria de activos tokenizados.</td></tr>
+        <tr><td>NESGESFinance Ecosystem S.A.S. LLC</td><td>Nuevo México, EE. UU. · File #3168825 · EIN 0008086872</td><td data-i18n="instEntity2Function">Propiedad intelectual, infraestructura tecnológica, cumplimiento, expansión internacional y SPV piloto declarado.</td></tr>
+        <tr><td>NESGESFinanceTrust</td><td>Pendiente de formalización / jurisdicción por definir</td><td data-i18n="instEntity3Role">Capa patrimonial o fiduciaria propuesta para continuidad, reservas y administración separada.</td></tr>
       </tbody></table></div>
-      <div class="tarjeta"><h3>SPV independiente por proyecto</h3><p>Cada serie debe mantener un SPV, activo subyacente, expediente, Reglamento de Emisión, metadata, custodia, gobernanza y trazabilidad propios. La autoría y dirección documentadas corresponden a Cbr. Joan Santiago Ramírez Almeida; la LLC registra además a Ezequiel Gaxiola Islas como gerente de constitución.</p></div>
+      <div class="tarjeta"><h3 data-i18n="instSpvTitle">SPV independiente por proyecto</h3><p data-i18n="instSpvP">Cada serie debe mantener un SPV, activo subyacente, expediente, Reglamento de Emisión, metadata, custodia, gobernanza y trazabilidad propios. La autoría y dirección documentadas corresponden a Cbr. Joan Santiago Ramírez Almeida; la LLC registra además a Ezequiel Gaxiola Islas como gerente de constitución.</p></div>
     </section>
 
-    <section id="activos"><h2>Arquitectura de activos digitales</h2>
-      <div class="grid grid-3"><article class="tarjeta"><h3>NGF·BTC·AM</h3><p>Rune de utilidad sobre Bitcoin L1: #208,645 · ID 923867:120. Supply fijo de 5.930.000.000, divisibilidad 0, no minteable ni quemable.</p><p class="descripcion">Identidad digital, acceso técnico, participación funcional, gobernanza consultiva y unidad de cuenta; no otorga derechos económicos sobre proyectos.</p></article><article class="tarjeta"><h3>Ordinals de proyecto</h3><p>Series independientes por proyecto, con hashes de contratos, validaciones KYC/AML y Reglamento de Emisión. Whitelist obligatoria y marco jurídico específico por serie.</p></article><article class="tarjeta"><h3>Stable Sats</h3><p>Capa complementaria propuesta para representaciones vinculadas a fiduciarias o commodities; requiere documentación y reservas verificables.</p></article></div>
-      <div class="tarjeta datos-tecnicos"><h3>Referencia on-chain declarada</h3><p>Etching: bloque 923.867 · 16-nov-2025 10:24:23 UTC. TXID: <code>4c0b2416f3dd122025f89a62d7ff265fcee8d00e0fabd874669617cf85437c82</code>. La verificación se indica mediante UniSat, Mempool.space y Ord.io.</p></div>
+    <section id="activos"><h2 data-i18n="instAssetsH2">Arquitectura de activos digitales</h2>
+      <div class="grid grid-3"><article class="tarjeta"><h3>NGF•BTC•AM</h3><p data-i18n="instNgfDesc">Rune de utilidad sobre Bitcoin L1: #208,645 · ID 923867:120. Supply fijo de 5.930.000.000, divisibilidad 0, no minteable ni quemable.</p><p class="descripcion" data-i18n="instNgfMeta">Identidad digital, acceso técnico, participación funcional, gobernanza consultiva y unidad de cuenta; no otorga derechos económicos sobre proyectos.</p></article><article class="tarjeta"><h3 data-i18n="instProjectOrdinalsTitle">Ordinals de proyecto</h3><p data-i18n="instProjectOrdinalsP">Series independientes por proyecto, con hashes de contratos, validaciones KYC/AML y Reglamento de Emisión. Whitelist obligatoria y marco jurídico específico por serie.</p></article><article class="tarjeta"><h3 data-i18n="instStableSatsTitle">Stable Sats</h3><p data-i18n="instStableSatsP">Capa complementaria propuesta para representaciones vinculadas a fiduciarias o commodities; requiere documentación y reservas verificables.</p></article></div>
+      <div class="tarjeta datos-tecnicos"><h3 data-i18n="instOnChainTitle">Referencia on-chain declarada</h3><p data-i18n="instOnChainP">Etching: bloque 923.867 · 16-nov-2025 10:24:23 UTC. TXID: 4c0b2416f3dd122025f89a62d7ff265fcee8d00e0fabd874669617cf85437c82. La verificación se indica mediante UniSat, Mempool.space y Ord.io.</p></div>
     </section>
 
-    <section id="tokenomica"><h2>Tokenómica oficial v5.0</h2><div class="tabla-contenedor"><table><thead><tr><th>Categoría</th><th>%</th><th>NGF</th><th>Propósito</th></tr></thead><tbody>
+    <section id="tokenomica"><h2 data-i18n="instTokenomicsH2">Tokenómica oficial v5.0</h2><div class="tabla-contenedor"><table><thead><tr><th>Categoría</th><th>%</th><th>NGF</th><th>Propósito</th></tr></thead><tbody>
       <tr><td>Reserva estratégica y liquidez</td><td>30%</td><td>1.779.000.000</td><td>Estabilidad operativa y liquidez</td></tr><tr><td>Proyectos productivos</td><td>25%</td><td>1.482.500.000</td><td>Desarrollo de proyectos tokenizados</td></tr><tr><td>Sociales y ambientales</td><td>15%</td><td>889.500.000</td><td>Impacto BIC</td></tr><tr><td>Alianzas y gobernanza</td><td>10%</td><td>593.000.000</td><td>Partnerships e incentivos</td></tr><tr><td>Tesorería</td><td>10%</td><td>593.000.000</td><td>Operaciones, desarrollo y costos legales</td></tr><tr><td>Comunidad y staking</td><td>5%</td><td>296.500.000</td><td>Incentivos comunitarios</td></tr><tr><td>Equipo y asesores</td><td>4%</td><td>237.200.000</td><td>Compensación con vesting</td></tr><tr><td>Operativo inmediato</td><td>1%</td><td>59.300.000</td><td>Gastos de lanzamiento</td></tr>
     </tbody></table></div><p class="nota-disclaimer">Distribución declarada: 100%. Vesting: cliff de 6 meses y liberación lineal posterior durante 12–18 meses. Custodia declarada: multifirma 3/5 P2SH, rotación semestral y bitácora pública.</p></section>
 
-    <section id="proceso"><h2>Proceso de proyecto y participación</h2><div class="proceso"><article><strong>F0 · Solicitud</strong><span>Propiedad, avalúo, estados, permisos y memoria técnica.</span></article><article><strong>F1 · Due diligence</strong><span>Verificación legal, financiera y técnica.</span></article><article><strong>F2 · SPV y Reglamento</strong><span>Serie, distribución, calendario y gobernanza.</span></article><article><strong>F3 · Cumplimiento</strong><span>Estructuración bajo el marco aplicable y whitelist.</span></article><article><strong>F4 · Emisión L1</strong><span>Ordinals, anclaje, multisig y oráculo.</span></article><article><strong>F5–F6 · Aprobación y operación</strong><span>Launchpad, snapshots, reportes y distribuciones.</span></article></div>
+    <section id="proceso"><h2 data-i18n="instProcessH2">Proceso de proyecto y participación</h2><div class="proceso"><article><strong>F0 · Solicitud</strong><span>Propiedad, avalúo, estados, permisos y memoria técnica.</span></article><article><strong>F1 · Due diligence</strong><span>Verificación legal, financiera y técnica.</span></article><article><strong>F2 · SPV y Reglamento</strong><span>Serie, distribución, calendario y gobernanza.</span></article><article><strong>F3 · Cumplimiento</strong><span>Estructuración bajo el marco aplicable y whitelist.</span></article><article><strong>F4 · Emisión L1</strong><span>Ordinals, anclaje, multisig y oráculo.</span></article><article><strong>F5–F6 · Aprobación y operación</strong><span>Launchpad, snapshots, reportes y distribuciones.</span></article></div>
       <p>La participación exige KYC/AML, verificación de origen de fondos, dirección Bitcoin habilitada y revisión de los documentos de cada serie. Los snapshots documentados son trimestrales: 31-mar, 30-jun, 30-sep y 31-dic a las 23:59 UTC. El rendimiento proyectado es un objetivo, no una garantía.</p>
       <div class="tarjeta"><h3>Motor económico paramétrico</h3><p class="formula">Ff = (Iₙ × (1 − β)) × p</p><p>Iₙ son ingresos netos auditables; β es la reinversión/reserva y p el porcentaje contractual de cada serie.</p></div>
     </section>
 
-    <section id="proyectos"><h2>Portafolio de proyectos a desplegar</h2><div class="grid grid-2 proyectos-grid">
+    <section id="proyectos"><h2 data-i18n="instPortfolioH2">Portafolio de proyectos a desplegar</h2><div class="grid grid-2 proyectos-grid">
       <article class="tarjeta"><h3>Agrícolas</h3><p>Arroz, maíz, quinoa, plátano, caña de azúcar, cítricos y hortalizas, hidroponía, agricultura vertical, azolla y fertilizantes orgánicos.</p></article><article class="tarjeta"><h3>Pecuarios y acuacultura</h3><p>Granjas avícolas, engorde, porcicultura, ganadería bovina, caprinocultura, apicultura y piscicultura.</p></article><article class="tarjeta"><h3>Industriales y manufactura</h3><p>Pirólisis de plástico a combustibles, carpintería, metal-mecánica, comercio, movilidad eléctrica, camillas y sillas eléctricas, y dispositivos brushless.</p></article><article class="tarjeta"><h3>Energía e inmobiliario</h3><p>Micro-redes solares, tecnología brushless, terrenos, propiedades tokenizadas y hospedaje.</p></article><article class="tarjeta"><h3>Servicios y turismo</h3><p>Fumigación y fertilización con drones; fincas integrales, hosterías, hoteles y centros turísticos.</p></article><article class="tarjeta"><h3>Sociales y humanitarios</h3><p>Impresión 3D de prótesis, rescate animal, terapia integral y vivienda social con materiales innovadores.</p></article>
     </div></section>
 
-    <section id="tecnologia"><h2>Stack, seguridad y trazabilidad</h2><div class="grid grid-3"><article class="tarjeta"><h3>Stack</h3><p>Bitcoin L1, Runes, Ordinals, Lightning Network prevista, Taproot Assets, multifirma y hardware wallets.</p></article><article class="tarjeta"><h3>Software</h3><p>Monorepo Rust/axum, PSBT, Prisma, Next.js/TypeScript, oráculo Python y automatización CI/CD.</p></article><article class="tarjeta"><h3>Seguridad</h3><p>Separación de consenso, indexadores y L2; mínimo privilegio, OIDC, SAST/SCA, SBOM, CSP, validación y protección anti-SSRF/DoS.</p></article></div><div class="tarjeta"><h3>Transparencia</h3><p>Hashes SHA-256 anclados en Bitcoin, bitácora de custodia, TXID de distribuciones, scripts auditables, metadata pública y evidencia reproducible. PII, KYC/AML y reglas jurisdiccionales se mantienen separados del explorador público.</p></div></section>
+    <section id="tecnologia"><h2 data-i18n="instTechH2">Stack, seguridad y trazabilidad</h2><div class="grid grid-3"><article class="tarjeta"><h3>Stack</h3><p>Bitcoin L1, Runes, Ordinals, Lightning Network prevista, Taproot Assets, multifirma y hardware wallets.</p></article><article class="tarjeta"><h3>Software</h3><p>Monorepo Rust/axum, PSBT, Prisma, Next.js/TypeScript, oráculo Python y automatización CI/CD.</p></article><article class="tarjeta"><h3>Seguridad</h3><p>Separación de consenso, indexadores y L2; mínimo privilegio, OIDC, SAST/SCA, SBOM, CSP, validación y protección anti-SSRF/DoS.</p></article></div><div class="tarjeta"><h3 data-i18n="instTransparencyTitle">Transparencia</h3><p data-i18n="instTransparencyP">Hashes SHA-256 anclados en Bitcoin, bitácora de custodia, TXID de distribuciones, scripts auditables, metadata pública y evidencia reproducible. PII, KYC/AML y reglas jurisdiccionales se mantienen separados del explorador público.</p></div></section>
 
-    <section id="roadmap"><h2>Roadmap y comunicación responsable</h2><div class="grid grid-2"><article class="tarjeta"><h3>2025–2026 · Fundacional</h3><p>Constitución dual, emisión NGF·BTC·AM, whitepapers y base jurídica.</p><h3>2026 · Primer proyecto</h3><p>Proyecto tokenizado, LLC, integración Lightning y KYC/AML operativo.</p></article><article class="tarjeta"><h3>2027–2028 · Consolidación</h3><p>Proyectos agrícolas, sociales y energéticos; expansión de gobernanza.</p><h3>2029–2030 · Escala global</h3><p>Internacionalización, alianzas y evolución hacia gobernanza descentralizada.</p></article></div><p class="nota-disclaimer"><strong>Aviso legal:</strong> este sitio es institucional, técnico e informativo; no constituye oferta pública de valores, asesoría financiera, jurídica o fiscal, ni certificación independiente. Cualquier oferta se realiza exclusivamente mediante los documentos de emisión de la serie y bajo el marco aplicable. Las afirmaciones deben contrastarse con evidencia primaria vigente.</p></section>
+    <section id="roadmap"><h2 data-i18n="instRoadmapH2">Roadmap y comunicación responsable</h2><div class="grid grid-2"><article class="tarjeta"><h3>2025–2026 · Fundacional</h3><p>Constitución dual, emisión NGF•BTC•AM, whitepapers y base jurídica.</p><h3>2026 · Primer proyecto</h3><p>Proyecto tokenizado, LLC, integración Lightning y KYC/AML operativo.</p></article><article class="tarjeta"><h3>2027–2028 · Consolidación</h3><p>Proyectos agrícolas, sociales y energéticos; expansión de gobernanza.</p><h3>2029–2030 · Escala global</h3><p>Internacionalización, alianzas y evolución hacia gobernanza descentralizada.</p></article></div><p class="nota-disclaimer"><strong data-i18n="instLegalNotice">Aviso legal:</strong> <span data-i18n="instLegalNoticeText"> este sitio es institucional, técnico e informativo; no constituye oferta pública de valores, asesoría financiera, jurídica o fiscal, ni certificación independiente. Cualquier oferta se realiza exclusivamente mediante los documentos de emisión de la serie y bajo el marco aplicable. Las afirmaciones deben contrastarse con evidencia primaria vigente.</span></p></section>
   </main>
   <footer class="pie" id="pie"></footer>
   <script src="assets/js/app.js"></script>
-</body>
-</html>
+
+</body></html>

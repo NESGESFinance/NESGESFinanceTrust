@@ -51,9 +51,9 @@ canónico y su versión con espaciadores.
 
 ---
 
-## 6. NGF·BTC·AM — Rune de utilidad del ecosistema
+## 6. NGF•BTC•AM — Rune de utilidad del ecosistema
 
-El token nativo de NESGESFinance Ecosystem es el Rune **NGF·BTC·AM**, emitido
+El token nativo de NESGESFinance Ecosystem es el Rune **NGF•BTC•AM**, emitido
 sobre Bitcoin L1:
 
 | Campo | Valor |

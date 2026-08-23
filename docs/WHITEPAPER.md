@@ -19,7 +19,7 @@ conecta activos reales (RWA) con Bitcoin L1/L2 bajo la doctrina
 **"Tokenización con Propósito"**. El modelo separa la utilidad operativa del
 ecosistema de los derechos específicos de cada proyecto:
 
-- **NGF·BTC·AM** actúa como Rune de utilidad del ecosistema (acceso técnico,
+- **NGF•BTC•AM** actúa como Rune de utilidad del ecosistema (acceso técnico,
   gobernanza consultiva, identidad digital).
 - **Ordinals independientes por proyecto** son los instrumentos tokenizados
   sujetos al Reglamento de Emisión y al marco jurídico de cada serie
@@ -64,7 +64,7 @@ Emisión, metadata, gobernanza, custodia y trazabilidad.
 
 Ver documentación detallada:
 
-- [`docs/RUNES_PROTOCOL.md`](./RUNES_PROTOCOL.md) — NGF·BTC·AM (Rune de utilidad #208,645).
+- [`docs/RUNES_PROTOCOL.md`](./RUNES_PROTOCOL.md) — NGF•BTC•AM (Rune de utilidad #208,645).
 - [`docs/ORDINALS_PROTOCOL.md`](./ORDINALS_PROTOCOL.md) — Ordinals de proyecto (securities tokenizados).
 - [`docs/ARQUITECTURA.md`](./ARQUITECTURA.md) — Stack tecnológico completo.
 
@@ -95,7 +95,7 @@ KYC/AML, proceso F0–F6 y marco regulatorio aplicable (Reg D, Reg S).
 
 | Período | Hito |
 |---|---|
-| 2025–2026 · Fundacional | Constitución dual, emisión NGF·BTC·AM #208,645, whitepapers y estructura legal base. |
+| 2025–2026 · Fundacional | Constitución dual, emisión NGF•BTC•AM #208,645, whitepapers y estructura legal base. |
 | 2026 · Primer proyecto | Primer proyecto tokenizado, consolidación LLC, integración Lightning y KYC/AML operativo. |
 | 2027–2028 · Consolidación | Nuevos proyectos agrícolas, sociales y energéticos; expansión de gobernanza. |
 | 2029–2030 · Escala global | Internacionalización, alianzas estratégicas y evolución hacia gobernanza descentralizada/DAO. |

@@ -104,6 +104,30 @@ export class BlocksRepository implements IBlocksRepository {
     };
   }
 
+  /** Devuelve los bloques más recientes persistidos. */
+  public async $getRecentBlocks(limit: number): Promise<BlockExtended[]> {
+    const rows = await database.query<BlockRow[]>(
+      `SELECT * FROM blocks ORDER BY height DESC LIMIT ?`,
+      [limit],
+    );
+    return rows.map((row) => ({
+      id: row.hash,
+      height: row.height,
+      version: row.version,
+      timestamp: row.timestamp,
+      bits: row.bits,
+      nonce: row.nonce,
+      difficulty: row.difficulty,
+      merkle_root: row.merkle_root,
+      tx_count: row.tx_count,
+      size: row.size,
+      weight: row.weight,
+      previousblockhash: row.previous_block_hash,
+      mediantime: row.median_time,
+      extras: JSON.parse(row.extras) as BlockExtended['extras'],
+    }));
+  }
+
   /** Devuelve los percentiles de comisión de un bloque (por hash). */
   public async $getFeePercentilesByBlockId(id: string): Promise<number[] | null> {
     const rows = await database.query<BlockRow[]>(`SELECT extras FROM blocks WHERE hash = ? LIMIT 1`, [id]);

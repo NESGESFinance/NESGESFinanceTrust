@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<!--
+  CENTRO DE VERIFICACIÓN — NESGESFinanceTrust
+  Herramienta para verificar hashes, TXID, inscripciones y activos
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026
+--><html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="theme-color" content="#0F172A"/>
+  <meta content="Centro de Verificación — NESGESFinanceTrust. Verifica hashes, TXID, inscripciones y activos digitales." data-i18n-content="verifyMetaDesc" name="description"/>
+  <title>Centro de Verificación — NESGESFinanceTrust</title>
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+
+    .verify-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      border-bottom: 2px solid var(--c-borde);
+      margin-bottom: 2rem;
+    }
+
+    .verify-tab {
+      padding: 0.6rem 1.2rem;
+      border: 2px solid transparent;
+      background: transparent;
+      color: var(--c-tenue);
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+      font-family: var(--f-ui);
+      font-size: 0.95rem;
+    }
+
+    .verify-tab:hover {
+      border-color: var(--c-naranja);
+      color: var(--c-naranja);
+    }
+
+    .verify-tab.active {
+      background: linear-gradient(135deg, #0B3C8A, #F7931A);
+      color: #0F172A;
+      border-color: transparent;
+    }
+
+    .verify-panel {
+      display: none;
+    }
+
+    .verify-panel.active {
+      display: block;
+    }
+
+    .verify-form {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .verify-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .verify-label {
+      color: var(--c-dorado);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .verify-input {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--c-borde);
+      border-radius: 6px;
+      padding: 0.8rem;
+      color: var(--c-texto);
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+
+    .verify-input:focus {
+      outline: none;
+      border-color: var(--c-naranja);
+      box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.1);
+    }
+
+    .verify-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .verify-button {
+      background: linear-gradient(135deg, #0B3C8A, #F7931A);
+      color: #0F172A;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .verify-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .verify-button:active {
+      transform: translateY(0);
+    }
+
+    .verify-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .verify-result {
+      background: var(--c-sup);
+      border: 2px solid var(--c-borde);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .verify-result-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .verify-result-icon {
+      font-size: 2rem;
+    }
+
+    .verify-result-status {
+      color: var(--c-dorado);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .verify-result-content {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .verify-result-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed var(--c-borde);
+    }
+
+    .verify-result-row:last-child {
+      border-bottom: none;
+    }
+
+    .verify-result-label {
+      color: var(--c-tenue);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .verify-result-value {
+      color: var(--c-verde);
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      word-break: break-all;
+    }
+
+    .verify-error {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.05));
+      border: 2px solid #ff4d4d;
+      border-radius: 10px;
+      padding: 1.5rem;
+      max-width: 700px;
+      margin: 1.5rem auto;
+      color: #ff9999;
+    }
+
+    .verify-info {
+      background: linear-gradient(135deg, rgba(11, 60, 138, 0.1), rgba(15, 90, 150, 0.1));
+      border: 1px solid var(--c-borde);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--c-tenue);
+      line-height: 1.6;
+    }
+
+    .verify-info strong {
+      color: var(--c-dorado);
+    }
+
+    .loading {
+      display: inline-block;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body>
+  <div aria-live="assertive" class="audit-banner" role="alert"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
+
+  <nav class="nav-principal">
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="index.html" data-i18n="navHome">Inicio</a></li><li><a href="institucional.html" data-i18n="navEcosystem">Ecosistema</a></li><li><a href="verify.html" data-i18n="navProjects">Explorar activos</a></li><li><a href="dashboard-unificado.html" data-i18n="navDashboard">Dashboard</a></li><li><a href="explorer.html" data-i18n="navExplorer">Explorador</a></li><li><a href="dashboard2.html" data-i18n="navRwa">Tokenización RWA</a></li><li><a href="rwa-marketplace.html" data-i18n="navMarketplace">Marketplace</a></li><li><a href="status.html" data-i18n="navStatus">Estado</a></li><li><a href="developers.html" data-i18n="navDevelopers">Developers</a></li></ul>
+  </nav>
+
+  <main style="max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem;">
+    <div class="panel-cabecera">
+      <h1 data-i18n="verifyH1">🔍 Centro de Verificación</h1>
+      <p class="subtitulo" data-i18n="verifySubtitle">Verifica la autenticidad e integridad de datos on-chain, hashes documentales, inscripciones y activos registrados en NESGESFinanceTrust.</p>
+    </div>
+
+    <div class="verify-info"><strong data-i18n="verifyToolsLabel">⚡ Herramientas de verificación:</strong><span data-i18n="verifyToolsText">Estas herramientas permiten validar datos criptográficos contra la cadena de bloques Bitcoin. Todos los resultados son públicamente verificables y no constituyen certificación legal ni auditoría.</span></div>
+
+    <!-- TABS -->
+    <div class="verify-tabs">
+      <button class="verify-tab active" data-i18n="verifyTabHash" onclick="switchTab('hash', event)">📝 Hash SHA-256</button>
+      <button class="verify-tab" data-i18n="verifyTabTxid" onclick="switchTab('txid', event)">💸 TXID / Transacción</button>
+      <button class="verify-tab" data-i18n="verifyTabInscription" onclick="switchTab('inscription', event)">🖼️ Inscripción Ordinal</button>
+      <button class="verify-tab" data-i18n="verifyTabRune" onclick="switchTab('rune', event)">🪙 Rune</button>
+      <button class="verify-tab" data-i18n="verifyTabAddress" onclick="switchTab('address', event)">🔑 Dirección Bitcoin</button>
+    </div>
+
+    <!-- HASH VERIFICATION -->
+    <div class="verify-panel active" id="hash">
+      <div class="verify-form">
+        <h2 data-i18n="verifyHashTitle" style="margin-top: 0;">Verificar Hash SHA-256</h2>
+        <p data-i18n="verifyHashText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce un hash SHA-256 (64 caracteres hexadecimales) para verificar su presencia en Bitcoin o en nuestro registro de evidencias.</p>
+        
+        <div class="verify-input-group">
+          <label class="verify-label" data-i18n="verifyHashLabel">Hash SHA-256</label>
+          <input class="verify-input" id="hashInput" placeholder="a1b2c3d4e5f6..." type="text"/>
+          <small data-i18n="verifyHashExample" style="color: var(--c-tenue);">Ej: 3ba3a8e6e1f1d3c5a7b9d1e3f5a7c9e1b3d5f7a9b1c3d5e7f9a1b3c5d7e9f</small>
+        </div>
+
+        <button class="verify-button" data-i18n="verifyHashBtn" onclick="verifyHash()">Verificar Hash</button>
+      </div>
+      <div id="hashResult"></div>
+    </div>
+
+    <!-- TXID VERIFICATION -->
+    <div class="verify-panel" id="txid">
+      <div class="verify-form">
+        <h2 data-i18n="verifyTxTitle" style="margin-top: 0;">Verificar Transacción Bitcoin</h2>
+        <p data-i18n="verifyTxText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce un TXID (ID de transacción) para obtener detalles de la transacción en la red Bitcoin.</p>
+        
+        <div class="verify-input-group">
+          <label class="verify-label" data-i18n="verifyTxLabel">TXID (64 caracteres hex)</label>
+          <input class="verify-input" id="txidInput" placeholder="f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0" type="text"/>
+        </div>
+
+        <button class="verify-button" data-i18n="verifyTxBtn" onclick="verifyTXID()">Verificar Transacción</button>
+      </div>
+      <div id="txidResult"></div>
+    </div>
+
+    <!-- INSCRIPTION VERIFICATION -->
+    <div class="verify-panel" id="inscription">
+      <div class="verify-form">
+        <h2 data-i18n="verifyInsTitle" style="margin-top: 0;">Verificar Inscripción Ordinal</h2>
+        <p data-i18n="verifyInsText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce un ID de inscripción para obtener metadatos de Ordinal registrados en la plataforma.</p>
+        
+        <div class="verify-input-group">
+          <label class="verify-label" data-i18n="verifyInsLabel">Inscription ID</label>
+          <input class="verify-input" id="inscriptionInput" placeholder="a1b2c3d4e5f6...i0" type="text"/>
+        </div>
+
+        <button class="verify-button" data-i18n="verifyInsBtn" onclick="verifyInscription()">Verificar Inscripción</button>
+      </div>
+      <div id="inscriptionResult"></div>
+    </div>
+
+    <!-- RUNE VERIFICATION -->
+    <div class="verify-panel" id="rune">
+      <div class="verify-form">
+        <h2 data-i18n="verifyRuneTitle" style="margin-top: 0;">Verificar Rune (Utility Token)</h2>
+        <p data-i18n="verifyRuneText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce el nombre o ID de una Rune para obtener información de supply, holders y estado.</p>
+        
+        <div class="verify-input-group">
+          <label class="verify-label" data-i18n="verifyRuneLabel">Nombre o ID de Rune</label>
+          <input class="verify-input" id="runeInput" placeholder="NGF•BTC•AM o 923867:120" type="text"/>
+        </div>
+
+        <button class="verify-button" data-i18n="verifyRuneBtn" onclick="verifyRune()">Verificar Rune</button>
+      </div>
+      <div id="runeResult"></div>
+    </div>
+
+    <!-- ADDRESS VERIFICATION -->
+    <div class="verify-panel" id="address">
+      <div class="verify-form">
+        <h2 data-i18n="verifyAddrTitle" style="margin-top: 0;">Verificar Dirección Bitcoin</h2>
+        <p data-i18n="verifyAddrText" style="color: var(--c-tenue); margin-bottom: 1.5rem;">Introduce una dirección Bitcoin para obtener saldo, transacciones y actividad reciente.</p>
+        
+        <div class="verify-input-group">
+          <label class="verify-label" data-i18n="verifyAddrLabel">Dirección Bitcoin (P2PKH, P2SH, Bech32)</label>
+          <input class="verify-input" id="addressInput" placeholder="1A1z7agoat2BYLRMN2xQYN5zNYHUqqvSuh" type="text"/>
+        </div>
+
+        <button class="verify-button" data-i18n="verifyAddrBtn" onclick="verifyAddress()">Verificar Dirección</button>
+      </div>
+      <div id="addressResult"></div>
+    </div>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Tab switching
+    function switchTab(tabName, ev) {
+      // Hide all panels
+      document.querySelectorAll('.verify-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.verify-tab').forEach(t => t.classList.remove('active'));
+      
+      // Show selected panel
+      document.getElementById(tabName).classList.add('active');
+      if (ev && ev.currentTarget) {
+        ev.currentTarget.classList.add('active');
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function isHex64(value) {
+      return /^[0-9a-fA-F]{64}$/.test(value);
+    }
+
+    function renderError(resultDiv, message) {
+      resultDiv.innerHTML = `<div class="verify-error">❌ ${escapeHtml(message)}</div>`;
+    }
+
+    function renderLoading(resultDiv, message) {
+      resultDiv.innerHTML = `<div class="verify-result"><div class="verify-result-header"><span class="verify-result-icon">⏳</span><span class="verify-result-status">${escapeHtml(message)}</span></div></div>`;
+    }
+
+    function renderResult(resultDiv, title, rows) {
+      const rowsHtml = rows.map((row) => `
+        <div class="verify-result-row">
+          <span class="verify-result-label">${escapeHtml(row.label)}:</span>
+          <span class="verify-result-value">${escapeHtml(row.value)}</span>
+        </div>
+      `).join('');
+
+      resultDiv.innerHTML = `
+        <div class="verify-result">
+          <div class="verify-result-header">
+            <span class="verify-result-icon">✅</span>
+            <span class="verify-result-status">${escapeHtml(title)}</span>
+          </div>
+          <div class="verify-result-content">${rowsHtml}</div>
+        </div>
+      `;
+    }
+
+    async function verifyHash() {
+      const hash = document.getElementById('hashInput').value.trim();
+      const resultDiv = document.getElementById('hashResult');
+      
+      if (!isHex64(hash)) {
+        renderError(resultDiv, 'Por favor, introduce un hash SHA-256 válido (64 caracteres hexadecimales).');
+        return;
+      }
+
+      renderResult(resultDiv, 'Formato SHA-256 válido', [
+        { label: 'Hash', value: hash },
+        { label: 'Estado', value: 'Validación sintáctica completada' },
+        { label: 'Nota', value: 'La verificación contra registro documental aún no expone endpoint público dedicado.' }
+      ]);
+    }
+
+    async function verifyTXID() {
+      const txid = document.getElementById('txidInput').value.trim();
+      const resultDiv = document.getElementById('txidResult');
+      
+      if (!isHex64(txid)) {
+        renderError(resultDiv, 'TXID debe tener 64 caracteres hexadecimales.');
+        return;
+      }
+
+      renderLoading(resultDiv, 'Consultando mempool...');
+      try {
+        const recent = await api.get('/mempool/recent');
+        const tx = Array.isArray(recent) ? recent.find((item) => item && item.txid === txid) : null;
+        if (!tx) {
+          renderResult(resultDiv, 'TXID no encontrado en mempool reciente', [
+            { label: 'TXID', value: txid },
+            { label: 'Cobertura actual', value: 'Solo mempool reciente disponible en esta vista' }
+          ]);
+          return;
+        }
+
+        renderResult(resultDiv, 'Transacción localizada en mempool', [
+          { label: 'TXID', value: txid },
+          { label: 'Comisión total (sats)', value: String(tx.fee ?? '—') },
+          { label: 'Tamaño virtual (vB)', value: String(tx.vsize ?? '—') },
+          { label: 'Valor (sats)', value: String(tx.value ?? '—') }
+        ]);
+      } catch (error) {
+        renderError(resultDiv, `No se pudo consultar el mempool (${error instanceof Error ? error.message : 'error desconocido'}).`);
+      }
+    }
+
+    async function verifyInscription() {
+      const inscriptionId = document.getElementById('inscriptionInput').value.trim();
+      const resultDiv = document.getElementById('inscriptionResult');
+      if (!inscriptionId) {
+        renderError(resultDiv, 'Debes ingresar un inscription ID.');
+        return;
+      }
+
+      renderLoading(resultDiv, 'Consultando inscripción...');
+      try {
+        const inscription = await api.get(`/ordinals/inscription/${encodeURIComponent(inscriptionId)}`);
+        renderResult(resultDiv, 'Inscripción verificada', [
+          { label: 'ID', value: inscription.id ?? inscriptionId },
+          { label: 'Número', value: String(inscription.number ?? '—') },
+          { label: 'Tipo de contenido', value: inscription.contentType ?? '—' },
+          { label: 'Longitud (bytes)', value: String(inscription.contentLength ?? '—') },
+          { label: 'Altura génesis', value: String(inscription.genesisHeight ?? '—') }
+        ]);
+      } catch (error) {
+        renderError(resultDiv, `No se pudo verificar la inscripción (${error instanceof Error ? error.message : 'error desconocido'}).`);
+      }
+    }
+
+    async function verifyRune() {
+      const rawInput = document.getElementById('runeInput').value.trim();
+      const resultDiv = document.getElementById('runeResult');
+      if (!rawInput) {
+        renderError(resultDiv, 'Debes ingresar un nombre o ID de Rune.');
+        return;
+      }
+
+      renderLoading(resultDiv, 'Consultando Rune...');
+      try {
+        let rune;
+        if (/^\d+:\d+$/.test(rawInput)) {
+          const [block, tx] = rawInput.split(':');
+          rune = await api.get(`/runes/id/${block}/${tx}`);
+        } else {
+          rune = await api.get(`/runes/${encodeURIComponent(rawInput)}`);
+        }
+
+        renderResult(resultDiv, 'Rune verificado', [
+          { label: 'Rune ID', value: `${rune.runeId?.block ?? '—'}:${rune.runeId?.tx ?? '—'}` },
+          { label: 'Nombre', value: rune.name ?? rawInput },
+          { label: 'Símbolo', value: rune.symbol ?? '—' },
+          { label: 'Supply total', value: String(rune.totalSupply ?? '—') },
+          { label: 'Holders', value: String(rune.holders ?? '—') }
+        ]);
+      } catch (error) {
+        renderError(resultDiv, `No se pudo verificar el Rune (${error instanceof Error ? error.message : 'error desconocido'}).`);
+      }
+    }
+
+    async function verifyAddress() {
+      const address = document.getElementById('addressInput').value.trim();
+      const resultDiv = document.getElementById('addressResult');
+      const valid = /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{20,90}$/.test(address);
+      if (!valid) {
+        renderError(resultDiv, 'Dirección Bitcoin inválida. Verifica el formato (Legacy, P2SH o Bech32).');
+        return;
+      }
+
+      renderResult(resultDiv, 'Dirección con formato válido', [
+        { label: 'Dirección', value: address },
+        { label: 'Estado', value: 'Validación sintáctica completada' },
+        { label: 'Nota', value: 'La consulta de saldo/historial por dirección aún no expone endpoint público en esta API.' }
+      ]);
+    }
+  </script>
+
+</body></html>

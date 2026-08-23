@@ -471,7 +471,7 @@
     .tabla td .hash { color: var(--c-naranja); }
     .tabla tbody tr:hover { background: rgba(247,147,26,.06); }
 
-    /* ── Estado general ─────────────────────────────────────────────────── */
+    /* ── <span data-du-i18n="duStatus">Estado</span> general ─────────────────────────────────────────────────── */
     .cargando, .vacio { text-align: center; color: var(--c-tenue); padding: 1.75rem; font-family: var(--f-datos); }
 
     /* ── Pie de página ──────────────────────────────────────────────────── */
@@ -493,11 +493,34 @@
       .tab-btn { font-size: .78rem; padding: .35rem .65rem; }
     }
   </style>
+  
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 
 <body>
+  <div class="audit-banner" role="alert" aria-live="assertive">
+    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong>
+    Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
+  </div>
+
+
 
   <!-- ══════════════════════════════════════════════════════════════════════
        BARRA DE NAVEGACIÓN GLOBAL
@@ -506,39 +529,43 @@
     <!-- Logo inline (SVG) + hipervínculo al index -->
     <a class="marca" href="index.html" title="Volver al inicio">
       <img src="assets/img/NESGESFinance_Logo.jpg" alt="Logotipo oficial NESGESFinance Ecosystem" style="height:52px;width:auto;display:block;object-fit:contain;border-radius:10px;box-shadow:0 10px 16px rgba(5,17,38,.45);">
-      <img class="marca-logo-secundaria" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM" style="height:40px;width:auto;padding:.2rem;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(247,147,26,.18);box-shadow:0 14px 30px rgba(11,60,138,.24);">
+      <img class="marca-logo-secundaria" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM" style="height:40px;width:auto;padding:.2rem;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(247,147,26,.18);box-shadow:0 14px 30px rgba(11,60,138,.24);">
     </a>
 
     <!-- Hipervínculos locales a las páginas individuales -->
     <ul class="nav-enlaces" id="nav-enlaces">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li>
-      <li><a href="dashboard1.html">Mempool</a></li>
-      <li><a href="explorer.html">Explorador</a></li>
-      <li><a href="dashboard2.html">RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
+      <li><a href="index.html" data-du-nav="navHome">Inicio</a></li>
+      <li><a href="institucional.html" data-du-nav="navEcosystem">Ecosistema</a></li>
+      <li><a href="verify.html" data-du-nav="navProjects">Explorar activos</a></li>
+      <li><a href="dashboard-unificado.html" data-du-nav="navDashboard">Dashboard</a></li>
+      <li><a href="explorer.html" data-du-nav="navExplorer">Explorador</a></li>
+      <li><a href="dashboard2.html" data-du-nav="navRwa">Tokenización RWA</a></li>
+      <li><a href="rwa-marketplace.html" data-du-nav="navMarketplace">Marketplace</a></li>
+      <li><a href="status.html" data-du-nav="navStatus">Estado</a></li>
+      <li><a href="developers.html" data-du-nav="navDevelopers">Developers</a></li>
     </ul>
 
     <!-- Indicador WebSocket -->
     <div class="ws-badge desconectado" id="ws-badge" title="Estado WebSocket en tiempo real">
       <span class="punto"></span>
-      <span id="ws-texto">WS: Conectando…</span>
+      <span id="ws-texto">WS: <span data-du-i18n="duConnecting">Conectando…</span></span>
     </div>
+    <button class="selector-idioma" id="du-lang-toggle" type="button" aria-label="Idioma" title="Cambiar idioma">EN</button>
   </nav>
-  <img class="ilustracion-seccion" style="display:block;max-width:1120px;width:calc(100% - 3rem);margin:1.5rem auto 0" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM para activos y operaciones Bitcoin" loading="lazy">
+  <img class="ilustracion-seccion" style="display:block;max-width:1120px;width:calc(100% - 3rem);margin:1.5rem auto 0" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" loading="lazy">
 
   <!-- ══════════════════════════════════════════════════════════════════════
        BARRA DE PESTAÑAS DEL DASHBOARD UNIFICADO
        ══════════════════════════════════════════════════════════════════════ -->
-  <div class="tabs-barra" role="tablist" aria-label="Secciones del dashboard">
-    <button class="tab-btn activo" role="tab" aria-selected="true"  data-tab="inicio"    >🏠 Inicio</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="mempool"   >⚡ Mempool en Vivo</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="explorador">🔍 Explorador</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="runes"     >🪙 Runes</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="ordinals"  >🔐 Ordinals</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="rwa"       >🏢 Tokenizar RWA</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="marketplace">🛒 Marketplace</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="live"      >📡 Feed en Vivo</button>
+  <div class="tabs-barra" role="tablist" aria-label="Secciones del dashboard" data-du-i18n-aria="duTabsAria">
+    <button class="tab-btn activo" role="tab" aria-selected="true"  data-tab="inicio"     data-du-i18n="duTabHome">🏠 Inicio</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="mempool"    data-du-i18n="duTabMempool">⚡ Mempool en Vivo</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="explorador" data-du-i18n="duTabExplorer">🔍 Explorador</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="runes"      data-du-i18n="duTabRunes">🪙 Runes</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="ordinals"   data-du-i18n="duTabOrdinals">🔐 Ordinals</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="rwa"        data-du-i18n="duTabRwa">🏢 Tokenizar RWA</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="marketplace" data-du-i18n="duTabMarketplace">🛒 Marketplace</button>
+    <button class="tab-btn"        role="tab" aria-selected="false" data-tab="live"       data-du-i18n="duTabLive">📡 Feed en Vivo</button>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════════════════
@@ -552,8 +579,8 @@
     <section id="tab-inicio" class="tab-panel activo" role="tabpanel">
 
       <div class="hero">
-        <h1>El Ecosistema Financiero sobre Bitcoin</h1>
-        <p class="lema">«Y a tu prójimo como a ti mismo»</p>
+        <h1 data-du-i18n="duHomeTitle">El Ecosistema Financiero sobre Bitcoin</h1>
+        <p class="lema" data-du-i18n="duMotto">«Y a tu prójimo como a ti mismo»</p>
         <p class="desc">
           <strong>NESGESFinanceTrust</strong> es la capa de exploración, indexación y tokenización de la red
           Bitcoin del ecosistema NESGESFinance: mempool en tiempo real, protocolo
@@ -583,14 +610,14 @@
       </div>
 
       <!-- Capacidades -->
-      <h2>Capacidades de la plataforma</h2>
+      <h2 data-du-i18n="duCapabilities">Capacidades de la plataforma</h2>
       <div class="cap-grid">
         <div class="tarjeta" onclick="activarTab('mempool')" style="cursor:pointer;" title="Ir a Mempool">
           <h3>⚡ Exploración en Tiempo Real</h3>
           <p class="descripcion">Indexación de bloques desde Bitcoin Core / Esplora, seguimiento del mempool y difusión por WebSocket con latencia mínima.</p>
         </div>
         <div class="tarjeta" onclick="activarTab('runes')" style="cursor:pointer;" title="Ir a Runes">
-          <h3>🪙 Runes · Utility Tokens</h3>
+          <h3>🪙 Runes · Utility Token</h3>
           <p class="descripcion">Decodificación de RuneStones (OP_RETURN + LEB128) del protocolo de Casey Rodarmor, activo desde el bloque 840 000.</p>
         </div>
         <div class="tarjeta" onclick="activarTab('ordinals')" style="cursor:pointer;" title="Ir a Ordinals">
@@ -612,7 +639,7 @@
       </div>
 
       <!-- Arquitectura -->
-      <h2>Arquitectura del sistema</h2>
+      <h2 data-du-i18n="duArchitecture">Arquitectura del sistema</h2>
       <pre class="arq-pre">
 Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/MariaDB + Redis
                                      │
@@ -622,7 +649,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
       </pre>
 
       <!-- Links a docs locales -->
-      <h2>Documentación técnica</h2>
+      <h2 data-du-i18n="duDocs">Documentación técnica</h2>
       <div class="links-externos">
         <a class="link-ext" href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/docs/API.md"             target="_blank">📄 API.md</a>
         <a class="link-ext" href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/docs/ARQUITECTURA.md"    target="_blank">🏗 ARQUITECTURA.md</a>
@@ -639,8 +666,8 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
          PESTAÑA 2 · MEMPOOL EN VIVO
          ──────────────────────────────────────────────────────────────────── -->
     <section id="tab-mempool" class="tab-panel" role="tabpanel">
-      <h1>⚡ Mempool en Tiempo Real</h1>
-      <p class="subtitulo">Actualización automática cada 30 s + WebSocket instantáneo.</p>
+      <h1 data-du-i18n="duMempoolTitle">⚡ Mempool en Tiempo Real</h1>
+      <p class="subtitulo" data-du-i18n="duMempoolSubtitle">Actualización automática cada 30 s + WebSocket instantáneo.</p>
 
       <div class="metricas-fila">
         <div class="tarjeta"><h4>Transacciones</h4><div class="valor" id="mp-count">—</div><div class="descripcion">en el mempool</div></div>
@@ -649,17 +676,17 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
         <div class="tarjeta"><h4>Prioridad alta</h4><div class="valor" id="fee-fastest">—</div><div class="descripcion">sat/vB (~10 min)</div></div>
       </div>
 
-      <h2>Distribución de comisiones (sat/vB)</h2>
+      <h2 data-du-i18n="duFeeDistribution">Distribución de comisiones (sat/vB)</h2>
       <div class="mempool-viz" id="mempool-viz"><div class="cargando">Cargando histograma…</div></div>
 
-      <h2>Estimaciones por objetivo de confirmación</h2>
+      <h2 data-du-i18n="duFeeTargets">Estimaciones por objetivo de confirmación</h2>
       <div class="grid g3" style="margin-bottom:1.5rem;">
         <div class="tarjeta"><h4>🚀 Rápida (~10 min)</h4><div class="valor" id="fee-fastest-2">—</div></div>
         <div class="tarjeta"><h4>⏱ Media (~30 min)</h4><div class="valor" id="fee-halfhour">—</div></div>
         <div class="tarjeta"><h4>💰 Económica (~1 h)</h4><div class="valor" id="fee-hour">—</div></div>
       </div>
 
-      <h2>Transacciones recientes del mempool</h2>
+      <h2 data-du-i18n="duRecentMempool">Transacciones recientes del mempool</h2>
       <div id="tabla-mempool-recent"><div class="cargando">Cargando…</div></div>
     </section>
 
@@ -667,25 +694,25 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
          PESTAÑA 3 · EXPLORADOR DE BLOQUES
          ──────────────────────────────────────────────────────────────────── -->
     <section id="tab-explorador" class="tab-panel" role="tabpanel">
-      <h1>🔍 Explorador de la Cadena</h1>
-      <p class="subtitulo">Consulta bloques indexados por altura y navega la cadena de Bitcoin.</p>
+      <h1 data-du-i18n="duExplorerTitle">🔍 Explorador de la Cadena</h1>
+      <p class="subtitulo" data-du-i18n="duExplorerSubtitle">Consulta bloques indexados por altura y navega la cadena de Bitcoin.</p>
 
       <div class="filtros">
         <label>
-          Altura del bloque
+          <span data-du-i18n="duBlockHeight">Altura del bloque</span>
           <input type="number" id="altura-input" min="0" step="1" placeholder="840000" style="width:140px;">
         </label>
-        <button class="boton boton-primario" id="btn-buscar-bloque">Buscar</button>
+        <button class="boton boton-primario" id="btn-buscar-bloque" data-du-i18n="duSearch">Buscar</button>
         <span id="rango-info" style="font-size:.8rem;color:var(--c-tenue);align-self:center;"></span>
       </div>
-      <div class="cadena-bloques" id="cadena-bloques"><div class="cargando">Introduce una altura para explorar los bloques...</div></div>
+      <div class="cadena-bloques" id="cadena-bloques"><div class="cargando"><span data-du-i18n="duEnterHeight">Introduce una altura para explorar los bloques...</span></div></div>
     </section>
 
     <!-- ────────────────────────────────────────────────────────────────────
          PESTAÑA 4 · RUNES
          ──────────────────────────────────────────────────────────────────── -->
     <section id="tab-runes" class="tab-panel" role="tabpanel">
-      <h1>🪙 Runes · Utility Tokens</h1>
+      <h1 data-du-i18n="duRunesTitle">🪙 Runes · Utility Token</h1>
       <p class="subtitulo">
         Protocolo Runes de Casey Rodarmor — fungibles nativos de Bitcoin activos desde el bloque 840 000.
         <a class="link-ext" href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/docs/RUNES_PROTOCOL.md" target="_blank" style="margin-left:.5rem;">📄 Protocolo Runes</a>
@@ -693,11 +720,11 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
 
       <div class="filtros">
         <label>
-          Buscar por nombre
+          <span data-du-i18n="duSearchByName">Buscar por nombre</span>
           <input type="text" id="rune-buscar" placeholder="UNCOMMON•GOODS" style="width:200px;">
         </label>
-        <button class="boton boton-primario" id="btn-rune-buscar">Buscar</button>
-        <button class="boton boton-secundario" id="btn-runes-listar">Listar todos</button>
+        <button class="boton boton-primario" id="btn-rune-buscar" data-du-i18n="duSearch">Buscar</button>
+        <button class="boton boton-secundario" id="btn-runes-listar" data-du-i18n="duListAll">Listar todos</button>
       </div>
 
       <div class="grid g3" id="lista-runes"><div class="cargando">Cargando Runes…</div></div>
@@ -707,7 +734,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
          PESTAÑA 5 · ORDINALS
          ──────────────────────────────────────────────────────────────────── -->
     <section id="tab-ordinals" class="tab-panel" role="tabpanel">
-      <h1>🔐 Ordinals e inscripciones</h1>
+      <h1 data-du-i18n="duOrdinalsTitle">🔐 Ordinals e inscripciones</h1>
       <p class="subtitulo">
         Inscripciones sobre satoshis individuales via Taproot Witness — contenedor de metadatos legales RWA.
         <a class="link-ext" href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/docs/ORDINALS_PROTOCOL.md" target="_blank" style="margin-left:.5rem;">📄 Protocolo Ordinals</a>
@@ -719,7 +746,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
          PESTAÑA 6 · TOKENIZACIÓN RWA
          ──────────────────────────────────────────────────────────────────── -->
     <section id="tab-rwa" class="tab-panel" role="tabpanel">
-      <h1>🏢 Tokenización de Activos del Mundo Real</h1>
+      <h1 data-du-i18n="duRwaTitle">🏢 Tokenización de Activos del Mundo Real</h1>
       <p class="subtitulo">
         Registra un activo físico o financiero como Security Token sobre Bitcoin.
         Cada activo se vincula a un Ordinal (titularidad legal) y opcionalmente a un Rune (fraccionamiento).
@@ -729,7 +756,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
       <form class="form-rwa" id="form-rwa" autocomplete="off">
         <div class="grid g2">
           <label>
-            Categoría del activo *
+            <span data-du-i18n="duCategory">Categoría</span> del activo *
             <select id="rwa-type" name="type" required>
               <option value="INMUEBLE">Inmueble</option>
               <option value="VEHICULO">Vehículo</option>
@@ -797,7 +824,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
 
         <div class="grid g2">
           <label>
-            Estado KYC del titular
+            <span data-du-i18n="duStatus">Estado</span> KYC del titular
             <select id="rwa-kyc" name="ownerKyc">
               <option value="NO_INICIADO">No iniciado</option>
               <option value="PENDIENTE">Pendiente</option>
@@ -831,12 +858,12 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
          PESTAÑA 7 · MARKETPLACE RWA
          ──────────────────────────────────────────────────────────────────── -->
     <section id="tab-marketplace" class="tab-panel" role="tabpanel">
-      <h1>🛒 Marketplace de Activos Tokenizados</h1>
-      <p class="subtitulo">Explora los RWA registrados en la plataforma, respaldados por Ordinals sobre Bitcoin.</p>
+      <h1 data-du-i18n="duMarketplaceTitle">🛒 Marketplace de Activos Tokenizados</h1>
+      <p class="subtitulo" data-du-i18n="duMarketplaceSubtitle">Explora los RWA registrados en la plataforma, respaldados por Ordinals sobre Bitcoin.</p>
 
       <div class="filtros">
         <label>
-          Categoría
+          <span data-du-i18n="duCategory">Categoría</span>
           <select id="mkt-tipo">
             <option value="">Todas</option>
             <option value="INMUEBLE">Inmueble</option>
@@ -848,7 +875,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
           </select>
         </label>
         <label>
-          Estado
+          <span data-du-i18n="duStatus">Estado</span>
           <select id="mkt-estado">
             <option value="">Todos</option>
             <option value="PENDIENTE">Pendiente</option>
@@ -857,7 +884,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
             <option value="CANCELADO">Cancelado</option>
           </select>
         </label>
-        <button class="boton boton-primario" id="btn-mkt-filtrar">Aplicar filtros</button>
+        <button class="boton boton-primario" id="btn-mkt-filtrar" data-du-i18n="duApplyFilters">Aplicar filtros</button>
       </div>
 
       <div class="grid g3" id="mkt-grid"><div class="cargando">Cargando activos…</div></div>
@@ -867,20 +894,20 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
          PESTAÑA 8 · FEED EN VIVO (WebSocket)
          ──────────────────────────────────────────────────────────────────── -->
     <section id="tab-live" class="tab-panel" role="tabpanel">
-      <h1>📡 Feed en Tiempo Real �� WebSocket</h1>
+      <h1 data-du-i18n="duLiveTitle">📡 Feed en Tiempo Real · WebSocket</h1>
       <p class="subtitulo">Eventos en vivo de los canales: <code>blocks</code> · <code>mempool</code> · <code>runes</code> · <code>ordinals</code> · <code>rwa</code></p>
 
       <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.25rem;">
         <div class="ws-badge desconectado" id="ws-badge-live">
           <span class="punto"></span>
-          <span id="ws-texto-live">Conectando…</span>
+          <span id="ws-texto-live"><span data-du-i18n="duConnecting">Conectando…</span></span>
         </div>
-        <button class="boton boton-secundario" id="btn-ws-reconectar">↺ Reconectar</button>
-        <button class="boton boton-secundario" id="btn-log-limpiar">🗑 Limpiar log</button>
+        <button class="boton boton-secundario" id="btn-ws-reconectar" data-du-i18n="duReconnect">↺ Reconectar</button>
+        <button class="boton boton-secundario" id="btn-log-limpiar" data-du-i18n="duClearLog">🗑 Limpiar log</button>
       </div>
 
       <div class="log-vivo" id="ws-log" aria-live="polite" aria-atomic="false">
-        <div class="linea"><span class="ts">--:--:--</span><span class="canal">SISTEMA</span>Esperando conexión WebSocket…</div>
+        <div class="linea"><span class="ts">--:--:--</span><span class="canal">SISTEMA</span><span data-du-i18n="duWaitingWs">Esperando conexión WebSocket…</span></div>
       </div>
     </section>
 
@@ -899,12 +926,14 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
     <div class="copyright">®NESGESFinance Ecosystem S.A.S. BIC. &amp; LLC. EIN: 0008086872 — TODOS LOS DERECHOS RESERVADOS 2025-2026</div>
     <!-- Hipervínculos de documentación en el pie -->
     <div style="margin-top:.6rem;display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;">
-      <a href="index.html">Inicio</a>
-      <a href="dashboard1.html">Mempool</a>
-      <a href="explorer.html">Explorador</a>
-      <a href="dashboard2.html">RWA</a>
-      <a href="rwa-marketplace.html">Marketplace</a>
-      <a href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/docs/API.md" target="_blank">API Docs</a>
+      <a href="index.html" data-du-nav="navHome">Inicio</a>
+      <a href="dashboard1.html" data-du-i18n="duFooterMempool">Mempool</a>
+      <a href="explorer.html" data-du-nav="navExplorer">Explorador</a>
+      <a href="dashboard2.html" data-du-nav="navRwa">Tokenización RWA</a>
+      <a href="rwa-marketplace.html" data-du-nav="navMarketplace">Marketplace</a>
+      <a href="status.html" data-du-nav="navStatus">Estado</a>
+      <a href="developers.html" data-du-nav="navDevelopers">Developers</a>
+      <a href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/docs/API.md" target="_blank"><span data-du-i18n="duApiDocs">API Docs</span></a>
       <a href="https://github.com/NESGESFinance/NESGESFinanceTrust" target="_blank" rel="noopener">GitHub</a>
     </div>
   </footer>
@@ -916,6 +945,45 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
                 Marketplace y feed en vivo.
        ══════════════════════════════════════════════════════════════════════ -->
   <script>
+
+const I18N_DU = {
+  es: {
+    navHome: 'Inicio', navEcosystem: 'Ecosistema', navProjects: 'Explorar activos', navDashboard: 'Dashboard', navExplorer: 'Explorador', navRwa: 'Tokenización RWA', navMarketplace: 'Marketplace', navStatus: 'Estado', navDevelopers: 'Developers',
+    duTabsAria: 'Secciones del dashboard', duTabHome: '🏠 Inicio', duTabMempool: '⚡ Mempool en Vivo', duTabExplorer: '🔍 Explorador', duTabRunes: '🪙 Runes', duTabOrdinals: '🔐 Ordinals', duTabRwa: '🏢 Tokenizar RWA', duTabMarketplace: '🛒 Marketplace', duTabLive: '📡 Feed en Vivo',
+    duHomeTitle: 'El Ecosistema Financiero sobre Bitcoin', duMotto: '«Y a tu prójimo como a ti mismo»', duCapabilities: 'Capacidades de la plataforma', duArchitecture: 'Arquitectura del sistema', duDocs: 'Documentación técnica',
+    duMempoolTitle: '⚡ Mempool en Tiempo Real', duMempoolSubtitle: 'Actualización automática cada 30 s + WebSocket instantáneo.', duFeeDistribution: 'Distribución de comisiones (sat/vB)', duFeeTargets: 'Estimaciones por objetivo de confirmación', duRecentMempool: 'Transacciones recientes del mempool',
+    duExplorerTitle: '🔍 Explorador de la Cadena', duExplorerSubtitle: 'Consulta bloques indexados por altura y navega la cadena de Bitcoin.', duBlockHeight: 'Altura del bloque', duSearch: 'Buscar', duEnterHeight: 'Introduce una altura para explorar los bloques...',
+    duRunesTitle: '🪙 Runes · Utility Token', duSearchByName: 'Buscar por nombre', duListAll: 'Listar todos',
+    duOrdinalsTitle: '🔐 Ordinals e inscripciones', duRwaTitle: '🏢 Tokenización de Activos del Mundo Real', duMarketplaceTitle: '🛒 Marketplace de Activos Tokenizados', duMarketplaceSubtitle: 'Explora los RWA registrados en la plataforma, respaldados por Ordinals sobre Bitcoin.',
+    duCategory: 'Categoría', duStatus: 'Estado', duApplyFilters: 'Aplicar filtros', duLiveTitle: '📡 Feed en Tiempo Real · WebSocket', duConnecting: 'Conectando…', duReconnect: '↺ Reconectar', duClearLog: '🗑 Limpiar log', duWaitingWs: 'Esperando conexión WebSocket…', duFooterMempool: 'Mempool', duApiDocs: 'API Docs'
+  },
+  en: {
+    navHome: 'Home', navEcosystem: 'Ecosystem', navProjects: 'Explore assets', navDashboard: 'Dashboard', navExplorer: 'Explorer', navRwa: 'RWA Tokenization', navMarketplace: 'Marketplace', navStatus: 'Status', navDevelopers: 'Developers',
+    duTabsAria: 'Dashboard sections', duTabHome: '🏠 Home', duTabMempool: '⚡ Live Mempool', duTabExplorer: '🔍 Explorer', duTabRunes: '🪙 Runes', duTabOrdinals: '🔐 Ordinals', duTabRwa: '🏢 Tokenize RWA', duTabMarketplace: '🛒 Marketplace', duTabLive: '📡 Live Feed',
+    duHomeTitle: 'The Financial Ecosystem on Bitcoin', duMotto: '“And your neighbor as yourself”', duCapabilities: 'Platform capabilities', duArchitecture: 'System architecture', duDocs: 'Technical documentation',
+    duMempoolTitle: '⚡ Real-Time Mempool', duMempoolSubtitle: 'Automatic refresh every 30 s + instant WebSocket.', duFeeDistribution: 'Fee distribution (sat/vB)', duFeeTargets: 'Estimates by confirmation target', duRecentMempool: 'Recent mempool transactions',
+    duExplorerTitle: '🔍 Chain Explorer', duExplorerSubtitle: 'Query indexed blocks by height and browse the Bitcoin chain.', duBlockHeight: 'Block height', duSearch: 'Search', duEnterHeight: 'Enter a height to explore blocks...',
+    duRunesTitle: '🪙 Runes · Utility Token', duSearchByName: 'Search by name', duListAll: 'List all',
+    duOrdinalsTitle: '🔐 Ordinals and inscriptions', duRwaTitle: '🏢 Real-World Asset Tokenization', duMarketplaceTitle: '🛒 Tokenized Asset Marketplace', duMarketplaceSubtitle: 'Explore RWA records in the platform, backed by Bitcoin Ordinals.',
+    duCategory: 'Category', duStatus: 'Status', duApplyFilters: 'Apply filters', duLiveTitle: '📡 Real-Time Feed · WebSocket', duConnecting: 'Connecting…', duReconnect: '↺ Reconnect', duClearLog: '🗑 Clear log', duWaitingWs: 'Waiting for WebSocket connection…', duFooterMempool: 'Mempool', duApiDocs: 'API Docs'
+  }
+};
+function getDULang(){ try { return localStorage.getItem('nesges-language') === 'en' ? 'en' : 'es'; } catch(_) { return 'es'; } }
+function translateDU(lang){
+  const m = I18N_DU[lang] || I18N_DU.es;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-du-i18n]').forEach((el)=>{ const t=m[el.dataset.duI18n]; if (t) el.textContent=t; });
+  document.querySelectorAll('[data-du-nav]').forEach((el)=>{ const t=m[el.dataset.duNav]; if (t) el.textContent=t; });
+  document.querySelectorAll('[data-du-i18n-aria]').forEach((el)=>{ const t=m[el.dataset.duI18nAria]; if (t) el.setAttribute('aria-label', t); });
+  const btn = document.getElementById('du-lang-toggle');
+  if (btn) { btn.textContent = lang === 'es' ? 'EN' : 'ES'; btn.setAttribute('title', lang === 'es' ? 'Switch language' : 'Cambiar idioma'); }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('du-lang-toggle');
+  translateDU(getDULang());
+  if (btn) btn.addEventListener('click', () => { const lang = getDULang() === 'es' ? 'en' : 'es'; try { localStorage.setItem('nesges-language', lang); } catch(_) {} translateDU(lang); });
+});
+
   'use strict';
 
   /* ═══════════════════════════════════════════════════════════════════════════
@@ -1010,7 +1078,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
       this.cerrado = false;
     }
     on(canal, cb)   { this.handlers.set(canal, cb); return this; }
-    onEstado(cb)    { this._estadoCb = cb; return this; }
+    on<span data-du-i18n="duStatus">Estado</span>(cb)    { this._estadoCb = cb; return this; }
     conectar() {
       this.cerrado = false;
       this.socket  = new WebSocket(this.url);
@@ -1344,7 +1412,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
          <p><strong>ID:</strong> ${a.id || '—'}</p>
          <p><strong>Nombre:</strong> ${a.name || cuerpo.name}</p>
          <p><strong>Valoración:</strong> ${fmt.usd(cuerpo.valuationUSD)}</p>
-         <p><strong>Estado:</strong> ${a.status || 'PENDIENTE'}</p>`);
+         <p><strong><span data-du-i18n="duStatus">Estado</span>:</strong> ${a.status || 'PENDIENTE'}</p>`);
       e.target.reset();
       logLinea('rwa', `Alta: ${a.name || cuerpo.name} — ${fmt.usd(cuerpo.valuationUSD)}`);
     } else {
@@ -1372,7 +1440,7 @@ Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/Maria
       <div class="cuerpo">
         <div class="valoracion">${fmt.usd(a.valuationUSD ?? a.valuation_usd ?? 0)}</div>
         <p style="font-size:.82rem;color:var(--c-tenue);margin:.4rem 0;">${a.description || 'Sin descripción.'}</p>
-        <p class="meta"><strong>Estado:</strong> <span class="badge ${badgeCls}">${a.status || '—'}</span></p>
+        <p class="meta"><strong><span data-du-i18n="duStatus">Estado</span>:</strong> <span class="badge ${badgeCls}">${a.status || '—'}</span></p>
         <p class="meta"><strong>Ordinal:</strong> <span class="mono">${fmt.hash(a.inscriptionId||a.inscription_id||'')}</span></p>
         <p class="meta"><strong>Titular:</strong> <span class="mono">${fmt.hash(a.owner||'')}</span></p>
       </div>

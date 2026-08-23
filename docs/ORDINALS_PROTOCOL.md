@@ -52,7 +52,7 @@ liquidez.
 
 Cada proyecto aprobado dentro del ecosistema NESGESFinance emite una **serie
 independiente** de Ordinals sobre Bitcoin L1. Esto les diferencia del Rune de
-utilidad (NGF·BTC·AM) y garantiza el aislamiento patrimonial:
+utilidad (NGF•BTC•AM) y garantiza el aislamiento patrimonial:
 
 - Los metadatos de cada Ordinal incorporan **hashes SHA-256** de contratos
   legales, validaciones KYC/AML y el hash del Reglamento de Emisión del SPV.

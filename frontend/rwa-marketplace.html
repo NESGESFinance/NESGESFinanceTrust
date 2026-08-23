@@ -3,134 +3,211 @@
   Marketplace — Activos del Mundo Real tokenizados.
   Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
   TODOS LOS DERECHOS RESERVADOS 2025-2026.
--->
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0F172A">
-  <meta name="description" content="Marketplace RWA — NESGESFinanceTrust. Plataforma de exploración Bitcoin, datos de red y registro RWA de NESGESFinanceTrust.">
+--><html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="theme-color" content="#0F172A"/>
+  <meta content="Marketplace RWA — NESGESFinanceTrust. Módulo en desarrollo y auditoría técnica." data-i18n-content="marketMetaDesc" name="description"/>
   <title>Marketplace RWA — NESGESFinanceTrust</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/dashboard.css">
-  <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
+  <link href="assets/css/dashboard.css" rel="stylesheet"/>
+  <style>
+    /* Audit banner styles */
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong {
+      color: #ff9999;
+    }
+    /* Status message styles */
+    .status-message {
+      background: linear-gradient(135deg, rgba(11, 60, 138, 0.2), rgba(15, 90, 150, 0.2));
+      border: 2px solid #0B3C8A;
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+    .status-message h2 {
+      border: none;
+      margin-top: 0;
+      color: #A9C6FF;
+      font-size: 1.5rem;
+    }
+    .status-message p {
+      color: #C0CBE0;
+      margin: 0.75rem 0;
+    }
+    .status-badge {
+      display: inline-block;
+      background: rgba(255, 107, 107, 0.2);
+      color: #ff9999;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid #ff4d4d;
+      margin-top: 1rem;
+    }
+    .marketplace-panel {
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .marketplace-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .assets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .asset-card {
+      border: 1px solid var(--c-borde);
+      border-radius: 8px;
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.35);
+    }
+    .asset-card h3 {
+      margin: 0 0 0.5rem;
+      color: var(--c-dorado);
+      font-size: 1rem;
+      border: none;
+      padding: 0;
+    }
+    .asset-meta {
+      margin: 0.3rem 0;
+      color: #C0CBE0;
+      font-size: 0.9rem;
+    }
+    .asset-empty, .asset-error {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed var(--c-borde);
+      color: #A9C6FF;
+      text-align: center;
+    }
+    .asset-error {
+      border-color: #ff4d4d;
+      color: #ff9999;
+      background: rgba(255, 77, 77, 0.08);
+    }
+  </style>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <!-- AUDIT STATUS BANNER -->
+  <div aria-live="assertive" class="audit-banner" role="alert"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
+
   <nav class="nav-principal">
-    <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
-    <ul class="nav-enlaces">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li>
-      <li><a href="dashboard-unificado.html">Dashboard</a></li>
-      <li><a href="dashboard1.html">Mempool en Vivo</a></li>
-      <li><a href="explorer.html">Explorador</a></li>
-      <li><a href="dashboard2.html">Tokenización RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
-    </ul>
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="index.html" data-i18n="navHome">Inicio</a></li><li><a href="institucional.html" data-i18n="navEcosystem">Ecosistema</a></li><li><a href="verify.html" data-i18n="navProjects">Explorar activos</a></li><li><a href="dashboard-unificado.html" data-i18n="navDashboard">Dashboard</a></li><li><a href="explorer.html" data-i18n="navExplorer">Explorador</a></li><li><a href="dashboard2.html" data-i18n="navRwa">Tokenización RWA</a></li><li><a href="rwa-marketplace.html" data-i18n="navMarketplace">Marketplace</a></li><li><a href="status.html" data-i18n="navStatus">Estado</a></li><li><a href="developers.html" data-i18n="navDevelopers">Developers</a></li></ul>
   </nav>
 
   <main>
-    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM para activos y operaciones Bitcoin" loading="lazy">
-      <h1>Marketplace de Activos Tokenizados</h1>
-      <p class="subtitulo">
-        Explora los Activos del Mundo Real (RWA) registrados en la plataforma,
-        respaldados por Ordinals sobre Bitcoin.
-      </p>
+    <div class="panel-cabecera panel-cabecera-ilustrada"><img alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" class="ilustracion-seccion" data-i18n-alt="ngfAssetAlt" height="240" loading="lazy" src="assets/img/NGF-BTC-AM.png" width="240"/>
+      <h1 data-i18n="marketH1">Marketplace de Activos Tokenizados</h1>
+      <p class="subtitulo" data-i18n="marketSubtitle">Módulo en desarrollo y auditoría técnica.</p>
     </div>
 
-    <div class="filtros">
-      <label for="f-tipo">Categoría</label>
-      <select id="f-tipo">
-        <option value="">Todas</option>
-        <option value="INMUEBLE">Inmueble</option>
-        <option value="VEHICULO">Vehículo</option>
-        <option value="ARTE">Arte y coleccionables</option>
-        <option value="COMMODITIES">Commodities</option>
-        <option value="DEUDA">Deuda</option>
-        <option value="EQUITY">Equity</option>
-      </select>
-
-      <label for="f-estado">Estado</label>
-      <select id="f-estado">
-        <option value="">Todos</option>
-        <option value="PENDIENTE">Pendiente</option>
-        <option value="ACTIVO">Activo</option>
-        <option value="TRANSFERIDO">Transferido</option>
-        <option value="CANCELADO">Cancelado</option>
-      </select>
-
-      <button class="boton boton-primario" id="btn-filtrar">Aplicar filtros</button>
+    <!-- STATUS MESSAGE (Sección 4.7) -->
+    <div class="status-message">
+    <h2 data-i18n="marketPublicTitle">🛒 Portal de consulta pública</h2>
+      <p data-i18n="marketPublicP1">Esta vista permite consultar activos RWA registrados en la API durante la etapa de auditoría y testeo de conectores.</p>
+      <p data-i18n="marketPublicP2">No hay ofertas ni transacciones de compra/venta habilitadas en este portal.</p>
+      <p data-i18n="marketPublicP3" style="font-size: 0.9rem; color: #A9C6FF;">El componente de negociación se habilitará tras completar validación jurídica, técnica y regulatoria.</p>
+      <div class="status-badge" data-i18n="marketBadge">Consulta activa / Negociación deshabilitada</div>
+      <div style="margin-top: 1.5rem;">
+        <a class="btn btn-primario" data-i18n="marketBackDashboard" href="dashboard-unificado.html">Volver al dashboard</a>
+      </div>
     </div>
 
-    <div class="grid grid-3" id="rwa-grid">
-      <div class="cargando">Cargando activos...</div>
+    <section aria-live="polite" class="marketplace-panel">
+    <div class="marketplace-head">
+      <h2 data-i18n="marketAssetsTitle" style="margin:0;border:none;padding:0;">Activos RWA registrados</h2>
+      <button class="btn btn-secundario" data-i18n="marketReload" id="recargar-assets" type="button">Recargar</button>
     </div>
+    <div class="asset-empty" data-i18n="marketLoading" id="marketplace-assets">Cargando activos...</div>
+    </section>
   </main>
 
   <footer class="pie" id="pie"></footer>
 
   <script src="assets/js/app.js"></script>
   <script>
-    // Marketplace: listado filtrable de activos RWA desde GET /api/rwa/assets.
     (function () {
-      const grid = document.getElementById('rwa-grid');
+      const container = document.getElementById('marketplace-assets');
+      const reloadBtn = document.getElementById('recargar-assets');
 
-      const ETIQUETAS_TIPO = {
-        INMUEBLE: 'Inmueble',
-        VEHICULO: 'Vehículo',
-        ARTE: 'Arte',
-        COMMODITIES: 'Commodities',
-        DEUDA: 'Deuda',
-        EQUITY: 'Equity',
-      };
+      function t(key) { const lang = typeof getIdioma === 'function' ? getIdioma() : 'es'; return (I18N[lang] && I18N[lang][key]) || I18N.es[key] || key; }
 
-      /** Renderiza una tarjeta de activo RWA. */
-      function tarjeta(a) {
-        const tipo = ETIQUETAS_TIPO[a.type] || a.type || '—';
-        return (
-          '<article class="rwa-card">' +
-          '<div class="cabecera">' +
-          '<span class="etiqueta">' + tipo + '</span>' +
-          '<h3>' + (a.name || 'Activo sin nombre') + '</h3>' +
-          '</div>' +
-          '<div class="cuerpo">' +
-          '<div class="valoracion">' + fmt.usd(a.valuationUSD ?? a.valuation_usd ?? 0) + '</div>' +
-          '<p>' + (a.description || 'Sin descripción.') + '</p>' +
-          '<p class="meta"><strong>Estado:</strong> ' + (a.status || '—') + '</p>' +
-          '<p class="meta"><strong>Ordinal:</strong> ' + fmt.hash(a.inscriptionId || a.inscription_id || '') + '</p>' +
-          '<p class="meta"><strong>Titular:</strong> ' + fmt.hash(a.owner || '') + '</p>' +
-          '</div></article>'
-        );
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
       }
 
-      /** Carga los activos aplicando los filtros seleccionados. */
-      async function cargar() {
-        grid.innerHTML = '<div class="cargando">Cargando activos...</div>';
-        const tipo = document.getElementById('f-tipo').value;
-        const estado = document.getElementById('f-estado').value;
-        const params = new URLSearchParams();
-        if (tipo) params.set('type', tipo);
-        if (estado) params.set('status', estado);
-        const qs = params.toString() ? '?' + params.toString() : '';
+      function renderAssets(assets) {
+        if (!Array.isArray(assets) || assets.length === 0) {
+          container.className = 'asset-empty';
+          container.innerHTML = 'No hay activos registrados para mostrar en este momento.';
+          return;
+        }
 
+        container.className = 'assets-grid';
+        container.innerHTML = assets.map((asset) => `
+          <article class="asset-card">
+            <h3>${escapeHtml(asset.name || t('marketUnnamedAsset'))}</h3>
+            <p class="asset-meta"><strong>ID:</strong> ${escapeHtml(asset.id || '—')}</p>
+            <p class="asset-meta"><strong>Tipo:</strong> ${escapeHtml(asset.type || '—')}</p>
+            <p class="asset-meta"><strong>Estado:</strong> ${escapeHtml(asset.status || 'PENDIENTE')}</p>
+            <p class="asset-meta"><strong>Valoración:</strong> ${asset.valuationUSD !== undefined ? escapeHtml(fmt.usd(asset.valuationUSD)) : '—'}</p>
+            <p class="asset-meta"><strong>Titular:</strong> ${escapeHtml(asset.owner || '—')}</p>
+            <p class="asset-meta"><strong>Inscripción:</strong> ${escapeHtml(asset.inscriptionId || '—')}</p>
+          </article>
+        `).join('');
+      }
+
+      async function loadAssets() {
+        container.className = 'asset-empty';
+        container.textContent = 'Cargando activos...';
         try {
-          const activos = await api.get('/rwa/assets' + qs);
-          if (!Array.isArray(activos) || !activos.length) {
-            grid.innerHTML = '<div class="vacio">No hay activos registrados que coincidan con los filtros.</div>';
-            return;
-          }
-          grid.innerHTML = activos.map(tarjeta).join('');
-        } catch (e) {
-          grid.innerHTML = '<div class="vacio">No se pudo cargar el marketplace (' + e.message + ').</div>';
+          const assets = await api.get('/rwa/assets?limit=50&offset=0');
+          renderAssets(assets);
+        } catch (error) {
+          container.className = 'asset-error';
+          container.textContent = `No se pudieron cargar los activos (${error instanceof Error ? error.message : 'error desconocido'}).`;
         }
       }
 
-      document.getElementById('btn-filtrar').addEventListener('click', cargar);
-      cargar();
+      reloadBtn.addEventListener('click', loadAssets);
+      document.addEventListener('DOMContentLoaded', loadAssets);
     })();
   </script>
-</body>
-</html>
+
+</body></html>

@@ -11,12 +11,24 @@ import mysql, { Pool, PoolConnection, RowDataPacket, ResultSetHeader } from 'mys
 import config from './config';
 import logger from './logger';
 
+type DatabaseHealthStatus = 'disabled' | 'not_initialized' | 'connected' | 'error';
+
+export interface DatabaseHealth {
+  enabled: boolean;
+  status: DatabaseHealthStatus;
+  message: string;
+}
+
 class Database {
   private pool: Pool | null = null;
+  private status: DatabaseHealthStatus = config.DATABASE.ENABLED ? 'not_initialized' : 'disabled';
+  private lastError = '';
 
   /** Inicializa el pool de conexiones si la base de datos está habilitada. */
   public async connect(): Promise<void> {
     if (!config.DATABASE.ENABLED) {
+      this.status = 'disabled';
+      this.lastError = '';
       logger.notice('Base de datos deshabilitada por configuración.');
       return;
     }
@@ -36,7 +48,13 @@ class Database {
     const conn = await this.pool.getConnection();
     try {
       await conn.ping();
+      this.status = 'connected';
+      this.lastError = '';
       logger.notice(`Conexión a MariaDB establecida (${config.DATABASE.HOST}:${config.DATABASE.PORT}/${config.DATABASE.NAME}).`);
+    } catch (error) {
+      this.status = 'error';
+      this.lastError = error instanceof Error ? error.message : String(error);
+      throw error;
     } finally {
       conn.release();
     }
@@ -75,7 +93,39 @@ class Database {
     if (this.pool) {
       await this.pool.end();
       this.pool = null;
-      logger.notice('Pool de la base de datos cerrado.');
+    }
+    this.status = config.DATABASE.ENABLED ? 'not_initialized' : 'disabled';
+    this.lastError = '';
+    logger.notice('Pool de la base de datos cerrado.');
+  }
+
+  /** Devuelve el estado de salud actual de la conexión. */
+  public async getHealth(): Promise<DatabaseHealth> {
+    if (!config.DATABASE.ENABLED) {
+      return { enabled: false, status: 'disabled', message: 'Base de datos deshabilitada por configuración.' };
+    }
+    if (!this.pool) {
+      return {
+        enabled: true,
+        status: this.status,
+        message: this.lastError || 'El pool de la base de datos no está inicializado.',
+      };
+    }
+
+    try {
+      const conn = await this.pool.getConnection();
+      try {
+        await conn.ping();
+        this.status = 'connected';
+        this.lastError = '';
+        return { enabled: true, status: 'connected', message: 'Conexión operativa.' };
+      } finally {
+        conn.release();
+      }
+    } catch (error) {
+      this.status = 'error';
+      this.lastError = error instanceof Error ? error.message : String(error);
+      return { enabled: true, status: 'error', message: this.lastError };
     }
   }
 }

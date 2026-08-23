@@ -8,7 +8,7 @@
  *
  * Referencia: especificación de Runes de Casey Rodarmor (activación en el
  * bloque 840,000, halving de abril de 2024). En NESGESFinance los Runes se
- * emplean como *Utility Tokens*.
+ * emplean como *Utility Token*.
  *
  * Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
  * TODOS LOS DERECHOS RESERVADOS 2025-2026.

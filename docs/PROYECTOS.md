@@ -72,7 +72,7 @@ El proceso para un inversor interesado es:
 
 1. Completar **KYC/AML** y verificación de origen de fondos.
 2. Registrar la dirección Bitcoin en la **whitelist** de la serie.
-3. Obtener el utility token (NGF·BTC·AM) como llave de acceso técnico al
+3. Obtener el utility token (NGF•BTC•AM) como llave de acceso técnico al
    ecosistema; **no constituye** por sí mismo una inversión ni confiere derechos
    económicos directos.
 4. Explorar el Launchpad y revisar la documentación completa de la serie.
@@ -166,7 +166,7 @@ El proceso para un inversor interesado es:
 | Nivel | Participantes | Alcance |
 |---|---|---|
 | Gobernanza corporativa | Entidades legales S.A.S. BIC + LLC | Dirección institucional y cumplimiento legal |
-| Gobernanza del ecosistema | Tenedores de NGF·BTC·AM | Orientación general consultiva |
+| Gobernanza del ecosistema | Tenedores de NGF•BTC•AM | Orientación general consultiva |
 | Gobernanza de proyectos | Tenedores de Ordinals de cada serie | Decisiones operativas/económicas vinculantes según Reglamento |
 | Capa Trust (propuesta) | Trust/fiduciario/beneficiarios por definir | Continuidad patrimonial, reservas y administración separada |
 
