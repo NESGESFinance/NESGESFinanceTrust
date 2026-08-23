@@ -7,7 +7,7 @@ Esta guía centraliza las especificaciones técnicas y de uso de los logotipos o
 | Asset | Archivo | Formato | Dimensiones base | Uso recomendado |
 | --- | --- | --- | --- | --- |
 | NESGESFinance Ecosystem | `frontend/assets/img/NESGESFinance_Logo.jpg` | JPG | 740 × 740 px | Cabeceras institucionales, piezas corporativas, README y documentación de ecosistema. |
-| NGF-BTC-AM | `frontend/assets/img/NGF-BTC-AM.png` | PNG | 1023 × 1024 px | Comunicación de la Rune NGF-BTC-AM, activos vinculados a Bitcoin y material promocional especializado. |
+| NGF-BTC-AM | `frontend/assets/img/NGF-BTC-AM.jpg` | PNG | 1023 × 1024 px | Comunicación de la Rune NGF-BTC-AM, activos vinculados a Bitcoin y material promocional especializado. |
 | Wordmark NESGESFinance | `frontend/assets/img/nesgesfinance-logo.svg` | SVG | Escalable | Navegación principal, branding web, documentación y componentes ligeros. |
 | Bitcoin ledger | `frontend/assets/img/bitcoin-ledger.svg` | SVG | Escalable | Elementos gráficos de soporte para secciones de verificación, trazabilidad y protocolo Bitcoin. |
 
@@ -16,14 +16,14 @@ Esta guía centraliza las especificaciones técnicas y de uso de los logotipos o
 ### 1. Identidad institucional y portada
 
 - **Logo principal:** `NESGESFinance_Logo.jpg`
-- **Apoyo visual secundario:** `NGF-BTC-AM.png`
+- **Apoyo visual secundario:** `NGF-BTC-AM.jpg`
 - **Motivo:** representa la capa paraguas del ecosistema y la dualidad institucional + activa.
 - **Secciones sugeridas:** `index.html`, `institucional.html`, `README.md`, portada de documentos institucionales.
 
 ### 2. Exploración Bitcoin, mempool y arquitectura técnica
 
 - **Logo principal de marca:** `NESGESFinance_Logo.jpg`
-- **Activo específico de Bitcoin:** `NGF-BTC-AM.png`
+- **Activo específico de Bitcoin:** `NGF-BTC-AM.jpg`
 - **Apoyo conceptual:** `bitcoin-ledger.svg`
 - **Motivo:** estas vistas están asociadas a exploración on-chain, mempool, Runes y Ordinals.
 - **Secciones sugeridas:** `dashboard1.html`, `dashboard-unificado.html`, `explorer.html`, `verify.html`, `status.html`, `developers.html`.
@@ -31,7 +31,7 @@ Esta guía centraliza las especificaciones técnicas y de uso de los logotipos o
 ### 3. Tokenización RWA y marketplace
 
 - **Logo principal de marca:** `NESGESFinance_Logo.jpg`
-- **Activo específico de Bitcoin:** `NGF-BTC-AM.png`
+- **Activo específico de Bitcoin:** `NGF-BTC-AM.jpg`
 - **Motivo:** el portal RWA y su marketplace deben mantener identidad institucional, pero el activo NGF-BTC-AM puede reforzar la relación con Bitcoin y utilidad técnica.
 - **Secciones sugeridas:** `dashboard2.html`, `rwa-marketplace.html`, `rwa-states.html`, `evidence-policy.html`.
 
@@ -45,7 +45,7 @@ Esta guía centraliza las especificaciones técnicas y de uso de los logotipos o
 ## Directrices de integración
 
 - Usar `NESGESFinance_Logo.jpg` como imagen principal cuando la sección trate sobre la plataforma, la marca o el ecosistema completo.
-- Usar `NGF-BTC-AM.png` cuando la sección esté centrada en Bitcoin, Runes, Ordinals, mempool, activos digitales o componentes de utilidad.
+- Usar `NGF-BTC-AM.jpg` cuando la sección esté centrada en Bitcoin, Runes, Ordinals, mempool, activos digitales o componentes de utilidad.
 - Usar `bitcoin-ledger.svg` como recurso decorativo o contextual, no como sustituto de marca principal.
 - Usar `nesgesfinance-logo.svg` en navegación, footers o componentes que requieran peso visual reducido y mejor escalabilidad.
 - Evitar colocar imágenes relacionadas con proyectos no alineados con la plataforma actual.

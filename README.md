@@ -245,7 +245,7 @@ nesgesfinancetrust/
 │   │   │   └── main.css
 │   │   ├── img/
 │   │   │   ├── NESGESFinance_Logo.jpg
-│   │   │   ├── NGF-BTC-AM.png
+│   │   │   ├── NGF-BTC-AM.jpg
 │   │   │   ├── WA_1787215477423.jpeg
 │   │   │   ├── WA_1787215527323.jpeg
 │   │   │   ├── WA_1787215591323.jpeg
