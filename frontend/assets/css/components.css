@@ -29,7 +29,7 @@
 .tarjeta .valor {
   font-family: var(--fuente-datos);
   font-size: 1.8rem;
-  color: #84E0AE;
+  color: var(--color-verde);
   font-weight: 700;
 }
 
@@ -122,14 +122,14 @@
   font-family: var(--fuente-datos);
 }
 
-.badge-runes { background: rgba(247, 147, 26, 0.15); color: #FFD7A1; border: 1px solid rgba(247, 147, 26, 0.45); }
-.badge-ordinals { background: rgba(15, 90, 150, 0.16); color: #C8DCFF; border: 1px solid rgba(169, 198, 255, 0.34); }
-.badge-rwa { background: rgba(46, 175, 109, 0.12); color: #DDF4E7; border: 1px solid rgba(46, 175, 109, 0.42); }
+.badge-runes { background: rgba(var(--color-naranja-rgb), 0.15); color: #FFD7A1; border: 1px solid rgba(var(--color-naranja-rgb), 0.45); }
+.badge-ordinals { background: rgba(var(--color-azul-rgb), 0.16); color: #C8DCFF; border: 1px solid rgba(169, 198, 255, 0.34); }
+.badge-rwa { background: rgba(var(--color-verde-rgb), 0.12); color: #DDF4E7; border: 1px solid rgba(var(--color-verde-rgb), 0.42); }
 
-.badge-activo { background: rgba(46, 175, 109, 0.16); color: #DDF4E7; }
-.badge-pendiente { background: rgba(247, 147, 26, 0.16); color: #FFF1DC; }
-.badge-transferido { background: rgba(11, 60, 138, 0.18); color: #D4E2FF; }
-.badge-cancelado { background: rgba(255, 107, 107, 0.16); color: #FFD9D9; }
+.badge-activo { background: rgba(var(--color-verde-rgb), 0.16); color: #DDF4E7; }
+.badge-pendiente { background: rgba(var(--color-naranja-rgb), 0.16); color: #FFF1DC; }
+.badge-transferido { background: rgba(var(--color-azul-rgb), 0.18); color: #D4E2FF; }
+.badge-cancelado { background: rgba(var(--color-error-rgb), 0.16); color: #FFD9D9; }
 
 /* Tarjeta de token Rune ---------------------------------------------------- */
 .rune-card {
@@ -171,7 +171,7 @@
 }
 
 .rune-card .metricas span:nth-child(odd) { color: var(--color-texto-tenue); }
-.rune-card .metricas span:nth-child(even) { color: #84E0AE; font-family: var(--fuente-datos); text-align: right; }
+.rune-card .metricas span:nth-child(even) { color: var(--color-verde); font-family: var(--fuente-datos); text-align: right; }
 
 /* Tarjeta de activo RWA ---------------------------------------------------- */
 .rwa-card {
@@ -199,7 +199,7 @@
 
 .rwa-card .valoracion {
   font-family: var(--fuente-datos);
-  color: #84E0AE;
+  color: var(--color-verde);
   font-size: 1.4rem;
   font-weight: 700;
 }

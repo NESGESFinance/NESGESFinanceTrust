@@ -19,23 +19,27 @@
   --color-borde: rgba(123, 164, 255, 0.24);
   --color-borde-fuerte: rgba(247, 147, 26, 0.42);
   --color-azul: #0B3C8A;
+  --color-azul-rgb: 11, 60, 138;
   --color-azul-brillo: #0F5A96;
   --color-naranja: #F7931A;
+  --color-naranja-rgb: 247, 147, 26;
   --color-naranja-oscuro: #E67E0C;
   --color-verde: #2EAF6D;
+  --color-verde-rgb: 46, 175, 109;
   --color-dorado: #0B3C8A;
   --color-titulo: #A9C6FF;
   --color-texto: #F6F8FC;
   --color-texto-tenue: #C0CBE0;
   --color-texto-suave: #92A3C4;
   --color-error: #FF6B6B;
+  --color-error-rgb: 255, 107, 107;
   --fuente-datos: 'Courier New', 'SFMono-Regular', Consolas, monospace;
   --fuente-ui: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
   --radio: 10px;
   --sombra: 0 18px 48px rgba(5, 17, 38, 0.38);
   --sombra-resalte: 0 14px 30px rgba(11, 60, 138, 0.24);
   --gradiente-primario: linear-gradient(135deg, var(--color-azul), var(--color-azul-brillo));
-  --gradiente-acento: linear-gradient(135deg, var(--color-naranja), var(--color-naranja-oscuro));
+  --gradiente-acento: linear-gradient(135deg, var(--color-naranja) 0%, var(--color-naranja-oscuro) 45%, var(--color-azul-brillo) 100%);
   --gradiente-marca: linear-gradient(135deg, var(--color-azul) 0%, var(--color-azul-brillo) 48%, var(--color-naranja) 100%);
 }
 
