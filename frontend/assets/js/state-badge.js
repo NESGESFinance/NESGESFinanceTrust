@@ -281,6 +281,12 @@ function renderStateTimeline(stateHistory, container) {
   `;
 
   stateHistory.forEach((entry, index) => {
+    const config = STATE_CONFIG[entry.state];
+    if (!config) {
+      console.warn(`Estado desconocido en timeline: ${entry.state}`);
+      return;
+    }
+
     const item = document.createElement('div');
     item.style.cssText = `
       margin-bottom: 2rem;
@@ -296,7 +302,7 @@ function renderStateTimeline(stateHistory, container) {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: ${STATE_CONFIG[entry.state].color};
+      background: ${config.color};
       border: 2px solid var(--c-sup);
     `;
     item.appendChild(dot);
@@ -310,7 +316,7 @@ function renderStateTimeline(stateHistory, container) {
         top: 12px;
         width: 2px;
         height: calc(100% + 2rem);
-        background: ${STATE_CONFIG[entry.state].color};
+        background: ${config.color};
         opacity: 0.3;
       `;
       item.appendChild(line);
@@ -318,7 +324,8 @@ function renderStateTimeline(stateHistory, container) {
 
     // Content
     const content = document.createElement('div');
-    content.appendChild(createStateBadge(entry.state, { showIcon: true }));
+    const badge = createStateBadge(entry.state, { showIcon: true });
+    if (badge) content.appendChild(badge);
 
     if (entry.timestamp) {
       const timeEl = document.createElement('div');
