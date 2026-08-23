@@ -28,7 +28,9 @@ preservar la precisión de enteros grandes (`bigint`).
 
 ### `GET /api/health`
 
-Comprueba que el backend está operativo y devuelve la identidad de la plataforma.
+Comprueba la identidad de la plataforma y el estado real de dependencias
+críticas. Si la base de datos está habilitada pero no disponible, responde
+`503 Service Unavailable` con `status: "degraded"`.
 
 **Respuesta `200 OK`**
 ```json
@@ -38,13 +40,27 @@ Comprueba que el backend está operativo y devuelve la identidad de la plataform
   "version": "3.4.0-dev",
   "lema": "Y a tu prójimo como a ti mismo",
   "empresa": "NESGESFinance Ecosystem S.A.S. BIC. & LLC.",
-  "ein": "0008086872"
+  "ein": "0008086872",
+  "services": {
+    "database": { "enabled": true, "status": "connected", "message": "Conexión operativa." },
+    "redis": { "enabled": true, "status": "configured", "message": "Redis configurado en redis:6379." },
+    "mempool": { "backend": "esplora", "audit": true, "message": "Fuente de datos on-chain: esplora." },
+    "rwa": { "status": "audit_only", "message": "Las operaciones de escritura del registro RWA permanecen bloqueadas durante la auditoría." }
+  }
 }
 ```
 
 ---
 
 ## Bloques
+
+### `GET /api/blocks/recent`
+
+Devuelve los bloques más recientes persistidos.
+
+| Parámetro | Ubicación | Tipo   | Por defecto | Descripción                |
+|-----------|-----------|--------|-------------|----------------------------|
+| `limit`   | query     | entero | 10          | Máximo de resultados (≤50).|
 
 ### `GET /api/blocks/:height`
 
@@ -76,7 +92,7 @@ Estadísticas agregadas del mempool en memoria.
 Estimaciones de comisión por objetivo de confirmación (sat/vB).
 
 ```json
-{ "fastestFee": 42, "halfHourFee": 30, "hourFee": 18, "economyFee": 6, "minimumFee": 1 }
+{ "fastest": 42, "halfHour": 30, "hour": 18, "economy": 6, "minimum": 1 }
 ```
 
 ### `GET /api/mempool/recent`
@@ -192,12 +208,17 @@ antes de persistir.
 - `201 Created` → `{ "asset": { ... }, "validation": { "valid": true, "errors": [] } }`
 - `400 Bad Request` → faltan campos obligatorios.
 - `422 Unprocessable Entity` → `{ "error": "Validación fallida.", "validation": { "errors": [ ... ] } }`
+- `503 Service Unavailable` → `{ "error": "Registro de activos deshabilitado en etapa de auditoría.", "status": "en_auditoria", ... }`
 
 ### `POST /api/rwa/assets/:id/transfer`
 
 Transfiere la titularidad de un activo.
 
 **Cuerpo:** `{ "newOwner": "bc1p...", "txid": "<txid de la transferencia>" }`
+
+**Respuestas destacadas**
+- `200 OK` → activo transferido.
+- `503 Service Unavailable` → transferencias bloqueadas por modo auditoría.
 
 ---
 
@@ -235,6 +256,7 @@ Cada mensaje del servidor tiene la forma:
 | `400`  | Petición inválida (parámetros o cuerpo).           |
 | `404`  | Recurso no encontrado.                             |
 | `422`  | Validación de cumplimiento fallida.                |
+| `503`  | Dependencia crítica no disponible o endpoint bloqueado por auditoría. |
 | `500`  | Error interno del servidor.                        |
 
 Los errores se devuelven con la forma `{ "error": "mensaje descriptivo" }`.

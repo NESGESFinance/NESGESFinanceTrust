@@ -98,6 +98,8 @@ npm run dev
 
 El frontend estático se sirve desde `frontend/` (por Nginx o cualquier
 servidor de estáticos). El backend escucha en el puerto `3000` por defecto.
+El script `npm run migrate` ejecuta las migraciones SQL ubicadas en
+`backend/migrations/` y crea la base de datos si aún no existe.
 
 ## Scripts npm
 
@@ -123,6 +125,7 @@ Endpoints REST y canales WebSocket documentados en [`docs/API.md`](./docs/API.md
 Resumen:
 
 - `GET /api/health`
+- `GET /api/blocks/recent`
 - `GET /api/blocks/:height`
 - `GET /api/mempool` · `/fees` · `/recent`
 - `GET /api/runes` · `/id/:block/:tx` · `/:name` · `/:name/holders`
@@ -145,6 +148,7 @@ nesgesfinancetrust/
 │   └── migrations/         # 001..004 (SQL)
 ├── frontend/
 │   ├── index.html, dashboard1.html, explorer.html, dashboard2.html, rwa-marketplace.html
+│   ├── status.html, developers.html, verify.html, institucional.html
 │   ├── assets/ (css, js, img)
 │   └── components/         # fragmentos HTML reutilizables
 ├── docs/                   # API, ARQUITECTURA, RUNES, ORDINALS, COMPLIANCE

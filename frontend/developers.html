@@ -129,7 +129,7 @@
 
   <nav class="nav-principal">
     <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
-    <ul class="nav-enlaces"><li><a href="index.html">Inicio</a></li><li><a href="institucional.html">Ecosistema</a></li><li><a href="verify.html">Explorar activos</a></li><li><a href="dashboard-unificado.html">Dashboard</a></li><li><a href="explorer.html">Explorador</a></li><li><a href="dashboard2.html">Tokenización RWA</a></li><li><a href="rwa-marketplace.html">Marketplace</a></li></ul>
+    <ul class="nav-enlaces"><li><a href="index.html" data-i18n="navHome">Inicio</a></li><li><a href="institucional.html" data-i18n="navEcosystem">Ecosistema</a></li><li><a href="verify.html" data-i18n="navProjects">Explorar activos</a></li><li><a href="dashboard-unificado.html" data-i18n="navDashboard">Dashboard</a></li><li><a href="explorer.html" data-i18n="navExplorer">Explorador</a></li><li><a href="dashboard2.html" data-i18n="navRwa">Tokenización RWA</a></li><li><a href="rwa-marketplace.html" data-i18n="navMarketplace">Marketplace</a></li><li><a href="status.html" data-i18n="navStatus">Estado</a></li><li><a href="developers.html" data-i18n="navDevelopers">Developers</a></li></ul>
   </nav>
 
   <main style="max-width: 1000px; margin: 0 auto; padding: 2rem 1.25rem;">
@@ -142,342 +142,161 @@
       <h3 data-i18n="developersQuickstartTitle" style="margin-top: 0; color: #A9C6FF;">🚀 Inicio Rápido</h3>
       <p data-i18n="developersQuickstartP1">La API de NESGESFinanceTrust expone datos de Bitcoin, Runes, Ordinals y activos RWA mediante REST API y WebSocket en tiempo real.</p>
       <p style="color: var(--c-tenue); font-size: 0.9rem;">
-<strong><strong data-i18n="developersBaseUrl">Base URL:</strong></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">https://api.nesgesfinancetrust.com</code><br/>
-<strong><strong data-i18n="developersWebSocket">WebSocket:</strong></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">wss://ws.nesgesfinancetrust.com</code><br/>
-<strong><strong data-i18n="developersApiVersion">Versión API:</strong></strong> v1 (beta)
+<strong><span data-i18n="developersBaseUrl">Base URL:</span></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">/api</code><br/>
+<strong><span data-i18n="developersWebSocket">WebSocket:</span></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">ws(s)://&lt;host&gt;/ws</code><br/>
+<strong><span data-i18n="developersApiVersion">Versión API:</span></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">v3.4.0-dev</code>
       </p>
     </div>
 
-    <!-- AUTHENTICATION -->
     <section>
-      <h2 data-i18n="developersAuthTitle">🔐 Autenticación</h2>
-      <p data-i18n="developersAuthP">Algunos endpoints requieren autenticación mediante token API Key.</p>
-      
-      <div class="endpoint">
-        <span class="endpoint-method endpoint-post">POST</span>
-        <div class="endpoint-path">/auth/token</div>
-        <div class="endpoint-desc">Obtener token de acceso</div>
-        
-        <div class="code-block">
-curl -X POST https://api.nesgesfinancetrust.com/auth/token \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "tu@correo.com",
-    "password": "tu_contraseña"
-  }'
-        </div>
-
-        <div class="endpoint-params">
-          <strong>Respuesta:</strong>
-          <div class="code-block">
-{
-  "access_token": "eyJhbGciOiJIUzI1NiIs...",
-  "token_type": "Bearer",
-  "expires_in": 3600
-}
-          </div>
-        </div>
-      </div>
-
-      <p style="color: var(--c-tenue); font-size: 0.9rem;">
-        Usa el token en el header <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem;">Authorization: Bearer {token}</code>
-      </p>
-    </section>
-
-    <!-- BLOCKS -->
-    <section>
-      <h2 data-i18n="developersBlocksTitle">⛓️ Bloques</h2>
-      
+      <h2 data-i18n="developersAccessTitle">🔐 Acceso actual</h2>
+      <p data-i18n="developersAccessP">Los endpoints públicos documentados en este repositorio no requieren autenticación. Las operaciones POST del módulo RWA permanecen bloqueadas en modo auditoría y responden HTTP 503.</p>
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
-        <div class="endpoint-path">/blocks/:height</div>
-        <div class="endpoint-desc">Obtener información de un bloque por altura</div>
-        <div class="code-block">GET /blocks/923867</div>
-        
-        <div class="endpoint-params">
-          <strong>Parámetros:</strong>
-          <div class="param-row">
-            <span class="param-name">height</span>
-            <span class="param-type">number</span>
-            <span class="param-desc">Altura del bloque (requerido)</span>
-          </div>
-          
-          <strong style="display: block; margin-top: 1rem;">Respuesta:</strong>
-          <div class="code-block">
-{
-  "height": 923867,
-  "hash": "00000000...",
-  "timestamp": 1724409600,
-  "tx_count": 3250,
-  "size": 1248576
-}
-          </div>
-        </div>
+        <div class="endpoint-path">/health</div>
+        <div class="endpoint-desc" data-i18n="developersHealthDesc">Devuelve la identidad de la plataforma y el estado real de dependencias críticas.</div>
+        <div class="code-block">GET /api/health</div>
       </div>
+    </section>
 
+    <section>
+      <h2 data-i18n="developersBlocksTitle">⛓️ Bloques</h2>
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
         <div class="endpoint-path">/blocks/recent</div>
-        <div class="endpoint-desc">Obtener últimos 10 bloques indexados</div>
-        <div class="code-block">GET /blocks/recent</div>
+        <div class="endpoint-desc" data-i18n="developersRecentBlocks">Obtener los bloques más recientes persistidos.</div>
+        <div class="code-block">GET /api/blocks/recent?limit=10</div>
+      </div>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-get">GET</span>
+        <div class="endpoint-path">/blocks/:height</div>
+        <div class="endpoint-desc" data-i18n="developersBlockByHeight">Obtener información de un bloque por altura</div>
+        <div class="code-block">GET /api/blocks/923867</div>
+        <div class="endpoint-params">
+          <strong data-i18n="developersParams">Parámetros:</strong>
+          <div class="param-row">
+            <span class="param-name">height</span>
+            <span class="param-type">number</span>
+            <span class="param-desc" data-i18n="developersBlockHeightParam">Altura del bloque (requerido)</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- MEMPOOL -->
     <section>
       <h2 data-i18n="developersMempoolTitle">⚡ Mempool</h2>
-      
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
         <div class="endpoint-path">/mempool</div>
-        <div class="endpoint-desc">Obtener transacciones pendientes del mempool</div>
-        <div class="code-block">GET /mempool</div>
-        
-        <div class="endpoint-params">
-          <strong>Query Params (opcionales):</strong>
-          <div class="param-row">
-            <span class="param-name">limit</span>
-            <span class="param-type">number</span>
-            <span class="param-desc">Máximo de resultados (default: 100, máx: 1000)</span>
-          </div>
-          <div class="param-row">
-            <span class="param-name">sort</span>
-            <span class="param-type">string</span>
-            <span class="param-desc">fee_rate | time (default: time)</span>
-          </div>
-        </div>
+        <div class="endpoint-desc" data-i18n="developersGetMempool">Obtener estadísticas agregadas del mempool en memoria.</div>
+        <div class="code-block">GET /api/mempool</div>
       </div>
-
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
         <div class="endpoint-path">/mempool/fees</div>
-        <div class="endpoint-desc">Obtener estimaciones de fees actuales</div>
-        <div class="code-block">GET /mempool/fees</div>
+        <div class="endpoint-desc" data-i18n="developersFeesNow">Obtener estimaciones de fees actuales</div>
+        <div class="code-block">GET /api/mempool/fees</div>
+      </div>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-get">GET</span>
+        <div class="endpoint-path">/mempool/recent</div>
+        <div class="endpoint-desc" data-i18n="developersRecentMempoolDesc">Obtener las transacciones recientes reportadas por el backend on-chain.</div>
+        <div class="code-block">GET /api/mempool/recent</div>
       </div>
     </section>
 
-    <!-- RUNES -->
     <section>
       <h2 data-i18n="developersRunesTitle">🪙 Runes (Utility Token)</h2>
-      
-      <div class="endpoint">
-        <span class="endpoint-method endpoint-get">GET</span>
-        <div class="endpoint-path">/runes</div>
-        <div class="endpoint-desc">Listar todas las Runes indexadas</div>
-        <div class="code-block">GET /runes?limit=50&amp;offset=0</div>
-      </div>
-
-      <div class="endpoint">
-        <span class="endpoint-method endpoint-get">GET</span>
-        <div class="endpoint-path">/runes/:name</div>
-        <div class="endpoint-desc">Obtener información de una Rune específica</div>
-        <div class="code-block">GET /runes/NGF•BTC•AM</div>
-      </div>
-
-      <div class="endpoint">
-        <span class="endpoint-method endpoint-get">GET</span>
-        <div class="endpoint-path">/runes/:name/holders</div>
-        <div class="endpoint-desc">Obtener top 100 holders de una Rune</div>
-        <div class="code-block">GET /runes/NGF•BTC•AM/holders</div>
-      </div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/runes</div><div class="endpoint-desc" data-i18n="developersListRunes">Listar todas las Runes indexadas</div><div class="code-block">GET /api/runes?limit=50&amp;offset=0</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/runes/:name</div><div class="endpoint-desc" data-i18n="developersGetRune">Obtener información de una Rune específica</div><div class="code-block">GET /api/runes/NGF•BTC•AM</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/runes/:name/holders</div><div class="endpoint-desc" data-i18n="developersRuneHolders">Obtener top 100 holders de una Rune</div><div class="code-block">GET /api/runes/NGF•BTC•AM/holders</div></div>
     </section>
 
-    <!-- ORDINALS -->
     <section>
       <h2 data-i18n="developersOrdinalsTitle">🖼️ Ordinals e Inscripciones</h2>
-      
-      <div class="endpoint">
-        <span class="endpoint-method endpoint-get">GET</span>
-        <div class="endpoint-path">/ordinals/inscriptions</div>
-        <div class="endpoint-desc">Listar inscripciones registradas</div>
-        <div class="code-block">GET /ordinals/inscriptions?limit=50</div>
-      </div>
-
-      <div class="endpoint">
-        <span class="endpoint-method endpoint-get">GET</span>
-        <div class="endpoint-path">/ordinals/inscription/:id</div>
-        <div class="endpoint-desc">Obtener detalles de una inscripción</div>
-        <div class="code-block">GET /ordinals/inscription/a1b2c3d4e5f6...i0</div>
-      </div>
-
-      <div class="endpoint">
-        <span class="endpoint-method endpoint-get">GET</span>
-        <div class="endpoint-path">/ordinals/content/:id</div>
-        <div class="endpoint-desc">Obtener contenido de una inscripción</div>
-        <div class="code-block">GET /ordinals/content/a1b2c3d4e5f6...i0</div>
-      </div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/ordinals/inscriptions</div><div class="endpoint-desc" data-i18n="developersListInscriptions">Listar inscripciones registradas</div><div class="code-block">GET /api/ordinals/inscriptions?limit=50</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/ordinals/inscription/:id</div><div class="endpoint-desc" data-i18n="developersGetInscription">Obtener detalles de una inscripción</div><div class="code-block">GET /api/ordinals/inscription/a1b2c3d4e5f6...i0</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/ordinals/content/:id</div><div class="endpoint-desc" data-i18n="developersGetInscriptionContent">Obtener contenido de una inscripción</div><div class="code-block">GET /api/ordinals/content/a1b2c3d4e5f6...i0</div></div>
     </section>
 
-    <!-- RWA -->
     <section>
       <h2 data-i18n="developersRwaTitle">🏢 Activos Reales (RWA)</h2>
-      
       <div class="endpoint">
         <span class="endpoint-method endpoint-get">GET</span>
         <div class="endpoint-path">/rwa/assets</div>
-        <div class="endpoint-desc">Listar activos registrados con filtros opcionales</div>
-        <div class="code-block">GET /rwa/assets?type=INMUEBLE&amp;status=ACTIVO</div>
-        
-        <div class="endpoint-params">
-          <strong>Query Params (opcionales):</strong>
-          <div class="param-row">
-            <span class="param-name">type</span>
-            <span class="param-type">string</span>
-            <span class="param-desc">INMUEBLE | VEHICULO | ARTE | COMMODITIES | DEUDA | EQUITY</span>
-          </div>
-          <div class="param-row">
-            <span class="param-name">status</span>
-            <span class="param-type">string</span>
-            <span class="param-desc">PENDIENTE | ACTIVO | TRANSFERIDO | CANCELADO</span>
-          </div>
-        </div>
+        <div class="endpoint-desc" data-i18n="developersListAssets">Listar activos registrados con filtros opcionales</div>
+        <div class="code-block">GET /api/rwa/assets?type=INMUEBLE&amp;status=ACTIVO</div>
       </div>
-
-      <div class="endpoint">
-        <span class="endpoint-method endpoint-get">GET</span>
-        <div class="endpoint-path">/rwa/assets/:id</div>
-        <div class="endpoint-desc">Obtener detalles de un activo</div>
-        <div class="code-block">GET /rwa/assets/12345</div>
-      </div>
-
-      <div class="endpoint">
-        <span class="endpoint-method endpoint-get">GET</span>
-        <div class="endpoint-path">/rwa/assets/:id/history</div>
-        <div class="endpoint-desc">Obtener historial de cambios de un activo</div>
-        <div class="code-block">GET /rwa/assets/12345/history</div>
-      </div>
-
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/rwa/assets/:id</div><div class="endpoint-desc" data-i18n="developersGetAsset">Obtener detalles de un activo</div><div class="code-block">GET /api/rwa/assets/12345</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/rwa/assets/:id/history</div><div class="endpoint-desc" data-i18n="developersAssetHistory">Obtener historial de cambios de un activo</div><div class="code-block">GET /api/rwa/assets/12345/history</div></div>
       <div class="endpoint">
         <span class="endpoint-method endpoint-post">POST</span>
         <div class="endpoint-path">/rwa/assets</div>
-        <div class="endpoint-desc">Registrar un nuevo activo (requiere autenticación)</div>
-        <div class="code-block">
-POST /rwa/assets
-Authorization: Bearer {token}
+        <div class="endpoint-desc" data-i18n="developersRegisterAsset">Intento de registro de un activo (actualmente devuelve 503 por modo auditoría).</div>
+        <div class="code-block">POST /api/rwa/assets
 Content-Type: application/json
 
 {
-  "name": "Propiedad Inmueble ABC",
   "type": "INMUEBLE",
-  "description": "...",
+  "name": "Activo de ejemplo",
   "valuationUSD": 250000,
-  "location": "Ibarra, Ecuador",
-  "documentHash": "a1b2c3d4..."
-}
-        </div>
+  "owner": "bc1p...",
+  "inscriptionId": "&lt;txid&gt;i0",
+  "metadata": { "legalDocuments": [] }
+}</div>
       </div>
     </section>
 
-    <!-- WEBSOCKET -->
     <section>
       <h2 data-i18n="developersWsTitle">📡 WebSocket (Tiempo Real)</h2>
-      <p>Conecta a canales en vivo para recibir eventos en tiempo real.</p>
-
+      <p data-i18n="developersWsP">Conecta a canales en vivo para recibir eventos en tiempo real.</p>
       <div class="endpoint">
         <span class="endpoint-method endpoint-ws">WS</span>
         <div class="endpoint-path">/ws</div>
-        <div class="endpoint-desc">Conexión WebSocket con múltiples canales</div>
-        
-        <div class="code-block">
-// JavaScript
-const ws = new WebSocket('wss://ws.nesgesfinancetrust.com');
+        <div class="endpoint-desc" data-i18n="developersWsConn">Conexión WebSocket con múltiples canales</div>
+        <div class="code-block">const ws = new WebSocket(`${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws`);
 
 ws.onopen = () =&gt; {
   ws.send(JSON.stringify({
     action: 'subscribe',
-    channel: 'blocks'
+    channels: ['blocks', 'mempool']
   }));
 };
 
 ws.onmessage = (event) =&gt; {
   const data = JSON.parse(event.data);
-  console.log('Nuevo bloque:', data);
-};
-        </div>
-
+  console.log(data.channel || data.type, data.payload);
+};</div>
         <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--c-borde);">
-          <strong>Canales disponibles:</strong>
-          <div style="margin-top: 0.75rem; display: grid; gap: 0.5rem;">
-            <div style="color: var(--c-tenue);"><span style="color: var(--c-dorado); font-weight: 600;">blocks</span> — Nuevos bloques confirmados</div>
-            <div style="color: var(--c-tenue);"><span style="color: var(--c-dorado); font-weight: 600;">mempool</span> — Transacciones pendientes</div>
-            <div style="color: var(--c-tenue);"><span style="color: var(--c-dorado); font-weight: 600;">runes</span> — Eventos de Runes</div>
-            <div style="color: var(--c-tenue);"><span style="color: var(--c-dorado); font-weight: 600;">ordinals</span> — Nuevas inscripciones</div>
-            <div style="color: var(--c-tenue);"><span style="color: var(--c-dorado); font-weight: 600;">rwa</span> — Cambios en expedientes RWA</div>
+          <strong data-i18n="developersChannels">Canales disponibles:</strong>
+          <div style="margin-top: 0.75rem; display: grid; gap: 0.5rem; color: var(--c-tenue);">
+            <div><span style="color: var(--c-dorado); font-weight: 600;">blocks</span> — <span data-i18n="developersChannelBlocks">Nuevos bloques indexados</span></div>
+            <div><span style="color: var(--c-dorado); font-weight: 600;">mempool</span> — <span data-i18n="developersChannelMempool">Actualizaciones del mempool</span></div>
+            <div><span style="color: var(--c-dorado); font-weight: 600;">runes</span> — <span data-i18n="developersChannelRunes">Eventos del protocolo Runes</span></div>
+            <div><span style="color: var(--c-dorado); font-weight: 600;">ordinals</span> — <span data-i18n="developersChannelOrdinals">Eventos de Ordinals</span></div>
+            <div><span style="color: var(--c-dorado); font-weight: 600;">rwa</span> — <span data-i18n="developersChannelRwa">Cambios del registro RWA</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SDKs -->
     <section>
-      <h2 data-i18n="developersSdksTitle">📦 SDKs Oficiales</h2>
-      <p>Bibliotecas en lenguajes populares para facilitar integración.</p>
-
-      <div class="sdk-grid">
-        <div class="sdk-item">
-          <div class="sdk-lang">🔵 JavaScript/TypeScript</div>
-          <p style="color: var(--c-tenue); font-size: 0.85rem;">npm install nesgesfinancetrust</p>
-          <a class="sdk-link" href="https://github.com/NESGESFinance/sdk-js">Repositorio →</a>
-        </div>
-        <div class="sdk-item">
-          <div class="sdk-lang">🐍 Python</div>
-          <p style="color: var(--c-tenue); font-size: 0.85rem;">pip install nesgesfinancetrust</p>
-          <a class="sdk-link" href="https://github.com/NESGESFinance/sdk-python">Repositorio →</a>
-        </div>
-        <div class="sdk-item">
-          <div class="sdk-lang">🦀 Rust</div>
-          <p style="color: var(--c-tenue); font-size: 0.85rem;">cargo add nesgesfinancetrust</p>
-          <a class="sdk-link" href="https://github.com/NESGESFinance/sdk-rust">Repositorio →</a>
-        </div>
-        <div class="sdk-item">
-          <div class="sdk-lang">☕ Java</div>
-          <p style="color: var(--c-tenue); font-size: 0.85rem;">Maven/Gradle disponible</p>
-          <a class="sdk-link" href="https://github.com/NESGESFinance/sdk-java">Repositorio →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- RATE LIMITING -->
-    <section>
-      <h2 data-i18n="developersRateTitle">⏱️ Rate Limiting</h2>
-      <p>Para asegurar estabilidad, la API implementa límites de uso:</p>
-      
+      <h2 data-i18n="developersNotesTitle">⚠️ Notas de implementación</h2>
       <div class="dev-grid">
-        <div class="dev-card">
-          <div style="color: #2EAF6D; font-weight: 700; font-size: 1.2rem;">100</div>
-          <div class="dev-title">req/min (público)</div>
-          <div class="dev-desc">Limite para endpoints públicos sin autenticación</div>
-        </div>
-        <div class="dev-card">
-          <div style="color: #F7931A; font-weight: 700; font-size: 1.2rem;">1,000</div>
-          <div class="dev-title">req/min (autenticado)</div>
-          <div class="dev-desc">Limite para usuarios autenticados</div>
-        </div>
-        <div class="dev-card">
-          <div style="color: #A9C6FF; font-weight: 700; font-size: 1.2rem;">10,000</div>
-          <div class="dev-title">req/min (premium)</div>
-          <div class="dev-desc">Para integraciones empresariales (contactar)</div>
-        </div>
+        <div class="dev-card"><div class="dev-title" data-i18n="developersNotesAuditTitle">Modo auditoría</div><div class="dev-desc" data-i18n="developersNotesAuditDesc">Los endpoints de escritura RWA están deshabilitados mientras la plataforma permanezca en auditoría técnica.</div></div>
+        <div class="dev-card"><div class="dev-title" data-i18n="developersNotesHealthTitle">Healthcheck real</div><div class="dev-desc" data-i18n="developersNotesHealthDesc">/api/health distingue entre estado OK y degradado según la disponibilidad de la base de datos.</div></div>
+        <div class="dev-card"><div class="dev-title" data-i18n="developersNotesDocsTitle">Referencia viva</div><div class="dev-desc" data-i18n="developersNotesDocsDesc">La referencia canónica del comportamiento actual está en README.md y docs/API.md dentro de este repositorio.</div></div>
       </div>
-
-      <p style="color: var(--c-tenue); font-size: 0.9rem; margin-top: 1.5rem;">
-        Cuando alcances el límite, recibirás un error HTTP 429 (Too Many Requests). 
-        Reintenta después del tiempo especificado en header <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem;">Retry-After</code>.
-      </p>
     </section>
 
-    <!-- SUPPORT -->
     <section style="margin-top: 3rem; padding: 1.5rem; background: var(--c-sup); border-radius: 10px; border: 1px solid var(--c-borde);">
       <h2 data-i18n="developersSupportTitle" style="margin-top: 0;">📞 Soporte Técnico</h2>
       <p data-i18n="developersSupportP">¿Preguntas o problemas con la API?</p>
       <ul style="list-style: none; padding: 0; margin: 1rem 0;">
-        <li>📧 <strong>support@nesgesfinance.org</strong> — Soporte general</li>
-        <li>🐛 <strong>security@nesgesfinance.org</strong> — Reportar vulnerabilidades</li>
-        <li>💬 <strong>Discord/GitHub</strong> — Comunidad de desarrolladores</li>
+        <li>📧 <strong>support@nesgesfinance.org</strong> — <span data-i18n="developersSupportGeneral">Soporte general</span></li>
+        <li>🐛 <strong>security@nesgesfinance.org</strong> — <span data-i18n="developersSupportSecurity">Reportar vulnerabilidades</span></li>
+        <li>📚 <a href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/docs/API.md" rel="noopener" style="color: var(--c-naranja);" target="_blank"><strong>docs/API.md</strong></a> — <span data-i18n="developersSupportDocs">Documentación completa del repositorio</span></li>
       </ul>
-      <p style="color: var(--c-tenue); font-size: 0.9rem;">
-        Documentación completa: <a href="docs/API.md" style="color: var(--c-naranja);">docs/API.md</a>
-      </p>
     </section>
   </main>
 

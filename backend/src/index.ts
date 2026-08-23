@@ -81,7 +81,8 @@ function configureRoutes(app: Application): void {
   // Bloques (consulta directa al repositorio).
   app.get(`${prefix}/blocks/recent`, async (req: Request, res: Response) => {
     try {
-      const limit = Math.min(Number(req.query.limit ?? 10), 50);
+      const requested = Number(req.query.limit ?? 10);
+      const limit = Number.isFinite(requested) && requested > 0 ? Math.min(requested, 50) : 10;
       const blocks = await blocksRepository.$getRecentBlocks(limit);
       res.json(blocks);
     } catch (e) {
