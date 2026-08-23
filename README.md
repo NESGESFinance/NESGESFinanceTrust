@@ -24,6 +24,7 @@ cumplimiento normativo, exponiendo una API REST/WebSocket y un panel web.
 > **Lema:** *"Y a tu prójimo como a ti mismo"*
 > **Web:** [https://nesgesfinance.org](https://nesgesfinance.org)
 > **Whitepaper:** [`NESGESFinance Ecosystem — Documento Maestro Institucional, Tecnológico y de Proyectos 2026`](./NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
+> **Fuente institucional primaria:** el PDF adjunto funciona como mini whitepaper institucional y documento maestro base para las secciones de arquitectura, tokenómica, postulación de proyectos y gobernanza descritas en este repositorio.
 
 ---
 
@@ -167,7 +168,7 @@ nesgesfinancetrust/
 - [`docs/COMPLIANCE.md`](./docs/COMPLIANCE.md) — Cumplimiento KYC/AML/MiCA y proceso F0–F6.
 - [`docs/TOKENOMICA.md`](./docs/TOKENOMICA.md) — Tokenómica oficial v5.0.
 - [`docs/PROYECTOS.md`](./docs/PROYECTOS.md) — Portafolio de proyectos y proceso de postulación.
-- [`docs/WHITEPAPER.md`](./docs/WHITEPAPER.md) — Documento Maestro Institucional 2026 (resumen y referencias).
+- [`docs/WHITEPAPER.md`](./docs/WHITEPAPER.md) — Documento Maestro / mini whitepaper institucional 2026 (resumen, índice y trazabilidad).
 - [`docs/BRANDING.md`](./docs/BRANDING.md) — Guía de branding y uso de logotipos oficiales.
 
 ## 🎨 Branding y Logotipos

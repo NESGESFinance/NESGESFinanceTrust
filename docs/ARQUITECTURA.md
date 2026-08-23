@@ -8,6 +8,8 @@
 Este documento describe la arquitectura de la plataforma de indexación y
 tokenización de la NESGESFinance Ecosystem, construida sobre Bitcoin y sus protocolos de capa 1.
 
+> Fuente institucional primaria: [`NESGESFinance Ecosystem Mini Whitepaper Institucional 2026 (2).pdf`](../NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
+
 ---
 
 ## 1. Visión general

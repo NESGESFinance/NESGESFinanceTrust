@@ -10,6 +10,11 @@
 El PDF del Documento Maestro está disponible en este repositorio:
 [`NESGESFinance Ecosystem Mini Whitepaper Institucional 2026 (2).pdf`](../NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
 
+Este archivo Markdown funciona como **resumen sincronizado, índice de lectura y
+trazabilidad** del PDF institucional adjunto. Cuando exista diferencia de nivel
+de detalle, prevalece la evidencia primaria del PDF y los documentos técnicos
+derivados enlazados desde esta página.
+
 ---
 
 ## Resumen ejecutivo
@@ -84,14 +89,73 @@ portafolio de proyectos a desplegar.
 
 ---
 
-## 6. Cumplimiento normativo
+## 6. Participación en proyectos aprobados
+
+La secuencia operativa declarada para participantes es:
+
+1. Completar **KYC/AML** y verificación de origen de fondos.
+2. Registrar la dirección Bitcoin en la **whitelist** de la serie.
+3. Obtener **NGF•BTC•AM** como llave de acceso técnico; **no constituye**
+   inversión por sí mismo ni confiere derechos económicos directos.
+4. Revisar el Launchpad y la documentación completa de la serie.
+5. Adquirir el Ordinal de la serie sólo desde dirección habilitada.
+6. Seguir snapshots trimestrales (31-mar, 30-jun, 30-sep y 31-dic a las
+   23:59 UTC), distribuciones BTC y gobernanza del Reglamento.
+
+> Desarrollo ampliado en [`docs/PROYECTOS.md`](./PROYECTOS.md).
+
+---
+
+## 7. Gobernanza híbrida
+
+| Nivel | Participantes | Alcance |
+|---|---|---|
+| Gobernanza corporativa | Entidades legales S.A.S. BIC + LLC | Dirección institucional y cumplimiento legal. |
+| Gobernanza del ecosistema | Tenedores de NGF•BTC•AM | Orientación general consultiva. |
+| Gobernanza de proyectos | Tenedores de Ordinals de cada serie | Decisiones operativas/económicas vinculantes según Reglamento. |
+| Capa Trust (propuesta) | Trust/fiduciario/beneficiarios por definir | Continuidad patrimonial, reservas y administración separada, pendiente de instrumento constitutivo. |
+
+---
+
+## 8. Cumplimiento normativo
 
 Ver [`docs/COMPLIANCE.md`](./COMPLIANCE.md) para la clasificación MiCA,
 KYC/AML, proceso F0–F6 y marco regulatorio aplicable (Reg D, Reg S).
 
 ---
 
-## 7. Roadmap 2025–2030
+## 9. Stack, seguridad y trazabilidad
+
+La fuente PDF incorpora una capa de controles institucionales que se refleja en
+la documentación técnica del repositorio:
+
+- **Stack declarado:** Bitcoin L1, Runes, Ordinals, Lightning prevista, Taproot
+  Assets, multifirma 3/5 y hardware wallets.
+- **Separación de capas:** consenso Bitcoin, indexadores y estados L2 deben
+  permanecer diferenciados.
+- **Custodia y secretos:** no exponer claves privadas, semillas, macaroons ni
+  credenciales RPC en frontend, repositorios, logs o variables públicas.
+- **CI/CD y software:** mínimo privilegio, OIDC, SAST/SCA, SBOM, firma de
+  artefactos y evidencia reproducible.
+- **RWA/KYC:** separación entre explorador público y PII/reglas
+  jurisdiccionales.
+
+> Ver desarrollo técnico en [`docs/ARQUITECTURA.md`](./ARQUITECTURA.md).
+
+---
+
+## 10. Matriz institucional de estados
+
+| Elemento | Estado documental | Acción recomendada |
+|---|---|---|
+| NGF•BTC•AM | Declarado emitido/verificable en la fuente | Conservar evidencia on-chain primaria y actualizar estado dinámico. |
+| S.A.S. BIC Ecuador | Constitución e identificadores declarados en White Paper | Contrastar periódicamente con registros societarios vigentes. |
+| LLC New Mexico | Constitución e identificadores declarados en White Paper | Conservar certificado/filing y registros vigentes. |
+| SPV de cada proyecto | Modelo obligatorio del framework | No publicar proyecto antes de F0–F5 y documentación de emisión completa. |
+
+---
+
+## 11. Roadmap 2025–2030
 
 | Período | Hito |
 |---|---|
@@ -102,8 +166,11 @@ KYC/AML, proceso F0–F6 y marco regulatorio aplicable (Reg D, Reg S).
 
 ---
 
-## 8. Fuentes y trazabilidad documental
+## 12. Fuentes y trazabilidad documental
 
+- PDF institucional adjunto:
+  [`NESGESFinance Ecosystem Mini Whitepaper Institucional 2026 (2).pdf`](../NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
+  — documento maestro / mini whitepaper base consolidado en agosto de 2026.
 - *White Paper de Procesos del Ecosistema*, versión 0.1, EIN 0008, con registro
   de depuración V3.1 (julio 2026), aportado como PDF.
 - Hoja informativa visual *"NESGESFinance — Proyectos a Desplegar"*.

@@ -8,6 +8,8 @@ Este documento describe la distribución oficial del Rune de utilidad
 **NGF•BTC•AM** (Rune #208,645, ID `923867:120`) conforme al Documento Maestro
 Institucional 2026.
 
+> Fuente institucional primaria: [`NESGESFinance Ecosystem Mini Whitepaper Institucional 2026 (2).pdf`](../NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
+
 ---
 
 ## 1. Datos del Rune
