@@ -269,7 +269,7 @@ class DataMetadataInjector {
       }
     };
 
-    const checks = checkType ? { [checkType]: this.complianceFlags[checkType] } : this.complianceFlags;
+    const checks = checkType ? { [checkType]: this.complianceFlags[checkType] || [] } : this.complianceFlags;
 
     Object.entries(checks).forEach(([type, entries]) => {
       const passed = entries.filter(e => e.passed).length;
