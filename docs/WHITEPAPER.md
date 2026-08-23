@@ -1,134 +1,75 @@
-# Documento Maestro — NESGESFinance Ecosystem 2026
+# Documento Maestro Institucional 2026
 
-> Plataforma: **nesgesfinancetrust.com** · Web: [https://nesgesfinance.org](https://nesgesfinance.org)
-> Empresa: **NESGESFinance Ecosystem S.A.S. BIC. & LLC.** · EIN: 0008086872
-> CEO-Fundador: **Cbr. Joan Santiago Ramírez Almeida**
-> Lema: *"Y a tu prójimo como a tí mismo"*
-> Documento: *NESGESFinance Ecosystem — Documento Maestro Institucional, Tecnológico y de Proyectos 2026*
-> Publicado: 12 de agosto de 2026 · Clasificación: Confidencial/Institucional
+Este documento resume la base institucional, tecnológica y operativa del ecosistema NESGESFinanceTrust a partir del material de referencia disponible en el repositorio y del whitepaper institucional adjunto.
 
-El PDF del Documento Maestro está disponible en este repositorio:
-[`NESGESFinance Ecosystem Mini Whitepaper Institucional 2026 (2).pdf`](../NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
+## 1. Resumen ejecutivo
 
----
+NESGESFinanceTrust se presenta como una capa técnica e institucional para verificar, indexar, organizar y trazabilizar evidencia digital asociada a Bitcoin, Runes, Ordinals y expedientes de activos reales (RWA). El enfoque declarado prioriza trazabilidad, cumplimiento, utilidad productiva y segregación operativa.
 
-## Resumen ejecutivo
+## 2. Identidad, doctrina y propósito
 
-NESGESFinance Ecosystem es una arquitectura empresarial y tecnológica que
-conecta activos reales (RWA) con Bitcoin L1/L2 bajo la doctrina
-**"Tokenización con Propósito"**. El modelo separa la utilidad operativa del
-ecosistema de los derechos específicos de cada proyecto:
+- **Identidad:** NESGES como núcleo estratégico y de gestión para ecosistemas sostenibles, financieros, tecnológicos y tokenizados.
+- **Doctrina:** la representación digital se subordina al activo real, al expediente jurídico y a la utilidad productiva.
+- **Propósito:** conectar activos reales con infraestructura Bitcoin de forma verificable y auditable.
 
-- **NGF•BTC•AM** actúa como Rune de utilidad del ecosistema (acceso técnico,
-  gobernanza consultiva, identidad digital).
-- **Ordinals independientes por proyecto** son los instrumentos tokenizados
-  sujetos al Reglamento de Emisión y al marco jurídico de cada serie
-  (securities tokenizados).
+## 3. Estructura corporativa dual y capa Trust
 
----
+El repositorio describe una estructura corporativa con separación funcional entre coordinación tecnológica, propiedad intelectual, expansión y una capa de trust/administración segregada. Esta separación debe reflejarse en la narrativa de la plataforma y en los materiales institucionales.
 
-## 1. Identidad, doctrina y propósito
+## 4. Arquitectura de activos digitales
 
-**Acrónimo NESGES:** Núcleo Estratégico y de Gestión para la Comunidad y
-Ecosistemas Sostenibles, Financieros, Tecnológicos y Tokenizados.
+### 4.1 NGF BTC AM
 
-**Misión:** Democratizar el acceso a inversiones en activos de alto valor y
-proyectos productivos mediante fraccionamiento inteligente, buscando impacto
-socioambiental tangible mediante economía circular y desarrollo sostenible.
+- Rune de utilidad sobre Bitcoin L1.
+- Activo visual y conceptual asociado a la operación on-chain.
+- Debe presentarse junto a flujos de exploración Bitcoin, verificación, mempool y módulos Runes/Ordinals.
 
-**Tres pilares:**
+### 4.2 Ordinals de proyecto
 
-| Pilar | Descripción |
-|---|---|
-| Físico-productivo | Portafolio de activos reales inmobiliarios, energéticos, ambientales, sociales y productivos. |
-| Digital | Arquitectura sobre Bitcoin con Runes como utilidad y Ordinals de proyecto para representación tokenizada específica. |
-| De impacto | Canalización estructural de recursos hacia iniciativas sociales y ambientales, coherente con la naturaleza BIC. |
+- Series de proyecto con hashes, documentación, validaciones y trazabilidad propia.
+- Deben vincularse a secciones de verificación, expediente técnico y RWA.
 
----
+### 4.3 Stable Sats
 
-## 2. Estructura corporativa dual y capa Trust
+- Capa complementaria propuesta para representaciones vinculadas a trusts o commodities.
+- Debe tratarse como elemento sujeto a documentación, reservas y validación.
 
-| Entidad | Jurisdicción | Identificador | Función |
-|---|---|---|---|
-| NESGESFinance Ecosystem S.A.S. BIC | Ecuador (Ibarra, Imbabura) | RUC 1091799299001 | Coordinación tecnológica e impacto BIC local; no es propietaria de los activos tokenizados. |
-| NESGESFinance Ecosystem S.A.S. LLC | Nuevo México, EE.UU. | File #3168825 · EIN 0008086872 | Registro y custodia de propiedad intelectual; desarrollo de infraestructura. |
-| NESGESFinanceTrust | En proceso de formalización | — | Tecnología, cumplimiento normativo, expansión internacional y primer SPV del proyecto piloto. Constituida el 5-mar-2026. |
+## 5. Tokenómica oficial v5.0
 
-**Aislamiento por proyecto:** cada proyecto tokenizado se estructura mediante
-un SPV independiente, con expediente propio, activo subyacente, Reglamento de
-Emisión, metadata, gobernanza, custodia y trazabilidad.
+La narrativa del repositorio debe conservar la referencia a la tokenómica oficial v5.0 cuando describa la relación entre utilidad, acceso técnico, gobernanza consultiva y unidad de cuenta.
 
----
+## 6. Proceso oficial de postulación de proyectos (F0 a F6)
 
-## 3. Arquitectura de activos digitales
+Mantener el proceso de postulación como flujo documental y operativo:
 
-Ver documentación detallada:
+- F0: Solicitud
+- F1: Due diligence
+- F2: SPV y reglamento
+- F3: Evaluación documental y técnica
+- F4: Validación jurídica y de cumplimiento
+- F5: Aprobación / estructura final
+- F6: Publicación o despliegue controlado
 
-- [`docs/RUNES_PROTOCOL.md`](./RUNES_PROTOCOL.md) — NGF•BTC•AM (Rune de utilidad #208,645).
-- [`docs/ORDINALS_PROTOCOL.md`](./ORDINALS_PROTOCOL.md) — Ordinals de proyecto (securities tokenizados).
-- [`docs/ARQUITECTURA.md`](./ARQUITECTURA.md) — Stack tecnológico completo.
+## 7. Integración visual recomendada
 
----
+La imagen principal institucional debe ser `frontend/assets/img/NESGESFinance_Logo.jpg`.
 
-## 4. Tokenómica oficial v5.0
+La imagen `frontend/assets/img/NGF-BTC-AM.png` debe asociarse a:
 
-Ver [`docs/TOKENOMICA.md`](./TOKENOMICA.md) para la tabla de distribución
-completa, vesting, custodia y motor económico paramétrico.
+- dashboards Bitcoin,
+- explorador,
+- mempool,
+- Runes,
+- Ordinals,
+- verificación técnica,
+- marketplace y formularios RWA.
 
----
+La imagen `frontend/assets/img/bitcoin-ledger.svg` debe usarse como apoyo visual para trazabilidad, verificación y secciones conceptuales.
 
-## 5. Proceso oficial de postulación — F0 a F6
+## 8. Exclusiones
 
-Ver [`docs/PROYECTOS.md`](./PROYECTOS.md) para el proceso completo y el
-portafolio de proyectos a desplegar.
+No incorporar en este documento ni en su derivación visual contenidos relativos a **Motel El Refugio** ni **Serie A**.
 
----
+## 9. Referencia pública
 
-## 6. Cumplimiento normativo
-
-Ver [`docs/COMPLIANCE.md`](./COMPLIANCE.md) para la clasificación MiCA,
-KYC/AML, proceso F0–F6 y marco regulatorio aplicable (Reg D, Reg S).
-
----
-
-## 7. Roadmap 2025–2030
-
-| Período | Hito |
-|---|---|
-| 2025–2026 · Fundacional | Constitución dual, emisión NGF•BTC•AM #208,645, whitepapers y estructura legal base. |
-| 2026 · Primer proyecto | Primer proyecto tokenizado, consolidación LLC, integración Lightning y KYC/AML operativo. |
-| 2027–2028 · Consolidación | Nuevos proyectos agrícolas, sociales y energéticos; expansión de gobernanza. |
-| 2029–2030 · Escala global | Internacionalización, alianzas estratégicas y evolución hacia gobernanza descentralizada/DAO. |
-
----
-
-## 8. Fuentes y trazabilidad documental
-
-- *White Paper de Procesos del Ecosistema*, versión 0.1, EIN 0008, con registro
-  de depuración V3.1 (julio 2026), aportado como PDF.
-- Hoja informativa visual *"NESGESFinance — Proyectos a Desplegar"*.
-- *Presentación empresarial NESGESFinance Ecosystem 2026* — arquitectura,
-  tokenómica, roadmap, gobernanza y estado.
-- Informes técnicos de auditoría de NESGESFinance.mempool.space — controles
-  de seguridad, reproducibilidad, Bitcoin/L2, CI/CD y separación RWA/KYC.
-- Repositorio oficial GitHub: [NESGESFinance/NESGESFinanceTrust](https://github.com/NESGESFinance/NESGESFinanceTrust).
-- Web oficial: [https://nesgesfinance.org](https://nesgesfinance.org).
-
----
-
-## Aviso legal
-
-Este documento es institucional, técnico e informativo. No constituye por sí
-mismo una oferta pública de valores, asesoría financiera, jurídica o fiscal,
-ni certificación independiente de seguridad. Las ofertas se realizan mediante
-los documentos de emisión de cada serie y bajo las exenciones regulatorias
-aplicables. Las afirmaciones sobre constitución societaria, activos, emisiones,
-reservas, cumplimiento y estado on-chain deben contrastarse con evidencia
-primaria vigente antes de cualquier uso comercial, regulatorio o de inversión.
-
-*Cbr. Joan Ramírez. CEO — NESGESFinance Ecosystem S.A.S. BIC.*
-*"Tokenización con Propósito"*
-
----
-
-Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872 — TODOS LOS DERECHOS RESERVADOS 2025-2026
+- https://nesgesfinance.org/

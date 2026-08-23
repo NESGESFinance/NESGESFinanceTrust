@@ -6,22 +6,56 @@ Esta guía centraliza las especificaciones técnicas y de uso de los logotipos o
 
 | Asset | Archivo | Formato | Dimensiones base | Uso recomendado |
 | --- | --- | --- | --- | --- |
-| NESGESFinance Ecosystem | `assets/logos/NESGESFinance_Logo.jpg` | JPG | 740 × 740 px | Cabeceras institucionales, piezas corporativas, README y documentación de ecosistema. |
-| NGF-BTC-AM | `assets/logos/NGF-BTC-AM.jpg` | JPG | 1023 × 1024 px | Comunicación de la Rune NGF-BTC-AM, activos vinculados a Bitcoin y material promocional especializado. |
+| NESGESFinance Ecosystem | `assets/img/NESGESFinance_Logo.jpg` | JPG | 740 × 740 px | Cabeceras institucionales, piezas corporativas, README y documentación de ecosistema. |
+| NGF-BTC-AM | `assets/img/NGF-BTC-AM.png` | PNG | 1023 × 1024 px | Comunicación de la Rune NGF-BTC-AM, activos vinculados a Bitcoin y material promocional especializado. |
+| Wordmark NESGESFinance | `assets/img/nesgesfinance-logo.svg` | SVG | Escalable | Navegación principal, branding web, documentación y componentes ligeros. |
+| Bitcoin ledger | `assets/img/bitcoin-ledger.svg` | SVG | Escalable | Elementos gráficos de soporte para secciones de verificación, trazabilidad y protocolo Bitcoin. |
 
-## Casos de uso y directrices
+## Mapa de uso por sección
 
-### NESGESFinance Ecosystem
+### 1. Identidad institucional y portada
 
-- Utilizar como marca paraguas del ecosistema NESGESFinance.
-- Priorizar su presencia en documentos institucionales, presentaciones y pantallas de onboarding.
-- Mantener margen visual suficiente para evitar contaminación con otros sellos o marcas terceras.
+- **Logo principal:** `NESGESFinance_Logo.jpg`
+- **Apoyo visual secundario:** `NGF-BTC-AM.png`
+- **Motivo:** representa la capa paraguas del ecosistema y la dualidad institucional + activa.
+- **Secciones sugeridas:** `index.html`, `institucional.html`, `README.md`, portada de documentos institucionales.
 
-### NGF-BTC-AM
+### 2. Exploración Bitcoin, mempool y arquitectura técnica
 
-- Reservar para contextos directamente relacionados con Bitcoin, Runes u ofertas ligadas al activo NGF-BTC-AM.
-- Acompañar preferentemente de textos o interfaces con contexto de producto para evitar ambigüedad.
-- Evitar reducirlo por debajo del tamaño mínimo recomendado para conservar legibilidad de la marca.
+- **Logo principal de marca:** `NESGESFinance_Logo.jpg`
+- **Activo específico de Bitcoin:** `NGF-BTC-AM.png`
+- **Apoyo conceptual:** `bitcoin-ledger.svg`
+- **Motivo:** estas vistas están asociadas a exploración on-chain, mempool, Runes y Ordinals.
+- **Secciones sugeridas:** `dashboard1.html`, `dashboard-unificado.html`, `explorer.html`, `verify.html`, `status.html`, `developers.html`.
+
+### 3. Tokenización RWA y marketplace
+
+- **Logo principal de marca:** `NESGESFinance_Logo.jpg`
+- **Activo específico de Bitcoin:** `NGF-BTC-AM.png`
+- **Motivo:** el portal RWA y su marketplace deben mantener identidad institucional, pero el activo NGF-BTC-AM puede reforzar la relación con Bitcoin y utilidad técnica.
+- **Secciones sugeridas:** `dashboard2.html`, `rwa-marketplace.html`, `rwa-states.html`, `evidence-policy.html`.
+
+### 4. Secciones documentales y de cumplimiento
+
+- **Logo principal:** `NESGESFinance_Logo.jpg`
+- **Apoyo visual opcional:** `bitcoin-ledger.svg`
+- **Motivo:** estas páginas priorizan claridad, trazabilidad y tono formal.
+- **Secciones sugeridas:** `docs/*.md`, `README.md`, `evidence-policy.html`, `status.html`.
+
+## Directrices de integración
+
+- Usar `NESGESFinance_Logo.jpg` como imagen principal cuando la sección trate sobre la plataforma, la marca o el ecosistema completo.
+- Usar `NGF-BTC-AM.png` cuando la sección esté centrada en Bitcoin, Runes, Ordinals, mempool, activos digitales o componentes de utilidad.
+- Usar `bitcoin-ledger.svg` como recurso decorativo o contextual, no como sustituto de marca principal.
+- Usar `nesgesfinance-logo.svg` en navegación, footers o componentes que requieran peso visual reducido y mejor escalabilidad.
+- Evitar colocar imágenes relacionadas con proyectos no alineados con la plataforma actual.
+
+## Casos excluidos
+
+No se deben integrar en la plataforma imágenes relacionadas con:
+
+- **Motel El Refugio**
+- **Serie A**
 
 ## Paleta oficial
 
@@ -39,12 +73,12 @@ Esta guía centraliza las especificaciones técnicas y de uso de los logotipos o
 
 ## Tamaños mínimos sugeridos
 
-| Contexto | NESGESFinance Ecosystem | NGF-BTC-AM |
-| --- | --- | --- |
-| README / documentación web | 180 px de ancho | 180 px de ancho |
-| Presentaciones | 220 px de ancho | 220 px de ancho |
-| Tarjetas / badges / paneles compactos | 96 px de ancho | 96 px de ancho |
-| Impresión o exportación de alta densidad | 25 mm | 25 mm |
+| Contexto | NESGESFinance Ecosystem | NGF-BTC-AM | Wordmark SVG |
+| --- | --- | --- | --- |
+| README / documentación web | 180 px de ancho | 180 px de ancho | 160 px de ancho |
+| Presentaciones | 220 px de ancho | 220 px de ancho | 180 px de ancho |
+| Tarjetas / badges / paneles compactos | 96 px de ancho | 96 px de ancho | 72 px de ancho |
+| Impresión o exportación de alta densidad | 25 mm | 25 mm | Escalable |
 
 ## Checklist de implementación
 
@@ -52,10 +86,4 @@ Esta guía centraliza las especificaciones técnicas y de uso de los logotipos o
 - [ ] Mantener relación de aspecto original en todos los entornos.
 - [ ] Conservar contraste suficiente respecto del fondo.
 - [ ] Evitar filtros, recortes o recolorizaciones no autorizadas.
-- [ ] Referenciar `assets/manifest.json` para integraciones automatizadas o inventarios de medios.
-
-## Derechos de autor y contacto
-
-Copyright ® NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872.
-
-Todos los derechos reservados, 2025–2026. Para autorizaciones de uso, adaptación o distribución adicional, coordinar con el equipo de NESGESFinance a través de los canales corporativos del proyecto.
+- [ ] Excluir por completo contenidos de Motel El Refugio o Serie A.
