@@ -9,128 +9,115 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0F172A">
-  <meta name="description" content="Marketplace RWA — NESGESFinanceTrust. Plataforma de exploración Bitcoin, datos de red y registro RWA de NESGESFinanceTrust.">
+  <meta name="description" content="Marketplace RWA — NESGESFinanceTrust. Módulo en desarrollo y auditoría técnica.">
   <title>Marketplace RWA — NESGESFinanceTrust</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/dashboard.css">
+  <style>
+    /* Audit banner styles */
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong {
+      color: #ff9999;
+    }
+    /* Status message styles */
+    .status-message {
+      background: linear-gradient(135deg, rgba(11, 60, 138, 0.2), rgba(15, 90, 150, 0.2));
+      border: 2px solid #0B3C8A;
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+    .status-message h2 {
+      border: none;
+      margin-top: 0;
+      color: #A9C6FF;
+      font-size: 1.5rem;
+    }
+    .status-message p {
+      color: #C0CBE0;
+      margin: 0.75rem 0;
+    }
+    .status-badge {
+      display: inline-block;
+      background: rgba(255, 107, 107, 0.2);
+      color: #ff9999;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid #ff4d4d;
+      margin-top: 1rem;
+    }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <!-- AUDIT STATUS BANNER -->
+  <div class="audit-banner" role="alert" aria-live="assertive">
+    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> 
+    Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
+  </div>
+
   <nav class="nav-principal">
     <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
     <ul class="nav-enlaces">
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="institucional.html">Ecosistema</a></li>
       <li><a href="dashboard-unificado.html">Dashboard</a></li>
       <li><a href="dashboard1.html">Mempool en Vivo</a></li>
       <li><a href="explorer.html">Explorador</a></li>
       <li><a href="dashboard2.html">Tokenización RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
     </ul>
   </nav>
 
   <main>
-    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM para activos y operaciones Bitcoin" loading="lazy">
+    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" loading="lazy" width="240" height="240">
       <h1>Marketplace de Activos Tokenizados</h1>
       <p class="subtitulo">
-        Explora los Activos del Mundo Real (RWA) registrados en la plataforma,
-        respaldados por Ordinals sobre Bitcoin.
+        Módulo en desarrollo y auditoría técnica.
       </p>
     </div>
 
-    <div class="filtros">
-      <label for="f-tipo">Categoría</label>
-      <select id="f-tipo">
-        <option value="">Todas</option>
-        <option value="INMUEBLE">Inmueble</option>
-        <option value="VEHICULO">Vehículo</option>
-        <option value="ARTE">Arte y coleccionables</option>
-        <option value="COMMODITIES">Commodities</option>
-        <option value="DEUDA">Deuda</option>
-        <option value="EQUITY">Equity</option>
-      </select>
-
-      <label for="f-estado">Estado</label>
-      <select id="f-estado">
-        <option value="">Todos</option>
-        <option value="PENDIENTE">Pendiente</option>
-        <option value="ACTIVO">Activo</option>
-        <option value="TRANSFERIDO">Transferido</option>
-        <option value="CANCELADO">Cancelado</option>
-      </select>
-
-      <button class="boton boton-primario" id="btn-filtrar">Aplicar filtros</button>
-    </div>
-
-    <div class="grid grid-3" id="rwa-grid">
-      <div class="cargando">Cargando activos...</div>
+    <!-- STATUS MESSAGE (Sección 4.7) -->
+    <div class="status-message">
+      <h2>🛒 Módulo en desarrollo</h2>
+      <p>
+        El Marketplace de Activos del Mundo Real está actualmente en etapa de <strong>desarrollo, auditoría y testeo de conectores</strong>.
+      </p>
+      <p>
+        <strong>No hay ofertas ni transacciones disponibles a través de este portal.</strong>
+      </p>
+      <p style="font-size: 0.9rem; color: #A9C6FF;">
+        El módulo estará disponible tras completar la validación jurídica, técnica y regulatoria correspondiente.
+      </p>
+      <div class="status-badge">
+        En desarrollo / En auditoría
+      </div>
+      <div style="margin-top: 1.5rem;">
+        <a href="dashboard-unificado.html" class="btn btn-primario">Volver al dashboard</a>
+      </div>
     </div>
   </main>
 
   <footer class="pie" id="pie"></footer>
 
   <script src="assets/js/app.js"></script>
-  <script>
-    // Marketplace: listado filtrable de activos RWA desde GET /api/rwa/assets.
-    (function () {
-      const grid = document.getElementById('rwa-grid');
-
-      const ETIQUETAS_TIPO = {
-        INMUEBLE: 'Inmueble',
-        VEHICULO: 'Vehículo',
-        ARTE: 'Arte',
-        COMMODITIES: 'Commodities',
-        DEUDA: 'Deuda',
-        EQUITY: 'Equity',
-      };
-
-      /** Renderiza una tarjeta de activo RWA. */
-      function tarjeta(a) {
-        const tipo = ETIQUETAS_TIPO[a.type] || a.type || '—';
-        return (
-          '<article class="rwa-card">' +
-          '<div class="cabecera">' +
-          '<span class="etiqueta">' + tipo + '</span>' +
-          '<h3>' + (a.name || 'Activo sin nombre') + '</h3>' +
-          '</div>' +
-          '<div class="cuerpo">' +
-          '<div class="valoracion">' + fmt.usd(a.valuationUSD ?? a.valuation_usd ?? 0) + '</div>' +
-          '<p>' + (a.description || 'Sin descripción.') + '</p>' +
-          '<p class="meta"><strong>Estado:</strong> ' + (a.status || '—') + '</p>' +
-          '<p class="meta"><strong>Ordinal:</strong> ' + fmt.hash(a.inscriptionId || a.inscription_id || '') + '</p>' +
-          '<p class="meta"><strong>Titular:</strong> ' + fmt.hash(a.owner || '') + '</p>' +
-          '</div></article>'
-        );
-      }
-
-      /** Carga los activos aplicando los filtros seleccionados. */
-      async function cargar() {
-        grid.innerHTML = '<div class="cargando">Cargando activos...</div>';
-        const tipo = document.getElementById('f-tipo').value;
-        const estado = document.getElementById('f-estado').value;
-        const params = new URLSearchParams();
-        if (tipo) params.set('type', tipo);
-        if (estado) params.set('status', estado);
-        const qs = params.toString() ? '?' + params.toString() : '';
-
-        try {
-          const activos = await api.get('/rwa/assets' + qs);
-          if (!Array.isArray(activos) || !activos.length) {
-            grid.innerHTML = '<div class="vacio">No hay activos registrados que coincidan con los filtros.</div>';
-            return;
-          }
-          grid.innerHTML = activos.map(tarjeta).join('');
-        } catch (e) {
-          grid.innerHTML = '<div class="vacio">No se pudo cargar el marketplace (' + e.message + ').</div>';
-        }
-      }
-
-      document.getElementById('btn-filtrar').addEventListener('click', cargar);
-      cargar();
-    })();
-  </script>
 </body>
 </html>
