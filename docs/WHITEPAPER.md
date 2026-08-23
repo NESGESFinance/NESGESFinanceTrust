@@ -24,6 +24,10 @@ conecta activos reales (RWA) con Bitcoin L1/L2 bajo la doctrina
 **"Tokenización con Propósito"**. El modelo separa la utilidad operativa del
 ecosistema de los derechos específicos de cada proyecto:
 
+NESGESFinanceTrust se presenta como una capa técnica e institucional para
+verificar, indexar, organizar y trazabilizar evidencia digital asociada a
+Bitcoin, Runes, Ordinals y expedientes de activos reales (RWA).
+
 - **NGF•BTC•AM** actúa como Rune de utilidad del ecosistema (acceso técnico,
   gobernanza consultiva, identidad digital).
 - **Ordinals independientes por proyecto** son los instrumentos tokenizados

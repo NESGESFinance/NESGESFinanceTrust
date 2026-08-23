@@ -26,6 +26,11 @@ cumplimiento normativo, exponiendo una API REST/WebSocket y un panel web.
 > **Whitepaper:** [`NESGESFinance Ecosystem — Documento Maestro Institucional, Tecnológico y de Proyectos 2026`](./NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
 > **Fuente institucional primaria:** el PDF adjunto funciona como mini whitepaper institucional y documento maestro base para las secciones de arquitectura, tokenómica, postulación de proyectos y gobernanza descritas en este repositorio.
 
+Referencias de diseño y uso:
+
+- [`docs/BRANDING.md`](./docs/BRANDING.md)
+- [`frontend/assets/img/`](./frontend/assets/img/)
+
 ---
 
 ## Identidad y doctrina
@@ -335,6 +340,12 @@ Referencias relacionadas:
 
 - [Guía completa de branding](docs/BRANDING.md)
 - [Manifest de assets](assets/manifest.json)
+
+## Exclusiones editoriales
+
+Este repositorio no debe incorporar ni referenciar contenido relacionado con
+**Motel El Refugio** o **Serie A** dentro de sus secciones visuales o
+documentales.
 
 ## Créditos
 
