@@ -64,6 +64,57 @@
       border: 1px solid #ff4d4d;
       margin-top: 1rem;
     }
+    .marketplace-panel {
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .marketplace-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .assets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .asset-card {
+      border: 1px solid var(--c-borde);
+      border-radius: 8px;
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.35);
+    }
+    .asset-card h3 {
+      margin: 0 0 0.5rem;
+      color: var(--c-dorado);
+      font-size: 1rem;
+      border: none;
+      padding: 0;
+    }
+    .asset-meta {
+      margin: 0.3rem 0;
+      color: #C0CBE0;
+      font-size: 0.9rem;
+    }
+    .asset-empty, .asset-error {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed var(--c-borde);
+      color: #A9C6FF;
+      text-align: center;
+    }
+    .asset-error {
+      border-color: #ff4d4d;
+      color: #ff9999;
+      background: rgba(255, 77, 77, 0.08);
+    }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -97,27 +148,86 @@
 
     <!-- STATUS MESSAGE (Sección 4.7) -->
     <div class="status-message">
-      <h2>🛒 Módulo en desarrollo</h2>
+    <h2>🛒 Portal de consulta pública</h2>
       <p>
-        El Marketplace de Activos del Mundo Real está actualmente en etapa de <strong>desarrollo, auditoría y testeo de conectores</strong>.
+      Esta vista permite consultar activos RWA registrados en la API durante la etapa de <strong>auditoría y testeo de conectores</strong>.
       </p>
       <p>
-        <strong>No hay ofertas ni transacciones disponibles a través de este portal.</strong>
+      <strong>No hay ofertas ni transacciones de compra/venta habilitadas en este portal.</strong>
       </p>
       <p style="font-size: 0.9rem; color: #A9C6FF;">
-        El módulo estará disponible tras completar la validación jurídica, técnica y regulatoria correspondiente.
+      El componente de negociación se habilitará tras completar validación jurídica, técnica y regulatoria.
       </p>
       <div class="status-badge">
-        En desarrollo / En auditoría
+      Consulta activa / Negociación deshabilitada
       </div>
       <div style="margin-top: 1.5rem;">
         <a href="dashboard-unificado.html" class="btn btn-primario">Volver al dashboard</a>
       </div>
     </div>
+
+    <section class="marketplace-panel" aria-live="polite">
+    <div class="marketplace-head">
+      <h2 style="margin:0;border:none;padding:0;">Activos RWA registrados</h2>
+      <button class="btn btn-secundario" id="recargar-assets" type="button">Recargar</button>
+    </div>
+    <div id="marketplace-assets" class="asset-empty">Cargando activos...</div>
+    </section>
   </main>
 
   <footer class="pie" id="pie"></footer>
 
   <script src="assets/js/app.js"></script>
+  <script>
+    (function () {
+      const container = document.getElementById('marketplace-assets');
+      const reloadBtn = document.getElementById('recargar-assets');
+
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function renderAssets(assets) {
+        if (!Array.isArray(assets) || assets.length === 0) {
+          container.className = 'asset-empty';
+          container.innerHTML = 'No hay activos registrados para mostrar en este momento.';
+          return;
+        }
+
+        container.className = 'assets-grid';
+        container.innerHTML = assets.map((asset) => `
+          <article class="asset-card">
+            <h3>${escapeHtml(asset.name || 'Activo sin nombre')}</h3>
+            <p class="asset-meta"><strong>ID:</strong> ${escapeHtml(asset.id || '—')}</p>
+            <p class="asset-meta"><strong>Tipo:</strong> ${escapeHtml(asset.type || '—')}</p>
+            <p class="asset-meta"><strong>Estado:</strong> ${escapeHtml(asset.status || 'PENDIENTE')}</p>
+            <p class="asset-meta"><strong>Valoración:</strong> ${asset.valuationUSD !== undefined ? escapeHtml(fmt.usd(asset.valuationUSD)) : '—'}</p>
+            <p class="asset-meta"><strong>Titular:</strong> ${escapeHtml(asset.owner || '—')}</p>
+            <p class="asset-meta"><strong>Inscripción:</strong> ${escapeHtml(asset.inscriptionId || '—')}</p>
+          </article>
+        `).join('');
+      }
+
+      async function loadAssets() {
+        container.className = 'asset-empty';
+        container.textContent = 'Cargando activos...';
+        try {
+          const assets = await api.get('/rwa/assets?limit=50&offset=0');
+          renderAssets(assets);
+        } catch (error) {
+          container.className = 'asset-error';
+          container.textContent = `No se pudieron cargar los activos (${error instanceof Error ? error.message : 'error desconocido'}).`;
+        }
+      }
+
+      reloadBtn.addEventListener('click', loadAssets);
+      document.addEventListener('DOMContentLoaded', loadAssets);
+    })();
+  </script>
 </body>
 </html>

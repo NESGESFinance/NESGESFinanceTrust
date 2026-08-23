@@ -271,19 +271,19 @@
 
     <!-- TABS -->
     <div class="verify-tabs">
-      <button class="verify-tab active" onclick="switchTab('hash')">
+      <button class="verify-tab active" onclick="switchTab('hash', event)">
         📝 Hash SHA-256
       </button>
-      <button class="verify-tab" onclick="switchTab('txid')">
+      <button class="verify-tab" onclick="switchTab('txid', event)">
         💸 TXID / Transacción
       </button>
-      <button class="verify-tab" onclick="switchTab('inscription')">
+      <button class="verify-tab" onclick="switchTab('inscription', event)">
         🖼️ Inscripción Ordinal
       </button>
-      <button class="verify-tab" onclick="switchTab('rune')">
+      <button class="verify-tab" onclick="switchTab('rune', event)">
         🪙 Rune
       </button>
-      <button class="verify-tab" onclick="switchTab('address')">
+      <button class="verify-tab" onclick="switchTab('address', event)">
         🔑 Dirección Bitcoin
       </button>
     </div>
@@ -385,109 +385,173 @@
   <script src="assets/js/app.js"></script>
   <script>
     // Tab switching
-    function switchTab(tabName) {
+    function switchTab(tabName, ev) {
       // Hide all panels
       document.querySelectorAll('.verify-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.verify-tab').forEach(t => t.classList.remove('active'));
       
       // Show selected panel
       document.getElementById(tabName).classList.add('active');
-      event.target.classList.add('active');
+      if (ev && ev.currentTarget) {
+        ev.currentTarget.classList.add('active');
+      }
     }
 
-    // Verification functions (mock implementations for demo)
-    function verifyHash() {
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function isHex64(value) {
+      return /^[0-9a-fA-F]{64}$/.test(value);
+    }
+
+    function renderError(resultDiv, message) {
+      resultDiv.innerHTML = `<div class="verify-error">❌ ${escapeHtml(message)}</div>`;
+    }
+
+    function renderLoading(resultDiv, message) {
+      resultDiv.innerHTML = `<div class="verify-result"><div class="verify-result-header"><span class="verify-result-icon">⏳</span><span class="verify-result-status">${escapeHtml(message)}</span></div></div>`;
+    }
+
+    function renderResult(resultDiv, title, rows) {
+      const rowsHtml = rows.map((row) => `
+        <div class="verify-result-row">
+          <span class="verify-result-label">${escapeHtml(row.label)}:</span>
+          <span class="verify-result-value">${escapeHtml(row.value)}</span>
+        </div>
+      `).join('');
+
+      resultDiv.innerHTML = `
+        <div class="verify-result">
+          <div class="verify-result-header">
+            <span class="verify-result-icon">✅</span>
+            <span class="verify-result-status">${escapeHtml(title)}</span>
+          </div>
+          <div class="verify-result-content">${rowsHtml}</div>
+        </div>
+      `;
+    }
+
+    async function verifyHash() {
       const hash = document.getElementById('hashInput').value.trim();
       const resultDiv = document.getElementById('hashResult');
       
-      if (!hash) {
-        resultDiv.innerHTML = '<div class="verify-error">❌ Por favor, introduce un hash válido.</div>';
+      if (!isHex64(hash)) {
+        renderError(resultDiv, 'Por favor, introduce un hash SHA-256 válido (64 caracteres hexadecimales).');
         return;
       }
 
-      resultDiv.innerHTML = '<div class="verify-result"><div class="verify-result-header"><span class="verify-result-icon">⏳</span><span class="verify-result-status">Verificando...</span></div></div>';
-      
-      setTimeout(() => {
-        resultDiv.innerHTML = `
-          <div class="verify-result">
-            <div class="verify-result-header">
-              <span class="verify-result-icon">✅</span>
-              <span class="verify-result-status">Hash Verificado</span>
-            </div>
-            <div class="verify-result-content">
-              <div class="verify-result-row">
-                <span class="verify-result-label">Hash:</span>
-                <span class="verify-result-value">${hash}</span>
-              </div>
-              <div class="verify-result-row">
-                <span class="verify-result-label">Estado:</span>
-                <span class="verify-result-value">Encontrado en registro RWA</span>
-              </div>
-              <div class="verify-result-row">
-                <span class="verify-result-label">Documento:</span>
-                <span class="verify-result-value">Expediente técnico de activo</span>
-              </div>
-              <div class="verify-result-row">
-                <span class="verify-result-label">Fecha Registro:</span>
-                <span class="verify-result-value">2026-08-20 14:32:15 UTC</span>
-              </div>
-            </div>
-          </div>
-        `;
-      }, 1500);
+      renderResult(resultDiv, 'Formato SHA-256 válido', [
+        { label: 'Hash', value: hash },
+        { label: 'Estado', value: 'Validación sintáctica completada' },
+        { label: 'Nota', value: 'La verificación contra registro documental aún no expone endpoint público dedicado.' }
+      ]);
     }
 
-    function verifyTXID() {
+    async function verifyTXID() {
       const txid = document.getElementById('txidInput').value.trim();
       const resultDiv = document.getElementById('txidResult');
       
-      if (!txid || txid.length !== 64) {
-        resultDiv.innerHTML = '<div class="verify-error">❌ TXID debe tener 64 caracteres hexadecimales.</div>';
+      if (!isHex64(txid)) {
+        renderError(resultDiv, 'TXID debe tener 64 caracteres hexadecimales.');
         return;
       }
 
-      resultDiv.innerHTML = '<div class="verify-result"><div class="verify-result-header"><span class="verify-result-icon">⏳</span><span class="verify-result-status">Consultando Bitcoin...</span></div></div>';
-      
-      setTimeout(() => {
-        resultDiv.innerHTML = `
-          <div class="verify-result">
-            <div class="verify-result-header">
-              <span class="verify-result-icon">✅</span>
-              <span class="verify-result-status">Transacción Verificada</span>
-            </div>
-            <div class="verify-result-content">
-              <div class="verify-result-row">
-                <span class="verify-result-label">TXID:</span>
-                <span class="verify-result-value">${txid}</span>
-              </div>
-              <div class="verify-result-row">
-                <span class="verify-result-label">Bloque:</span>
-                <span class="verify-result-value">923,867</span>
-              </div>
-              <div class="verify-result-row">
-                <span class="verify-result-label">Confirmaciones:</span>
-                <span class="verify-result-value">2,340 confirmaciones</span>
-              </div>
-              <div class="verify-result-row">
-                <span class="verify-result-label">Valor:</span>
-                <span class="verify-result-value">0.05 BTC</span>
-              </div>
-            </div>
-          </div>
-        `;
-      }, 2000);
+      renderLoading(resultDiv, 'Consultando mempool...');
+      try {
+        const recent = await api.get('/mempool/recent');
+        const tx = Array.isArray(recent) ? recent.find((item) => item && item.txid === txid) : null;
+        if (!tx) {
+          renderResult(resultDiv, 'TXID no encontrado en mempool reciente', [
+            { label: 'TXID', value: txid },
+            { label: 'Cobertura actual', value: 'Solo mempool reciente disponible en esta vista' }
+          ]);
+          return;
+        }
+
+        renderResult(resultDiv, 'Transacción localizada en mempool', [
+          { label: 'TXID', value: txid },
+          { label: 'Comisión total (sats)', value: String(tx.fee ?? '—') },
+          { label: 'Tamaño virtual (vB)', value: String(tx.vsize ?? '—') },
+          { label: 'Valor (sats)', value: String(tx.value ?? '—') }
+        ]);
+      } catch (error) {
+        renderError(resultDiv, `No se pudo consultar el mempool (${error instanceof Error ? error.message : 'error desconocido'}).`);
+      }
     }
 
-    function verifyInscription() {
-      alert('Centro de verificación de inscripciones — Próximamente');
+    async function verifyInscription() {
+      const inscriptionId = document.getElementById('inscriptionInput').value.trim();
+      const resultDiv = document.getElementById('inscriptionResult');
+      if (!inscriptionId) {
+        renderError(resultDiv, 'Debes ingresar un inscription ID.');
+        return;
+      }
+
+      renderLoading(resultDiv, 'Consultando inscripción...');
+      try {
+        const inscription = await api.get(`/ordinals/inscription/${encodeURIComponent(inscriptionId)}`);
+        renderResult(resultDiv, 'Inscripción verificada', [
+          { label: 'ID', value: inscription.id ?? inscriptionId },
+          { label: 'Número', value: String(inscription.number ?? '—') },
+          { label: 'Tipo de contenido', value: inscription.contentType ?? '—' },
+          { label: 'Longitud (bytes)', value: String(inscription.contentLength ?? '—') },
+          { label: 'Altura génesis', value: String(inscription.genesisHeight ?? '—') }
+        ]);
+      } catch (error) {
+        renderError(resultDiv, `No se pudo verificar la inscripción (${error instanceof Error ? error.message : 'error desconocido'}).`);
+      }
     }
 
-    function verifyRune() {
-      alert('Centro de verificación de Runes — Próximamente');
+    async function verifyRune() {
+      const rawInput = document.getElementById('runeInput').value.trim();
+      const resultDiv = document.getElementById('runeResult');
+      if (!rawInput) {
+        renderError(resultDiv, 'Debes ingresar un nombre o ID de Rune.');
+        return;
+      }
+
+      renderLoading(resultDiv, 'Consultando Rune...');
+      try {
+        let rune;
+        if (/^\d+:\d+$/.test(rawInput)) {
+          const [block, tx] = rawInput.split(':');
+          rune = await api.get(`/runes/id/${block}/${tx}`);
+        } else {
+          rune = await api.get(`/runes/${encodeURIComponent(rawInput)}`);
+        }
+
+        renderResult(resultDiv, 'Rune verificado', [
+          { label: 'Rune ID', value: `${rune.runeId?.block ?? '—'}:${rune.runeId?.tx ?? '—'}` },
+          { label: 'Nombre', value: rune.name ?? rawInput },
+          { label: 'Símbolo', value: rune.symbol ?? '—' },
+          { label: 'Supply total', value: String(rune.totalSupply ?? '—') },
+          { label: 'Holders', value: String(rune.holders ?? '—') }
+        ]);
+      } catch (error) {
+        renderError(resultDiv, `No se pudo verificar el Rune (${error instanceof Error ? error.message : 'error desconocido'}).`);
+      }
     }
 
-    function verifyAddress() {
-      alert('Centro de verificación de direcciones — Próximamente');
+    async function verifyAddress() {
+      const address = document.getElementById('addressInput').value.trim();
+      const resultDiv = document.getElementById('addressResult');
+      const valid = /^(bc1|[13])[a-zA-HJ-NP-Z0-9]{20,90}$/.test(address);
+      if (!valid) {
+        renderError(resultDiv, 'Dirección Bitcoin inválida. Verifica el formato (Legacy, P2SH o Bech32).');
+        return;
+      }
+
+      renderResult(resultDiv, 'Dirección con formato válido', [
+        { label: 'Dirección', value: address },
+        { label: 'Estado', value: 'Validación sintáctica completada' },
+        { label: 'Nota', value: 'La consulta de saldo/historial por dirección aún no expone endpoint público en esta API.' }
+      ]);
     }
   </script>
 </body>
