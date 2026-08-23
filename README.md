@@ -6,18 +6,22 @@
 
 <p align="center">
   <img src="assets/logos/NESGESFinance_Logo.jpg" alt="Logo oficial de NESGESFinance" width="220" />
-  <img src="assets/logos/NGF-BTC-AM.jpg" alt="Logo oficial de NGF-BTC-AM" width="220" />
+  <img src="assets/logos/NGF-BTC-AM.jpg" alt="Logo oficial de NGF•BTC•AM" width="220" />
 </p>
 
-<p align="center"><strong>Infraestructura Bitcoin L1, Runes, Ordinals y tokenización RWA del ecosistema NESGESFinance.</strong></p>
+<p align="center"><strong>Infraestructura técnica Bitcoin L1 · Runes · Ordinals · Tokenización RWA del ecosistema NESGESFinance</strong></p>
+
+⚠️ **Estado de auditoría:** Esta plataforma está actualmente en etapa de **auditoría técnica y testeo de conectores**. Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
+
+---
 
 Plataforma de **indexación de Bitcoin y tokenización de Activos del Mundo Real
 (RWA)** de la **NESGESFinance Ecosystem**. Indexa bloques, mempool, **Runes**
-(Utility Tokens), **Ordinals** (Security Tokens) y registra RWA con
+(Utility Token), **Ordinals** (Security Tokens) y registra RWA con
 cumplimiento normativo, exponiendo una API REST/WebSocket y un panel web.
 
-> **Plataforma:** nesgesfinancetrust.com · **Versión:** v3.4-dev (Agosto 2026)
-> **Lema:** *"Y a tu prójimo como a tí mismo"*
+> **Plataforma:** nesgesfinancetrust.com · **Versión:** v3.4-dev-audit (Agosto 2026)
+> **Lema:** *"Y a tu prójimo como a ti mismo"*
 > **Web:** [https://nesgesfinance.org](https://nesgesfinance.org)
 > **Whitepaper:** [`NESGESFinance Ecosystem — Documento Maestro Institucional, Tecnológico y de Proyectos 2026`](./NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
 
@@ -44,10 +48,10 @@ a la utilidad productiva.
 
 ## Ecosistema de activos
 
-- **NGF·BTC·AM** → Rune de utilidad #208,645 (ID `923867:120`), supply fijo de
+- **NGF•BTC•AM** → Rune de utilidad #208,645 (ID `923867:120`), supply fijo de
   5.930.000.000 NGF, sin derechos económicos directos sobre proyectos.
-- **Runes** → *Utility Tokens* fungibles (protocolo de Casey Rodarmor, bloque 840000).
-- **Ordinals** → *Security Tokens* y contenedores de metadatos de RWA; cada
+- **Runes** → Utility Token fungible nativo (protocolo de Casey Rodarmor, bloque 840000).
+- **Ordinals** → Security Tokens y contenedores de metadatos de RWA; cada
   proyecto emite una serie independiente con Reglamento de Emisión y SPV propio.
 - **Taproot Assets + Lightning** → liquidez y liquidación en capa 2 (L2).
 
@@ -55,15 +59,17 @@ a la utilidad productiva.
 
 ```
 Bitcoin Core RPC / Esplora  →  blocks.ts / indexadores  →  MySQL/MariaDB + Redis
-                                          │
-                                          ▼
-                              API REST (/api) + WebSocket (/ws)
-                                          │
-                                          ▼
-                     Frontend HTML5 + CSS3 + JavaScript vainilla
+                                           │
+                                           ▼
+                               API REST (/api) + WebSocket (/ws)
+                                           │
+                                           ▼
+                      Frontend HTML5 + CSS3 + JavaScript vainilla
 ```
 
 Detalle completo en [`docs/ARQUITECTURA.md`](./docs/ARQUITECTURA.md).
+
+> **Nota de auditoría:** Esta arquitectura se considera de referencia y está sujeta a confirmación tras la conclusión de la auditoría técnica.
 
 ## Requisitos
 
@@ -152,7 +158,7 @@ nesgesfinancetrust/
 
 - [`docs/API.md`](./docs/API.md) — Referencia de la API.
 - [`docs/ARQUITECTURA.md`](./docs/ARQUITECTURA.md) — Arquitectura del sistema.
-- [`docs/RUNES_PROTOCOL.md`](./docs/RUNES_PROTOCOL.md) — Protocolo Runes y NGF·BTC·AM.
+- [`docs/RUNES_PROTOCOL.md`](./docs/RUNES_PROTOCOL.md) — Protocolo Runes y NGF•BTC•AM.
 - [`docs/ORDINALS_PROTOCOL.md`](./docs/ORDINALS_PROTOCOL.md) — Protocolo Ordinals y tokens de proyecto.
 - [`docs/COMPLIANCE.md`](./docs/COMPLIANCE.md) — Cumplimiento KYC/AML/MiCA y proceso F0–F6.
 - [`docs/TOKENOMICA.md`](./docs/TOKENOMICA.md) — Tokenómica oficial v5.0.
@@ -165,7 +171,7 @@ nesgesfinancetrust/
 | Asset | Ruta | Uso principal |
 | --- | --- | --- |
 | NESGESFinance Ecosystem | `assets/logos/NESGESFinance_Logo.jpg` | Encabezados institucionales, documentos corporativos y piezas del ecosistema. |
-| NGF-BTC-AM | `assets/logos/NGF-BTC-AM.jpg` | Activos vinculados a Bitcoin, Runes, fichas visuales y comunicaciones específicas del producto. |
+| NGF•BTC•AM | `assets/logos/NGF-BTC-AM.jpg` | Activos vinculados a Bitcoin, Runes, fichas visuales y comunicaciones específicas del producto. |
 
 Referencias relacionadas:
 
