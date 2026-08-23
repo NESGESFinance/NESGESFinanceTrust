@@ -1078,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.cerrado = false;
     }
     on(canal, cb)   { this.handlers.set(canal, cb); return this; }
-    on<span data-du-i18n="duStatus">Estado</span>(cb)    { this._estadoCb = cb; return this; }
+    onEstado(cb)    { this._estadoCb = cb; return this; }
     conectar() {
       this.cerrado = false;
       this.socket  = new WebSocket(this.url);
