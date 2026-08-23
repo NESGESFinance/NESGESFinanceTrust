@@ -46,18 +46,50 @@ function configureRoutes(app: Application): void {
   const prefix = config.APP.API_PREFIX;
 
   // Salud del servicio e identidad de la plataforma.
-  app.get(`${prefix}/health`, (_req: Request, res: Response) => {
-    res.json({
-      status: 'ok',
+  app.get(`${prefix}/health`, async (_req: Request, res: Response) => {
+    const databaseHealth = await database.getHealth();
+    const overallStatus = databaseHealth.enabled && databaseHealth.status !== 'connected' ? 'degraded' : 'ok';
+    res.status(overallStatus === 'ok' ? 200 : 503).json({
+      status: overallStatus,
       plataforma: 'nesgesfinancetrust.com',
       version: config.APP.VERSION,
       lema: 'Y a tu prójimo como a tí mismo',
       empresa: 'NESGESFinance Ecosystem S.A.S. BIC. & LLC.',
       ein: '0008086872',
+      services: {
+        database: databaseHealth,
+        redis: {
+          enabled: config.REDIS.ENABLED,
+          status: config.REDIS.ENABLED ? 'configured' : 'disabled',
+          message: config.REDIS.ENABLED
+            ? `Redis configurado en ${config.REDIS.HOST}:${config.REDIS.PORT}.`
+            : 'Redis deshabilitado por configuración.',
+        },
+        mempool: {
+          backend: config.MEMPOOL.BACKEND,
+          audit: config.MEMPOOL.AUDIT,
+          message: `Fuente de datos on-chain: ${config.MEMPOOL.BACKEND}.`,
+        },
+        rwa: {
+          status: 'audit_only',
+          message: 'Las operaciones de escritura del registro RWA permanecen bloqueadas durante la auditoría.',
+        },
+      },
     });
   });
 
   // Bloques (consulta directa al repositorio).
+  app.get(`${prefix}/blocks/recent`, async (req: Request, res: Response) => {
+    try {
+      const limit = Math.min(Number(req.query.limit ?? 10), 50);
+      const blocks = await blocksRepository.$getRecentBlocks(limit);
+      res.json(blocks);
+    } catch (e) {
+      logger.err(`Error al obtener bloques recientes: ${e instanceof Error ? e.message : String(e)}`);
+      res.status(500).json({ error: 'Error interno.' });
+    }
+  });
+
   app.get(`${prefix}/blocks/:height`, async (req: Request, res: Response) => {
     try {
       const block = await blocksRepository.$getBlockByHeight(Number(req.params.height));
