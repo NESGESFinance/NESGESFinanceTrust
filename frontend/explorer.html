@@ -15,34 +15,78 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/dashboard.css">
+  <style>
+    /* Audit banner styles */
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong {
+      color: #ff9999;
+    }
+    /* Data metadata styles */
+    .data-metadata {
+      font-size: 0.75rem;
+      color: #C0CBE0;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(123, 164, 255, .12);
+      font-family: 'Courier New', monospace;
+    }
+    .audit-label {
+      display: inline-block;
+      background: rgba(255, 77, 77, 0.15);
+      color: #ff9999;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-left: 0.5rem;
+      border: 1px solid rgba(255, 77, 77, 0.3);
+    }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <!-- AUDIT STATUS BANNER -->
+  <div class="audit-banner" role="alert" aria-live="assertive">
+    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> 
+    Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
+  </div>
+
   <nav class="nav-principal">
     <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
     <ul class="nav-enlaces">
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li><li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="institucional.html">Ecosistema</a></li>
       <li><a href="dashboard-unificado.html">Dashboard</a></li>
       <li><a href="dashboard1.html">Mempool en Vivo</a></li>
       <li><a href="explorer.html">Explorador</a></li>
       <li><a href="dashboard2.html">Tokenización RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
     </ul>
   </nav>
 
   <main>
-    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM para activos y operaciones Bitcoin" loading="lazy">
+    <div class="panel-cabecera panel-cabecera-ilustrada"><img class="ilustracion-seccion" src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM para activos y operaciones Bitcoin" loading="lazy" width="240" height="240">
       <h1>Explorador de la Cadena</h1>
       <p class="subtitulo">
         Consulta bloques indexados y los activos digitales (Runes y Ordinals)
-        anclados a la cadena de Bitcoin.
+        anclados a la cadena de Bitcoin. Todos los datos están sujetos a verificación de fuente y estado de sincronización.
       </p>
     </div>
 
     <section>
-      <h2>Bloques</h2>
+      <h2>Bloques <span class="audit-label">En auditoría</span></h2>
       <div class="filtros">
         <label for="altura">Altura del bloque</label>
         <input type="number" id="altura" min="0" step="1" placeholder="840000">
@@ -52,19 +96,28 @@
       <div class="cadena-bloques" id="cadena-bloques">
         <div class="cargando">Introduce una altura para explorar los bloques...</div>
       </div>
-    </section>
-
-    <section>
-      <h2>Runes (Utility Tokens)</h2>
-      <div class="grid grid-3" id="lista-runes">
-        <div class="cargando">Cargando Runes...</div>
+      <div class="data-metadata">
+        <strong>Fuente:</strong> Bitcoin Core RPC / Esplora · <strong>Última actualización:</strong> <span id="meta-blocks-timestamp">--:--:--</span> UTC
       </div>
     </section>
 
     <section>
-      <h2>Ordinals e inscripciones</h2>
+      <h2>Runes · Utility Token <span class="audit-label">En auditoría</span></h2>
+      <div class="grid grid-3" id="lista-runes">
+        <div class="cargando">Cargando Runes...</div>
+      </div>
+      <div class="data-metadata">
+        <strong>Protocolo:</strong> Runes (Casey Rodarmor) · <strong>Activo desde:</strong> Bloque 840,000 · <strong>Última sincronización:</strong> <span id="meta-runes-timestamp">--:--:--</span> UTC
+      </div>
+    </section>
+
+    <section>
+      <h2>Ordinals e inscripciones <span class="audit-label">En auditoría</span></h2>
       <div class="grid grid-3" id="lista-ordinals">
         <div class="cargando">Cargando Ordinals...</div>
+      </div>
+      <div class="data-metadata">
+        <strong>Protocolo:</strong> Ordinals (Taproot Witness) · <strong>Contenedor:</strong> Metadatos legales RWA · <strong>Última actualización:</strong> <span id="meta-ordinals-timestamp">--:--:--</span> UTC
       </div>
     </section>
   </main>
@@ -75,6 +128,16 @@
   <script src="assets/js/runes-ui.js"></script>
   <script src="assets/js/ordinals-ui.js"></script>
   <script>
+    // Update metadata timestamps on page load
+    function updateTimestamps() {
+      const now = new Date().toLocaleTimeString('es-ES', { hour12: false });
+      document.getElementById('meta-blocks-timestamp').textContent = now;
+      document.getElementById('meta-runes-timestamp').textContent = now;
+      document.getElementById('meta-ordinals-timestamp').textContent = now;
+    }
+    updateTimestamps();
+    setInterval(updateTimestamps, 60000); // Update every minute
+
     // Lógica del explorador: bloques por altura + listados de Runes/Ordinals.
     (function () {
       const cadena = document.getElementById('cadena-bloques');
@@ -90,7 +153,7 @@
           '<p><strong>Hash:</strong> ' + fmt.hash(b.id || b.hash || '') + '</p>' +
           '<p><strong>Transacciones:</strong> ' + fmt.numero(b.tx_count ?? b.txCount ?? 0) + '</p>' +
           '<p><strong>Tamaño:</strong> ' + fmt.bytes(b.size ?? 0) + '</p>' +
-          '<p><strong>Fecha:</strong> ' + fmt.fecha(b.timestamp ?? 0) + '</p>' +
+          '<p><strong>Fecha (UTC):</strong> ' + fmt.fecha(b.timestamp ?? 0) + '</p>' +
           '</div></div>'
         );
       }
