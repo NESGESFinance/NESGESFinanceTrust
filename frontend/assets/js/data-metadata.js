@@ -181,7 +181,10 @@ class DataMetadataInjector {
       return false;
     }
 
-    const currentHash = this.generateDataHash(data);
+    // El hash almacenado se calculó sobre los datos SIN _metadata,
+    // por lo que debemos excluir _metadata al recalcularlo.
+    const { _metadata, ...dataWithoutMetadata } = data;
+    const currentHash = this.generateDataHash(dataWithoutMetadata);
     const storedHash = data._metadata.integrity.hash;
 
     const isValid = currentHash === storedHash;
