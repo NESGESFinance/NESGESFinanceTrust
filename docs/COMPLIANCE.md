@@ -7,6 +7,8 @@
 El registro RWA incorpora validaciones técnicas de cumplimiento antes de registrar o transferir un activo. Estas validaciones no sustituyen una evaluación legal, regulatoria o de un proveedor KYC/AML. La lógica reside en
 `utils/compliance.ts` y `api/rwa/rwa-validator.ts`.
 
+> Fuente institucional primaria para el flujo F0–F6 y la capa Trust propuesta: [`NESGESFinance Ecosystem Mini Whitepaper Institucional 2026 (2).pdf`](../NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
+
 ## 1. Clasificación MiCA
 
 Según el reglamento europeo **MiCA**, los tokens se clasifican en:

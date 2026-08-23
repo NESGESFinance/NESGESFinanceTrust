@@ -8,6 +8,8 @@ Este documento describe el proceso oficial de postulación de proyectos (F0 a F6
 y el portafolio de proyectos a desplegar conforme al Documento Maestro
 Institucional 2026.
 
+> Fuente institucional primaria: [`NESGESFinance Ecosystem Mini Whitepaper Institucional 2026 (2).pdf`](../NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
+
 ---
 
 ## 1. Proceso oficial de postulación — F0 a F6

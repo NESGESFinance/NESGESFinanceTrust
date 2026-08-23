@@ -6,10 +6,10 @@ Esta guía centraliza las especificaciones técnicas y de uso de los logotipos o
 
 | Asset | Archivo | Formato | Dimensiones base | Uso recomendado |
 | --- | --- | --- | --- | --- |
-| NESGESFinance Ecosystem | `assets/img/NESGESFinance_Logo.jpg` | JPG | 740 × 740 px | Cabeceras institucionales, piezas corporativas, README y documentación de ecosistema. |
-| NGF-BTC-AM | `assets/img/NGF-BTC-AM.png` | PNG | 1023 × 1024 px | Comunicación de la Rune NGF-BTC-AM, activos vinculados a Bitcoin y material promocional especializado. |
-| Wordmark NESGESFinance | `assets/img/nesgesfinance-logo.svg` | SVG | Escalable | Navegación principal, branding web, documentación y componentes ligeros. |
-| Bitcoin ledger | `assets/img/bitcoin-ledger.svg` | SVG | Escalable | Elementos gráficos de soporte para secciones de verificación, trazabilidad y protocolo Bitcoin. |
+| NESGESFinance Ecosystem | `frontend/assets/img/NESGESFinance_Logo.jpg` | JPG | 740 × 740 px | Cabeceras institucionales, piezas corporativas, README y documentación de ecosistema. |
+| NGF-BTC-AM | `frontend/assets/img/NGF-BTC-AM.png` | PNG | 1023 × 1024 px | Comunicación de la Rune NGF-BTC-AM, activos vinculados a Bitcoin y material promocional especializado. |
+| Wordmark NESGESFinance | `frontend/assets/img/nesgesfinance-logo.svg` | SVG | Escalable | Navegación principal, branding web, documentación y componentes ligeros. |
+| Bitcoin ledger | `frontend/assets/img/bitcoin-ledger.svg` | SVG | Escalable | Elementos gráficos de soporte para secciones de verificación, trazabilidad y protocolo Bitcoin. |
 
 ## Mapa de uso por sección
 
