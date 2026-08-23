@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!--
+  POLÍTICA DE EVIDENCIAS — NESGESFinanceTrust
+  Marco de validación y aceptación de evidencias para RWA
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0F172A">
+  <meta name="description" content="Política de Evidencias — NESGESFinanceTrust. Marco de validación y criterios de aceptación de documentos RWA.">
+  <title>Política de Evidencias — NESGESFinanceTrust</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+
+    .criteria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    
+    .criteria-card {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .criteria-card:hover { border-color: var(--c-naranja); transform: translateY(-2px); }
+    
+    .criteria-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .criteria-icon { font-size: 2rem; }
+    .criteria-title { color: var(--c-dorado); font-size: 1.1rem; font-weight: 700; }
+    .criteria-desc { color: var(--c-tenue); font-size: 0.9rem; line-height: 1.5; }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+
+    .checklist li {
+      padding: 0.5rem 0;
+      color: var(--c-tenue);
+      font-size: 0.9rem;
+    }
+
+    .checklist li:before {
+      content: "✓ ";
+      color: #2EAF6D;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    .checklist li.warn:before {
+      content: "⚠ ";
+      color: #FFD700;
+    }
+
+    .checklist li.error:before {
+      content: "✗ ";
+      color: #ff4d4d;
+    }
+
+    .flow-diagram {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #2EAF6D;
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .state-badge {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .state-pendiente { background: rgba(247, 147, 26, 0.2); color: #F7931A; border: 1px solid #F7931A; }
+    .state-revision { background: rgba(169, 198, 255, 0.2); color: #A9C6FF; border: 1px solid #A9C6FF; }
+    .state-activo { background: rgba(46, 175, 109, 0.2); color: #2EAF6D; border: 1px solid #2EAF6D; }
+    .state-rechazado { background: rgba(255, 77, 77, 0.2); color: #ff4d4d; border: 1px solid #ff4d4d; }
+
+    .doc-type-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .doc-type {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 8px;
+      padding: 1rem;
+      border-left: 4px solid var(--c-naranja);
+    }
+
+    .doc-type-name { color: var(--c-dorado); font-weight: 700; margin-bottom: 0.5rem; }
+    .doc-type-desc { color: var(--c-tenue); font-size: 0.85rem; }
+    .doc-type-example { color: #2EAF6D; font-size: 0.8rem; margin-top: 0.5rem; font-family: 'Courier New', monospace; }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 2rem 0;
+    }
+
+    .timeline-item {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .timeline-item:before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--c-naranja);
+      border: 2px solid var(--c-sup);
+    }
+
+    .timeline-item:after {
+      content: '';
+      position: absolute;
+      left: -1.4rem;
+      top: 12px;
+      width: 2px;
+      height: calc(100% + 2rem);
+      background: var(--c-borde);
+    }
+
+    .timeline-item:last-child:after { display: none; }
+
+    .timeline-title { color: var(--c-dorado); font-weight: 700; margin-bottom: 0.5rem; }
+    .timeline-desc { color: var(--c-tenue); font-size: 0.9rem; }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body>
+  <div class="audit-banner">
+    <strong>⚠️ Política en etapa de revisión durante auditoría técnica.</strong> 
+    Criterios y procesos pueden ser actualizados sin previo aviso.
+  </div>
+
+  <nav class="nav-principal">
+    <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
+    <ul class="nav-enlaces">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="dashboard-unificado.html">Dashboard</a></li>
+      <li><a href="evidence-policy.html">Política de Evidencias</a></li>
+      <li><a href="rwa-states.html">Estados RWA</a></li>
+    </ul>
+  </nav>
+
+  <main style="max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem;">
+    <div class="panel-cabecera">
+      <h1>📋 Política de Evidencias</h1>
+      <p class="subtitulo">
+        Marco técnico y legal para la aceptación, validación y registro de evidencias 
+        en el expediente de Activos Reales (RWA) de NESGESFinanceTrust.
+      </p>
+    </div>
+
+    <!-- INTRODUCTION -->
+    <section>
+      <h2>1. Principios Fundamentales</h2>
+      <p>
+        El expediente técnico de NESGESFinanceTrust organiza evidencias documentales, metadatos 
+        y referencias on-chain. Esta política establece criterios de aceptación y validación.
+      </p>
+      <p style="color: var(--c-tenue); font-size: 0.9rem;">
+        <strong>Nota legal:</strong> La aceptación de una evidencia en la plataforma 
+        <strong>NO constituye</strong> certificación legal, auditoría, validación o aprobación de ningún tipo.
+      </p>
+    </section>
+
+    <!-- TIPOS DE EVIDENCIA -->
+    <section>
+      <h2>2. Categorías de Evidencia</h2>
+      <div class="doc-type-grid">
+        <div class="doc-type">
+          <div class="doc-type-name">📄 Documentos Legales</div>
+          <div class="doc-type-desc">Títulos, escrituras, certificados de propiedad, contratos.</div>
+          <div class="doc-type-example">Escritura de propiedad, certificado de gravamen</div>
+        </div>
+        <div class="doc-type">
+          <div class="doc-type-name">📸 Evidencia Fotográfica</div>
+          <div class="doc-type-desc">Fotos de bien, inspecciones, estado actual.</div>
+          <div class="doc-type-example">Foto con timestamp, video de inspección</div>
+        </div>
+        <div class="doc-type">
+          <div class="doc-type-name">💰 Documentos Financieros</div>
+          <div class="doc-type-desc">Avalúos, tasaciones, reportes de valor.</div>
+          <div class="doc-type-example">Tasación profesional, reporte de deuda</div>
+        </div>
+        <div class="doc-type">
+          <div class="doc-type-name">📍 Datos de Ubicación</div>
+          <div class="doc-type-desc">Coordenadas GPS, mapas, referencias geográficas.</div>
+          <div class="doc-type-example">Coordenadas certificadas, plano catastral</div>
+        </div>
+        <div class="doc-type">
+          <div class="doc-type-name">🔗 Referencias On-Chain</div>
+          <div class="doc-type-desc">TXID, hashes, inscripciones en Bitcoin.</div>
+          <div class="doc-type-example">Inscripción Ordinal, hash en bloque</div>
+        </div>
+        <div class="doc-type">
+          <div class="doc-type-name">🔐 Datos Criptográficos</div>
+          <div class="doc-type-desc">Hashes SHA-256, firmas digitales, certificados.</div>
+          <div class="doc-type-example">SHA-256 de documento, firma RSA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRITERIOS DE ACEPTACIÓN -->
+    <section>
+      <h2>3. Criterios de Aceptación</h2>
+      <div class="criteria-grid">
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <span class="criteria-icon">✅</span>
+            <span class="criteria-title">Autenticidad</span>
+          </div>
+          <div class="criteria-desc">La evidencia debe ser original o copia certificada.</div>
+          <ul class="checklist">
+            <li>Documentos con sello/firma de autoridad</li>
+            <li>Certificados profesionales verificables</li>
+            <li>Hash criptográfico validable</li>
+            <li class="warn">Copias sin certificación requieren revisión adicional</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <span class="criteria-icon">📅</span>
+            <span class="criteria-title">Vigencia</span>
+          </div>
+          <div class="criteria-desc">Documentos deben estar vigentes y actualizados.</div>
+          <ul class="checklist">
+            <li>No expirados (según tipo de documento)</li>
+            <li>Fechas coherentes en timeline</li>
+            <li>Registros de cambios documentados</li>
+            <li class="warn">Documentos vencidos pueden ser aceptados con contexto</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <span class="criteria-icon">📋</span>
+            <span class="criteria-title">Completitud</span>
+          </div>
+          <div class="criteria-desc">Información suficiente y clara para validación.</div>
+          <ul class="checklist">
+            <li>Datos completos sin omisiones críticas</li>
+            <li>Legibilidad clara (no borroso o dañado)</li>
+            <li>Identificación clara de titular/activo</li>
+            <li class="error">Documentos incompletos serán rechazados</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <span class="criteria-icon">🔍</span>
+            <span class="criteria-title">Verificabilidad</span>
+          </div>
+          <div class="criteria-desc">Debe ser posible verificar la información.</div>
+          <ul class="checklist">
+            <li>Referencias a registros públicos</li>
+            <li>Contactos verificables de terceros</li>
+            <li>Hash reproducible del documento</li>
+            <li>Chain of custody documentada</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <span class="criteria-icon">⚖️</span>
+            <span class="criteria-title">Relevancia Legal</span>
+          </div>
+          <div class="criteria-desc">Pertinencia según jurisdicción y tipo de activo.</div>
+          <ul class="checklist">
+            <li>Conforme a leyes de jurisdicción</li>
+            <li>Emitida por autoridad competente</li>
+            <li>Relevante para tipo de activo</li>
+            <li class="warn">Puede requerir traducción oficial</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <span class="criteria-icon">💾</span>
+            <span class="criteria-title">Formato Digital</span>
+          </div>
+          <div class="criteria-desc">Aceptabilidad técnica del archivo.</div>
+          <ul class="checklist">
+            <li>Formatos: PDF, JPG, PNG, MP4, JSON</li>
+            <li>Tamaño máximo: 50 MB por archivo</li>
+            <li>Nombre de archivo descriptivo</li>
+            <li>Sin malware o código malicioso</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLUJO DE VALIDACIÓN -->
+    <section>
+      <h2>4. Flujo de Validación de Evidencias</h2>
+      <div class="flow-diagram">
+Usuario carga documento
+        ↓
+Escaneo automático (virus, formato, tamaño)
+        ↓
+Generación de hash SHA-256
+        ↓
+Validación técnica (legibilidad, metadata)
+        ↓
+Clasificación automática (tipo de documento)
+        ↓
+Asignación para revisión humana
+        ↓
+Evaluador revisa complitud y relevancia
+        ↓
+¿Aprueba? → SÍ → Aceptado ✓ / NO → Requiere cambios ⚠ / NO VÁLIDO ✗
+      </div>
+    </section>
+
+    <!-- MÁQUINA DE ESTADOS -->
+    <section>
+      <h2>5. Estados del Expediente RWA</h2>
+      <div style="margin-top: 1.5rem;">
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="state-badge state-pendiente">PENDIENTE</span>
+            <div class="timeline-title">Registro Iniciado</div>
+            <div class="timeline-desc">
+              Usuario ha iniciado el registro del activo. Plataforma espera carga de documentos iniciales. 
+              Período: hasta 14 días para completar información.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="state-badge state-revision">EN_REVISIÓN</span>
+            <div class="timeline-title">Evaluación en Curso</div>
+            <div class="timeline-desc">
+              Documentos cargados. Equipo evalúa completitud, autenticidad y relevancia. 
+              Usuario puede recibir solicitudes de información adicional. Período: hasta 30 días.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="state-badge" style="background: rgba(11, 60, 138, 0.2); color: #A9C6FF; border: 1px solid #A9C6FF;">INFORMACIÓN_REQUERIDA</span>
+            <div class="timeline-title">Solicitud de Documentación Adicional</div>
+            <div class="timeline-desc">
+              Se requieren documentos o aclaraciones adicionales. Usuario tiene 14 días para responder.
+              Si no responde, el expediente puede ser cancelado.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="state-badge state-activo">ACTIVO</span>
+            <div class="timeline-title">Expediente Validado</div>
+            <div class="timeline-desc">
+              Todos los criterios cumplidos. Expediente registrado en plataforma. 
+              Elegible para procesos posteriores (tokenización, marketplace, etc.).
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="state-badge" style="background: rgba(11, 60, 138, 0.2); color: #A9C6FF; border: 1px solid #A9C6FF;">TOKENIZADO</span>
+            <div class="timeline-title">Activo Tokenizado</div>
+            <div class="timeline-desc">
+              Activo ha sido estructurado y tokenizado. Tiene Ordinal asociado y puede estar disponible en marketplace.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="state-badge" style="background: rgba(11, 60, 138, 0.2); color: #A9C6FF; border: 1px solid #A9C6FF;">TRANSFERIDO</span>
+            <div class="timeline-title">Propiedad Transferida</div>
+            <div class="timeline-desc">
+              Tokens han sido transferidos a nuevo titular. Expediente se archiva con registro de transferencia.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="state-badge state-rechazado">RECHAZADO</span>
+            <div class="timeline-title">Expediente Rechazado</div>
+            <div class="timeline-desc">
+              No cumple criterios o documentación es fraudulenta. Usuario recibe explicación de rechazo.
+              No elegible para procesos posteriores.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="state-badge state-rechazado">CANCELADO</span>
+            <div class="timeline-title">Expediente Cancelado</div>
+            <div class="timeline-desc">
+              Usuario canceló manualmente o no respondió a solicitudes. 
+              Puede reiniciar nuevo expediente si lo desea.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REQUISITOS POR TIPO DE ACTIVO -->
+    <section>
+      <h2>6. Requisitos Específicos por Tipo de Activo</h2>
+      
+      <div class="criteria-grid">
+        <div class="criteria-card">
+          <div class="criteria-title">🏠 Inmuebles</div>
+          <div class="criteria-desc" style="margin-bottom: 1rem;">
+            Terrenos, casas, departamentos, locales comerciales.
+          </div>
+          <ul class="checklist">
+            <li>Escritura pública o certificado de propiedad</li>
+            <li>Plano catastral o de ubicación</li>
+            <li>Tasación profesional (< 1 año)</li>
+            <li>Fotos actuales del inmueble</li>
+            <li>Certificado de no afectación (si aplica)</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-title">🚗 Vehículos</div>
+          <div class="criteria-desc" style="margin-bottom: 1rem;">
+            Autos, motos, barcos, aviones.
+          </div>
+          <ul class="checklist">
+            <li>Título de propiedad o registro veicular</li>
+            <li>Fotos del VIN y placas</li>
+            <li>Reporte de historial (Carfax/similar)</li>
+            <li>Seguro de cobertura actual</li>
+            <li>Certificado de revisión técnica (si aplica)</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-title">🎨 Obras de Arte</div>
+          <div class="criteria-desc" style="margin-bottom: 1rem;">
+            Pinturas, esculturas, antigüedades, colecciones.
+          </div>
+          <ul class="checklist">
+            <li>Certificado de autenticidad</li>
+            <li>Informe de perito especializado</li>
+            <li>Fotos de alta calidad (múltiples ángulos)</li>
+            <li>Provenance / historial de propiedad</li>
+            <li>Póliza de seguro (si aplica)</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-title">⛏️ Commodities</div>
+          <div class="criteria-desc" style="margin-bottom: 1rem;">
+            Oro, plata, cobre, café, cacao.
+          </div>
+          <ul class="checklist">
+            <li>Certificado de cantidad y pureza</li>
+            <li>Ubicación de almacenamiento</li>
+            <li>Seguro de la bodega</li>
+            <li>Cotización de mercado (referencia)</li>
+            <li>Cadena de custodia documentada</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-title">💳 Deuda / Instrumentos</div>
+          <div class="criteria-desc" style="margin-bottom: 1rem;">
+            Préstamos, bonos, pagarés, cuentas por cobrar.
+          </div>
+          <ul class="checklist">
+            <li>Contrato de deuda firmado</li>
+            <li>Cronograma de pago</li>
+            <li>Garantías o colateral asociado</li>
+            <li>Estado actual (saldo, pagos realizados)</li>
+            <li>Evaluación de riesgo crediticio</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-title">📈 Acciones / Equity</div>
+          <div class="criteria-desc" style="margin-bottom: 1rem;">
+            Acciones, participaciones, stakes empresariales.
+          </div>
+          <ul class="checklist">
+            <li>Certificado de acciones</li>
+            <li>Registro comercial de empresa</li>
+            <li>Estados financieros (últimas 3 años)</li>
+            <li>Acta de junta / poder de representación</li>
+            <li>Valuación de negocio (si aplica)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVISIÓN Y APELACIÓN -->
+    <section>
+      <h2>7. Proceso de Revisión y Apelación</h2>
+      <p>
+        Si tu expediente es rechazado o requiere cambios, puedes:
+      </p>
+      <ol style="color: var(--c-tenue); line-height: 1.8;">
+        <li><strong>Revisar retroalimentación:</strong> Lee detalladamente qué criterios no cumpliste.</li>
+        <li><strong>Cargar documentación adicional:</strong> Tienes 14 días para subir más evidencia.</li>
+        <li><strong>Solicitar revisión adicional:</strong> Escribe a support@nesgesfinance.org con tu apelación.</li>
+        <li><strong>Segunda revisión:</strong> Evaluador diferente revisa tu caso (7-14 días).</li>
+        <li><strong>Resultado final:</strong> Se notifica aceptación o rechazo definitivo.</li>
+      </ol>
+    </section>
+
+    <!-- SEGURIDAD Y PRIVACIDAD -->
+    <section>
+      <h2>8. Seguridad, Privacidad y Auditoría</h2>
+      <div class="criteria-grid">
+        <div class="criteria-card">
+          <div class="criteria-title">🔒 Confidencialidad</div>
+          <div class="criteria-desc">
+            Documentos se almacenan encriptados (AES-256). Acceso restringido a evaluadores autorizados. 
+            Consulta nuestra <a href="legal/POLITICA_PRIVACIDAD.md" style="color: var(--c-naranja);">Política de Privacidad</a>.
+          </div>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-title">🔗 Integridad</div>
+          <div class="criteria-desc">
+            Hash SHA-256 de cada documento se genera y puede verificarse. 
+            Usa nuestro <a href="verify.html" style="color: var(--c-naranja);">Centro de Verificación</a> para validar hashes.
+          </div>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-title">📊 Auditoría</div>
+          <div class="criteria-desc">
+            Todos los cambios de estado se registran con timestamp UTC. 
+            Historial completo disponible en expediente.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCLAIMERS -->
+    <section style="margin-top: 3rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.05)); border: 1px solid #ff4d4d; border-radius: 10px;">
+      <h2 style="margin-top: 0; color: #ff9999;">⚠️ Limitaciones Importantes</h2>
+      <ul style="color: #ff9999; line-height: 1.8;">
+        <li>
+          <strong>NO somos tribunal ni reguladores:</strong> 
+          La aceptación de evidencia no constituye fallo legal, auditoría profesional ni validación regulatoria.
+        </li>
+        <li>
+          <strong>NO ofrecemos asesoramiento legal:</strong> 
+          Debes consultar abogados independientes para cualquier decisión legal o financiera.
+        </li>
+        <li>
+          <strong>NO garantizamos autenticidad:</strong> 
+          La verificación técnica de un hash no demuestra autenticidad material del activo subyacente.
+        </li>
+        <li>
+          <strong>NO es titularidad definitiva:</strong> 
+          El registro técnico no equivale a titularidad legal. Titularidad se determina por ley de cada jurisdicción.
+        </li>
+        <li>
+          <strong>Sujeto a cambios:</strong> 
+          Esta política puede ser actualizada durante la fase de auditoría sin aviso previo.
+        </li>
+      </ul>
+    </section>
+
+    <!-- CONTACTO -->
+    <section style="margin-top: 2rem; padding: 1.5rem; background: var(--c-sup); border-radius: 10px; border: 1px solid var(--c-borde); text-align: center;">
+      <h3>¿Preguntas sobre la política de evidencias?</h3>
+      <p style="color: var(--c-tenue);">
+        📧 <strong>support@nesgesfinance.org</strong> — Soporte general<br>
+        📋 <strong>compliance@nesgesfinance.org</strong> — Cumplimiento y apelaciones<br>
+        📞 Disponibles de lunes a viernes, 09:00-17:00 UTC
+      </p>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
