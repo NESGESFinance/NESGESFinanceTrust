@@ -9,15 +9,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0F172A">
-  <meta name="description" data-i18n-content="metaDescription" content="NESGESFinance Ecosystem — plataforma de exploración Bitcoin, tokenización de activos del mundo real (RWA), Runes y Ordinals.">
-  <title data-i18n="pageTitle">NESGESFinanceTrust — Ecosistema Financiero sobre Bitcoin</title>
+  <meta name="description" content="NESGESFinanceTrust — Infraestructura técnica para verificar, indexar y organizar evidencia digital sobre Bitcoin. Exploración, indexación de bloques, Runes, Ordinals y registro técnico de activos reales.">
+  <title>NESGESFinanceTrust — Plataforma técnica del ecosistema NESGESFinance</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <style>
+    /* Audit banner styles */
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong {
+      color: #ff9999;
+    }
+  </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <!-- AUDIT STATUS BANNER (Sección 1.1) -->
+  <div class="audit-banner" role="alert" aria-live="assertive">
+    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> 
+    Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
+  </div>
+
   <nav class="nav-principal">
     <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
     <ul class="nav-enlaces">
@@ -27,68 +52,117 @@
       <li><a href="dashboard1.html">Mempool en Vivo</a></li>
       <li><a href="explorer.html">Explorador</a></li>
       <li><a href="dashboard2.html">Tokenización RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
     </ul>
   </nav>
 
   <header class="hero">
     <div class="hero-contenido">
       <div>
-        <p class="lema" data-i18n="heroTagline">Tokenización con Propósito · Bitcoin L1/L2 · RWA e impacto</p>
-        <h1>NESGESFinance Ecosystem</h1>
-        <p data-i18n="heroDescription">Arquitectura institucional y tecnológica para conectar activos reales, trazabilidad y utilidad productiva sobre Bitcoin. El acceso, los derechos y la documentación se estructuran por cada proyecto y su serie.</p>
+        <p class="lema">Infraestructura técnica sobre Bitcoin · Verificación de datos · Trazabilidad digital</p>
+        <h1>NESGESFinanceTrust — Plataforma técnica del ecosistema NESGESFinance</h1>
+        <p>
+          Infraestructura técnica para verificar, indexar y organizar evidencia digital sobre Bitcoin. 
+          NESGESFinanceTrust integra exploración on-chain, trazabilidad documental, registro técnico de activos 
+          y flujos de evaluación sujetos a validación jurídica, operativa y regulatoria.
+          <br><br>
+          <strong>La plataforma no constituye una oferta de inversión, un mercado público, un servicio de custodia 
+          ni asesoramiento financiero, legal o fiscal.</strong>
+        </p>
         <div class="hero-acciones">
-          <a class="btn btn-primario" href="institucional.html" data-i18n="learnEcosystem">Conocer el ecosistema</a>
-          <a class="btn btn-secundario" href="proyectos.html" data-i18n="viewProjects">Ver proyectos</a>
-          <a class="btn btn-secundario" href="dashboard-unificado.html" data-i18n="openDashboard">Abrir dashboard</a>
-          <a class="btn btn-secundario" href="explorer.html" data-i18n="exploreData">Explorar datos</a>
+          <a class="btn btn-primario" href="institucional.html">Conocer el ecosistema</a>
+          <a class="btn btn-secundario" href="dashboard-unificado.html">Abrir dashboard</a>
+          <a class="btn btn-secundario" href="explorer.html">Explorar datos</a>
         </div>
-        <p class="nota-disclaimer" data-i18n="disclaimer">NESGESFinanceTrust es una capa institucional/patrimonial propuesta y en proceso de formalización. La información es técnica e institucional; no constituye una oferta de inversión ni asesoramiento.</p>
+        <p class="nota-disclaimer">
+          <strong>Estado institucional:</strong> NESGESFinanceTrust es una capa propuesta y en proceso de formalización, 
+          actualmente en etapa de auditoría técnica y testeo de conectores. La disponibilidad de cualquier funcionalidad, 
+          vehículo jurídico, servicio o proceso dependerá de su habilitación formal, controles internos, jurisdicción 
+          aplicable y requisitos regulatorios.
+        </p>
       </div>
       <div class="hero-logo-stack" aria-label="Identidad visual NESGESFinance">
         <div class="hero-logo-card"><img src="assets/img/NESGESFinance_Logo.jpg" alt="Logotipo oficial NESGESFinance" width="740" height="740"></div>
-        <div class="hero-logo-card hero-logo-accent"><img src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF BTC AM" width="1023" height="1024"></div>
+        <div class="hero-logo-card hero-logo-accent"><img src="assets/img/NGF-BTC-AM.png" alt="Logotipo oficial NGF•BTC•AM" width="1023" height="1024"></div>
       </div>
     </div>
   </header>
 
   <main>
-    <h2 data-i18n="platformCapabilities">Capacidades de la plataforma</h2>
+    <h2>Capacidades de la plataforma</h2>
     <div class="grid grid-3">
       <div class="tarjeta">
-        <h3 data-i18n="realTimeExploration">Exploración en Tiempo Real</h3>
-        <p class="descripcion" data-i18n="realTimeExplorationDescription">Indexación de bloques desde Bitcoin Core / Esplora, seguimiento del mempool y difusión por WebSocket con latencia mínima.</p>
+        <h3>Exploración en Tiempo Real</h3>
+        <p class="descripcion">
+          La plataforma puede consultar y presentar información proveniente de nodos Bitcoin, servicios de indexación o fuentes compatibles. 
+          La información visualizada puede estar sujeta a retrasos de sincronización, reorganizaciones de bloques, disponibilidad de nodos, 
+          cambios en fuentes externas y a los procesos de auditoría y testeo de conectores en curso.
+        </p>
       </div>
       <div class="tarjeta">
-        <h3 data-i18n="runes">Runes · Utility Tokens</h3>
-        <p class="descripcion" data-i18n="runesDescription">Decodificación de RuneStones (OP_RETURN + LEB128) del protocolo de Casey Rodarmor, activo desde el bloque 840 000.</p>
+        <h3>Runes · Utility Token</h3>
+        <p class="descripcion">
+          Herramientas de consulta para información pública verificable asociada con Runes, RuneStones, Ordinals, inscripciones, satoshis 
+          y transacciones de Bitcoin. La visualización o indexación de información on-chain no acredita por sí sola propiedad legal, 
+          autenticidad material del activo, cumplimiento normativo, valor económico ni existencia de derechos fuera de la red Bitcoin.
+        </p>
       </div>
       <div class="tarjeta">
-        <h3 data-i18n="ordinals">Ordinals e inscripciones</h3>
-        <p class="descripcion" data-i18n="ordinalsDescription">Consulta de inscripciones ancladas en Bitcoin y de sus metadatos asociados dentro del registro técnico de la plataforma.</p>
+        <h3>Ordinals e inscripciones</h3>
+        <p class="descripcion">
+          Consulta de inscripciones ancladas en Bitcoin y de sus metadatos asociados dentro del registro técnico de la plataforma. 
+          Los datos on-chain demuestran la existencia de una inscripción, no la titularidad legal, autenticidad material ni derechos 
+          económicos sobre un activo del mundo real.
+        </p>
       </div>
       <div class="tarjeta">
-        <h3 data-i18n="rwaRegistry">Registro RWA</h3>
-        <p class="descripcion" data-i18n="rwaRegistryDescription">Flujo de registro para inmuebles, vehículos, arte, deuda y participaciones, con identificadores de inscripción y trazabilidad de eventos.</p>
+        <h3>Expediente técnico de activos reales</h3>
+        <p class="descripcion">
+          Módulo orientado a organizar evidencias, metadatos, hashes documentales, estados de revisión y referencias on-chain de activos 
+          potencialmente elegibles para estructuración. El registro técnico no equivale a certificación de titularidad, avalúo, auditoría, 
+          aprobación legal, emisión de un instrumento, oferta pública ni garantía de admisión.
+        </p>
       </div>
       <div class="tarjeta">
-        <h3 data-i18n="complianceControls">Controles de cumplimiento</h3>
-        <p class="descripcion" data-i18n="complianceControlsDescription">Validaciones configurables de KYC, riesgo AML y clasificación de activos que requieren revisión jurídica y operativa independiente.</p>
+        <h3>Controles de cumplimiento (Beta privada / En auditoría)</h3>
+        <p class="descripcion">
+          La plataforma puede incorporar controles de identificación, evaluación de riesgo y clasificación documental. Estos mecanismos 
+          constituyen apoyo técnico-operativo y no sustituyen la revisión jurídica independiente, las obligaciones de cada jurisdicción 
+          ni las decisiones formales de admisión.
+        </p>
       </div>
       <div class="tarjeta">
-        <h3 data-i18n="apiRealtime">API y tiempo real</h3>
-        <p class="descripcion" data-i18n="apiRealtimeDescription">API REST y WebSocket para integrar consultas de red, activos indexados y eventos de la plataforma.</p>
+        <h3>API y tiempo real</h3>
+        <p class="descripcion">
+          Interfaces técnicas para consultar datos disponibles y recibir eventos autorizados. El acceso estará sujeto a autenticación, 
+          límites de uso, versiones de API, monitoreo de seguridad y términos específicos de servicio. Durante la etapa de auditoría, 
+          los endpoints pueden estar sujetos a cambios sin previo aviso.
+        </p>
       </div>
     </div>
 
-    <h2 data-i18n="architecture">Arquitectura</h2>
+    <h2>Arquitectura de referencia</h2>
     <div class="tarjeta">
+      <p style="font-size: 0.85rem; color: #C0CBE0; margin-bottom: 1rem;">
+        <strong>Nota:</strong> Arquitectura de referencia — sujeta a confirmación tras auditoría.
+      </p>
       <pre class="mono" style="overflow-x:auto;color:var(--color-verde);font-size:0.8rem;">
-Bitcoin Core RPC ──► Indexador (blocks.ts / TS+Node) ──► MySQL/MariaDB + Redis
-                                     │
-                                     ├─► Runes / Ordinals / RWA
-                                     │
-                                     └─► WebSocket ──► Frontend (HTML5 + CSS3 + JS)</pre>
+Fuentes Bitcoin verificables
+        │
+        ▼
+Capa de ingestión e indexación
+        │
+        ├── Datos de bloques, transacciones y mempool
+        ├── Datos Runes, Ordinals e inscripciones
+        └── Evidencias documentales y metadatos autorizados
+        │
+        ▼
+Capa de almacenamiento y auditoría
+        │
+        ▼
+Servicios autenticados y API versionada
+        │
+        ▼
+Dashboard, explorador y flujos restringidos</pre>
     </div>
   </main>
 
