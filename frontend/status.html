@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<!--
+  STATUS PAGE — NESGESFinanceTrust
+  Estado en tiempo real de módulos, servicios y conectores
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0F172A">
+  <meta name="description" content="Status Page — NESGESFinanceTrust. Estado operativo de módulos, API y servicios.">
+  <title>Estado del Sistema — NESGESFinanceTrust</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+    
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .status-card {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .status-card:hover {
+      border-color: var(--c-naranja);
+      transform: translateY(-2px);
+    }
+    
+    .status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .status-title {
+      font-size: 1.1rem;
+      color: var(--c-dorado);
+      font-weight: 700;
+    }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .status-operational {
+      background: rgba(46, 175, 109, 0.2);
+      color: #2EAF6D;
+      border: 1px solid #2EAF6D;
+    }
+    
+    .status-degraded {
+      background: rgba(255, 215, 0, 0.2);
+      color: #FFD700;
+      border: 1px solid #FFD700;
+    }
+    
+    .status-audit {
+      background: rgba(247, 147, 26, 0.2);
+      color: #F7931A;
+      border: 1px solid #F7931A;
+    }
+    
+    .status-unavailable {
+      background: rgba(255, 77, 77, 0.2);
+      color: #ff4d4d;
+      border: 1px solid #ff4d4d;
+    }
+    
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    
+    .status-description {
+      color: var(--c-tenue);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .status-details {
+      display: grid;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--c-tenue);
+      font-family: 'Courier New', monospace;
+    }
+    
+    .status-detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed rgba(123, 164, 255, .12);
+    }
+    
+    .status-detail-label { color: var(--c-texto); }
+    .status-detail-value { color: var(--c-verde); }
+    
+    .status-incident {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.05));
+      border-left: 4px solid #ff4d4d;
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+    
+    .status-incident-title {
+      color: #ff9999;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .status-incident-time {
+      color: var(--c-tenue);
+      font-size: 0.8rem;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body>
+  <div class="audit-banner" role="alert" aria-live="assertive">
+    <strong>⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> 
+    Estados y disponibilidades pueden cambiar sin previo aviso.
+  </div>
+
+  <nav class="nav-principal">
+    <a class="marca" href="index.html"><img src="assets/img/NESGESFinance_Logo.jpg" alt="NESGESFinance Ecosystem"></a>
+    <ul class="nav-enlaces">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="institucional.html">Ecosistema</a></li>
+      <li><a href="dashboard-unificado.html">Dashboard</a></li>
+      <li><a href="status.html">Estado del Sistema</a></li>
+    </ul>
+  </nav>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 2rem 1.25rem;">
+    <div class="panel-cabecera panel-cabecera-ilustrada">
+      <h1>🟢 Estado del Sistema</h1>
+      <p class="subtitulo">
+        Monitoreo en tiempo real de módulos, servicios y conectores de NESGESFinanceTrust.
+      </p>
+      <p style="color: #C0CBE0; font-size: 0.9rem; margin-top: 1rem;">
+        <strong>Última actualización:</strong> <span id="last-update">--:--:-- UTC</span> · 
+        <strong>Sincronización:</strong> <span id="sync-status">Calculando...</span>
+      </p>
+    </div>
+
+    <!-- STATUS OVERVIEW -->
+    <section style="margin-top: 2rem;">
+      <h2>Resumen General</h2>
+      <div class="grid grid-3" style="gap: 1rem; margin-bottom: 2rem;">
+        <div class="tarjeta">
+          <h3 style="color: #A9C6FF; font-size: 0.9rem;">Servicios en Operación</h3>
+          <div style="font-size: 2rem; color: #2EAF6D; font-weight: 700; font-family: 'Courier New', monospace;">
+            <span id="operational-count">--</span> / <span id="total-count">--</span>
+          </div>
+        </div>
+        <div class="tarjeta">
+          <h3 style="color: #A9C6FF; font-size: 0.9rem;">Módulos en Auditoría</h3>
+          <div style="font-size: 2rem; color: #F7931A; font-weight: 700; font-family: 'Courier New', monospace;">
+            <span id="audit-count">--</span>
+          </div>
+        </div>
+        <div class="tarjeta">
+          <h3 style="color: #A9C6FF; font-size: 0.9rem;">Tiempo de Respuesta API</h3>
+          <div style="font-size: 2rem; color: #A9C6FF; font-weight: 700; font-family: 'Courier New', monospace;">
+            <span id="api-latency">--</span> ms
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULES STATUS -->
+    <section>
+      <h2>Estado de Módulos</h2>
+      <div class="status-grid">
+        
+        <!-- EXPLORADOR DE BLOQUES -->
+        <div class="status-card">
+          <div class="status-header">
+            <span class="status-title">🔍 Explorador de Bloques</span>
+            <span class="status-badge status-operational">
+              <span class="status-dot" style="background: #2EAF6D;"></span>
+              Operativo
+            </span>
+          </div>
+          <p class="status-description">Indexación y consulta de bloques Bitcoin en tiempo real.</p>
+          <div class="status-details">
+            <div class="status-detail-row">
+              <span class="status-detail-label">Bloque Sincronizado:</span>
+              <span class="status-detail-value" id="block-height">--</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Fuente:</span>
+              <span class="status-detail-value">Bitcoin Core / Esplora</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Latencia:</span>
+              <span class="status-detail-value" id="explorer-latency">-- ms</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MEMPOOL EN VIVO -->
+        <div class="status-card">
+          <div class="status-header">
+            <span class="status-title">⚡ Mempool en Vivo</span>
+            <span class="status-badge status-operational">
+              <span class="status-dot" style="background: #2EAF6D;"></span>
+              Operativo
+            </span>
+          </div>
+          <p class="status-description">Monitoreo de transacciones no confirmadas.</p>
+          <div class="status-details">
+            <div class="status-detail-row">
+              <span class="status-detail-label">Transacciones:</span>
+              <span class="status-detail-value" id="mempool-tx">--</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Actualización:</span>
+              <span class="status-detail-value">Cada 30 seg</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">WebSocket:</span>
+              <span class="status-detail-value">Conectado</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RUNES / UTILITY TOKEN -->
+        <div class="status-card">
+          <div class="status-header">
+            <span class="status-title">🪙 Runes (Utility Token)</span>
+            <span class="status-badge status-audit">
+              <span class="status-dot" style="background: #F7931A;"></span>
+              En Auditoría
+            </span>
+          </div>
+          <p class="status-description">Indexación del protocolo Runes de Casey Rodarmor.</p>
+          <div class="status-details">
+            <div class="status-detail-row">
+              <span class="status-detail-label">Runes Indexados:</span>
+              <span class="status-detail-value" id="runes-count">--</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Protocolo:</span>
+              <span class="status-detail-value">Activo desde bloque 840k</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Estado:</span>
+              <span class="status-detail-value">Verificando fuentes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ORDINALS / INSCRIPCIONES -->
+        <div class="status-card">
+          <div class="status-header">
+            <span class="status-title">🔐 Ordinals e Inscripciones</span>
+            <span class="status-badge status-audit">
+              <span class="status-dot" style="background: #F7931A;"></span>
+              En Auditoría
+            </span>
+          </div>
+          <p class="status-description">Indexación de inscripciones Taproot en Bitcoin.</p>
+          <div class="status-details">
+            <div class="status-detail-row">
+              <span class="status-detail-label">Inscripciones:</span>
+              <span class="status-detail-value" id="ordinals-count">--</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Contenedor:</span>
+              <span class="status-detail-value">Metadatos RWA</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Verificación:</span>
+              <span class="status-detail-value">Sincronizando</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- REGISTRO RWA -->
+        <div class="status-card">
+          <div class="status-header">
+            <span class="status-title">🏢 Registro de Activos Reales (RWA)</span>
+            <span class="status-badge status-audit">
+              <span class="status-dot" style="background: #F7931A;"></span>
+              En Auditoría
+            </span>
+          </div>
+          <p class="status-description">Expediente técnico de organización de evidencias.</p>
+          <div class="status-details">
+            <div class="status-detail-row">
+              <span class="status-detail-label">Activos Registrados:</span>
+              <span class="status-detail-value" id="rwa-count">--</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Estado del Módulo:</span>
+              <span class="status-detail-value">Funcional (testeo)</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Validación:</span>
+              <span class="status-detail-value">Deshabilitada</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MARKETPLACE -->
+        <div class="status-card">
+          <div class="status-header">
+            <span class="status-title">🛒 Marketplace RWA</span>
+            <span class="status-badge status-unavailable">
+              <span class="status-dot" style="background: #ff4d4d;"></span>
+              Bloqueado
+            </span>
+          </div>
+          <p class="status-description">Mercado de activos tokenizados.</p>
+          <div class="status-details">
+            <div class="status-detail-row">
+              <span class="status-detail-label">Estado:</span>
+              <span class="status-detail-value">En desarrollo</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Transacciones:</span>
+              <span class="status-detail-value">Deshabilitadas</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Disponibilidad:</span>
+              <span class="status-detail-value">Próximamente</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- API -->
+        <div class="status-card">
+          <div class="status-header">
+            <span class="status-title">📡 API REST / WebSocket</span>
+            <span class="status-badge status-operational">
+              <span class="status-dot" style="background: #2EAF6D;"></span>
+              Operativo
+            </span>
+          </div>
+          <p class="status-description">Interfaces técnicas para integración.</p>
+          <div class="status-details">
+            <div class="status-detail-row">
+              <span class="status-detail-label">Endpoint Base:</span>
+              <span class="status-detail-value">/api</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Versión:</span>
+              <span class="status-detail-value">v1 (beta)</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Rate Limit:</span>
+              <span class="status-detail-value">100 req/min</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTENTICACIÓN / KYC -->
+        <div class="status-card">
+          <div class="status-header">
+            <span class="status-title">🔐 Autenticación y KYC</span>
+            <span class="status-badge status-degraded">
+              <span class="status-dot" style="background: #FFD700;"></span>
+              Parcialmente
+            </span>
+          </div>
+          <p class="status-description">Sistemas de identificación y cumplimiento.</p>
+          <div class="status-details">
+            <div class="status-detail-row">
+              <span class="status-detail-label">MFA:</span>
+              <span class="status-detail-value">Disponible</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">KYC:</span>
+              <span class="status-detail-value">Modo testeo</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">AML:</span>
+              <span class="status-detail-value">Calculando</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BASE DE DATOS -->
+        <div class="status-card">
+          <div class="status-header">
+            <span class="status-title">💾 Base de Datos</span>
+            <span class="status-badge status-operational">
+              <span class="status-dot" style="background: #2EAF6D;"></span>
+              Operativo
+            </span>
+          </div>
+          <p class="status-description">Almacenamiento principal y caché Redis.</p>
+          <div class="status-details">
+            <div class="status-detail-row">
+              <span class="status-detail-label">Motor:</span>
+              <span class="status-detail-value">MariaDB 10.11</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Caché:</span>
+              <span class="status-detail-value">Redis 7</span>
+            </div>
+            <div class="status-detail-row">
+              <span class="status-detail-label">Conectividad:</span>
+              <span class="status-detail-value">OK</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INCIDENTS -->
+    <section style="margin-top: 3rem;">
+      <h2>Incidentes Recientes</h2>
+      <div class="status-incident">
+        <div class="status-incident-title">🔧 Auditoría técnica en curso</div>
+        <p style="color: var(--c-tenue); margin: 0.5rem 0;">
+          La plataforma está en etapa de auditoría y testeo de conectores. Cambios sin previo aviso y datos pueden no ser definitivos.
+        </p>
+        <div class="status-incident-time">Iniciado: 2026-08-23 — Duración estimada: 60 días</div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section style="margin-top: 3rem; padding: 1.5rem; background: var(--c-sup); border-radius: 10px; border: 1px solid var(--c-borde);">
+      <h3>ℹ️ Información Adicional</h3>
+      <p style="color: var(--c-tenue); margin-bottom: 1rem;">
+        Este estado refleja la sincronización de conectores y módulos según datos disponibles. Para soporte técnico o reportes de fallos:
+      </p>
+      <p>
+        📧 <strong>support@nesgesfinance.org</strong> · 
+        🔒 <strong>security@nesgesfinance.org</strong> (vulnerabilidades)
+      </p>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Update timestamps and status
+    function updateStatus() {
+      const now = new Date();
+      document.getElementById('last-update').textContent = 
+        now.toLocaleString('es-ES', { hour12: false, timeZone: 'UTC' }) + ' UTC';
+      
+      // Mock data for demo (replace with real API calls)
+      document.getElementById('operational-count').textContent = '6';
+      document.getElementById('total-count').textContent = '9';
+      document.getElementById('audit-count').textContent = '3';
+      document.getElementById('api-latency').textContent = '45';
+      document.getElementById('block-height').textContent = '923,867';
+      document.getElementById('explorer-latency').textContent = '120';
+      document.getElementById('mempool-tx').textContent = '4,250';
+      document.getElementById('runes-count').textContent = '8,342';
+      document.getElementById('ordinals-count').textContent = '125,640';
+      document.getElementById('rwa-count').textContent = '12';
+      document.getElementById('sync-status').textContent = 'Sincronizado (5 min atrás)';
+    }
+    
+    updateStatus();
+    setInterval(updateStatus, 60000); // Update every minute
+  </script>
+</body>
+</html>
