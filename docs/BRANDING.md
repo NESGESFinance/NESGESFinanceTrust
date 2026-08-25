@@ -1,113 +1,89 @@
-# BRANDING OFICIAL · NESGESFinanceTrust
+# Branding NESGESFinanceTrust
 
-## Introducción
+Esta guía centraliza las especificaciones técnicas y de uso de los logotipos oficiales incorporados al repositorio.
 
-Este documento define los lineamientos oficiales de identidad visual para el repositorio **NESGESFinanceTrust**, incluyendo el logo institucional del ecosistema y el logo oficial de la Rune **NGF-BTC-AM**.
+## Assets oficiales
 
-## Activos Visuales
+| Asset | Archivo | Formato | Dimensiones base | Uso recomendado |
+| --- | --- | --- | --- | --- |
+| NESGESFinance Ecosystem | `frontend/assets/img/NESGESFinance_Logo.jpg` | JPG | 740 × 740 px | Cabeceras institucionales, piezas corporativas, README y documentación de ecosistema. |
+| NGF-BTC-AM | `frontend/assets/img/NGF-BTC-AM.jpg` | PNG | 1023 × 1024 px | Comunicación de la Rune NGF-BTC-AM, activos vinculados a Bitcoin y material promocional especializado. |
+| Wordmark NESGESFinance | `frontend/assets/img/nesgesfinance-logo.svg` | SVG | Escalable | Navegación principal, branding web, documentación y componentes ligeros. |
+| Bitcoin ledger | `frontend/assets/img/bitcoin-ledger.svg` | SVG | Escalable | Elementos gráficos de soporte para secciones de verificación, trazabilidad y protocolo Bitcoin. |
 
-### 1) Ecosistema NESGESFinance
+## Mapa de uso por sección
 
-- **Ubicación**: `assets/logos/NESGESFinance_Logo.jpg`
-- **Descripción y propósito**: logo corporativo principal para comunicaciones institucionales, interfaz de plataforma y materiales de confianza.
-- **Casos de uso**:
-  - Encabezados de documentación.
-  - Landing pages y paneles de producto.
-  - Materiales institucionales y reportes.
-- **Especificaciones técnicas**:
-  - Formato: JPG
-  - Resolución: 740 × 740 px
-  - Tamaño: 213,334 bytes
-  - Modo de color: RGB
+### 1. Identidad institucional y portada
 
-### 2) Rune NGF-BTC-AM
+- **Logo principal:** `NESGESFinance_Logo.jpg`
+- **Apoyo visual secundario:** `NGF-BTC-AM.jpg`
+- **Motivo:** representa la capa paraguas del ecosistema y la dualidad institucional + activa.
+- **Secciones sugeridas:** `index.html`, `institucional.html`, `README.md`, portada de documentos institucionales.
 
-- **Ubicación**: `assets/logos/NGF-BTC-AM.jpg`
-- **Descripción y propósito**: logo oficial de la Rune NGF-BTC-AM para representar activos vinculados a Bitcoin y su identidad dentro del ecosistema.
-- **Casos de uso**:
-  - Secciones de documentación de producto financiero sobre Bitcoin.
-  - Interfaces de tokenización/RWA vinculadas a Rune.
-  - Material de comunicación técnica y comercial de la Rune.
-- **Especificaciones técnicas**:
-  - Formato: JPG
-  - Resolución: 1023 × 1024 px
-  - Tamaño: 251,188 bytes
-  - Modo de color: RGB
+### 2. Exploración Bitcoin, mempool y arquitectura técnica
 
-## Directrices de Uso
+- **Logo principal de marca:** `NESGESFinance_Logo.jpg`
+- **Activo específico de Bitcoin:** `NGF-BTC-AM.jpg`
+- **Apoyo conceptual:** `bitcoin-ledger.svg`
+- **Motivo:** estas vistas están asociadas a exploración on-chain, mempool, Runes y Ordinals.
+- **Secciones sugeridas:** `dashboard1.html`, `dashboard-unificado.html`, `explorer.html`, `verify.html`, `status.html`, `developers.html`.
 
-### Permitido
+### 3. Tokenización RWA y marketplace
 
-- Usar los archivos oficiales sin alteración de proporciones.
-- Escalar manteniendo relación de aspecto.
-- Aplicar sobre fondos con contraste suficiente.
-- Referenciar los archivos desde rutas oficiales del repositorio.
+- **Logo principal de marca:** `NESGESFinance_Logo.jpg`
+- **Activo específico de Bitcoin:** `NGF-BTC-AM.jpg`
+- **Motivo:** el portal RWA y su marketplace deben mantener identidad institucional, pero el activo NGF-BTC-AM puede reforzar la relación con Bitcoin y utilidad técnica.
+- **Secciones sugeridas:** `dashboard2.html`, `rwa-marketplace.html`, `rwa-states.html`, `evidence-policy.html`.
 
-### No permitido
+### 4. Secciones documentales y de cumplimiento
 
-- Deformar, estirar o rotar los logos sin justificación de marca.
-- Cambiar colores de marca sin autorización formal.
-- Recortar elementos centrales o superponer textos que afecten legibilidad.
-- Exportar versiones derivadas como “oficiales” sin aprobación.
+- **Logo principal:** `NESGESFinance_Logo.jpg`
+- **Apoyo visual opcional:** `bitcoin-ledger.svg`
+- **Motivo:** estas páginas priorizan claridad, trazabilidad y tono formal.
+- **Secciones sugeridas:** `docs/*.md`, `README.md`, `evidence-policy.html`, `status.html`.
 
-## Espacios en Blanco
+## Directrices de integración
 
-- Mantener un área de protección mínima equivalente al **10% del ancho del logo** alrededor de cada marca.
-- En composición doble (ecosistema + Rune), conservar separación horizontal mínima de **1x** el área de protección.
+- Usar `NESGESFinance_Logo.jpg` como imagen principal cuando la sección trate sobre la plataforma, la marca o el ecosistema completo.
+- Usar `NGF-BTC-AM.jpg` cuando la sección esté centrada en Bitcoin, Runes, Ordinals, mempool, activos digitales o componentes de utilidad.
+- Usar `bitcoin-ledger.svg` como recurso decorativo o contextual, no como sustituto de marca principal.
+- Usar `nesgesfinance-logo.svg` en navegación, footers o componentes que requieran peso visual reducido y mejor escalabilidad.
+- Evitar colocar imágenes relacionadas con proyectos no alineados con la plataforma actual.
 
-## Tamaños Mínimos
+## Casos excluidos
 
-| Contexto | NESGESFinance | NGF-BTC-AM | Nota |
-| --- | ---: | ---: | --- |
-| Web (cabecera/documentación) | 120 px | 120 px | Preferido 160–220 px |
-| UI (cards, badges) | 64 px | 64 px | Nunca por debajo de 48 px |
-| Impreso | 25 mm | 25 mm | Usar exportación alta calidad |
+No se deben integrar en la plataforma imágenes relacionadas con:
 
-## Paleta de Colores Oficial
+- **Motel El Refugio**
+- **Serie A**
 
-### Colores Primarios
+## Paleta oficial
 
-- **NESGESFinance Blue**: `#1E40AF`
-- **Bitcoin Orange**: `#F59E0B`
-- **Accent Green**: `#10B981`
+| Nombre | Hex | Uso sugerido |
+| --- | --- | --- |
+| NESGESFinance Blue | `#0B3C8A` | Titulares, fondos institucionales, navegación y elementos principales de la marca. |
+| Bitcoin Orange | `#F7931A` | Resaltar vínculos con Bitcoin, Runes, llamadas a la acción y chips temáticos. |
+| Accent Green | `#2EAF6D` | Estados positivos, realces secundarios y acentos de producto. |
 
-### Colores Secundarios
+## Tipografía recomendada
 
-- **Dark Background**: `#0F172A`
-- **Light Text**: `#F8FAFC`
-- **Border Gray**: `#475569`
+- **Titulares y marca:** sans-serif geométrica o neo-grotesca de alto contraste visual.
+- **Cuerpo de texto:** sans-serif legible para documentación técnica y UI.
+- **Fallback web:** `Inter`, `Segoe UI`, `Arial`, `sans-serif`.
 
-## Tipografía
+## Tamaños mínimos sugeridos
 
-- **Principal UI/Web**: Inter, Segoe UI, sans-serif
-- **Documentación técnica**: Inter/Segoe UI para texto corrido
-- **Resaltados y métricas**: peso semibold/bold, manteniendo accesibilidad AA
+| Contexto | NESGESFinance Ecosystem | NGF-BTC-AM | Wordmark SVG |
+| --- | --- | --- | --- |
+| README / documentación web | 180 px de ancho | 180 px de ancho | 160 px de ancho |
+| Presentaciones | 220 px de ancho | 220 px de ancho | 180 px de ancho |
+| Tarjetas / badges / paneles compactos | 96 px de ancho | 96 px de ancho | 72 px de ancho |
+| Impresión o exportación de alta densidad | 25 mm | 25 mm | Escalable |
 
-## Geometría y Proporciones
+## Checklist de implementación
 
-- **NESGESFinance_Logo.jpg**: formato cuadrado (1:1), mantener centrado y sin recortes.
-- **NGF-BTC-AM.jpg**: formato casi cuadrado (1023:1024), mantener proporción original.
-- No invertir ejes ni alterar la silueta base de cada logo.
-
-## Protección de Marca
-
-- Copyright © NESGESFinance Ecosystem S.A.S. BIC & LLC. EIN: 0008086872
-- Uso restringido a contextos autorizados por el ecosistema NESGESFinance.
-- Cualquier uso comercial externo requiere autorización escrita.
-
-## Checklist de Implementación
-
-- [ ] Se usa el archivo oficial correcto para cada contexto.
-- [ ] Se respeta proporción original del logo.
-- [ ] Se mantiene contraste visual suficiente con el fondo.
-- [ ] Se respeta área mínima de protección (espacio en blanco).
-- [ ] Se aplican colores oficiales en piezas complementarias.
-- [ ] Se verifica ruta de archivo y referencia válida en documentación/UI.
-
-## Información de Contacto
-
-Para consultas de branding y aprobaciones de uso:
-
-- **Equipo NESGESFinance Ecosystem**
-- **Canal recomendado**: repositorio oficial NESGESFinanceTrust (Issues/PRs internos)
-- **Entidad titular**: NESGESFinance Ecosystem S.A.S. BIC & LLC
+- [ ] Verificar que cada pieza usa el logo correcto según el contexto.
+- [ ] Mantener relación de aspecto original en todos los entornos.
+- [ ] Conservar contraste suficiente respecto del fondo.
+- [ ] Evitar filtros, recortes o recolorizaciones no autorizadas.
+- [ ] Excluir por completo contenidos de Motel El Refugio o Serie A.

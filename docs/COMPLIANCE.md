@@ -7,6 +7,8 @@
 El registro RWA incorpora validaciones técnicas de cumplimiento antes de registrar o transferir un activo. Estas validaciones no sustituyen una evaluación legal, regulatoria o de un proveedor KYC/AML. La lógica reside en
 `utils/compliance.ts` y `api/rwa/rwa-validator.ts`.
 
+> Fuente institucional primaria para el flujo F0–F6 y la capa Trust propuesta: [`NESGESFinance Ecosystem Mini Whitepaper Institucional 2026 (2).pdf`](../NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
+
 ## 1. Clasificación MiCA
 
 Según el reglamento europeo **MiCA**, los tokens se clasifican en:
@@ -54,6 +56,38 @@ Nivel de riesgo de jurisdicción (`RiskLevel`): `BAJO`, `MEDIO`, `ALTO`.
 
 Cada alta o transferencia queda registrada en `rwa_history`, permitiendo una
 auditoría completa del ciclo de vida del activo (quién, cuándo, qué txid).
+
+---
+
+## 6. Proceso oficial de postulación — F0 a F6
+
+Los proyectos que solicitan tokenización en NESGESFinance atraviesan seis fases
+formales antes de cualquier emisión:
+
+| Fase | Nombre | Descripción resumida |
+|---|---|---|
+| **F0** | Solicitud | Título de propiedad, avalúo independiente, estados financieros, permisos/licencias y memoria técnica. |
+| **F1** | Due diligence | Verificación legal, financiera y técnica; cruce por pares y registro de evidencia. |
+| **F2** | SPV y Reglamento | Constitución del SPV y definición de suministro, distribución, calendario y gobernanza. |
+| **F3** | Oferta bajo cumplimiento | Estructuración como *security*; Reg D 506(c) y/o Reg S según el caso; restricciones de whitelist. |
+| **F4** | Emisión técnica L1 | Inscripción de Ordinals, anclaje SHA-256/OP_RETURN, multisig 3/5 y oráculo de datos. |
+| **F5** | Aprobación | Revisión y firma multifirma; publicación en Launchpad. |
+| **F6** | Operación continua | Snapshots trimestrales, distribuciones BTC, reportes periódicos y gobernanza del Reglamento. |
+
+Ningún proyecto se publica antes de completar las fases F0–F5 con documentación
+de emisión íntegra.
+
+> Ver el portafolio de proyectos activos en [`docs/PROYECTOS.md`](./PROYECTOS.md).
+
+---
+
+## 7. Marco regulatorio aplicable
+
+- **MiCA** (UE) — clasificación de tokens (EMT, ART, UTILITY, SECURITY).
+- **Reg D 506(c)** (EE.UU.) — colocación privada con verificación de inversores
+  acreditados.
+- **Reg S** (EE.UU.) — oferta fuera de territorio estadounidense.
+- **KYC/AML** local según jurisdicción del proyecto.
 
 ---
 

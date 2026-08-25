@@ -15,8 +15,8 @@
 }
 
 .panel-cabecera h1 {
-  color: var(--color-dorado);
-  font-size: 1.8rem;
+  color: #F8FBFF;
+  font-size: 1.95rem;
 }
 
 /* Métricas superiores ------------------------------------------------------ */
@@ -27,12 +27,27 @@
   margin-bottom: 2rem;
 }
 
+.metricas-fila .tarjeta {
+  position: relative;
+  overflow: hidden;
+}
+
+.metricas-fila .tarjeta::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradiente-marca);
+}
+
 /* Visualización del mempool (barras de fee) -------------------------------- */
 .mempool-viz {
-  background: var(--color-superficie);
+  background: linear-gradient(180deg, rgba(26, 45, 77, 0.96), rgba(13, 31, 58, 0.96));
   border: 1px solid var(--color-borde);
-  border-radius: var(--radio);
+  border-radius: 18px;
   padding: 1.25rem;
+  box-shadow: var(--sombra);
 }
 
 .fee-barras {
@@ -40,33 +55,34 @@
   align-items: flex-end;
   gap: 4px;
   height: 220px;
-  padding-top: 1rem;
-  border-bottom: 2px solid var(--color-borde);
+  padding: 1rem 0 0.25rem;
+  border-bottom: 2px solid rgba(169, 198, 255, 0.18);
   overflow: hidden;
 }
 
 .fee-barra {
   flex: 1;
   min-width: 6px;
-  background: linear-gradient(180deg, var(--color-dorado), var(--color-naranja));
-  border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, var(--color-azul-brillo), var(--color-naranja));
+  border-radius: 5px 5px 0 0;
   transition: height 0.4s ease;
   position: relative;
+  box-shadow: 0 0 12px rgba(15, 90, 150, 0.18);
 }
 
 .fee-barra:hover::after {
   content: attr(data-info);
   position: absolute;
-  bottom: 100%;
+  bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  background: #000;
-  color: var(--color-verde);
+  background: rgba(8, 16, 30, 0.96);
+  color: #DDF4E7;
   font-family: var(--fuente-datos);
-  font-size: 0.7rem;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid var(--color-naranja);
-  border-radius: 4px;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid rgba(247, 147, 26, 0.42);
+  border-radius: 8px;
   white-space: nowrap;
   z-index: 10;
 }
@@ -77,7 +93,7 @@
   font-family: var(--fuente-datos);
   font-size: 0.75rem;
   color: var(--color-texto-tenue);
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
 }
 
 /* Cadena de bloques (explorador) ------------------------------------------- */
@@ -90,74 +106,80 @@
 
 .cadena-bloques .conector {
   align-self: center;
-  color: var(--color-borde);
+  color: var(--color-texto-suave);
   font-size: 1.5rem;
 }
 
 /* Formulario de tokenización RWA ------------------------------------------- */
 .form-rwa {
-  background: var(--color-superficie);
+  background: linear-gradient(180deg, rgba(26, 45, 77, 0.96), rgba(13, 31, 58, 0.96));
   border: 1px solid var(--color-borde);
-  border-radius: var(--radio);
+  border-radius: 18px;
   padding: 1.5rem;
   display: grid;
   gap: 1rem;
-  max-width: 640px;
+  max-width: 720px;
+  box-shadow: var(--sombra);
 }
 
 .form-rwa label {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
   font-size: 0.85rem;
   color: var(--color-texto-tenue);
 }
 
 .form-rwa input,
 .form-rwa select,
-.form-rwa textarea {
-  background: var(--color-fondo);
-  border: 1px solid var(--color-borde);
-  border-radius: 6px;
-  padding: 0.6rem;
+.form-rwa textarea,
+.filtros select,
+.filtros input {
+  background: rgba(9, 18, 34, 0.86);
+  border: 1px solid rgba(169, 198, 255, 0.18);
+  border-radius: 10px;
+  padding: 0.68rem 0.8rem;
   color: var(--color-texto);
   font-family: var(--fuente-datos);
 }
 
 .form-rwa input:focus,
 .form-rwa select:focus,
-.form-rwa textarea:focus {
+.form-rwa textarea:focus,
+.filtros select:focus,
+.filtros input:focus {
   outline: none;
   border-color: var(--color-naranja);
+  box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.14);
 }
 
 .resultado {
   margin-top: 1rem;
   padding: 1rem;
-  border-radius: 6px;
+  border-radius: 14px;
   font-family: var(--fuente-datos);
   font-size: 0.85rem;
   white-space: pre-wrap;
   word-break: break-word;
+  background: rgba(11, 23, 43, 0.84);
 }
 
-.resultado.ok { border: 1px solid var(--color-verde); color: var(--color-verde); }
-.resultado.err { border: 1px solid var(--color-error); color: var(--color-error); }
+.resultado.ok { border: 1px solid rgba(46, 175, 109, 0.44); color: #DDF4E7; }
+.resultado.err { border: 1px solid rgba(255, 107, 107, 0.42); color: #FFD9D9; }
 
 /* Filtros ------------------------------------------------------------------ */
 .filtros {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+  align-items: flex-end;
   margin-bottom: 1.5rem;
 }
 
-.filtros select,
-.filtros input {
-  background: var(--color-superficie);
-  border: 1px solid var(--color-borde);
-  border-radius: 6px;
-  padding: 0.5rem 0.75rem;
-  color: var(--color-texto);
-  font-family: var(--fuente-datos);
+.filtros label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--color-texto-tenue);
+  font-size: 0.84rem;
 }

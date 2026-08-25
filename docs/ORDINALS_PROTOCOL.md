@@ -48,6 +48,34 @@ Ordinal que porta sus metadatos legales. Así, el Ordinal es el ancla de
 titularidad on-chain, mientras que el Rune opcional aporta fraccionamiento y
 liquidez.
 
+## 6. Ordinals de proyecto — Securities tokenizados
+
+Cada proyecto aprobado dentro del ecosistema NESGESFinance emite una **serie
+independiente** de Ordinals sobre Bitcoin L1. Esto les diferencia del Rune de
+utilidad (NGF•BTC•AM) y garantiza el aislamiento patrimonial:
+
+- Los metadatos de cada Ordinal incorporan **hashes SHA-256** de contratos
+  legales, validaciones KYC/AML y el hash del Reglamento de Emisión del SPV.
+- El acceso a la compra está restringido a **whitelist obligatoria** de
+  direcciones Bitcoin previamente habilitadas.
+- Estos activos son tratados como *securities tokenizados* desde su origen,
+  sujetos al marco jurídico de cada serie (Reg D 506(c) y/o Reg S según aplique).
+
+### 6.1 Modelo SPV por proyecto
+
+Cada proyecto se estructura mediante un **SPV (Special Purpose Vehicle)**
+independiente, separado de las entidades coordinadoras, con:
+
+- Expediente documental propio.
+- Activo subyacente identificado y valorado.
+- Reglamento de Emisión definitorio del suministro, distribución, calendario
+  y gobernanza.
+- Custodia multifirma 3/5 propia.
+- Trazabilidad on-chain completa (TXID y metadata pública).
+
+> Ver el proceso completo de postulación F0–F6 en [`docs/PROYECTOS.md`](./PROYECTOS.md)
+> y la documentación de cumplimiento normativo en [`docs/COMPLIANCE.md`](./COMPLIANCE.md).
+
 ---
 
 Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872 — TODOS LOS DERECHOS RESERVADOS 2025-2026

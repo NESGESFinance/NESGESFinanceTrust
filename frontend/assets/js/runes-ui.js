@@ -1,5 +1,5 @@
 /*
- * Interfaz de usuario del explorador de Runes (Utility Tokens).
+ * Interfaz de usuario del explorador de Runes (Utility Token).
  *
  * Consume `/api/runes` y renderiza tarjetas de token. Sin dependencias externas.
  *

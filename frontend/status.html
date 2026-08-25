@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--
+  STATUS PAGE — NESGESFinanceTrust
+  Estado en tiempo real de módulos, servicios y conectores
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026
+--><html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="theme-color" content="#0F172A"/>
+  <meta content="Status Page — NESGESFinanceTrust. Estado operativo de módulos, API y servicios." data-i18n-content="statusMetaDesc" name="description"/>
+  <title>Estado del Sistema — NESGESFinanceTrust</title>
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+    
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .status-card {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .status-card:hover {
+      border-color: var(--c-naranja);
+      transform: translateY(-2px);
+    }
+    
+    .status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .status-title {
+      font-size: 1.1rem;
+      color: var(--c-dorado);
+      font-weight: 700;
+    }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .status-operational {
+      background: rgba(46, 175, 109, 0.2);
+      color: #2EAF6D;
+      border: 1px solid #2EAF6D;
+    }
+    
+    .status-degraded {
+      background: rgba(255, 215, 0, 0.2);
+      color: #FFD700;
+      border: 1px solid #FFD700;
+    }
+    
+    .status-audit {
+      background: rgba(247, 147, 26, 0.2);
+      color: #F7931A;
+      border: 1px solid #F7931A;
+    }
+    
+    .status-unavailable {
+      background: rgba(255, 77, 77, 0.2);
+      color: #ff4d4d;
+      border: 1px solid #ff4d4d;
+    }
+    
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    
+    .status-description {
+      color: var(--c-tenue);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .status-details {
+      display: grid;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--c-tenue);
+      font-family: 'Courier New', monospace;
+    }
+    
+    .status-detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed rgba(123, 164, 255, .12);
+    }
+    
+    .status-detail-label { color: var(--c-texto); }
+    .status-detail-value { color: var(--c-verde); }
+    
+    .status-incident {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.05));
+      border-left: 4px solid #ff4d4d;
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+    
+    .status-incident-title {
+      color: #ff9999;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .status-incident-time {
+      color: var(--c-tenue);
+      font-size: 0.8rem;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body>
+  <div aria-live="assertive" class="audit-banner" role="alert"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
+
+  <nav class="nav-principal">
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="institucional.html" data-i18n="navHome">Home</a></li><li><a href="index.html" data-i18n="navEcosystem">Ecosistema</a></li><li><a href="verify.html" data-i18n="navProjects">Explorar activos</a></li><li><a href="dashboard-unificado.html" data-i18n="navDashboard">Dashboard</a></li><li><a href="explorer.html" data-i18n="navExplorer">Explorador</a></li><li><a href="dashboard2.html" data-i18n="navRwa">Tokenización RWA</a></li><li><a href="rwa-marketplace.html" data-i18n="navMarketplace">Marketplace</a></li><li><a href="status.html" data-i18n="navStatus">Estado</a></li><li><a href="developers.html" data-i18n="navDevelopers">Developers</a></li></ul>
+  </nav>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 2rem 1.25rem;">
+    <div class="panel-cabecera panel-cabecera-ilustrada">
+      <h1 data-i18n="statusH1">🟢 Estado del Sistema</h1>
+      <p class="subtitulo" data-i18n="statusSubtitle">Monitoreo en tiempo real de módulos, servicios y conectores de NESGESFinanceTrust.</p>
+      <p style="color: #C0CBE0; font-size: 0.9rem; margin-top: 1rem;"><strong data-i18n="statusLastUpdate">Última actualización:</strong><span id="last-update">--:--:-- UTC</span><strong data-i18n="statusSync">Sincronización:</strong><span id="sync-status" data-i18n-default="statusCalculating">Calculando...</span></p>
+    </div>
+
+    <section style="margin-top: 2rem;">
+      <h2 data-i18n="statusOverview">Resumen General</h2>
+      <div class="grid grid-3" style="gap: 1rem; margin-bottom: 2rem;">
+        <div class="tarjeta"><h3 data-i18n="statusServicesOp" style="color: #A9C6FF; font-size: 0.9rem;">Servicios en Operación</h3><div style="font-size: 2rem; color: #2EAF6D; font-weight: 700; font-family: 'Courier New', monospace;"><span id="operational-count">--</span> / <span id="total-count">8</span></div></div>
+        <div class="tarjeta"><h3 data-i18n="statusModulesAudit" style="color: #A9C6FF; font-size: 0.9rem;">Módulos en Auditoría</h3><div style="font-size: 2rem; color: #F7931A; font-weight: 700; font-family: 'Courier New', monospace;"><span id="audit-count">--</span></div></div>
+        <div class="tarjeta"><h3 data-i18n="statusApiLatency" style="color: #A9C6FF; font-size: 0.9rem;">Tiempo de Respuesta API</h3><div style="font-size: 2rem; color: #A9C6FF; font-weight: 700; font-family: 'Courier New', monospace;"><span id="api-latency">--</span> ms</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="statusModulesTitle">Estado de Módulos</h2>
+      <div class="status-grid">
+        <div class="status-card"><div class="status-header"><span class="status-title" data-i18n="statusBlocksTitle">🔍 Explorador de Bloques</span><span id="badge-blocks" class="status-badge status-degraded"><span class="status-dot" style="background: currentColor;"></span><span id="badge-blocks-text">Consultando</span></span></div><p class="status-description" data-i18n="statusBlocksDesc">Indexación y consulta de bloques Bitcoin en tiempo real.</p><div class="status-details"><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusLatestBlock">Último bloque disponible:</span><span class="status-detail-value" id="block-height">--</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusSource">Fuente:</span><span class="status-detail-value" id="block-source">--</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusLatencyLabel">Latencia:</span><span class="status-detail-value" id="explorer-latency">-- ms</span></div></div></div>
+        <div class="status-card"><div class="status-header"><span class="status-title" data-i18n="statusMempoolTitle">⚡ Mempool en Vivo</span><span id="badge-mempool" class="status-badge status-degraded"><span class="status-dot" style="background: currentColor;"></span><span id="badge-mempool-text">Consultando</span></span></div><p class="status-description" data-i18n="statusMempoolDesc">Monitoreo de transacciones no confirmadas.</p><div class="status-details"><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusTransactions">Transacciones:</span><span class="status-detail-value" id="mempool-tx">--</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusUpdateEvery">Actualización:</span><span class="status-detail-value">30 s</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusFeeWindow">Fee rápida:</span><span class="status-detail-value" id="mempool-fast-fee">--</span></div></div></div>
+        <div class="status-card"><div class="status-header"><span class="status-title" data-i18n="statusRunesTitle">🪙 Runes (Utility Token)</span><span id="badge-runes" class="status-badge status-audit"><span class="status-dot" style="background: currentColor;"></span><span id="badge-runes-text">En auditoría</span></span></div><p class="status-description" data-i18n="statusRunesDesc">Indexación del protocolo Runes de Casey Rodarmor.</p><div class="status-details"><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusSampleSize">Muestra consultada:</span><span class="status-detail-value" id="runes-count">--</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusProtocol">Protocolo:</span><span class="status-detail-value">Runes</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusVerificationLabel">Verificación:</span><span class="status-detail-value" id="runes-state">Pendiente</span></div></div></div>
+        <div class="status-card"><div class="status-header"><span class="status-title" data-i18n="statusOrdinalsTitle">🔐 Ordinals e Inscripciones</span><span id="badge-ordinals" class="status-badge status-audit"><span class="status-dot" style="background: currentColor;"></span><span id="badge-ordinals-text">En auditoría</span></span></div><p class="status-description" data-i18n="statusOrdinalsDesc">Indexación de inscripciones Taproot en Bitcoin.</p><div class="status-details"><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusSampleSize">Muestra consultada:</span><span class="status-detail-value" id="ordinals-count">--</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusContentTypeLabel">Contenido:</span><span class="status-detail-value" id="ordinals-type">--</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusVerificationLabel">Verificación:</span><span class="status-detail-value" id="ordinals-state">Pendiente</span></div></div></div>
+        <div class="status-card"><div class="status-header"><span class="status-title" data-i18n="statusRwaTitle">🏢 Registro de Activos Reales (RWA)</span><span id="badge-rwa" class="status-badge status-audit"><span class="status-dot" style="background: currentColor;"></span><span id="badge-rwa-text">En auditoría</span></span></div><p class="status-description" data-i18n="statusRwaDesc">Expediente técnico de organización de evidencias.</p><div class="status-details"><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusSampleSize">Muestra consultada:</span><span class="status-detail-value" id="rwa-count">--</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusWriteEndpoints">Operaciones POST:</span><span class="status-detail-value" id="rwa-write">--</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusValidation">Validación:</span><span class="status-detail-value" id="rwa-state">--</span></div></div></div>
+        <div class="status-card"><div class="status-header"><span class="status-title" data-i18n="statusApiTitle">📡 API REST / WebSocket</span><span id="badge-api" class="status-badge status-degraded"><span class="status-dot" style="background: currentColor;"></span><span id="badge-api-text">Consultando</span></span></div><p class="status-description" data-i18n="statusApiDesc">Interfaces técnicas para integración.</p><div class="status-details"><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusBaseEndpoint">Endpoint Base:</span><span class="status-detail-value">/api</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusWsEndpoint">WebSocket:</span><span class="status-detail-value">/ws</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusVersion">Versión:</span><span class="status-detail-value">v3.4.0-dev</span></div></div></div>
+        <div class="status-card"><div class="status-header"><span class="status-title" data-i18n="statusAuthTitle">🔐 Cumplimiento y operaciones RWA</span><span id="badge-auth" class="status-badge status-audit"><span class="status-dot" style="background: currentColor;"></span><span id="badge-auth-text">En auditoría</span></span></div><p class="status-description" data-i18n="statusAuthDesc">Controles configurables de KYC/AML y operaciones de escritura bloqueadas durante auditoría.</p><div class="status-details"><div class="status-detail-row"><span class="status-detail-label">POST /rwa/assets:</span><span class="status-detail-value" id="auth-post-assets">--</span></div><div class="status-detail-row"><span class="status-detail-label">POST /rwa/assets/:id/transfer:</span><span class="status-detail-value" id="auth-post-transfer">--</span></div><div class="status-detail-row"><span class="status-detail-label">KYC / AML:</span><span class="status-detail-value" id="auth-kyc">--</span></div></div></div>
+        <div class="status-card"><div class="status-header"><span class="status-title" data-i18n="statusDbTitle">💾 Base de Datos</span><span id="badge-db" class="status-badge status-degraded"><span class="status-dot" style="background: currentColor;"></span><span id="badge-db-text">Consultando</span></span></div><p class="status-description" data-i18n="statusDbDesc">Almacenamiento principal y caché Redis.</p><div class="status-details"><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusEngine">Motor:</span><span class="status-detail-value">MariaDB / MySQL</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusCache">Redis:</span><span class="status-detail-value" id="redis-state">--</span></div><div class="status-detail-row"><span class="status-detail-label" data-i18n="statusConnectivity">Conectividad:</span><span class="status-detail-value" id="db-state">--</span></div></div></div>
+      </div>
+    </section>
+
+    <section style="margin-top: 3rem;">
+      <h2 data-i18n="statusIncidents">Incidentes Recientes</h2>
+      <div class="status-incident">
+        <div class="status-incident-title" data-i18n="statusIncidentTitle">🔧 Auditoría técnica en curso</div>
+        <p data-i18n="statusIncidentP" style="color: var(--c-tenue); margin: 0.5rem 0;">La plataforma está en etapa de auditoría y testeo de conectores. Cambios sin previo aviso y datos pueden no ser definitivos.</p>
+        <div class="status-incident-time" id="health-summary">--</div>
+      </div>
+    </section>
+
+    <section style="margin-top: 3rem; padding: 1.5rem; background: var(--c-sup); border-radius: 10px; border: 1px solid var(--c-borde);">
+      <h3 data-i18n="statusInfoTitle">ℹ️ Información Adicional</h3>
+      <p data-i18n="statusInfoP" style="color: var(--c-tenue); margin-bottom: 1rem;">Este estado refleja la sincronización de conectores y módulos según datos disponibles. Para soporte técnico o reportes de fallos:</p>
+      <p>📧 <strong>support@nesgesfinance.org</strong> · 🔒 <strong>security@nesgesfinance.org</strong> (vulnerabilidades)</p>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    const STATUS_I18N = {
+      es: {
+        checking: 'Consultando', ok: 'Operativo', degraded: 'Degradado', audit: 'En auditoría', blocked: 'Bloqueado',
+        pending: 'Pendiente', available: 'Disponible', unavailable: 'No disponible', disabled: 'Deshabilitado', configured: 'Configurado',
+        synced: 'Sincronización verificada', sample: 'muestra pública', auditOnly: '503 en auditoría', controls: 'Configurables por backend',
+      },
+      en: {
+        checking: 'Checking', ok: 'Operational', degraded: 'Degraded', audit: 'Under audit', blocked: 'Blocked',
+        pending: 'Pending', available: 'Available', unavailable: 'Unavailable', disabled: 'Disabled', configured: 'Configured',
+        synced: 'Synchronization verified', sample: 'public sample', auditOnly: '503 in audit mode', controls: 'Backend-configured controls',
+      }
+    };
+
+    function langLabels() {
+      const lang = typeof getIdioma === 'function' ? getIdioma() : 'es';
+      return STATUS_I18N[lang] || STATUS_I18N.es;
+    }
+
+    function setBadge(id, tone, text) {
+      const el = document.getElementById(`badge-${id}`);
+      const label = document.getElementById(`badge-${id}-text`);
+      if (!el || !label) return;
+      el.className = `status-badge ${tone}`;
+      label.textContent = text;
+    }
+
+    async function timed(call) {
+      const start = performance.now();
+      const data = await call();
+      return { data, ms: Math.round(performance.now() - start) };
+    }
+
+    async function refreshStatus() {
+      const t = langLabels();
+      document.getElementById('last-update').textContent = new Date().toLocaleString(document.documentElement.lang === 'en' ? 'en-US' : 'es-ES', { hour12: false, timeZone: 'UTC' }) + ' UTC';
+      document.getElementById('sync-status').textContent = t.checking;
+
+      const [healthRes, blocksRes, mempoolRes, runesRes, ordinalsRes, rwaRes] = await Promise.allSettled([
+        timed(async () => {
+          const response = await fetch(`${NESGES.API_BASE}/health`);
+          const data = await response.json();
+          return data;
+        }),
+        timed(() => api.get('/blocks/recent?limit=1')),
+        timed(() => Promise.all([api.get('/mempool'), api.get('/mempool/fees')])),
+        timed(() => api.get('/runes?limit=1')),
+        timed(() => api.get('/ordinals/inscriptions?limit=1')),
+        timed(() => api.get('/rwa/assets?limit=1')),
+      ]);
+
+      let operational = 0;
+      const total = 8;
+
+      if (healthRes.status === 'fulfilled') {
+        const { data, ms } = healthRes.value;
+        document.getElementById('api-latency').textContent = String(ms);
+        document.getElementById('health-summary').textContent = data.services?.database?.message || t.checking;
+        document.getElementById('db-state').textContent = data.services?.database?.message || t.unavailable;
+        document.getElementById('redis-state').textContent = data.services?.redis?.enabled ? t.configured : t.disabled;
+        document.getElementById('block-source').textContent = data.services?.mempool?.backend || '--';
+        document.getElementById('auth-post-assets').textContent = t.auditOnly;
+        document.getElementById('auth-post-transfer').textContent = t.auditOnly;
+        document.getElementById('auth-kyc').textContent = t.controls;
+        setBadge('api', data.status === 'ok' ? 'status-operational' : 'status-degraded', data.status === 'ok' ? t.ok : t.degraded);
+        setBadge('db', data.services?.database?.status === 'connected' ? 'status-operational' : 'status-degraded', data.services?.database?.status === 'connected' ? t.ok : t.degraded);
+        operational += data.status === 'ok' ? 2 : 0;
+      } else {
+        document.getElementById('api-latency').textContent = '--';
+        document.getElementById('health-summary').textContent = t.unavailable;
+        document.getElementById('db-state').textContent = t.unavailable;
+        document.getElementById('redis-state').textContent = t.unavailable;
+        setBadge('api', 'status-degraded', t.degraded);
+        setBadge('db', 'status-degraded', t.degraded);
+      }
+
+      if (blocksRes.status === 'fulfilled') {
+        const { data, ms } = blocksRes.value;
+        const latest = Array.isArray(data) && data[0] ? data[0] : null;
+        document.getElementById('block-height').textContent = latest ? String(latest.height) : '--';
+        document.getElementById('explorer-latency').textContent = `${ms} ms`;
+        setBadge('blocks', latest ? 'status-operational' : 'status-degraded', latest ? t.ok : t.degraded);
+        operational += latest ? 1 : 0;
+      } else {
+        document.getElementById('block-height').textContent = '--';
+        document.getElementById('explorer-latency').textContent = '-- ms';
+        setBadge('blocks', 'status-degraded', t.degraded);
+      }
+
+      if (mempoolRes.status === 'fulfilled') {
+        const { data } = mempoolRes.value;
+        const [stats, fees] = data;
+        document.getElementById('mempool-tx').textContent = Number(stats.count || 0).toLocaleString(document.documentElement.lang === 'en' ? 'en-US' : 'es-ES');
+        document.getElementById('mempool-fast-fee').textContent = `${Math.ceil(fees.fastest ?? 0)} sat/vB`;
+        setBadge('mempool', 'status-operational', t.ok);
+        operational += 1;
+      } else {
+        document.getElementById('mempool-tx').textContent = '--';
+        document.getElementById('mempool-fast-fee').textContent = '--';
+        setBadge('mempool', 'status-degraded', t.degraded);
+      }
+
+      if (runesRes.status === 'fulfilled') {
+        const sample = Array.isArray(runesRes.value.data) ? runesRes.value.data.length : 0;
+        document.getElementById('runes-count').textContent = `${sample} ${t.sample}`;
+        document.getElementById('runes-state').textContent = t.available;
+      } else {
+        document.getElementById('runes-count').textContent = '--';
+        document.getElementById('runes-state').textContent = t.pending;
+      }
+      setBadge('runes', 'status-audit', t.audit);
+
+      if (ordinalsRes.status === 'fulfilled') {
+        const list = Array.isArray(ordinalsRes.value.data) ? ordinalsRes.value.data : [];
+        document.getElementById('ordinals-count').textContent = `${list.length} ${t.sample}`;
+        document.getElementById('ordinals-type').textContent = list[0]?.contentType || '--';
+        document.getElementById('ordinals-state').textContent = t.available;
+      } else {
+        document.getElementById('ordinals-count').textContent = '--';
+        document.getElementById('ordinals-type').textContent = '--';
+        document.getElementById('ordinals-state').textContent = t.pending;
+      }
+      setBadge('ordinals', 'status-audit', t.audit);
+
+      if (rwaRes.status === 'fulfilled') {
+        const list = Array.isArray(rwaRes.value.data) ? rwaRes.value.data : [];
+        document.getElementById('rwa-count').textContent = `${list.length} ${t.sample}`;
+        document.getElementById('rwa-write').textContent = t.auditOnly;
+        document.getElementById('rwa-state').textContent = t.disabled;
+      } else {
+        document.getElementById('rwa-count').textContent = '--';
+        document.getElementById('rwa-write').textContent = t.unavailable;
+        document.getElementById('rwa-state').textContent = t.unavailable;
+      }
+      setBadge('rwa', 'status-audit', t.audit);
+      setBadge('auth', 'status-audit', t.audit);
+
+      const auditCount = 4;
+      document.getElementById('operational-count').textContent = String(operational);
+      document.getElementById('total-count').textContent = String(total);
+      document.getElementById('audit-count').textContent = String(auditCount);
+      document.getElementById('sync-status').textContent = healthRes.status === 'fulfilled' && healthRes.value.data.status === 'ok' ? t.synced : t.degraded;
+    }
+
+    refreshStatus();
+    setInterval(refreshStatus, 60000);
+  </script>
+
+</body></html>

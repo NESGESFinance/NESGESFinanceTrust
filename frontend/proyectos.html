@@ -2,45 +2,216 @@
 <!--
   Portafolio de proyectos de NESGESFinanceTrust.
   Contenido basado exclusivamente en la hoja de proyectos proporcionada.
--->
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0a">
-  <meta name="description" content="Áreas y proyectos de referencia de NESGESFinance Ecosystem.">
+--><html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="theme-color" content="#0F172A"/>
+  <meta content="Áreas y proyectos de referencia de NESGESFinance Ecosystem." data-i18n-content="projectsMetaDesc" name="description"/>
   <title>Proyectos — NESGESFinance Ecosystem</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/nesgesfinance-logo.svg">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
+  
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+  </style>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+  <div aria-live="assertive" class="audit-banner" role="alert"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
+
   <nav class="nav-principal">
-    <a class="marca" href="index.html"><img src="assets/img/nesgesfinance-logo.svg" alt="NESGESFinance"></a>
-    <ul class="nav-enlaces">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a class="activo" href="proyectos.html">Proyectos</a></li>
-      <li><a href="institucional.html">Ecosistema</a></li>
-      <li><a href="dashboard-unificado.html">Dashboard</a></li>
-      <li><a href="explorer.html">Explorador</a></li>
-      <li><a href="dashboard2.html">Tokenización RWA</a></li>
-      <li><a href="rwa-marketplace.html">Marketplace</a></li>
-    </ul>
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="institucional.html" data-i18n="navHome">Home</a></li><li><a href="index.html" data-i18n="navEcosystem">Ecosistema</a></li><li><a href="verify.html" data-i18n="navProjects">Explorar activos</a></li><li><a href="dashboard-unificado.html" data-i18n="navDashboard">Dashboard</a></li><li><a href="explorer.html" data-i18n="navExplorer">Explorador</a></li><li><a href="dashboard2.html" data-i18n="navRwa">Tokenización RWA</a></li><li><a href="rwa-marketplace.html" data-i18n="navMarketplace">Marketplace</a></li><li><a href="status.html" data-i18n="navStatus">Estado</a></li><li><a href="developers.html" data-i18n="navDevelopers">Developers</a></li></ul>
   </nav>
 
   <header class="hero">
-    <p class="lema">Hoja de proyectos de referencia</p>
-    <h1>Proyectos</h1>
-    <p>Áreas de iniciativa productiva, social y de servicios organizadas según la información de referencia proporcionada.</p>
-    <a class="btn btn-primario" href="index.html">Volver al inicio</a>
+    <div class="hero-contenido">
+      <div>
+        <p class="lema" data-i18n="projectsTagline">Hoja de proyectos de referencia</p>
+        <h1 data-i18n="projectsH1">Proyectos</h1>
+        <p data-i18n="projectsIntro">Áreas de iniciativa productiva, social y de servicios organizadas según la información de referencia proporcionada.</p>
+        <div class="hero-acciones">
+          <a class="btn btn-primario" data-i18n="projectsBackHome" href="index.html">Volver al inicio</a>
+          <a class="btn btn-secundario" data-i18n="projectsViewEcosystem" href="institucional.html">Ver ecosistema</a>
+        </div>
+      </div>
+      <div aria-label="Identidad visual NESGESFinance" class="hero-logo-stack">
+        <div class="hero-logo-card"><img alt="Logotipo oficial NESGESFinance" data-i18n-alt="heroLogoAlt1" height="740" src="assets/img/NESGESFinance_Logo.jpg" width="740"/></div>
+        <div class="hero-logo-card hero-logo-accent"><img alt="Logotipo oficial NGF•BTC•AM" data-i18n-alt="heroLogoAlt2" height="1024" src="assets/img/NGF-BTC-AM.jpg" width="1023"/></div>
+      </div>
+    </div>
   </header>
 
   <main>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         SECCIÓN 1 — PROCESO OFICIAL DE POSTULACIÓN F0–F6
+         Contenido íntegro de docs/PROYECTOS.md § 1
+    ══════════════════════════════════════════════════════════════ -->
+    <section id="postulacion">
+      <h2>Proceso oficial de postulación — F0 a F6</h2>
+      <p class="descripcion">Cada proyecto que solicita tokenización dentro del ecosistema NESGESFinance atraviesa seis fases formales antes de cualquier emisión pública. Ningún proyecto se publica antes de completar F0–F5 con documentación de emisión íntegra.</p>
+
+      <div class="proceso">
+
+        <article>
+          <strong>F0 — Solicitud</strong>
+          <span>Documentación inicial requerida:</span>
+          <ul style="margin:.5rem 0 0 1rem; color:var(--color-texto-tenue); font-size:.92rem; line-height:1.7;">
+            <li>Título de propiedad.</li>
+            <li>Avalúo independiente.</li>
+            <li>Estados financieros.</li>
+            <li>Permisos y licencias vigentes.</li>
+            <li>Memoria técnica del proyecto.</li>
+          </ul>
+        </article>
+
+        <article>
+          <strong>F1 — Due diligence</strong>
+          <ul style="margin:.5rem 0 0 1rem; color:var(--color-texto-tenue); font-size:.92rem; line-height:1.7;">
+            <li>Verificación legal, financiera y técnica.</li>
+            <li>Cruce por pares con expertos independientes.</li>
+            <li>Registro de evidencia auditada.</li>
+          </ul>
+        </article>
+
+        <article>
+          <strong>F2 — SPV y Reglamento de Emisión</strong>
+          <ul style="margin:.5rem 0 0 1rem; color:var(--color-texto-tenue); font-size:.92rem; line-height:1.7;">
+            <li>Constitución del SPV (Special Purpose Vehicle) independiente.</li>
+            <li>Definición de suministro, distribución, calendario y gobernanza de la serie.</li>
+            <li>El SPV es separado de las entidades coordinadoras (S.A.S. BIC y LLC).</li>
+          </ul>
+        </article>
+
+        <article>
+          <strong>F3 — Oferta bajo cumplimiento regulatorio</strong>
+          <ul style="margin:.5rem 0 0 1rem; color:var(--color-texto-tenue); font-size:.92rem; line-height:1.7;">
+            <li>Estructuración del activo como <em>security tokenizado</em> desde su origen.</li>
+            <li>Aplicación de <strong>Reg D 506(c)</strong> y/o <strong>Reg S</strong> (EE.UU.) según aplique.</li>
+            <li>Whitelist obligatoria de direcciones Bitcoin habilitadas.</li>
+            <li>Restricciones de transferencia según marco jurídico de la serie.</li>
+          </ul>
+        </article>
+
+        <article>
+          <strong>F4 — Emisión técnica en Bitcoin L1</strong>
+          <ul style="margin:.5rem 0 0 1rem; color:var(--color-texto-tenue); font-size:.92rem; line-height:1.7;">
+            <li>Inscripción de Ordinals sobre Bitcoin L1.</li>
+            <li>Anclaje SHA-256 de documentos legales mediante <code>OP_RETURN</code>.</li>
+            <li>Esquema de custodia multifirma 3/5.</li>
+            <li>Integración de oráculo de datos.</li>
+          </ul>
+        </article>
+
+        <article>
+          <strong>F5 — Aprobación</strong>
+          <ul style="margin:.5rem 0 0 1rem; color:var(--color-texto-tenue); font-size:.92rem; line-height:1.7;">
+            <li>Revisión y firma por el quórum multifirma (3 de 5).</li>
+            <li>Publicación posterior en el Launchpad del ecosistema.</li>
+          </ul>
+        </article>
+
+        <article>
+          <strong>F6 — Operación continua</strong>
+          <ul style="margin:.5rem 0 0 1rem; color:var(--color-texto-tenue); font-size:.92rem; line-height:1.7;">
+            <li>Snapshots trimestrales: 31-mar, 30-jun, 30-sep y 31-dic a las 23:59 UTC.</li>
+            <li>Distribución trimestral en BTC calculada por script público con TXID auditable.</li>
+            <li>Reportes periódicos de rendimiento.</li>
+            <li>Gobernanza de tenedores de Ordinals conforme al Reglamento de la serie.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         SECCIÓN 2 — PARTICIPACIÓN EN PROYECTOS APROBADOS
+         Contenido íntegro de docs/PROYECTOS.md § 2
+    ══════════════════════════════════════════════════════════════ -->
+    <section id="participacion">
+      <h2>Participación en proyectos aprobados</h2>
+      <p class="descripcion">Proceso paso a paso para inversores interesados en adquirir un Ordinal de serie y recibir distribuciones trimestrales.</p>
+      <ol style="max-width:780px; margin:1.5rem auto; padding-left:1.4rem; line-height:2; color:var(--color-texto); font-size:1rem;">
+        <li>Completar <strong>KYC/AML</strong> y verificación de origen de fondos.</li>
+        <li>Registrar la dirección Bitcoin en la <strong>whitelist</strong> de la serie.</li>
+        <li>Obtener el utility token <strong>NGF•BTC•AM</strong> como llave de acceso técnico al ecosistema; <em>no constituye</em> por sí mismo una inversión ni confiere derechos económicos directos.</li>
+        <li>Explorar el Launchpad y revisar la documentación completa de la serie.</li>
+        <li>Adquirir el Ordinal de la serie <strong>sólo desde dirección habilitada</strong>.</li>
+        <li>Recibir distribuciones trimestrales en BTC según el Reglamento de la serie.</li>
+        <li>Ejercer derechos de gobernanza conforme al Reglamento.</li>
+      </ol>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         SECCIÓN 3 — GOBERNANZA HÍBRIDA POR NIVEL
+         Contenido íntegro de docs/PROYECTOS.md § 4
+    ══════════════════════════════════════════════════════════════ -->
+    <section id="gobernanza">
+      <h2>Gobernanza híbrida por nivel</h2>
+      <p class="descripcion">El ecosistema opera con cuatro capas de gobernanza diferenciadas, cada una con participantes y alcance propios.</p>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Nivel</th>
+              <th>Participantes</th>
+              <th>Alcance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Gobernanza corporativa</strong></td>
+              <td>Entidades legales S.A.S. BIC + LLC</td>
+              <td>Dirección institucional y cumplimiento legal</td>
+            </tr>
+            <tr>
+              <td><strong>Gobernanza del ecosistema</strong></td>
+              <td>Tenedores de NGF•BTC•AM</td>
+              <td>Orientación general consultiva</td>
+            </tr>
+            <tr>
+              <td><strong>Gobernanza de proyectos</strong></td>
+              <td>Tenedores de Ordinals de cada serie</td>
+              <td>Decisiones operativas/económicas vinculantes según Reglamento</td>
+            </tr>
+            <tr>
+              <td><strong>Capa Trust (propuesta)</strong></td>
+              <td>Trust/fiduciario/beneficiarios por definir</td>
+              <td>Continuidad patrimonial, reservas y administración separada</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         SECCIÓN 4 — PORTAFOLIO DE PROYECTOS A DESPLEGAR
+         Contenido íntegro de docs/PROYECTOS.md § 3
+    ══════════════════════════════════════════════════════════════ -->
+    <section id="portafolio-titulo">
+      <h2>Portafolio de proyectos a desplegar</h2>
+      <p class="descripcion">Todas las iniciativas productivas, sociales y de servicios organizadas por categoría, conforme al Documento Maestro Institucional 2026.</p>
+    </section>
+
     <section id="agricolas">
-      <h2>1. Proyectos Agrícolas</h2>
-      <p class="descripcion">Iniciativas enfocadas en producción agroalimentaria, tecnificación y aprovechamiento sostenible de recursos.</p>
+      <h2 data-i18n="projectsAgriH2">1. Proyectos Agrícolas</h2>
+      <p class="descripcion" data-i18n="projectsAgriDesc">Iniciativas enfocadas en producción agroalimentaria, tecnificación y aprovechamiento sostenible de recursos.</p>
       <div class="grid grid-3">
         <article class="tarjeta"><h3>Cultivo de Arroz</h3><p>Producción a gran escala con tecnificación y tokenización.</p></article>
         <article class="tarjeta"><h3>Cultivo de Maíz</h3><p>Base alimentaria y materia prima para bioenergía.</p></article>
@@ -55,8 +226,8 @@
     </section>
 
     <section id="pecuarios">
-      <h2>2. Proyectos Pecuarios y de Acuacultura</h2>
-      <p class="descripcion">Proyectos de producción animal y acuícola para abasto, transformación y consumo.</p>
+      <h2 data-i18n="projectsLivestockH2">2. Proyectos Pecuarios y de Acuacultura</h2>
+      <p class="descripcion" data-i18n="projectsLivestockDesc">Proyectos de producción animal y acuícola para abasto, transformación y consumo.</p>
       <div class="grid grid-3">
         <article class="tarjeta"><h3>Granjas Avícolas (Gallinas Ponedoras)</h3><p>Producción de huevos a gran escala.</p></article>
         <article class="tarjeta"><h3>Producción Avícola de Engorde</h3><p>Granjas de pollos de carne.</p></article>
@@ -69,8 +240,8 @@
     </section>
 
     <section id="industriales">
-      <h2>3. Proyectos Industriales y de Manufactura</h2>
-      <p class="descripcion">Iniciativas de transformación, fabricación, comercio y equipamiento productivo.</p>
+      <h2 data-i18n="projectsIndustrialH2">3. Proyectos Industriales y de Manufactura</h2>
+      <p class="descripcion" data-i18n="projectsIndustrialDesc">Iniciativas de transformación, fabricación, comercio y equipamiento productivo.</p>
       <div class="grid grid-3">
         <article class="tarjeta"><h3>Pirólisis de Plástico a Combustibles</h3><p>Proyecto eje del ecosistema.</p></article>
         <article class="tarjeta"><h3>Carpintería Industrial</h3><p>Producción y comercialización de muebles y derivados de la madera.</p></article>
@@ -83,8 +254,8 @@
     </section>
 
     <section id="energeticos">
-      <h2>4. Proyectos Energéticos</h2>
-      <p class="descripcion">Soluciones de generación y eficiencia energética para comunidades, zonas rurales e industria.</p>
+      <h2 data-i18n="projectsEnergyH2">4. Proyectos Energéticos</h2>
+      <p class="descripcion" data-i18n="projectsEnergyDesc">Soluciones de generación y eficiencia energética para comunidades, zonas rurales e industria.</p>
       <div class="grid grid-2">
         <article class="tarjeta"><h3>Micro-Redes Solares</h3><p>Energía renovable para zonas rurales e industrias.</p></article>
         <article class="tarjeta"><h3>Tecnología Brushless</h3><p>Generación descentralizada y más eficiente.</p></article>
@@ -92,8 +263,8 @@
     </section>
 
     <section id="inmobiliarios">
-      <h2>5. Proyectos Inmobiliarios</h2>
-      <p class="descripcion">Alternativas de desarrollo territorial, gestión de propiedad y hospedaje.</p>
+      <h2 data-i18n="projectsRealEstateH2">5. Proyectos Inmobiliarios</h2>
+      <p class="descripcion" data-i18n="projectsRealEstateDesc">Alternativas de desarrollo territorial, gestión de propiedad y hospedaje.</p>
       <div class="grid grid-3">
         <article class="tarjeta"><h3>Compra y Fraccionamiento de Terrenos</h3><p>Urbanizaciones productivas.</p></article>
         <article class="tarjeta"><h3>Gestión de Propiedades Tokenizadas</h3><p>Modelos de copropiedad.</p></article>
@@ -102,16 +273,16 @@
     </section>
 
     <section id="servicios">
-      <h2>6. Proyectos de Servicios</h2>
-      <p class="descripcion">Servicios especializados orientados a optimizar procesos agrícolas.</p>
+      <h2 data-i18n="projectsServicesH2">6. Proyectos de Servicios</h2>
+      <p class="descripcion" data-i18n="projectsServicesDesc">Servicios especializados orientados a optimizar procesos agrícolas.</p>
       <div class="grid grid-2">
         <article class="tarjeta"><h3>Fumigación y Fertilización con Drones</h3><p>Servicios agrícolas de alta precisión para optimizar cultivos.</p></article>
       </div>
     </section>
 
     <section id="turisticos">
-      <h2>7. Proyectos Turísticos</h2>
-      <p class="descripcion">Propuestas de hospedaje y turismo con enfoque comunitario e internacional.</p>
+      <h2 data-i18n="projectsTourismH2">7. Proyectos Turísticos</h2>
+      <p class="descripcion" data-i18n="projectsTourismDesc">Propuestas de hospedaje y turismo con enfoque comunitario e internacional.</p>
       <div class="grid grid-2">
         <article class="tarjeta"><h3>Fincas Integrales y Hosterías</h3><p>Turismo sostenible con visión comunitaria.</p></article>
         <article class="tarjeta"><h3>Hoteles y Centros Turísticos</h3><p>Proyectos para turismo internacional.</p></article>
@@ -119,8 +290,8 @@
     </section>
 
     <section id="sociales">
-      <h2>8. Proyectos Sociales y Humanitarios</h2>
-      <p class="descripcion">Iniciativas de apoyo comunitario, salud, protección animal y vivienda.</p>
+      <h2 data-i18n="projectsSocialH2">8. Proyectos Sociales y Humanitarios</h2>
+      <p class="descripcion" data-i18n="projectsSocialDesc">Iniciativas de apoyo comunitario, salud, protección animal y vivienda.</p>
       <div class="grid grid-2">
         <article class="tarjeta"><h3>Impresión 3D de Prótesis</h3><p>Donación gratuita para personas y animales.</p></article>
         <article class="tarjeta"><h3>Centros de Rescate Animal</h3><p>Protección de fauna en espacios definidos.</p></article>
@@ -129,10 +300,17 @@
       </div>
     </section>
 
-    <p style="text-align:center; margin: 3rem 0 1rem;"><a class="btn btn-secundario" href="index.html">Volver al inicio</a></p>
+    <p style="text-align:center; margin: 3rem 0 1rem;">
+      <a class="btn btn-secundario" data-i18n="projectsBackHome" href="index.html">Volver al inicio</a>
+    </p>
+
+    <aside style="max-width:860px; margin:2rem auto 3rem; padding:1.2rem 1.5rem; border-left:4px solid var(--color-acento-naranja,#F97316); background:rgba(255,255,255,0.03); border-radius:0 12px 12px 0; font-size:.88rem; color:var(--color-texto-tenue); line-height:1.6;">
+      <strong style="color:var(--color-texto);">Aviso legal:</strong> Este contenido es informativo e institucional. No constituye oferta pública de valores, asesoría financiera, jurídica ni fiscal. Las ofertas se realizan mediante los documentos de emisión de cada serie y bajo las exenciones regulatorias aplicables.<br/>
+      Copyright ®NESGESFinance Ecosystem S.A.S. BIC. &amp; LLC. EIN: 0008086872 — TODOS LOS DERECHOS RESERVADOS 2025-2026
+    </aside>
   </main>
 
   <footer class="pie" id="pie"></footer>
   <script src="assets/js/app.js"></script>
-</body>
-</html>
+
+</body></html>

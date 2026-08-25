@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--
+  PORTAL DESARROLLADORES — NESGESFinanceTrust
+  Documentación de API, ejemplos y recursos técnicos
+  Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
+  TODOS LOS DERECHOS RESERVADOS 2025-2026
+--><html lang="es"><head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="theme-color" content="#0F172A"/>
+  <meta content="Portal Desarrolladores — NESGESFinanceTrust. Documentación API REST, WebSocket y recursos técnicos." data-i18n-content="developersMetaDesc" name="description"/>
+  <title>Portal Desarrolladores — NESGESFinanceTrust</title>
+  <link href="assets/img/nesgesfinance-logo.svg" rel="icon" type="image/svg+xml"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+  <link href="assets/css/components.css" rel="stylesheet"/>
+  <style>
+    .audit-banner {
+      background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 107, 107, 0.1));
+      border-top: 3px solid #ff4d4d;
+      border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+      padding: 0.75rem 1.25rem;
+      color: #FFC0CB;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 250;
+      line-height: 1.4;
+    }
+    .audit-banner strong { color: #ff9999; }
+
+    .dev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    
+    .dev-card { background: var(--c-sup); border: 1px solid var(--c-borde); border-radius: 10px; padding: 1.5rem; transition: all 0.3s; }
+    .dev-card:hover { border-color: var(--c-naranja); transform: translateY(-2px); }
+    
+    .dev-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .dev-title { color: var(--c-dorado); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .dev-desc { color: var(--c-tenue); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.5; }
+    
+    .code-block {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--c-borde);
+      border-radius: 6px;
+      padding: 1.25rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #2EAF6D;
+      line-height: 1.6;
+    }
+
+    .endpoint {
+      background: var(--c-sup);
+      border-left: 4px solid var(--c-naranja);
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      border-radius: 6px;
+    }
+
+    .endpoint-method {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .endpoint-get { background: rgba(46, 175, 109, 0.2); color: #2EAF6D; }
+    .endpoint-post { background: rgba(247, 147, 26, 0.2); color: #F7931A; }
+    .endpoint-ws { background: rgba(169, 198, 255, 0.2); color: #A9C6FF; }
+
+    .endpoint-path {
+      color: var(--c-texto);
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .endpoint-desc {
+      color: var(--c-tenue);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .endpoint-params {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--c-borde);
+    }
+
+    .param-row {
+      display: grid;
+      grid-template-columns: 120px 100px 1fr;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      font-size: 0.85rem;
+    }
+
+    .param-name { color: var(--c-dorado); font-weight: 600; font-family: 'Courier New', monospace; }
+    .param-type { color: #F7931A; font-family: 'Courier New', monospace; }
+    .param-desc { color: var(--c-tenue); }
+
+    .sdk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    
+    .sdk-item {
+      background: var(--c-sup);
+      border: 1px solid var(--c-borde);
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .sdk-item:hover { border-color: var(--c-naranja); }
+    .sdk-lang { color: var(--c-dorado); font-weight: 700; margin-bottom: 0.5rem; }
+    .sdk-link { color: var(--c-naranja); text-decoration: underline; }
+
+    .quickstart { background: linear-gradient(135deg, rgba(11, 60, 138, 0.1), rgba(15, 90, 150, 0.1)); border: 1px solid var(--c-borde); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
+  </style>
+  <script defer="" src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body>
+  <div class="audit-banner"><strong data-i18n="auditBannerStrong">⚠️ Plataforma en etapa de auditoría técnica y testeo de conectores.</strong> <span data-i18n="auditBannerText">Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.</span></div>
+
+  <nav class="nav-principal">
+    <a class="marca" href="index.html"><img alt="NESGESFinance Ecosystem" data-i18n-alt="brandAlt" src="assets/img/NESGESFinance_Logo.jpg"/></a>
+    <ul class="nav-enlaces"><li><a href="institucional.html" data-i18n="navHome">Home</a></li><li><a href="index.html" data-i18n="navEcosystem">Ecosistema</a></li><li><a href="verify.html" data-i18n="navProjects">Explorar activos</a></li><li><a href="dashboard-unificado.html" data-i18n="navDashboard">Dashboard</a></li><li><a href="explorer.html" data-i18n="navExplorer">Explorador</a></li><li><a href="dashboard2.html" data-i18n="navRwa">Tokenización RWA</a></li><li><a href="rwa-marketplace.html" data-i18n="navMarketplace">Marketplace</a></li><li><a href="status.html" data-i18n="navStatus">Estado</a></li><li><a href="developers.html" data-i18n="navDevelopers">Developers</a></li></ul>
+  </nav>
+
+  <main style="max-width: 1000px; margin: 0 auto; padding: 2rem 1.25rem;">
+    <div class="panel-cabecera">
+      <h1 data-i18n="developersH1">👨‍💻 Portal Desarrolladores</h1>
+      <p class="subtitulo" data-i18n="developersSubtitle">Documentación de API, ejemplos de código y recursos técnicos para integrar NESGESFinanceTrust en tus aplicaciones.</p>
+    </div>
+
+    <div class="quickstart">
+      <h3 data-i18n="developersQuickstartTitle" style="margin-top: 0; color: #A9C6FF;">🚀 Inicio Rápido</h3>
+      <p data-i18n="developersQuickstartP1">La API de NESGESFinanceTrust expone datos de Bitcoin, Runes, Ordinals y activos RWA mediante REST API y WebSocket en tiempo real.</p>
+      <p style="color: var(--c-tenue); font-size: 0.9rem;">
+<strong><span data-i18n="developersBaseUrl">Base URL:</span></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">/api</code><br/>
+<strong><span data-i18n="developersWebSocket">WebSocket:</span></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">ws(s)://&lt;host&gt;/ws</code><br/>
+<strong><span data-i18n="developersApiVersion">Versión API:</span></strong> <code style="background: rgba(15, 23, 42, 0.5); padding: 0.3rem 0.6rem; border-radius: 4px;">v3.4.0-dev</code>
+      </p>
+    </div>
+
+    <section>
+      <h2 data-i18n="developersAccessTitle">🔐 Acceso actual</h2>
+      <p data-i18n="developersAccessP">Los endpoints públicos documentados en este repositorio no requieren autenticación. Las operaciones POST del módulo RWA permanecen bloqueadas en modo auditoría y responden HTTP 503.</p>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-get">GET</span>
+        <div class="endpoint-path">/health</div>
+        <div class="endpoint-desc" data-i18n="developersHealthDesc">Devuelve la identidad de la plataforma y el estado real de dependencias críticas.</div>
+        <div class="code-block">GET /api/health</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="developersBlocksTitle">⛓️ Bloques</h2>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-get">GET</span>
+        <div class="endpoint-path">/blocks/recent</div>
+        <div class="endpoint-desc" data-i18n="developersRecentBlocks">Obtener los bloques más recientes persistidos.</div>
+        <div class="code-block">GET /api/blocks/recent?limit=10</div>
+      </div>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-get">GET</span>
+        <div class="endpoint-path">/blocks/:height</div>
+        <div class="endpoint-desc" data-i18n="developersBlockByHeight">Obtener información de un bloque por altura</div>
+        <div class="code-block">GET /api/blocks/923867</div>
+        <div class="endpoint-params">
+          <strong data-i18n="developersParams">Parámetros:</strong>
+          <div class="param-row">
+            <span class="param-name">height</span>
+            <span class="param-type">number</span>
+            <span class="param-desc" data-i18n="developersBlockHeightParam">Altura del bloque (requerido)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="developersMempoolTitle">⚡ Mempool</h2>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-get">GET</span>
+        <div class="endpoint-path">/mempool</div>
+        <div class="endpoint-desc" data-i18n="developersGetMempool">Obtener estadísticas agregadas del mempool en memoria.</div>
+        <div class="code-block">GET /api/mempool</div>
+      </div>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-get">GET</span>
+        <div class="endpoint-path">/mempool/fees</div>
+        <div class="endpoint-desc" data-i18n="developersFeesNow">Obtener estimaciones de fees actuales</div>
+        <div class="code-block">GET /api/mempool/fees</div>
+      </div>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-get">GET</span>
+        <div class="endpoint-path">/mempool/recent</div>
+        <div class="endpoint-desc" data-i18n="developersRecentMempoolDesc">Obtener las transacciones recientes reportadas por el backend on-chain.</div>
+        <div class="code-block">GET /api/mempool/recent</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="developersRunesTitle">🪙 Runes (Utility Token)</h2>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/runes</div><div class="endpoint-desc" data-i18n="developersListRunes">Listar todas las Runes indexadas</div><div class="code-block">GET /api/runes?limit=50&amp;offset=0</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/runes/:name</div><div class="endpoint-desc" data-i18n="developersGetRune">Obtener información de una Rune específica</div><div class="code-block">GET /api/runes/NGF•BTC•AM</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/runes/:name/holders</div><div class="endpoint-desc" data-i18n="developersRuneHolders">Obtener top 100 holders de una Rune</div><div class="code-block">GET /api/runes/NGF•BTC•AM/holders</div></div>
+    </section>
+
+    <section>
+      <h2 data-i18n="developersOrdinalsTitle">🖼️ Ordinals e Inscripciones</h2>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/ordinals/inscriptions</div><div class="endpoint-desc" data-i18n="developersListInscriptions">Listar inscripciones registradas</div><div class="code-block">GET /api/ordinals/inscriptions?limit=50</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/ordinals/inscription/:id</div><div class="endpoint-desc" data-i18n="developersGetInscription">Obtener detalles de una inscripción</div><div class="code-block">GET /api/ordinals/inscription/a1b2c3d4e5f6...i0</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/ordinals/content/:id</div><div class="endpoint-desc" data-i18n="developersGetInscriptionContent">Obtener contenido de una inscripción</div><div class="code-block">GET /api/ordinals/content/a1b2c3d4e5f6...i0</div></div>
+    </section>
+
+    <section>
+      <h2 data-i18n="developersRwaTitle">🏢 Activos Reales (RWA)</h2>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-get">GET</span>
+        <div class="endpoint-path">/rwa/assets</div>
+        <div class="endpoint-desc" data-i18n="developersListAssets">Listar activos registrados con filtros opcionales</div>
+        <div class="code-block">GET /api/rwa/assets?type=INMUEBLE&amp;status=ACTIVO</div>
+      </div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/rwa/assets/:id</div><div class="endpoint-desc" data-i18n="developersGetAsset">Obtener detalles de un activo</div><div class="code-block">GET /api/rwa/assets/12345</div></div>
+      <div class="endpoint"><span class="endpoint-method endpoint-get">GET</span><div class="endpoint-path">/rwa/assets/:id/history</div><div class="endpoint-desc" data-i18n="developersAssetHistory">Obtener historial de cambios de un activo</div><div class="code-block">GET /api/rwa/assets/12345/history</div></div>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-post">POST</span>
+        <div class="endpoint-path">/rwa/assets</div>
+        <div class="endpoint-desc" data-i18n="developersRegisterAsset">Intento de registro de un activo (actualmente devuelve 503 por modo auditoría).</div>
+        <div class="code-block">POST /api/rwa/assets
+Content-Type: application/json
+
+{
+  "type": "INMUEBLE",
+  "name": "Activo de ejemplo",
+  "valuationUSD": 250000,
+  "owner": "bc1p...",
+  "inscriptionId": "&lt;txid&gt;i0",
+  "metadata": { "legalDocuments": [] }
+}</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="developersWsTitle">📡 WebSocket (Tiempo Real)</h2>
+      <p data-i18n="developersWsP">Conecta a canales en vivo para recibir eventos en tiempo real.</p>
+      <div class="endpoint">
+        <span class="endpoint-method endpoint-ws">WS</span>
+        <div class="endpoint-path">/ws</div>
+        <div class="endpoint-desc" data-i18n="developersWsConn">Conexión WebSocket con múltiples canales</div>
+        <div class="code-block">const ws = new WebSocket(`${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws`);
+
+ws.onopen = () =&gt; {
+  ws.send(JSON.stringify({
+    action: 'subscribe',
+    channels: ['blocks', 'mempool']
+  }));
+};
+
+ws.onmessage = (event) =&gt; {
+  const data = JSON.parse(event.data);
+  console.log(data.channel || data.type, data.payload);
+};</div>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--c-borde);">
+          <strong data-i18n="developersChannels">Canales disponibles:</strong>
+          <div style="margin-top: 0.75rem; display: grid; gap: 0.5rem; color: var(--c-tenue);">
+            <div><span style="color: var(--c-dorado); font-weight: 600;">blocks</span> — <span data-i18n="developersChannelBlocks">Nuevos bloques indexados</span></div>
+            <div><span style="color: var(--c-dorado); font-weight: 600;">mempool</span> — <span data-i18n="developersChannelMempool">Actualizaciones del mempool</span></div>
+            <div><span style="color: var(--c-dorado); font-weight: 600;">runes</span> — <span data-i18n="developersChannelRunes">Eventos del protocolo Runes</span></div>
+            <div><span style="color: var(--c-dorado); font-weight: 600;">ordinals</span> — <span data-i18n="developersChannelOrdinals">Eventos de Ordinals</span></div>
+            <div><span style="color: var(--c-dorado); font-weight: 600;">rwa</span> — <span data-i18n="developersChannelRwa">Cambios del registro RWA</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="developersNotesTitle">⚠️ Notas de implementación</h2>
+      <div class="dev-grid">
+        <div class="dev-card"><div class="dev-title" data-i18n="developersNotesAuditTitle">Modo auditoría</div><div class="dev-desc" data-i18n="developersNotesAuditDesc">Los endpoints de escritura RWA están deshabilitados mientras la plataforma permanezca en auditoría técnica.</div></div>
+        <div class="dev-card"><div class="dev-title" data-i18n="developersNotesHealthTitle">Healthcheck real</div><div class="dev-desc" data-i18n="developersNotesHealthDesc">/api/health distingue entre estado OK y degradado según la disponibilidad de la base de datos.</div></div>
+        <div class="dev-card"><div class="dev-title" data-i18n="developersNotesDocsTitle">Referencia viva</div><div class="dev-desc" data-i18n="developersNotesDocsDesc">La referencia canónica del comportamiento actual está en README.md, docs/API.md y el whitepaper institucional PDF dentro de este repositorio.</div></div>
+      </div>
+    </section>
+
+    <section style="margin-top: 3rem; padding: 1.5rem; background: var(--c-sup); border-radius: 10px; border: 1px solid var(--c-borde);">
+      <h2 data-i18n="developersSupportTitle" style="margin-top: 0;">📞 Soporte Técnico</h2>
+      <p data-i18n="developersSupportP">¿Preguntas o problemas con la API?</p>
+      <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+        <li>📧 <strong>support@nesgesfinance.org</strong> — <span data-i18n="developersSupportGeneral">Soporte general</span></li>
+        <li>🐛 <strong>security@nesgesfinance.org</strong> — <span data-i18n="developersSupportSecurity">Reportar vulnerabilidades</span></li>
+        <li>📚 <a href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/docs/API.md" rel="noopener" style="color: var(--c-naranja);" target="_blank"><strong>docs/API.md</strong></a> — <span data-i18n="developersSupportDocs">Documentación completa del repositorio</span></li>
+        <li>📘 <a href="https://github.com/NESGESFinance/NESGESFinanceTrust/blob/main/NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf" rel="noopener" style="color: var(--c-naranja);" target="_blank"><strong>Whitepaper institucional PDF</strong></a> — fuente institucional primaria y marco documental base</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/app.js"></script>
+
+</body></html>

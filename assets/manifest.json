@@ -1,104 +1,65 @@
 {
-  "manifestVersion": "1.0.0",
-  "generatedFor": "NESGESFinanceTrust",
-  "copyright": "© NESGESFinance Ecosystem S.A.S. BIC & LLC. EIN: 0008086872",
-  "ecosystem": {
-    "name": "NESGESFinance Ecosystem",
-    "platform": "nesgesfinancetrust.com",
-    "officialLogo": {
-      "file": "assets/logos/NESGESFinance_Logo.jpg",
+  "brand": "NESGESFinanceTrust",
+  "version": 1,
+  "logos": [
+    {
+      "id": "nesgesfinance-ecosystem",
+      "name": "NESGESFinance Ecosystem",
+      "path": "assets/logos/NESGESFinance_Logo.jpg",
       "format": "jpg",
-      "resolution": {
+      "dimensions": {
         "width": 740,
         "height": 740
       },
-      "sizeBytes": 213334,
-      "sha256": "6bfba8f6fbf36fa14fca9590ab8b650506fea85be5c1121d4505737b2398fccb",
+      "recommendedSizes": {
+        "documentationWidthPx": 180,
+        "presentationWidthPx": 220,
+        "compactWidthPx": 96
+      },
       "usageContexts": [
-        "Documentación institucional",
-        "Cabeceras de plataforma",
-        "Material corporativo"
-      ]
-    }
-  },
-  "rune": {
-    "name": "NGF-BTC-AM",
-    "description": "Logo oficial de la Rune NGF-BTC-AM para activos vinculados a Bitcoin.",
-    "blockchain": {
-      "network": "Bitcoin",
-      "protocols": [
-        "Runes",
-        "Ordinals"
-      ]
+        "institutional-header",
+        "ecosystem-documentation",
+        "corporate-branding"
+      ],
+      "copyright": "Copyright ® NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872. Todos los derechos reservados, 2025–2026.",
+      "license": "Uso oficial interno y de marca según lineamientos corporativos."
     },
-    "officialLogo": {
-      "file": "assets/logos/NGF-BTC-AM.jpg",
+    {
+      "id": "ngf-btc-am",
+      "name": "NGF-BTC-AM",
+      "path": "assets/logos/NGF-BTC-AM.jpg",
       "format": "jpg",
-      "resolution": {
+      "dimensions": {
         "width": 1023,
         "height": 1024
       },
-      "sizeBytes": 251188,
-      "sha256": "3f63c3485b3466867128877a2b36ecc2d1dbfde6f90c37922c382641de4b5b62",
-      "usageContexts": [
-        "Secciones de producto vinculadas a Bitcoin",
-        "Comunicación técnica de la Rune",
-        "Interfaces de tokenización RWA"
-      ]
-    }
-  },
-  "brandingGuidelines": {
-    "version": "2026.08",
-    "documentation": "docs/BRANDING.md",
-    "colors": {
-      "primary": {
-        "nesgesFinanceBlue": "#1E40AF",
-        "bitcoinOrange": "#F59E0B",
-        "accentGreen": "#10B981"
+      "recommendedSizes": {
+        "documentationWidthPx": 180,
+        "presentationWidthPx": 220,
+        "compactWidthPx": 96
       },
-      "secondary": {
-        "darkBackground": "#0F172A",
-        "lightText": "#F8FAFC",
-        "borderGray": "#475569"
-      }
-    },
-    "typography": {
-      "primary": [
-        "Inter",
-        "Segoe UI",
-        "sans-serif"
+      "usageContexts": [
+        "bitcoin-linked-assets",
+        "runes-branding",
+        "product-specific-communications"
       ],
-      "technicalDocumentation": [
-        "Inter",
-        "Segoe UI"
-      ]
-    }
-  },
-  "assetInventory": [
-    {
-      "path": "assets/logos/NESGESFinance_Logo.jpg",
-      "type": "image/jpeg",
-      "role": "ecosystem-official-logo"
-    },
-    {
-      "path": "assets/logos/NGF-BTC-AM.jpg",
-      "type": "image/jpeg",
-      "role": "rune-official-logo"
+      "copyright": "Copyright ® NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872. Todos los derechos reservados, 2025–2026.",
+      "license": "Uso oficial interno y de marca según lineamientos corporativos."
     }
   ],
+  "palette": {
+    "NESGESFinance Blue": "#0B3C8A",
+    "Bitcoin Orange": "#F7931A",
+    "Accent Green": "#2EAF6D"
+  },
+  "documentation": {
+    "brandingGuide": "docs/BRANDING.md",
+    "readme": "README.md"
+  },
   "integrationChecklist": [
-    "Los logos se referencian desde rutas oficiales en README y documentación",
-    "Se mantiene proporción original de ambos logos",
-    "Se respeta paleta de colores oficial en piezas complementarias",
-    "Se mantiene metadata técnica y checksums actualizados en este manifest"
-  ],
-  "contact": {
-    "owner": "NESGESFinance Ecosystem S.A.S. BIC & LLC",
-    "ein": "0008086872",
-    "supportChannel": "Repositorio NESGESFinanceTrust (Issues y Pull Requests internos)"
-  },
-  "license": {
-    "type": "All rights reserved",
-    "notes": "Uso de marca sujeto a autorización del titular."
-  }
+    "Usar el archivo del logo correspondiente al contexto funcional o institucional.",
+    "Mantener la relación de aspecto original y tamaños mínimos sugeridos.",
+    "Conservar contraste adecuado con el fondo y evitar alteraciones cromáticas no autorizadas.",
+    "Referenciar este manifest en inventarios automatizados de assets."
+  ]
 }
