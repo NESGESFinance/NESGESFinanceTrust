@@ -143,7 +143,7 @@ function traducirElementosCompuestos(idioma) {
 /** Traducciones de la interfaz pública. El idioma elegido se conserva entre páginas. */
 const I18N = {
   es: {
-    "navHome": "Inicio",
+    "navHome": "Home",
     "navEcosystem": "Ecosistema",
     "navProjects": "Explorar activos",
     "navDashboard": "Dashboard",
@@ -981,10 +981,10 @@ const I18N = {
 };
 
 const NAVIGATION_TRANSLATIONS = {
-  'index.html': 'navHome',
+  'index.html': 'navEcosystem',
   'proyectos.html': 'navProjects',
   'verify.html': 'navProjects',
-  'institucional.html': 'navEcosystem',
+  'institucional.html': 'navHome',
   'dashboard-unificado.html': 'navDashboard',
   'explorer.html': 'navExplorer',
   'dashboard2.html': 'navRwa',
