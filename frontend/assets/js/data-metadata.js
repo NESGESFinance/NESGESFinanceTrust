@@ -222,7 +222,17 @@ class DataMetadataInjector {
   getOrCreateSessionId() {
     let sessionId = sessionStorage.getItem('nesges_session_id');
     if (!sessionId) {
-      sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      const cryptoRef = (typeof globalThis !== 'undefined' && globalThis.crypto) ? globalThis.crypto : null;
+      const randomPart = cryptoRef && typeof cryptoRef.randomUUID === 'function'
+        ? cryptoRef.randomUUID().replace(/-/g, '')
+        : (() => {
+            const bytes = new Uint8Array(12);
+            if (cryptoRef && typeof cryptoRef.getRandomValues === 'function') {
+              cryptoRef.getRandomValues(bytes);
+            }
+            return Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
+          })();
+      sessionId = 'session_' + Date.now() + '_' + randomPart;
       sessionStorage.setItem('nesges_session_id', sessionId);
     }
     return sessionId;
