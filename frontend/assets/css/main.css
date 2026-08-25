@@ -502,6 +502,38 @@ p.descripcion {
   font-size: 0.9rem;
 }
 
+.galeria-marca {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.galeria-marca-item {
+  margin: 0;
+  background: linear-gradient(180deg, rgba(26, 45, 77, 0.96), rgba(14, 30, 55, 0.96));
+  border: 1px solid var(--color-borde);
+  border-radius: 14px;
+  padding: 0.8rem;
+  box-shadow: var(--sombra);
+}
+
+.galeria-marca-item img {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(169, 198, 255, 0.16);
+}
+
+.galeria-marca-item figcaption {
+  margin-top: 0.55rem;
+  font-size: 0.8rem;
+  color: var(--color-texto-tenue);
+  text-align: center;
+}
+
 /* Documento maestro institucional */
 .institucional-hero { padding-bottom: 2.5rem; }
 .marca-institucional {
