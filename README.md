@@ -25,6 +25,7 @@ cumplimiento normativo, exponiendo una API REST/WebSocket y un panel web.
 > **Web:** [https://nesgesfinance.org](https://nesgesfinance.org)
 > **Whitepaper:** [`NESGESFinance Ecosystem — Documento Maestro Institucional, Tecnológico y de Proyectos 2026`](./NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
 > **Fuente institucional primaria:** el PDF adjunto funciona como mini whitepaper institucional y documento maestro base para las secciones de arquitectura, tokenómica, postulación de proyectos y gobernanza descritas en este repositorio.
+> **Fuente documental única:** [`NESGESFinance/Documentacion`](https://github.com/NESGESFinance/Documentacion) es el repositorio institucional oficial y actualizado para glosario, política de control documental, changelog documental, checklist de publicación y matriz de trazabilidad de claims. Su reflejo literal se mantiene en [`docs/institucional/`](./docs/institucional/README.md).
 
 Referencias de diseño y uso:
 
@@ -228,6 +229,14 @@ nesgesfinancetrust/
 │   ├── COMPLIANCE.docx
 │   ├── COMPLIANCE.md
 │   ├── COMPLIANCE.pdf
+│   ├── institucional/
+│   │   ├── CHANGELOG_DOCUMENTAL.md
+│   │   ├── CHECKLIST_PUBLICACION_GITHUB_PAGES.md
+│   │   ├── GLOSARIO_NESGESFinance.md
+│   │   ├── LICENCIA_DOCUMENTACION.md
+│   │   ├── MATRIZ_TRAZABILIDAD_CLAIMS.csv
+│   │   ├── Politica_Control_Documental.md
+│   │   └── README.md
 │   ├── ORDINALS_PROTOCOL.docx
 │   ├── ORDINALS_PROTOCOL.md
 │   ├── ORDINALS_PROTOCOL.pdf
@@ -297,6 +306,7 @@ nesgesfinancetrust/
 │   └── verify.html
 ├── jest.config.js
 ├── legal/
+│   ├── AVISO_LEGAL.md
 │   ├── DIVULGACION_VULNERABILIDADES.md
 │   ├── POLITICA_PRIVACIDAD.md
 │   └── TERMINOS_USO.md
@@ -328,6 +338,11 @@ Resumen funcional por carpeta principal:
 - [`docs/PROYECTOS.md`](./docs/PROYECTOS.md) — Portafolio de proyectos y proceso de postulación.
 - [`docs/WHITEPAPER.md`](./docs/WHITEPAPER.md) — Documento Maestro / mini whitepaper institucional 2026 (resumen, índice y trazabilidad).
 - [`docs/BRANDING.md`](./docs/BRANDING.md) — Guía de branding y uso de logotipos oficiales.
+- [`docs/institucional/`](./docs/institucional/README.md) — Documentos de gobierno documental
+  sincronizados literalmente desde el repositorio fuente
+  [`NESGESFinance/Documentacion`](https://github.com/NESGESFinance/Documentacion)
+  (glosario, política de control documental, changelog documental, checklist de
+  publicación y matriz de trazabilidad de claims).
 
 ## 🎨 Branding y Logotipos
 
