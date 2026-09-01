@@ -184,6 +184,11 @@ la documentación técnica del repositorio:
   de seguridad, reproducibilidad, Bitcoin/L2, CI/CD y separación RWA/KYC.
 - Repositorio oficial GitHub: [NESGESFinance/NESGESFinanceTrust](https://github.com/NESGESFinance/NESGESFinanceTrust).
 - Web oficial: [https://nesgesfinance.org](https://nesgesfinance.org).
+- Repositorio institucional fuente única de documentación:
+  [NESGESFinance/Documentacion](https://github.com/NESGESFinance/Documentacion)
+  — glosario, política de control documental, changelog documental, checklist
+  de publicación y matriz de trazabilidad de claims, reflejados literalmente en
+  [`docs/institucional/`](./institucional/README.md).
 
 ---
 
