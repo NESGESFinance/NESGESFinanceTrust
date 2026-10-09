@@ -11,18 +11,17 @@
 
 <p align="center"><strong>Infraestructura técnica Bitcoin L1 · Runes · Ordinals · Tokenización RWA del ecosistema NESGESFinance</strong></p>
 
-⚠️ **Estado de auditoría:** Esta plataforma está actualmente en etapa de **auditoría técnica y testeo de conectores**. Los datos, módulos y funcionalidades visibles pueden corresponder a pruebas de integración y no reflejan necesariamente el estado final ni la disponibilidad definitiva del servicio.
 
 ---
 
-Plataforma de **indexación de Bitcoin y tokenización de Activos del Mundo Real
+Plataforma de **indexación de Bitcoin y Tokenización de Activos del Mundo Real
 (RWA)** de la **NESGESFinance Ecosystem**. Indexa bloques, mempool, **Runes**
 (Utility Token), **Ordinals** (Security Tokens) y registra RWA con
 cumplimiento normativo, exponiendo una API REST/WebSocket y un panel web.
 
-> **Plataforma:** nesgesfinancetrust.com · **Versión:** v3.4-dev-audit (Agosto 2026)
+> **Plataforma:** nesgesfinancetrust.com · **Versión:** v3.4-dev-audit (Septiembre 2026)
 > **Lema:** *"Y a tu prójimo como a ti mismo"*
-> **Web:** [https://nesgesfinance.org](https://nesgesfinance.org)
+> **Web:** [https://nesgesfinance.si](https://nesgesfinance.si)
 > **Whitepaper:** [`NESGESFinance Ecosystem — Documento Maestro Institucional, Tecnológico y de Proyectos 2026`](./NESGESFinance%20Ecosystem%20Mini%20Whitepaper%20Institucional%202026%20(2).pdf)
 > **Fuente institucional primaria:** el PDF adjunto funciona como mini whitepaper institucional y documento maestro base para las secciones de arquitectura, tokenómica, postulación de proyectos y gobernanza descritas en este repositorio.
 > **Fuente documental única:** [`NESGESFinance/Documentacion`](https://github.com/NESGESFinance/Documentacion) es el repositorio institucional oficial y actualizado para glosario, política de control documental, changelog documental, checklist de publicación y matriz de trazabilidad de claims. Su reflejo literal se mantiene en [`docs/institucional/`](./docs/institucional/README.md).
@@ -146,7 +145,7 @@ El siguiente inventario textual refleja las carpetas, subcarpetas y archivos
 presentes en el repositorio para complementar el contenido visual ya incorporado:
 
 ```text
-nesgesfinancetrust/
+nesgesfinanceapp/
 ├── .env.example
 ├── .eslintrc.cjs
 ├── .gitignore
@@ -365,7 +364,7 @@ documentales.
 
 - **Empresa:** NESGESFinance Ecosystem S.A.S. BIC / S.A.S. LLC — EIN: 0008086872
 - **CEO-Fundador:** Cbr. Joan Santiago Ramírez Almeida
-- **Plataforma:** nesgesfinance.si · [https://nesgesfinance.si](https://nesgesfinance.si)
+- **Plataforma:** nesgesfinance.si · [https://nesgesfinance.si] (https://nesgesfinance.si)
 
 ## Licencia
 
