@@ -1,5 +1,5 @@
 {
-  "brand": "NESGESFinanceTrust",
+  "brand": "NESGESFinanceApp",
   "version": 1,
   "logos": [
     {
@@ -21,13 +21,13 @@
         "ecosystem-documentation",
         "corporate-branding"
       ],
-      "copyright": "Copyright ® NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872. Todos los derechos reservados, 2025–2026.",
+      "copyright": "Copyright ® NESGESFinance Ecosystem S.A.S. BIC / S.A.S. LLC  EIN: 0008086872. Todos los derechos reservados, 2025–2026.",
       "license": "Uso oficial interno y de marca según lineamientos corporativos."
     },
     {
-      "id": "ngf-btc-am",
-      "name": "NGF-BTC-AM",
-      "path": "assets/logos/NGF-BTC-AM.jpg",
+      "id": "ngf•btc•am",
+      "name": "NGF•BTC•AM",
+      "path": "assets/logos/NGF•BTC•AM.jpg",
       "format": "jpg",
       "dimensions": {
         "width": 1023,
