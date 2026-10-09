@@ -1,8 +1,8 @@
 <!--
-  README principal — NESGESFinanceTrust
+  README principal — NESGESFinanceApp
   Copyright ®NESGESFinance Ecosystem S.A.S. BIC. & LLC. EIN: 0008086872
 -->
-# NESGESFinanceTrust
+# NESGESFinanceApp
 
 <p align="center">
   <img src="assets/logos/NESGESFinance_Logo.jpg" alt="Logo oficial de NESGESFinance" width="220" />
@@ -49,7 +49,7 @@ a la utilidad productiva.
 |---|---|---|---|
 | NESGESFinance Ecosystem S.A.S. BIC | Ecuador (Ibarra) | RUC 1091799299001 | Coordinación tecnológica e impacto BIC local |
 | NESGESFinance Ecosystem S.A.S. LLC | Nuevo México, EE.UU. | File #3168825 · EIN 0008086872 | Propiedad intelectual, infraestructura y expansión internacional |
-| NESGESFinanceTrust | En proceso de formalización | — | Capa patrimonial/fiduciaria, cumplimiento normativo y primer SPV piloto |
+| NESGESFinanceApp | En proceso | — | Capa patrimonial/fiduciaria, cumplimiento normativo SEC CFTC y primer SPV a Subasta |
 
 ---
 
@@ -358,15 +358,14 @@ Referencias relacionadas:
 
 ## Exclusiones editoriales
 
-Este repositorio no debe incorporar ni referenciar contenido relacionado con
-**Motel El Refugio** o **Serie A** dentro de sus secciones visuales o
+Este repositorio regula las secciones visuales o
 documentales.
 
 ## Créditos
 
-- **Empresa:** NESGESFinance Ecosystem S.A.S. BIC. & LLC. — EIN: 0008086872
+- **Empresa:** NESGESFinance Ecosystem S.A.S. BIC / S.A.S. LLC — EIN: 0008086872
 - **CEO-Fundador:** Cbr. Joan Santiago Ramírez Almeida
-- **Plataforma:** nesgesfinancetrust.com · [https://nesgesfinance.org](https://nesgesfinance.org)
+- **Plataforma:** nesgesfinance.si · [https://nesgesfinance.si](https://nesgesfinance.si)
 
 ## Licencia
 
